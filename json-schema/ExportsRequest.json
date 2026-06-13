@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ExportsRequest",
+  "required": [
+    "questionKeys",
+    "scriptKey",
+    "studyKey"
+  ],
+  "type": "object",
+  "properties": {
+    "studyKey": {
+      "type": "integer",
+      "description": "Key of study",
+      "format": "int32"
+    },
+    "questionKeys": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "description": "Keys of questions"
+    },
+    "scriptKey": {
+      "type": "integer",
+      "description": "Name of script to use for new job",
+      "format": "int32"
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Additional job's parameters",
+      "nullable": true
+    },
+    "exportAsText": {
+      "type": "boolean",
+      "description": "Request text format output instead of default Excel format.\r\nOnly works if the script has ScriptXlsxTextOption=true, otherwise parameter is ignored.\r\nCookie is always set: if not provided or false, exports as Excel; if true, exports as text.",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Class contains necessary export options to create a job"
+}

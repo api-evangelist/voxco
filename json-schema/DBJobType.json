@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DBJobType",
+  "enum": [
+    "LoadFromAscribe",
+    "LoadFromFtp",
+    "SaveStudy",
+    "RestoreStudy",
+    "MergeStudy",
+    "ScriptedOutput",
+    "SaveAcm",
+    "RestoreAcm",
+    "AutoCode",
+    "AutoTranslateStudy",
+    "AICoder"
+  ],
+  "type": "string",
+  "format": ""
+}

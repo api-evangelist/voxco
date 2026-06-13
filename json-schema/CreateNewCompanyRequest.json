@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CreateNewCompanyRequest",
+  "required": [
+    "id"
+  ],
+  "type": "object",
+  "properties": {
+    "id": {
+      "maxLength": 100,
+      "minLength": 1,
+      "type": "string",
+      "description": "The id for the new Company, which must be unique among all Companies by case insensitive comparison.\r\n\r\nThe id provided will be trimmed of leading and trailing whitespace.\r\n  \r\nThe trimmed value must be from 1 to 100 characters in length and may not start with an underscore character '_'."
+    }
+  },
+  "additionalProperties": false,
+  "description": "Request to create a new Company"
+}

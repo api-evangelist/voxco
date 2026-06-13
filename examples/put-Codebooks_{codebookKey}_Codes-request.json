@@ -1,0 +1,29 @@
+{
+  "codes": [
+    {
+      "key": 1234567,
+      "description": "New Description for the code with key 1234567",
+      "inputId": "101",
+      "outputId": "101",
+      "regexPattern": null,
+      "color": "#00FF00"
+    },
+    {
+      "key": 1234568,
+      "description": "New Description for the code with key 1234568",
+      "inputId": "102",
+      "outputId": "102",
+      "regexPattern": null,
+      "color": "#FF0000"
+    },
+    {
+      "key": 1234569,
+      "description": "New Description for the code with key 1234569",
+      "inputId": "103",
+      "outputId": "103",
+      "regexPattern": "\\bnothing\\b",
+      "color": "#00CCCC"
+    }
+  ],
+  "overwrite": true
+}

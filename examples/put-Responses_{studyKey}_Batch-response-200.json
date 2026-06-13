@@ -1,0 +1,59 @@
+{
+  "questionResponses": [
+    {
+      "questionKey": 1,
+      "questionId": "Q1",
+      "updatedResponses": [
+        {
+          "rid": "ABC_12345",
+          "verbatim": "I do not like the red color",
+          "translation": null,
+          "transcription": null,
+          "notes": null
+        },
+        {
+          "rid": "ABC_12346",
+          "verbatim": "This is a fantastic product",
+          "translation": null,
+          "transcription": null,
+          "notes": null
+        }
+      ],
+      "addedResponses": [],
+      "unchangedResponses": [],
+      "errorMessage": null
+    },
+    {
+      "questionKey": 2,
+      "questionId": "Q2",
+      "updatedResponses": [
+        {
+          "rid": "ABC_12345",
+          "verbatim": "I do not like the red color",
+          "translation": null,
+          "transcription": null,
+          "notes": null
+        },
+        {
+          "rid": "ABC_12346",
+          "verbatim": "This is a fantastic product",
+          "translation": null,
+          "transcription": null,
+          "notes": null
+        }
+      ],
+      "addedResponses": [
+        {
+          "rid": "ABC_12347",
+          "verbatim": "If it has green color, it would be better",
+          "translation": null,
+          "transcription": null,
+          "notes": null
+        }
+      ],
+      "unchangedResponses": [],
+      "errorMessage": null
+    }
+  ],
+  "errorMessage": null
+}

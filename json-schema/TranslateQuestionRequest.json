@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TranslateQuestionRequest",
+  "required": [
+    "questionKey",
+    "targetLanguageCode"
+  ],
+  "type": "object",
+  "properties": {
+    "questionKey": {
+      "type": "integer",
+      "description": "Key of question to translate",
+      "format": "int32"
+    },
+    "targetLanguageCode": {
+      "minLength": 1,
+      "type": "string",
+      "description": "Code of target language"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Request to translate specified question"
+}

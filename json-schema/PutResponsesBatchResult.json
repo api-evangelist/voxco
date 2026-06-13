@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PutResponsesBatchResult",
+  "required": [
+    "questionId",
+    "questionKey"
+  ],
+  "type": "object",
+  "properties": {
+    "questionKey": {
+      "type": "integer",
+      "description": "Key of target question",
+      "format": "int32"
+    },
+    "questionId": {
+      "type": "string",
+      "description": "Id of target question",
+      "nullable": true
+    },
+    "updatedResponses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PutResponseBatch"
+      },
+      "description": "Updated responses",
+      "nullable": true
+    },
+    "addedResponses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PutResponseBatch"
+      },
+      "description": "Added responses",
+      "nullable": true
+    },
+    "unchangedResponses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PutResponseBatch"
+      },
+      "description": "Unchanged responses",
+      "nullable": true
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Error message when updating question responses finished with some error",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Class contains information about updated responses for target questions"
+}

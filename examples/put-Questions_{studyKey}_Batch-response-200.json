@@ -1,0 +1,10 @@
+{
+  "failedQuestions": [
+    {
+      "key": "200003",
+      "errorMessage": "Some error message"
+    }
+  ],
+  "newQuestions": [],
+  "errorMessage": "Some questions were not updated. See failedQuestions for details."
+}

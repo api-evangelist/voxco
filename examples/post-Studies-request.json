@@ -1,0 +1,14 @@
+{
+  "quota": 3,
+  "id": "S458-3",
+  "name": "Hair care",
+  "description": "Test of hair care products",
+  "status": "p",
+  "supervisorKey": 44,
+  "clientCompanyKey": 45,
+  "endCompanyKey": 46,
+  "help": "Code frames must be spell-checked!",
+  "startDateUtc": "2026-06-13T20:21:47.3196928+00:00",
+  "dueDateUtc": "2026-06-20T20:21:47.3197193+00:00",
+  "externalStudyId": null
+}

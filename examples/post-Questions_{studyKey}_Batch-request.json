@@ -1,0 +1,43 @@
+{
+  "questions": [
+    {
+      "codebookKey": null,
+      "id": "Q1",
+      "tasks": "cb",
+      "type": "o",
+      "label": "Likes",
+      "text": "What did you like about the product?",
+      "help": "Any help string for the product",
+      "sortOrder": 10,
+      "codingSource": "v",
+      "alternativeCodingSource": "b",
+      "externalQuestionId": null
+    },
+    {
+      "codebookKey": null,
+      "id": "Q2",
+      "tasks": "cb",
+      "type": "o",
+      "label": "Dislikes",
+      "text": "What did you dislike about the product?",
+      "help": "Any help string for the product",
+      "sortOrder": 20,
+      "codingSource": "v",
+      "alternativeCodingSource": "b",
+      "externalQuestionId": null
+    },
+    {
+      "codebookKey": null,
+      "id": "Q3",
+      "tasks": "c",
+      "type": "c",
+      "label": "Country",
+      "text": "Where are you from?",
+      "help": "Your country",
+      "sortOrder": 30,
+      "codingSource": "v",
+      "alternativeCodingSource": "",
+      "externalQuestionId": null
+    }
+  ]
+}

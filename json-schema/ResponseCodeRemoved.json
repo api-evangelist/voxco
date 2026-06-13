@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ResponseCodeRemoved",
+  "required": [
+    "codeId",
+    "codeKey",
+    "questionId",
+    "questionKey",
+    "respondentId"
+  ],
+  "type": "object",
+  "properties": {
+    "questionKey": {
+      "type": "integer",
+      "description": "Key of question",
+      "format": "int32"
+    },
+    "questionId": {
+      "type": "string",
+      "description": "Id of question",
+      "nullable": true
+    },
+    "respondentId": {
+      "type": "string",
+      "description": "Id of respondent",
+      "nullable": true
+    },
+    "codeKey": {
+      "type": "integer",
+      "description": "Key of code",
+      "format": "int32"
+    },
+    "codeId": {
+      "type": "string",
+      "description": "Code Id (output)",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Contains information about codes that were uncode from responses"
+}

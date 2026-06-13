@@ -1,0 +1,50 @@
+{
+  "questionResponses": [
+    {
+      "questionKey": 200011,
+      "responses": [
+        {
+          "rid": "ABC_12345",
+          "verbatim": "I do not like the red color",
+          "translation": null,
+          "transcription": null,
+          "notes": null
+        },
+        {
+          "rid": "ABC_12346",
+          "verbatim": "This is a fantastic product",
+          "translation": null,
+          "transcription": null,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "questionKey": 200012,
+      "responses": [
+        {
+          "rid": "ABC_12345",
+          "verbatim": "Very good",
+          "translation": null,
+          "transcription": null,
+          "notes": null
+        },
+        {
+          "rid": "ABC_12346",
+          "verbatim": "I can't answer this question",
+          "translation": null,
+          "transcription": null,
+          "notes": null
+        },
+        {
+          "rid": "ABC_12347",
+          "verbatim": "If it has green color, it would be better",
+          "translation": null,
+          "transcription": null,
+          "notes": null
+        }
+      ]
+    }
+  ],
+  "allowEmptyStrings": false
+}

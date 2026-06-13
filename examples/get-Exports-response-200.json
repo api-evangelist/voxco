@@ -1,0 +1,46 @@
+{
+  "scripts": [
+    {
+      "key": 5,
+      "name": "Translation Complete Report",
+      "description": "Uses the specified closed-end as language data to identify translation production by question",
+      "isForceToTextOption": true,
+      "friendlyName": "Translation Report",
+      "acceptsQuestionList": true,
+      "modifiesData": false,
+      "purpose": "Export",
+      "parameters": [
+        {
+          "key": 1,
+          "name": "Language/Country question",
+          "description": null,
+          "verifyRegEx": null,
+          "ordinal": 0,
+          "isRequired": true,
+          "parameterType": "String"
+        },
+        {
+          "key": 2,
+          "name": "Email list",
+          "description": null,
+          "verifyRegEx": null,
+          "ordinal": 0,
+          "isRequired": false,
+          "parameterType": "String"
+        }
+      ]
+    },
+    {
+      "key": 6,
+      "name": "ORC MP3 loader",
+      "description": "",
+      "isForceToTextOption": false,
+      "friendlyName": "ORC Audio Loader",
+      "acceptsQuestionList": false,
+      "modifiesData": true,
+      "purpose": "DataUpdate",
+      "parameters": []
+    }
+  ],
+  "errorMessage": null
+}

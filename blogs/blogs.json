@@ -1,0 +1,67 @@
+{
+  "aid": "voxco",
+  "url": "https://www.voxco.com/blog",
+  "fetched": "2026-06-13",
+  "posts": [
+    {
+      "title": "Five Takeaways from a Research Tech CEO on AI, Rigor, and Research (2026)",
+      "url": "https://www.voxco.com/resources/five-takeaways-from-a-research-tech-ceo-on-ai-rigor-and-research-2026",
+      "date": "2026-03-04",
+      "description": "Daniel Graff-Radford, CEO of Discuss, discusses how AI is reshaping research workflows while maintaining methodological rigor, emphasizing that technology amplifies rather than replaces researcher expertise."
+    },
+    {
+      "title": "Building the Future of Research, Together",
+      "url": "https://www.voxco.com/resources/building-the-future-of-research-together",
+      "date": "2026-03-04",
+      "description": "Announcement of the strategic combination of Discuss, Voxco, and Ascribe to create an integrated platform uniting qualitative depth, quantitative scale, and AI intelligence."
+    },
+    {
+      "title": "Why CATI and Offline Surveys Still Matter in an AI-Dominated World",
+      "url": "https://www.voxco.com/resources/why-cati-and-offline-surveys-still-matter-in-an-ai-dominated-world",
+      "date": "2025-11-13",
+      "description": "Explores how human-centered research methods like CATI and offline surveys remain essential for capturing nuance and reaching underserved populations despite AI advancement."
+    },
+    {
+      "title": "The Genius in the Basement Can't Save Us This Time",
+      "url": "https://www.voxco.com/resources/the-genius-in-the-basement-cant-save-us-this-time-from-diy-to-ai-partnership",
+      "date": "2025-11-04",
+      "description": "Argues that DIY AI approaches lack necessary governance and oversight, advocating instead for strategic partnerships with established platforms built for continuous monitoring."
+    },
+    {
+      "title": "Why Researchers, Not Algorithms, Must Stay at the Center of AI",
+      "url": "https://www.voxco.com/resources/why-researchers-not-algorithms-must-stay-at-the-center-of-ai",
+      "date": "2025-10-15",
+      "description": "Emphasizes that AI should create conditions for better judgment, not attempt to replace it, promoting responsible AI integration where researchers maintain oversight."
+    },
+    {
+      "title": "iOS 26 Call Screening: What Market Researchers Need to Know",
+      "url": "https://www.voxco.com/resources/ios-26-call-screening-what-market-researchers-need-to-know",
+      "date": "2025-09-24",
+      "description": "Addresses Apple's new call screening feature and its minimal impact on research, offering practical strategies for maintaining phone survey response rates."
+    },
+    {
+      "title": "When the Fourth Firefly Lives in Your Data",
+      "url": "https://www.voxco.com/resources/when-the-fourth-firefly-lives-in-your-data-detecting-ai-changes-before-they-skew-results",
+      "date": "2025-09-11",
+      "description": "Uses a metaphor to explain AI model drift and validation challenges, providing frameworks for detecting when AI systems silently change their behavior."
+    },
+    {
+      "title": "Research Quality in the Age of AI",
+      "url": "https://www.voxco.com/resources/research-quality-in-the-age-of-ai",
+      "date": "2025-08-28",
+      "description": "Addresses tensions between speed and quality when integrating AI, advocating for guardrails and staged review processes to maintain research integrity."
+    },
+    {
+      "title": "Beyond the Black Box: A Framework for Responsible AI Integration",
+      "url": "https://www.voxco.com/resources/beyond-the-black-box-a-framework-for-responsible-ai-integration-in-survey-research",
+      "date": "2025-08-19",
+      "description": "Proposes standards for responsible AI adoption including performance proof, researcher control mechanisms, reproducibility tools, and bias monitoring requirements."
+    },
+    {
+      "title": "Are Your Survey Questions Getting the Whole Story?",
+      "url": "https://www.voxco.com/resources/are-your-survey-questions-getting-the-whole-story-ai-probing-might-prove-you-wrong",
+      "date": "2025-07-24",
+      "description": "Explains how AI probing generates deeper survey responses through contextual follow-up questions, with guidance on implementation and customization options."
+    }
+  ]
+}

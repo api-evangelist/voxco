@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostResponsesBatchRequest",
+  "required": [
+    "questionResponses"
+  ],
+  "type": "object",
+  "properties": {
+    "questionResponses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PostQuestionResponses"
+      },
+      "description": "Array of questions with their responses to create"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Request with information for creating multiple responses via one API call (batch operation)"
+}

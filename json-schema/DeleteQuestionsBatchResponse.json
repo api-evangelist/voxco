@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeleteQuestionsBatchResponse",
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "deleteQuestionsBatchResults": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DeleteQuestionsBatchResult"
+      },
+      "description": "Array of pairs of question key with error message. Error message is null for successfully deleted questions.",
+      "nullable": true
+    },
+    "entityType": {
+      "type": "string",
+      "description": "Type of entity (Codes/QualityCodes/Responses/Question). It duplicates value from request to the API method.",
+      "nullable": true
+    },
+    "entityItemsDeleted": {
+      "type": "integer",
+      "description": "Number of deleted items",
+      "format": "int32"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Response contains data about which question or question items were deleted in the batch operation."
+}

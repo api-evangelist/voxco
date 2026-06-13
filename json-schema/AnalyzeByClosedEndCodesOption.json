@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AnalyzeByClosedEndCodesOption",
+  "required": [
+    "codeKey"
+  ],
+  "type": "object",
+  "properties": {
+    "codeKey": {
+      "type": "integer",
+      "description": "The numeric key of the code from the closed-ended question's codebook.",
+      "format": "int32",
+      "example": 55
+    },
+    "codeIsAbout": {
+      "type": "string",
+      "description": "Optional. A hint to the AI about the meaning or topic of this specific code.",
+      "nullable": true,
+      "example": "Negative feedback about pricing"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Represents a specific code to consider when using the CoderApiV2.Models.Coder.AnalyzeByClosedEndOption."
+}

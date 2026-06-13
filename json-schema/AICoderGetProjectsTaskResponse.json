@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AICoderGetProjectsTaskResponse",
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "aiCoderProjects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AICoderProjectAPI"
+      },
+      "description": "Array of AI Coder projects",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Constains AI Coder projects which are available for current user"
+}

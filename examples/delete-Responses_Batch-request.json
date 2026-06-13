@@ -1,0 +1,25 @@
+{
+  "questionResponses": [
+    {
+      "questionKey": 55,
+      "respondentIDs": [
+        "100001",
+        "100002"
+      ]
+    },
+    {
+      "questionKey": 56,
+      "respondentIDs": [
+        "200001"
+      ]
+    },
+    {
+      "questionKey": 57,
+      "respondentIDs": [
+        "300001",
+        "300002",
+        "300003"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeleteQuestionResponseResultItem",
+  "type": "object",
+  "properties": {
+    "questionKey": {
+      "type": "integer",
+      "description": "Key of question",
+      "format": "int32"
+    },
+    "respondentID": {
+      "type": "string",
+      "description": "Respondent ID of response",
+      "nullable": true
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Error message why response can not be deleted",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Result item with information about status of deletion of some response in the specified question"
+}

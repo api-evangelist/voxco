@@ -1,0 +1,42 @@
+{
+  "questionResponses": [
+    {
+      "questionKey": 212345,
+      "responses": [
+        {
+          "rid": "34-22907",
+          "verbatim": "I do not like the red color",
+          "translation": null,
+          "transcription": null,
+          "notes": null
+        },
+        {
+          "rid": "34-22988",
+          "verbatim": "This is a fantastic product",
+          "translation": null,
+          "transcription": null,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "questionKey": 212346,
+      "responses": [
+        {
+          "rid": "34-22907",
+          "verbatim": "France",
+          "translation": null,
+          "transcription": null,
+          "notes": null
+        },
+        {
+          "rid": "34-22988",
+          "verbatim": "USA",
+          "translation": null,
+          "transcription": null,
+          "notes": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GetResponsesResponse",
+  "required": [
+    "responses"
+  ],
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "responses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ExistingResponse"
+      },
+      "description": "The requested responses in the Question."
+    }
+  },
+  "additionalProperties": false,
+  "description": "The response of a query to the Responses resource."
+}

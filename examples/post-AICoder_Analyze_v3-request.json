@@ -1,0 +1,45 @@
+{
+  "questionKeys": [
+    100,
+    101,
+    102,
+    103
+  ],
+  "codebookBuilder": {
+    "codebookGranularity": 100,
+    "creationMethod": "AIGenerated",
+    "minimumResponsesPerCode": 3,
+    "classificationStrictness": 80,
+    "maxTopicBasedCodesEnabled": false,
+    "maxTopicBasedCodes": 10,
+    "analyzeByClosedEnd": null
+  },
+  "includeCodedResponses": false,
+  "wordsToIgnore": [
+    "some",
+    "words",
+    "to",
+    "ignore"
+  ],
+  "generativeAIOptions": {
+    "dataIsAbout": null,
+    "codebookLanguage": "en"
+  },
+  "nonGenerativeAIOptions": {
+    "splitCharacters": ".!?|",
+    "splitWords": [
+      "but",
+      "however",
+      "nevertheless",
+      "nonetheless",
+      "yet",
+      "thus",
+      "also",
+      "additionally",
+      "nor",
+      "and"
+    ],
+    "responsesAreAllEnglish": true
+  },
+  "useGenerativeAI": true
+}

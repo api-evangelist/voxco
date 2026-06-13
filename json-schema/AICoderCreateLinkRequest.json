@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AICoderCreateLinkRequest",
+  "required": [
+    "projectKey"
+  ],
+  "type": "object",
+  "properties": {
+    "projectKey": {
+      "type": "integer",
+      "description": "Key of AI Coder project.",
+      "format": "int32"
+    },
+    "distributionQuestionKey": {
+      "type": "integer",
+      "description": "Key of distribution question used for filtering (optional).",
+      "format": "int32",
+      "nullable": true
+    },
+    "expirationDateUtc": {
+      "type": "string",
+      "description": "Date of expiration of the links (optional)",
+      "format": "date-time",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Request data for AICoderCreateLinks method."
+}

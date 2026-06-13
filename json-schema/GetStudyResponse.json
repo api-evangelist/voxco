@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GetStudyResponse",
+  "required": [
+    "countQuestions",
+    "countResponses",
+    "countResponsesCoded",
+    "countTransactions",
+    "createDateUtc",
+    "id",
+    "key",
+    "status"
+  ],
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "key": {
+      "type": "integer",
+      "description": "The key of the Study.",
+      "format": "int32"
+    },
+    "quota": {
+      "type": "integer",
+      "description": "The quota for the Study",
+      "format": "int32",
+      "nullable": true
+    },
+    "id": {
+      "minLength": 1,
+      "type": "string",
+      "description": "The id of the Study."
+    },
+    "name": {
+      "type": "string",
+      "description": "A user-friendly display name of the Study.",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the Study.",
+      "nullable": true
+    },
+    "status": {
+      "minLength": 1,
+      "type": "string",
+      "description": "A one-character string which specifies the status of the Study:\r\n<ul><li>a: Archived\r\n</li><li>p: Coding in progress\r\n</li><li>c: Completed\r\n</li><li>d: Deleted\r\n</li><li>h: On hold\r\n</li><li>r: Review in progress\r\n</li><li>s: Shipping\r\n</li><li>u: Under construction</li></ul>"
+    },
+    "supervisorKey": {
+      "type": "integer",
+      "description": "The key of the Person who will do revision of coding work\r\n",
+      "format": "int32",
+      "nullable": true
+    },
+    "supervisorAssociateKey": {
+      "type": "integer",
+      "description": "The key of the supervisor's associate\r\n",
+      "format": "int32",
+      "nullable": true
+    },
+    "clientCompanyKey": {
+      "type": "integer",
+      "description": "The Company to which this Study is assigned, or null if the Study is not assigned to a Company.",
+      "format": "int32",
+      "nullable": true
+    },
+    "endCompanyKey": {
+      "type": "integer",
+      "description": "The key of the Company for which this coding work is being performed\r\n",
+      "format": "int32",
+      "nullable": true
+    },
+    "help": {
+      "type": "string",
+      "description": "Information to coders to assist in coding this Study.",
+      "nullable": true
+    },
+    "createDateUtc": {
+      "type": "string",
+      "description": "The UTC date/time the Study was created.",
+      "format": "date-time"
+    },
+    "startDateUtc": {
+      "type": "string",
+      "description": "UTC date/time the Study was started.",
+      "format": "date-time",
+      "nullable": true
+    },
+    "dueDateUtc": {
+      "type": "string",
+      "description": "UTC date/time the Study was completed.",
+      "format": "date-time",
+      "nullable": true
+    },
+    "countQuestions": {
+      "type": "integer",
+      "description": "The number of Questions in the Study.",
+      "format": "int32"
+    },
+    "countResponses": {
+      "type": "integer",
+      "description": "The sum of the number of Responses in each Question in the Study.",
+      "format": "int32"
+    },
+    "countResponsesCoded": {
+      "type": "integer",
+      "description": "The sum of the number of Responses to which at least one Code has been assigned in each Question in the Study.",
+      "format": "int32"
+    },
+    "countTransactions": {
+      "type": "number",
+      "description": "The number of transactions used by this Study.  Transactions are tokens of work performed on the Study.",
+      "format": "double"
+    },
+    "externalStudyId": {
+      "type": "string",
+      "description": "External study id from StudyMaps",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "The response to a query for a specific Study."
+}

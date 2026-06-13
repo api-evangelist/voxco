@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AddCodesIntoCodebooksBatchRequest",
+  "type": "object",
+  "properties": {
+    "codebooksAndTheirCodes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CodebookNewCodes"
+      },
+      "description": "A list of codebooks and their codes to add",
+      "nullable": true
+    },
+    "overwrite": {
+      "type": "boolean",
+      "description": "Overwrites non-unique codes"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Request contains a list of codebooks and their codes to add"
+}

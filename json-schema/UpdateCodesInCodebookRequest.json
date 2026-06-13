@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UpdateCodesInCodebookRequest",
+  "required": [
+    "codes"
+  ],
+  "type": "object",
+  "properties": {
+    "codes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/UpdateCode"
+      },
+      "description": "Codes to update"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "description": "Overwrites non-unique codes"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Request contains information"
+}

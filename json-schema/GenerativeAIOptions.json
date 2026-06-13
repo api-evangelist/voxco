@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GenerativeAIOptions",
+  "type": "object",
+  "properties": {
+    "dataIsAbout": {
+      "type": "string",
+      "description": "String that describing common sense of analyzing data",
+      "nullable": true
+    },
+    "codebookLanguage": {
+      "type": "string",
+      "description": "Language of codes in codebook",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Generative AI options"
+}

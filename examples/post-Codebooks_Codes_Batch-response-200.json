@@ -1,0 +1,72 @@
+{
+  "codebooksBatch": [
+    {
+      "codebookKey": 1234567,
+      "codebook": [
+        {
+          "key": 53853256,
+          "description": "Likes",
+          "inputId": null,
+          "outputId": "1000",
+          "regexPattern": null,
+          "color": "#00FF00",
+          "children": [
+            {
+              "key": 53853257,
+              "description": "Color",
+              "inputId": null,
+              "outputId": "1001",
+              "regexPattern": null,
+              "color": null,
+              "children": null
+            },
+            {
+              "key": 53853258,
+              "description": "Taste",
+              "inputId": null,
+              "outputId": "1002",
+              "regexPattern": null,
+              "color": null,
+              "children": null
+            }
+          ]
+        },
+        {
+          "key": 53853259,
+          "description": "Dislikes",
+          "inputId": null,
+          "outputId": "1003",
+          "regexPattern": null,
+          "color": "#FF0000",
+          "children": [
+            {
+              "key": 53853260,
+              "description": "Color",
+              "inputId": null,
+              "outputId": "1004",
+              "regexPattern": null,
+              "color": null,
+              "children": null
+            },
+            {
+              "key": 53853261,
+              "description": "Taste",
+              "inputId": null,
+              "outputId": "1005",
+              "regexPattern": null,
+              "color": null,
+              "children": null
+            }
+          ]
+        }
+      ],
+      "errorMessage": null
+    },
+    {
+      "codebookKey": 2345678,
+      "codebook": null,
+      "errorMessage": "Some error happens during inserting of new codes into codebook with key '2345678'."
+    }
+  ],
+  "errorMessage": null
+}

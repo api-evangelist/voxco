@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeleteCodebookCodesResponse",
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "codeKeysDeleted": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "description": "Array of code keys which were successfully deleted from the codebook.",
+      "nullable": true
+    },
+    "codeKeysNotDeleted": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "description": "Array of code keys which were not deleted by some reason. Usually such codes are applied to response(s).",
+      "nullable": true
+    },
+    "codesRemovedFromResponses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ResponseCodeRemoved"
+      },
+      "description": "Array of response-code pairs that were uncoded from responses in process of codes deletion.",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Response contains two arrays with successfully-deleted and failed codes after the try of deletion.\r\nCodebook code can not be deleted if it is applied for some response. Only unused codebook codes can be deleted."
+}

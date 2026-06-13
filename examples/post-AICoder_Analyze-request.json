@@ -1,0 +1,68 @@
+{
+  "questionKeys": [
+    100,
+    101,
+    102,
+    103
+  ],
+  "existingCodebookKey": -1,
+  "existingCodebookSuggestNewCodes": false,
+  "existingCodebookOptions": null,
+  "codebook": {
+    "initial": {
+      "minProximity": 75,
+      "minSegmentsPerCode": 3,
+      "approxMaxCodes": 100
+    },
+    "mergeSimilar": {
+      "enabled": true,
+      "minProximity": 85
+    },
+    "assignSegmentSiblings": {
+      "enabled": true,
+      "minProximity": 75,
+      "minSiblings": 3
+    },
+    "assignTopSegments": {
+      "enabled": true,
+      "minProximity": 75,
+      "topSegments": 10
+    }
+  },
+  "generativeAIOptions": {
+    "dataIsAbout": null,
+    "codebookLanguage": "en"
+  },
+  "nonGenerativeAIOptions": {
+    "splitCharacters": ".!?|",
+    "splitWords": [
+      "but",
+      "however",
+      "nevertheless",
+      "nonetheless",
+      "yet",
+      "thus",
+      "also",
+      "additionally",
+      "nor",
+      "and"
+    ],
+    "responsesAreAllEnglish": true
+  },
+  "useGenerativeAI": false,
+  "wordsToIgnore": [
+    "some",
+    "words",
+    "to",
+    "ignore"
+  ],
+  "includeCodedResponses": false,
+  "useEnhancedThemeExtractor": false,
+  "enhancedThemeExtractor": {
+    "maxNumberOfNets": 10,
+    "maxNumberOfCodes": 100,
+    "codebookBuilderPrompt": null,
+    "analyzeByClosedEnd": null,
+    "codebookGranularity": null
+  }
+}

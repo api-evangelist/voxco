@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DBQuestionTypes",
+  "enum": [
+    "Open",
+    "Closed",
+    "OS",
+    "Value",
+    "Data",
+    "UnKnown"
+  ],
+  "type": "string",
+  "format": ""
+}

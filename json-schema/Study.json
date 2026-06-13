@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Study",
+  "required": [
+    "createDateUtc",
+    "id",
+    "key",
+    "status"
+  ],
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "integer",
+      "description": "The key of the Study, which will not change for the lifetime of the Study.",
+      "format": "int32"
+    },
+    "quota": {
+      "type": "integer",
+      "description": "The quota for the Study\r\nIf no quota is set for the Study this field will not be present in the response.",
+      "format": "int32",
+      "nullable": true
+    },
+    "id": {
+      "minLength": 1,
+      "type": "string",
+      "description": "The id of the Study."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the Study.\r\n\r\nIf no study name is set for the Study this field will not be present in the response.",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of the Study.\r\n\r\nIf no description is set for the Study this field will not be present in the response.",
+      "nullable": true
+    },
+    "status": {
+      "minLength": 1,
+      "type": "string",
+      "description": "A one-character string which specifies the status of the Study:\r\n<ul><li>a: Archived\r\n</li><li>p: Coding in progress\r\n</li><li>c: Completed\r\n</li><li>d: Deleted\r\n</li><li>h: On hold\r\n</li><li>r: Review in progress\r\n</li><li>s: Shipping\r\n</li><li>u: Under construction</li></ul>"
+    },
+    "supervisorKey": {
+      "type": "integer",
+      "description": "The key of the Person who will do revision of coding work\r\n\r\nIf no supervisor is set for the Study this field will not be present in the response.",
+      "format": "int32",
+      "nullable": true
+    },
+    "clientCompanyKey": {
+      "type": "integer",
+      "description": "The key of the Company for which this coding work is assigned\r\n\r\nIf no client company is set for the Study this field will not be present in the response.",
+      "format": "int32",
+      "nullable": true
+    },
+    "endCompanyKey": {
+      "type": "integer",
+      "description": "The key of the Company for which this coding work is being performed\r\n\r\nIf no end customer company is set for the Study this field will not be present in the response.",
+      "format": "int32",
+      "nullable": true
+    },
+    "help": {
+      "type": "string",
+      "description": "The information about the Study\r\n\r\nIf no help information is set for the Study this field will not be present in the response.",
+      "nullable": true
+    },
+    "createDateUtc": {
+      "type": "string",
+      "description": "The UTC date/time the Study was created.",
+      "format": "date-time"
+    },
+    "startDateUtc": {
+      "type": "string",
+      "description": "UTC date/time the Study was started.\r\n\r\nIf the date is not set yet for the Study this field will not be present in the response.",
+      "format": "date-time",
+      "nullable": true
+    },
+    "dueDateUtc": {
+      "type": "string",
+      "description": "UTC date/time the Study was completed.\r\n\r\nIf the date is not set yet for the Study this field will not be present in the response.",
+      "format": "date-time",
+      "nullable": true
+    },
+    "externalStudyId": {
+      "type": "string",
+      "description": "External study id from StudyMaps",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "A Study."
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostResponsesBatchResponse",
+  "required": [
+    "questionResponses"
+  ],
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "questionResponses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AddedResponseBatchResult"
+      },
+      "description": "Array of questions with their responses to create"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Response contains information about newly created responses in target study questions"
+}

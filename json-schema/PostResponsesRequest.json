@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostResponsesRequest",
+  "required": [
+    "responses"
+  ],
+  "type": "object",
+  "properties": {
+    "responses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PostResponse"
+      },
+      "description": "The responses to be added or updated.\r\n\r\nAll strings in these responses will be trimmed of leading and trailing white space."
+    },
+    "autoCodeTextMatch": {
+      "type": "boolean",
+      "description": "If true, this will attempt to AutoCode responses based on an exact (but case insensitive) text match with previously-coded responses.\r\nThis AutoCode will execute first, followed by (if requested) Input ID matching and Regular Expression matching."
+    },
+    "autoCodeInputId": {
+      "type": "boolean",
+      "description": "If set to True, it will attempt to Auto Code based on a code's Input ID (Closed ends and Other Specifies only).\r\n\r\nThis AutoCode will execute after the Text Match and before the Regular Expression match, if either is requested."
+    },
+    "autoCodeByRegex": {
+      "type": "boolean",
+      "description": "If set to True, it will attempt to Auto Code responses via the codes' Regular Expressions.\r\n\r\nThis AutoCode will execute after the Text Match and Input ID match, if requested."
+    }
+  },
+  "additionalProperties": false,
+  "description": "A request to add Responses to the specified Question, or to update existing Responses."
+}

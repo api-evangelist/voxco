@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NonGenerativeAIOptions",
+  "type": "object",
+  "properties": {
+    "splitCharacters": {
+      "type": "string",
+      "description": "Set of characters for splitting on words",
+      "nullable": true
+    },
+    "splitWords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Set of short-words for splitting",
+      "nullable": true
+    },
+    "responsesAreAllEnglish": {
+      "type": "boolean",
+      "description": "True if all responses in English, otherwise false"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Non-generative AI options"
+}

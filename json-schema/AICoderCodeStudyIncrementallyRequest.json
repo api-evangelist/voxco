@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AICoderCodeStudyIncrementallyRequest",
+  "required": [
+    "key"
+  ],
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "integer",
+      "description": "Key of AI Coder project. It is required.",
+      "format": "int32"
+    },
+    "suggestNewCodes": {
+      "type": "boolean",
+      "description": "When `true`, after loading additional responses the engine may suggest new codes for uncoded segments\r\n(same as the AI Coder **Suggest new codes** option when adding a load; `addNewCodesWhenAddAICoderLoad`).\r\nDefault `false` matches the UI default."
+    }
+  },
+  "additionalProperties": false,
+  "description": "Contains parameters for incremental study analyzing task."
+}

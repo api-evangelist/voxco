@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TranslateQuestionResponse",
+  "required": [
+    "questionKey"
+  ],
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "questionKey": {
+      "type": "integer",
+      "description": "Key of question that was translated",
+      "format": "int32"
+    },
+    "responsesCount": {
+      "type": "integer",
+      "description": "Number of question's responses",
+      "format": "int32"
+    },
+    "translationsCount": {
+      "type": "integer",
+      "description": "Number of translations that were done",
+      "format": "int32"
+    },
+    "nonTranslatedResponsesCount": {
+      "type": "integer",
+      "description": "Number of responses that were not translated",
+      "format": "int32"
+    },
+    "transactionsCount": {
+      "type": "number",
+      "description": "Number of transactions",
+      "format": "double"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Response of translate question operation"
+}

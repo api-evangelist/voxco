@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AddCodesIntoCodebooksBatchResponse",
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "codebooksBatch": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AddCodesIntoCodebooksBatchResultItem"
+      },
+      "description": "Array of result items of batch adding of codes into codebooks",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Response contains information about added codes into a linked codebook or error message"
+}

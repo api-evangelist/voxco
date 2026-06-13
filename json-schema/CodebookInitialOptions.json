@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CodebookInitialOptions",
+  "type": "object",
+  "properties": {
+    "minProximity": {
+      "type": "integer",
+      "description": "Initial codes minimum proximity",
+      "format": "int32"
+    },
+    "minSegmentsPerCode": {
+      "type": "integer",
+      "description": "Minimum number of segments per code",
+      "format": "int32"
+    },
+    "approxMaxCodes": {
+      "type": "integer",
+      "description": "Approximate maximum number of codes",
+      "format": "int32"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Codebook initial options"
+}

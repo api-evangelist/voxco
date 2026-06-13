@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ScriptParameter",
+  "required": [
+    "key",
+    "name"
+  ],
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "integer",
+      "description": "Key of script parameter",
+      "format": "int32"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of script parameter",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of script parameter",
+      "nullable": true
+    },
+    "verifyRegEx": {
+      "type": "string",
+      "description": "Verify regular expression",
+      "nullable": true
+    },
+    "ordinal": {
+      "type": "integer",
+      "description": "Ordinal number. It is used for sorting.",
+      "format": "int32"
+    },
+    "isRequired": {
+      "type": "boolean",
+      "description": "Indicates whether this parameter is required"
+    },
+    "parameterType": {
+      "$ref": "#/components/schemas/DBScriptParameterType"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Script parameter definition for Studies API"
+}

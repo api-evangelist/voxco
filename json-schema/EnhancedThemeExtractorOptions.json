@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EnhancedThemeExtractorOptions",
+  "type": "object",
+  "properties": {
+    "maxNumberOfNets": {
+      "type": "integer",
+      "description": "Maximum number of nets",
+      "format": "int32",
+      "example": 10
+    },
+    "maxNumberOfCodes": {
+      "type": "integer",
+      "description": "Maximum number of codes",
+      "format": "int32",
+      "example": 100
+    },
+    "codebookBuilderPrompt": {
+      "type": "string",
+      "description": "Optional prompt to guide the codebook building process.",
+      "nullable": true,
+      "example": "Focus on identifying customer pain points and desired features."
+    },
+    "analyzeByClosedEnd": {
+      "$ref": "#/components/schemas/AnalyzeByClosedEndOption"
+    },
+    "codebookGranularity": {
+      "$ref": "#/components/schemas/CodebookGranularityOption"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Enhanced theme extractor options"
+}

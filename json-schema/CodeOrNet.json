@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CodeOrNet",
+  "required": [
+    "description",
+    "key"
+  ],
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "integer",
+      "description": "The key of the Code.\r\n\r\nThis key is used to relate a coded response to its Code in the Codebook.",
+      "format": "int32"
+    },
+    "description": {
+      "minLength": 1,
+      "type": "string",
+      "description": "The description of the Code.\r\n\r\nThis description represents the concept expressed in the coded Response."
+    },
+    "inputId": {
+      "type": "string",
+      "description": "A optional identifier which may be used during automatic coding of responses.\r\n  \r\nIf null this field will not be present in the response.",
+      "nullable": true
+    },
+    "outputId": {
+      "type": "string",
+      "description": "A optional identifier which may be used to identify the code in tabulation software.\r\n  \r\nIf null this field will not be present in the response.",
+      "nullable": true
+    },
+    "regexPattern": {
+      "type": "string",
+      "description": "Optional regular expression pattern which may be used for assisting human coders or for automatic coding.",
+      "nullable": true
+    },
+    "color": {
+      "type": "string",
+      "description": "An optional color for the code in CSS hexadecimal six digit format, e.g. #FF0000 for red.\r\n\r\nIf the code color is the default value of #000000 (black) this field will not be present in the response.",
+      "nullable": true
+    },
+    "children": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CodeOrNet"
+      },
+      "description": "The children of a Net.\r\n\r\nWhen querying for a codebook, this field will be present in the response only for Nets, and will never be present\r\nwhen the Codebook is requested with the tree=false parameter.\r\n\r\nThe children are listed in the order they appear in the Codebook.",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "A Code or Net in a Codebook."
+}

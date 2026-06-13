@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AICoderDichotomousExportGetStatusOfTaskResponse",
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "isCompleted": {
+      "type": "boolean",
+      "description": "True if the task is completed, otherwise false"
+    },
+    "fileUrl": {
+      "type": "string",
+      "description": "Url of result Excel file",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Contains current status of generating dichotomous report task"
+}

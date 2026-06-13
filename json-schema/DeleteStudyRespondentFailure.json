@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeleteStudyRespondentFailure",
+  "type": "object",
+  "properties": {
+    "respondentID": {
+      "type": "string",
+      "description": "ID of the respondent that failed to be deleted",
+      "nullable": true
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Error message describing why the deletion failed",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Represents a failure to delete a study respondent"
+}

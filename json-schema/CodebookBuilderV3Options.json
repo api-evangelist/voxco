@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CodebookBuilderV3Options",
+  "type": "object",
+  "properties": {
+    "codebookGranularity": {
+      "type": "integer",
+      "description": "Approximate target number of codes in the generated codebook.",
+      "format": "int32",
+      "example": 100
+    },
+    "creationMethod": {
+      "$ref": "#/components/schemas/CodebookBuilderCreationMethod"
+    },
+    "minimumResponsesPerCode": {
+      "type": "integer",
+      "description": "Minimum number of responses that should support a code (segment frequency threshold for Codebook Builder).",
+      "format": "int32",
+      "example": 3
+    },
+    "classificationStrictness": {
+      "type": "integer",
+      "description": "How strictly open-ended responses must align with a code during classification, expressed as a percentage (higher is stricter).",
+      "format": "int32",
+      "example": 80
+    },
+    "maxTopicBasedCodesEnabled": {
+      "type": "boolean",
+      "description": "When true, limits how many topic-based codes may appear in the codebook."
+    },
+    "maxTopicBasedCodes": {
+      "type": "integer",
+      "description": "Maximum number of topic-based codes when CoderApiV2.Models.Coder.CodebookBuilderV3Options.MaxTopicBasedCodesEnabled is true.",
+      "format": "int32",
+      "example": 10
+    },
+    "analyzeByClosedEnd": {
+      "$ref": "#/components/schemas/AnalyzeByClosedEndOption"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Codebook Builder options for `POST /AICoder/Analyze/v3`."
+}

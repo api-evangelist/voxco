@@ -1,0 +1,329 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "voxco": "https://www.voxco.com/api/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "name": "schema:name",
+    "description": {
+      "@id": "voxco:description",
+      "@type": "@vocab"
+    },
+    "errorMessage": {
+      "@id": "voxco:errorMessage",
+      "@type": "@vocab"
+    },
+    "codebooks": {
+      "@id": "voxco:codebooks",
+      "@type": "@vocab"
+    },
+    "key": {
+      "@id": "voxco:key",
+      "@type": "@vocab"
+    },
+    "suggestNewCodes": {
+      "@id": "voxco:suggestNewCodes",
+      "@type": "@vocab"
+    },
+    "taskStatusKey": {
+      "@id": "voxco:taskStatusKey",
+      "@type": "@vocab"
+    },
+    "codebook": {
+      "@id": "voxco:codebook",
+      "@type": "@vocab"
+    },
+    "generativeAIOptions": {
+      "@id": "voxco:generativeAIOptions",
+      "@type": "@vocab"
+    },
+    "nonGenerativeAIOptions": {
+      "@id": "voxco:nonGenerativeAIOptions",
+      "@type": "@vocab"
+    },
+    "useGenerativeAI": {
+      "@id": "voxco:useGenerativeAI",
+      "@type": "@vocab"
+    },
+    "wordsToIgnore": {
+      "@id": "voxco:wordsToIgnore",
+      "@type": "@vocab"
+    },
+    "includeCodedResponses": {
+      "@id": "voxco:includeCodedResponses",
+      "@type": "@vocab"
+    },
+    "useEnhancedThemeExtractor": {
+      "@id": "voxco:useEnhancedThemeExtractor",
+      "@type": "@vocab"
+    },
+    "enhancedThemeExtractor": {
+      "@id": "voxco:enhancedThemeExtractor",
+      "@type": "@vocab"
+    },
+    "questionKeys": {
+      "@id": "voxco:questionKeys",
+      "@type": "@vocab"
+    },
+    "existingCodebookKey": {
+      "@id": "voxco:existingCodebookKey",
+      "@type": "@vocab"
+    },
+    "existingCodebookSuggestNewCodes": {
+      "@id": "voxco:existingCodebookSuggestNewCodes",
+      "@type": "@vocab"
+    },
+    "existingCodebookOptions": {
+      "@id": "voxco:existingCodebookOptions",
+      "@type": "@vocab"
+    },
+    "isCompleted": {
+      "@id": "voxco:isCompleted",
+      "@type": "@vocab"
+    },
+    "project": {
+      "@id": "voxco:project",
+      "@type": "@vocab"
+    },
+    "codebookBuilder": {
+      "@id": "voxco:codebookBuilder",
+      "@type": "@vocab"
+    },
+    "aiCoderKey": {
+      "@id": "voxco:aiCoderKey",
+      "@type": "@vocab"
+    },
+    "analyzedVariable": {
+      "@id": "voxco:analyzedVariable",
+      "@type": "@vocab"
+    },
+    "exportType": {
+      "@id": "voxco:exportType",
+      "@type": "@vocab"
+    },
+    "skipResponcesCoding": {
+      "@id": "voxco:skipResponcesCoding",
+      "@type": "@vocab"
+    },
+    "projectKey": {
+      "@id": "voxco:projectKey",
+      "@type": "@vocab"
+    },
+    "distributionQuestionKey": {
+      "@id": "voxco:distributionQuestionKey",
+      "@type": "@vocab"
+    },
+    "expirationDateUtc": {
+      "@id": "voxco:expirationDateUtc",
+      "@type": "@vocab"
+    },
+    "links": {
+      "@id": "voxco:links",
+      "@type": "@vocab"
+    },
+    "fileUrl": {
+      "@id": "voxco:fileUrl",
+      "@type": "@vocab"
+    },
+    "removeEmptyColumns": {
+      "@id": "voxco:removeEmptyColumns",
+      "@type": "@vocab"
+    },
+    "useAverageSentimentPerRow": {
+      "@id": "voxco:useAverageSentimentPerRow",
+      "@type": "@vocab"
+    },
+    "aiCoderProjects": {
+      "@id": "voxco:aiCoderProjects",
+      "@type": "@vocab"
+    },
+    "netKey": {
+      "@id": "voxco:netKey",
+      "@type": "@vocab"
+    },
+    "netLevel": {
+      "@id": "voxco:netLevel",
+      "@type": "@vocab"
+    },
+    "distributionQuestionValue": {
+      "@id": "voxco:distributionQuestionValue",
+      "@type": "@vocab"
+    },
+    "link": {
+      "@id": "voxco:link",
+      "@type": "@vocab"
+    },
+    "responsesCount": {
+      "@id": "voxco:responsesCount",
+      "@type": "@vocab"
+    },
+    "responsesCodedCount": {
+      "@id": "voxco:responsesCodedCount",
+      "@type": "@vocab"
+    },
+    "codesAppliedCount": {
+      "@id": "voxco:codesAppliedCount",
+      "@type": "@vocab"
+    },
+    "owner": {
+      "@id": "voxco:owner",
+      "@type": "@vocab"
+    },
+    "createDate": {
+      "@id": "voxco:createDate",
+      "@type": "@vocab"
+    },
+    "updateDate": {
+      "@id": "voxco:updateDate",
+      "@type": "@vocab"
+    },
+    "deleteDate": {
+      "@id": "voxco:deleteDate",
+      "@type": "@vocab"
+    },
+    "isPublic": {
+      "@id": "voxco:isPublic",
+      "@type": "@vocab"
+    },
+    "codes": {
+      "@id": "voxco:codes",
+      "@type": "@vocab"
+    },
+    "overwrite": {
+      "@id": "voxco:overwrite",
+      "@type": "@vocab"
+    },
+    "codebookKey": {
+      "@id": "voxco:codebookKey",
+      "@type": "@vocab"
+    },
+    "codebooksAndTheirCodes": {
+      "@id": "voxco:codebooksAndTheirCodes",
+      "@type": "@vocab"
+    },
+    "codebooksBatch": {
+      "@id": "voxco:codebooksBatch",
+      "@type": "@vocab"
+    },
+    "codeKey": {
+      "@id": "voxco:codeKey",
+      "@type": "@vocab"
+    },
+    "questionKey": {
+      "@id": "voxco:questionKey",
+      "@type": "@vocab"
+    },
+    "questionId": {
+      "@id": "voxco:questionId",
+      "@type": "@vocab"
+    },
+    "addedResponses": {
+      "@id": "voxco:addedResponses",
+      "@type": "@vocab"
+    },
+    "rid": {
+      "@id": "voxco:rid",
+      "@type": "@vocab"
+    },
+    "verbatim": {
+      "@id": "voxco:verbatim",
+      "@type": "@vocab"
+    },
+    "translation": {
+      "@id": "voxco:translation",
+      "@type": "@vocab"
+    },
+    "transcription": {
+      "@id": "voxco:transcription",
+      "@type": "@vocab"
+    },
+    "notes": {
+      "@id": "voxco:notes",
+      "@type": "@vocab"
+    },
+    "codeIsAbout": {
+      "@id": "voxco:codeIsAbout",
+      "@type": "@vocab"
+    },
+    "enabled": {
+      "@id": "voxco:enabled",
+      "@type": "@vocab"
+    },
+    "minProximity": {
+      "@id": "voxco:minProximity",
+      "@type": "@vocab"
+    },
+    "minSiblings": {
+      "@id": "voxco:minSiblings",
+      "@type": "@vocab"
+    },
+    "topSegments": {
+      "@id": "voxco:topSegments",
+      "@type": "@vocab"
+    },
+    "autoCodeInputId": {
+      "@id": "voxco:autoCodeInputId",
+      "@type": "@vocab"
+    },
+    "autoCodeByRegex": {
+      "@id": "voxco:autoCodeByRegex",
+      "@type": "@vocab"
+    },
+    "autoCodeTextMatch": {
+      "@id": "voxco:autoCodeTextMatch",
+      "@type": "@vocab"
+    },
+    "codesAdded": {
+      "@id": "voxco:codesAdded",
+      "@type": "@vocab"
+    },
+    "inputId": {
+      "@id": "voxco:inputId",
+      "@type": "@vocab"
+    },
+    "outputId": {
+      "@id": "voxco:outputId",
+      "@type": "@vocab"
+    },
+    "regexPattern": {
+      "@id": "voxco:regexPattern",
+      "@type": "@vocab"
+    },
+    "color": {
+      "@id": "voxco:color",
+      "@type": "@vocab"
+    },
+    "children": {
+      "@id": "voxco:children",
+      "@type": "@vocab"
+    },
+    "initial": {
+      "@id": "voxco:initial",
+      "@type": "@vocab"
+    },
+    "mergeSimilar": {
+      "@id": "voxco:mergeSimilar",
+      "@type": "@vocab"
+    },
+    "assignSegmentSiblings": {
+      "@id": "voxco:assignSegmentSiblings",
+      "@type": "@vocab"
+    },
+    "assignTopSegments": {
+      "@id": "voxco:assignTopSegments",
+      "@type": "@vocab"
+    },
+    "codebookGranularity": {
+      "@id": "voxco:codebookGranularity",
+      "@type": "@vocab"
+    },
+    "creationMethod": {
+      "@id": "voxco:creationMethod",
+      "@type": "@vocab"
+    },
+    "minimumResponsesPerCode": {
+      "@id": "voxco:minimumResponsesPerCode",
+      "@type": "@vocab"
+    }
+  }
+}

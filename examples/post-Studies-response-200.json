@@ -1,0 +1,22 @@
+{
+  "key": 544,
+  "quota": null,
+  "id": "S458-3",
+  "name": "Hair care",
+  "description": "Test of hair care products",
+  "status": "p",
+  "supervisorKey": null,
+  "supervisorAssociateKey": null,
+  "clientCompanyKey": 45,
+  "endCompanyKey": null,
+  "help": "Code frames must be spell-checked!",
+  "createDateUtc": "2026-04-29T20:21:47.3117267Z",
+  "startDateUtc": null,
+  "dueDateUtc": null,
+  "countQuestions": 0,
+  "countResponses": 0,
+  "countResponsesCoded": 0,
+  "countTransactions": 0,
+  "externalStudyId": null,
+  "errorMessage": null
+}

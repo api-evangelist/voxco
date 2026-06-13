@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ExistingResponse",
+  "required": [
+    "codeKeys",
+    "rid",
+    "text"
+  ],
+  "type": "object",
+  "properties": {
+    "rid": {
+      "minLength": 1,
+      "type": "string",
+      "description": "The respondent ID."
+    },
+    "text": {
+      "minLength": 1,
+      "type": "string",
+      "description": "The verbatim text of the response.  In other words, the answer the respondent gave to the question."
+    },
+    "transcription": {
+      "type": "string",
+      "description": "A transcription of the response, if present for the respondent.",
+      "nullable": true
+    },
+    "translation": {
+      "type": "string",
+      "description": "A translation of the response, if present for the respondent.",
+      "nullable": true
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notes associated with the response, if present for the respondent.",
+      "nullable": true
+    },
+    "codeKeys": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "description": "The keys of the codes applied to the response.\r\n\r\nUse these keys to map codes applied to a response to information about each code using the information returned by querying the Codebooks resource for the question."
+    }
+  },
+  "additionalProperties": false,
+  "description": "A respondent's response stored in the question."
+}

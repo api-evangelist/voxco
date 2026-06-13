@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FailedCode",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Key of code",
+      "nullable": true
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Error message or reason why the code could not be updated.",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Contains information about failed code."
+}

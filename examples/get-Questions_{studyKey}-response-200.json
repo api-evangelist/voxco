@@ -1,0 +1,43 @@
+{
+  "questions": [
+    {
+      "key": 8753,
+      "codebookKey": 2357,
+      "id": "Q1",
+      "countResponses": 5896,
+      "countResponsesCoded": 1002,
+      "countTranscriptions": 50,
+      "countTranslations": 97,
+      "countQualityReviewed": 0,
+      "tasks": "cbt",
+      "type": "o",
+      "label": "Likes",
+      "text": "What did you like about the product?",
+      "help": null,
+      "sortOrder": null,
+      "codingSource": "v",
+      "alternativeCodingSource": "b",
+      "externalQuestionId": null
+    },
+    {
+      "key": 8754,
+      "codebookKey": 458,
+      "id": "G",
+      "countResponses": 6336,
+      "countResponsesCoded": 6336,
+      "countTranscriptions": 0,
+      "countTranslations": 0,
+      "countQualityReviewed": 0,
+      "tasks": "c",
+      "type": "c",
+      "label": "Gender",
+      "text": "What is your gender?",
+      "help": null,
+      "sortOrder": null,
+      "codingSource": "v",
+      "alternativeCodingSource": "b",
+      "externalQuestionId": null
+    }
+  ],
+  "errorMessage": null
+}

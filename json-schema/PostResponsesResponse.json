@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostResponsesResponse",
+  "required": [
+    "addedResponses",
+    "codebookKey",
+    "existingResponsesUnchanged",
+    "responsesAdded",
+    "responsesCoded",
+    "responsesCodedByInputId",
+    "responsesCodedByRegex",
+    "responsesCodedByTextMatch"
+  ],
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "codebookKey": {
+      "type": "integer",
+      "description": "The key of the Codebook for this Question.",
+      "format": "int32"
+    },
+    "responsesAdded": {
+      "type": "integer",
+      "description": "The count of Responses added to the Question.\r\n\r\nThis is the number of responses in the PutResponsesRequest that had rid values that were not already present in this Question.",
+      "format": "int32"
+    },
+    "existingResponsesUnchanged": {
+      "type": "integer",
+      "description": "The count of existing Responses unchanged.\r\n\r\nThis is the number of responses in the PutResponsesRequest that had rid values that were already present in this Question.",
+      "format": "int32"
+    },
+    "responsesCoded": {
+      "type": "integer",
+      "description": "The count of responses coded.\r\n",
+      "format": "int32"
+    },
+    "responsesCodedByTextMatch": {
+      "type": "integer",
+      "description": "The count of responses coded by text match.\r\n\r\nThis value will always be zero unless autoCodeTextMatch in the request is true.",
+      "format": "int32"
+    },
+    "responsesCodedByInputId": {
+      "type": "integer",
+      "description": "The count of responses coded by input ID.\r\n\r\nThis value will always be zero unless autoCodeInputId in the request is true.",
+      "format": "int32"
+    },
+    "responsesCodedByRegex": {
+      "type": "integer",
+      "description": "The count of responses coded by regular expression.\r\n\r\nThis value will always be zero unless autoCodeByRegex in the request is true.",
+      "format": "int32"
+    },
+    "addedResponses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AddedResponseWithCodingInfo"
+      },
+      "description": "The responses added to the question as a result of the POST operation."
+    }
+  },
+  "additionalProperties": false,
+  "description": "Returns information about the disposition of the Responses added."
+}

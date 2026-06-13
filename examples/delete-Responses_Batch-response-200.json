@@ -1,0 +1,35 @@
+{
+  "questionResponses": [
+    {
+      "questionKey": 55,
+      "respondentID": "100001",
+      "errorMessage": null
+    },
+    {
+      "questionKey": 55,
+      "respondentID": "100002",
+      "errorMessage": null
+    },
+    {
+      "questionKey": 56,
+      "respondentID": "200001",
+      "errorMessage": null
+    },
+    {
+      "questionKey": 57,
+      "respondentID": "300001",
+      "errorMessage": "SQL Exception: Cannot delete. Trigger TR_Responses_BeforeDeleteCheck."
+    },
+    {
+      "questionKey": 57,
+      "respondentID": "300002",
+      "errorMessage": null
+    },
+    {
+      "questionKey": 57,
+      "respondentID": "300003",
+      "errorMessage": null
+    }
+  ],
+  "errorMessage": null
+}

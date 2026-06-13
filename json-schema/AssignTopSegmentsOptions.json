@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignTopSegmentsOptions",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "minProximity": {
+      "type": "integer",
+      "description": "Minimum proximity percent value",
+      "format": "int32"
+    },
+    "topSegments": {
+      "type": "integer",
+      "description": "Number of top segments",
+      "format": "int32"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Assign top segments options"
+}

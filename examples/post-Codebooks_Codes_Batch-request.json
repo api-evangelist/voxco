@@ -1,0 +1,115 @@
+{
+  "codebooksAndTheirCodes": [
+    {
+      "codebookKey": 1234567,
+      "codes": [
+        {
+          "description": "Likes",
+          "inputId": null,
+          "outputId": "1000",
+          "regexPattern": null,
+          "color": "#00FF00",
+          "children": [
+            {
+              "description": "Color",
+              "inputId": null,
+              "outputId": "1001",
+              "regexPattern": null,
+              "color": null,
+              "children": null
+            },
+            {
+              "description": "Taste",
+              "inputId": null,
+              "outputId": "1002",
+              "regexPattern": null,
+              "color": null,
+              "children": null
+            }
+          ]
+        },
+        {
+          "description": "Dislikes",
+          "inputId": null,
+          "outputId": "1003",
+          "regexPattern": null,
+          "color": "#FF0000",
+          "children": [
+            {
+              "description": "Color",
+              "inputId": null,
+              "outputId": "1004",
+              "regexPattern": null,
+              "color": null,
+              "children": null
+            },
+            {
+              "description": "Taste",
+              "inputId": null,
+              "outputId": "1005",
+              "regexPattern": null,
+              "color": null,
+              "children": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codebookKey": 2345678,
+      "codes": [
+        {
+          "description": "Likes",
+          "inputId": null,
+          "outputId": "1006",
+          "regexPattern": null,
+          "color": "#00FF00",
+          "children": [
+            {
+              "description": "Color",
+              "inputId": null,
+              "outputId": "1007",
+              "regexPattern": null,
+              "color": null,
+              "children": null
+            },
+            {
+              "description": "Taste",
+              "inputId": null,
+              "outputId": "1008",
+              "regexPattern": null,
+              "color": null,
+              "children": null
+            }
+          ]
+        },
+        {
+          "description": "Dislikes",
+          "inputId": null,
+          "outputId": "1009",
+          "regexPattern": null,
+          "color": "#FF0000",
+          "children": [
+            {
+              "description": "Color",
+              "inputId": null,
+              "outputId": "1010",
+              "regexPattern": null,
+              "color": null,
+              "children": null
+            },
+            {
+              "description": "Taste",
+              "inputId": null,
+              "outputId": "1011",
+              "regexPattern": null,
+              "color": null,
+              "children": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "overwrite": false
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AICoderProjectAPI",
+  "required": [
+    "owner",
+    "questionKeys"
+  ],
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "integer",
+      "description": "Key of AI Coder project",
+      "format": "int32"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of AI Coder project",
+      "nullable": true
+    },
+    "questionKeys": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "description": "Keys of analyzed questions",
+      "nullable": true
+    },
+    "responsesCount": {
+      "type": "integer",
+      "description": "Number of responses",
+      "format": "int32"
+    },
+    "responsesCodedCount": {
+      "type": "integer",
+      "description": "Number of coded responses",
+      "format": "int32"
+    },
+    "codesAppliedCount": {
+      "type": "integer",
+      "description": "Number of applied codes",
+      "format": "int32"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Name of user who owns the project",
+      "nullable": true
+    },
+    "createDate": {
+      "type": "string",
+      "description": "Date of the project's creation",
+      "format": "date-time"
+    },
+    "updateDate": {
+      "type": "string",
+      "description": "Date of the last updating",
+      "format": "date-time"
+    },
+    "deleteDate": {
+      "type": "string",
+      "description": "Date of the project's deletion",
+      "format": "date-time",
+      "nullable": true
+    },
+    "isPublic": {
+      "type": "boolean",
+      "description": "True if the project is public (shared for all users), otherwise false"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Presents AI Coder project in the Coder API"
+}

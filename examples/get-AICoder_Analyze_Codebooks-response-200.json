@@ -1,0 +1,21 @@
+{
+  "codebooks": [
+    {
+      "key": -1,
+      "id": "New Codebook"
+    },
+    {
+      "key": 190001,
+      "id": "Test Codebook 1"
+    },
+    {
+      "key": 190002,
+      "id": "Test Codebook 2 - GAI"
+    },
+    {
+      "key": 190003,
+      "id": "Test Codebook 3"
+    }
+  ],
+  "errorMessage": null
+}

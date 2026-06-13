@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AnalyzeByClosedEndOption",
+  "required": [
+    "questionKey"
+  ],
+  "type": "object",
+  "properties": {
+    "questionKey": {
+      "type": "integer",
+      "description": "Required. The numeric key of the closed-ended question to analyze responses by.",
+      "format": "int32",
+      "example": 111
+    },
+    "codes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AnalyzeByClosedEndCodesOption"
+      },
+      "description": "Optional. A list of specific codes from the question's codebook (CoderApiV2.Models.Coder.AnalyzeByClosedEndCodesOption) to focus the analysis on.\r\nIf omitted or empty, the AI may consider all codes or infer themes based on the overall responses for the question.",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Configuration for generating themes based on responses grouped by a closed-ended question."
+}

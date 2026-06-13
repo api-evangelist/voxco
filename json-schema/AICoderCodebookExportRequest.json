@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AICoderCodebookExportRequest",
+  "required": [
+    "aiCoderKey",
+    "exportType"
+  ],
+  "type": "object",
+  "properties": {
+    "aiCoderKey": {
+      "type": "integer",
+      "description": "Key of AI Coder project",
+      "format": "int32"
+    },
+    "analyzedVariable": {
+      "type": "integer",
+      "description": "Key of analyzed variable (question key)",
+      "format": "int32"
+    },
+    "exportType": {
+      "$ref": "#/components/schemas/ExportToCoderType"
+    },
+    "skipResponcesCoding": {
+      "type": "boolean",
+      "description": "False if responses should be coded after success export of the codebook, otherwise true"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Contains parameters for codebook exporting into Coder task"
+}

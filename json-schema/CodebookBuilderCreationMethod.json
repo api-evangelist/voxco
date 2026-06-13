@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CodebookBuilderCreationMethod",
+  "enum": [
+    "AIGenerated",
+    "DataDriven"
+  ],
+  "type": "string",
+  "description": "How the Codebook Builder should derive themes and codes from open-ended responses.",
+  "format": ""
+}

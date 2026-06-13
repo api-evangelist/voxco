@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AICoderCreateLinkResponse",
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AICoderLink"
+      },
+      "description": "Array of AI Coder links.",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Response data for AICoderGetLinks method."
+}

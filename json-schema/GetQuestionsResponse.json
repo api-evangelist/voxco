@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GetQuestionsResponse",
+  "required": [
+    "questions"
+  ],
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Question"
+      },
+      "description": "A list of Questions."
+    }
+  },
+  "additionalProperties": false,
+  "description": "Questions in a Study."
+}

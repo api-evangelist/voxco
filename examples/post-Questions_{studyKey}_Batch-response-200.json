@@ -1,0 +1,52 @@
+{
+  "studyKey": 35987,
+  "questions": [
+    {
+      "key": 348,
+      "codebookKey": 4589,
+      "id": "Q1",
+      "tasks": "cb",
+      "type": "o",
+      "label": "Likes",
+      "text": "What did you like about the product?",
+      "help": "Any help string for the product",
+      "sortOrder": 10,
+      "codingSource": "v",
+      "alternativeCodingSource": "b",
+      "externalQuestionId": "external_question_id_12345",
+      "errorMessage": null
+    },
+    {
+      "key": 349,
+      "codebookKey": 4589,
+      "id": "Q2",
+      "tasks": "cb",
+      "type": "o",
+      "label": "Likes",
+      "text": "What did you dislike about the product?",
+      "help": "Any help string for the product",
+      "sortOrder": 10,
+      "codingSource": "v",
+      "alternativeCodingSource": "b",
+      "externalQuestionId": null,
+      "errorMessage": null
+    },
+    {
+      "key": 350,
+      "codebookKey": 4589,
+      "id": "Q3",
+      "tasks": "c",
+      "type": "c",
+      "label": "Country",
+      "text": "Where are you from?",
+      "help": "Your country",
+      "sortOrder": 30,
+      "codingSource": "v",
+      "alternativeCodingSource": "",
+      "externalQuestionId": "external_question_id_67890",
+      "errorMessage": null
+    }
+  ],
+  "failedQuestions": null,
+  "errorMessage": null
+}

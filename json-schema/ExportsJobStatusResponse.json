@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ExportsJobStatusResponse",
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "jobKey": {
+      "type": "integer",
+      "description": "Key of job",
+      "format": "int32"
+    },
+    "userKey": {
+      "type": "integer",
+      "description": "Key of user",
+      "format": "int32"
+    },
+    "type": {
+      "$ref": "#/components/schemas/DBJobType"
+    },
+    "status": {
+      "$ref": "#/components/schemas/DBJobStatus"
+    },
+    "createDate": {
+      "type": "string",
+      "description": "Date when the job was created",
+      "format": "date-time"
+    },
+    "startDate": {
+      "type": "string",
+      "description": "Date when the job change status to Running",
+      "format": "date-time",
+      "nullable": true
+    },
+    "endDate": {
+      "type": "string",
+      "description": "Date when the job change status to Complete",
+      "format": "date-time",
+      "nullable": true
+    },
+    "info": {
+      "type": "string",
+      "description": "Information about the job",
+      "nullable": true
+    },
+    "error": {
+      "type": "string",
+      "description": "Message of error if it occured during the job's execution",
+      "nullable": true
+    },
+    "resultFileUri": {
+      "type": "string",
+      "description": "Url for downloading result file",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Class presents an information about current status of specified job"
+}

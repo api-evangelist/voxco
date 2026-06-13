@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FailedQuestionIdBatch",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "ID of failed question",
+      "nullable": true
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Error message",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Record contains information about failed questins in batch operation and reason/error message why it failed."
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AddedCode",
+  "required": [
+    "codeKey",
+    "description"
+  ],
+  "type": "object",
+  "properties": {
+    "codeKey": {
+      "type": "integer",
+      "description": "The key of the code, corresponding to the key of a code in the codebook.",
+      "format": "int32"
+    },
+    "description": {
+      "minLength": 1,
+      "type": "string",
+      "description": "The text description of the code."
+    }
+  },
+  "additionalProperties": false,
+  "description": "A code automatically applied to the response."
+}

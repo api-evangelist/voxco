@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CodebookAIOptions",
+  "type": "object",
+  "properties": {
+    "initial": {
+      "$ref": "#/components/schemas/CodebookInitialOptions"
+    },
+    "mergeSimilar": {
+      "$ref": "#/components/schemas/MergeSimilarOptions"
+    },
+    "assignSegmentSiblings": {
+      "$ref": "#/components/schemas/AssignSegmentSiblingsOptions"
+    },
+    "assignTopSegments": {
+      "$ref": "#/components/schemas/AssignTopSegmentsOptions"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Common codebook's options"
+}

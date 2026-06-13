@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AICoderDichotomousExportRequest",
+  "required": [
+    "projectKey"
+  ],
+  "type": "object",
+  "properties": {
+    "projectKey": {
+      "type": "integer",
+      "description": "Key of target AI Coder project which data should be exported into Excel file",
+      "format": "int32"
+    },
+    "removeEmptyColumns": {
+      "type": "boolean",
+      "description": "Removes empty columns from the report (i.e. columns that don't have any 1 value in its cells)."
+    },
+    "useAverageSentimentPerRow": {
+      "type": "boolean",
+      "description": "Adds a column with the average sentiment per row."
+    }
+  },
+  "additionalProperties": false,
+  "description": "Contains request data of the exporting to dichotomous report file task"
+}

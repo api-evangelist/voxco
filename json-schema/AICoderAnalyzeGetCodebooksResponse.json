@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AICoderAnalyzeGetCodebooksResponse",
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "codebooks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CodebookItem"
+      },
+      "description": "List of available codebooks to use",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Contains list of available codebooks for using in further interaction with the API"
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GetLanguagesToTranslateResponse",
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/NaturalLanguage"
+      },
+      "description": "List of supported languages",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Response that contains list of languages that are supported by this API."
+}

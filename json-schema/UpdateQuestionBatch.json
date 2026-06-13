@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UpdateQuestionBatch",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "integer",
+      "description": "Key of question",
+      "format": "int32",
+      "nullable": true
+    },
+    "id": {
+      "type": "string",
+      "description": "ID of question",
+      "nullable": true
+    },
+    "tasks": {
+      "type": "string",
+      "description": "Tasks assigned to question",
+      "nullable": true
+    },
+    "type": {
+      "$ref": "#/components/schemas/DBQuestionTypes"
+    },
+    "label": {
+      "type": "string",
+      "description": "The label is used as a short identifier for the Question in reports when the full id of the Question would be too long.",
+      "nullable": true
+    },
+    "text": {
+      "type": "string",
+      "description": "The text of the Question posed to the respondent, which may be empty.",
+      "nullable": true
+    },
+    "help": {
+      "type": "string",
+      "description": "The help information for the Question, which may be empty.\r\n",
+      "nullable": true
+    },
+    "sortOrder": {
+      "type": "integer",
+      "description": "Ordinal number of the Question. It uses for sorting questions in list, tables, so on.",
+      "format": "int32",
+      "nullable": true
+    },
+    "codingSource": {
+      "$ref": "#/components/schemas/DBQuestionCodingSource"
+    },
+    "alternativeCodingSource": {
+      "$ref": "#/components/schemas/DBQuestionCodingSource"
+    },
+    "externalQuestionId": {
+      "type": "string",
+      "description": "External Question ID from QuestionMaps",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Class contains question properties which should be updated"
+}

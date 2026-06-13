@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User",
+  "required": [
+    "id",
+    "key"
+  ],
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "integer",
+      "description": "The key for this user.  The key for a user cannot be changed, and will always identify that user in the account.",
+      "format": "int32"
+    },
+    "id": {
+      "minLength": 1,
+      "type": "string",
+      "description": "The user's logon id.  This value is unique by case-insensitive comparison across all users in the account.  However, this value may be changed by an administrator of the account."
+    }
+  },
+  "additionalProperties": false,
+  "description": "Information about a user."
+}

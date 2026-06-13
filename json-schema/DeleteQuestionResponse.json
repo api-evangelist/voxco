@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeleteQuestionResponse",
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "entityType": {
+      "type": "string",
+      "description": "Type of entity (Codes/QualityCodes/Responses/Question)",
+      "nullable": true
+    },
+    "entityItemsDeleted": {
+      "type": "integer",
+      "description": "Number of deleted items",
+      "format": "int32"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Response of Delete Question API method"
+}

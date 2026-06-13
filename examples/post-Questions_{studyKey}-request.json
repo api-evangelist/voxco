@@ -1,0 +1,13 @@
+{
+  "codebookKey": null,
+  "id": "Q1",
+  "tasks": "cb",
+  "type": "o",
+  "label": "Likes",
+  "text": "What did you like about the product?",
+  "help": "Any help string for the product",
+  "sortOrder": 10,
+  "codingSource": "v",
+  "alternativeCodingSource": "b",
+  "externalQuestionId": null
+}

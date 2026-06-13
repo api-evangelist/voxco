@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeleteQuestionResponses",
+  "type": "object",
+  "properties": {
+    "questionKey": {
+      "type": "integer",
+      "description": "Key of question",
+      "format": "int32"
+    },
+    "respondentIDs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of respondent ids to delete from the question",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Question respondents to delete."
+}

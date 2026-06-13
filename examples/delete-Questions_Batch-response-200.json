@@ -1,0 +1,19 @@
+{
+  "deleteQuestionsBatchResults": [
+    {
+      "questionKey": 200001,
+      "errorMessage": null
+    },
+    {
+      "questionKey": 200002,
+      "errorMessage": null
+    },
+    {
+      "questionKey": 200003,
+      "errorMessage": "Some error message"
+    }
+  ],
+  "entityType": "Codes",
+  "entityItemsDeleted": 2453,
+  "errorMessage": null
+}

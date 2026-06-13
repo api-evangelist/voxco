@@ -1,0 +1,43 @@
+{
+  "codebookKey": 1234567,
+  "codebook": [
+    {
+      "key": 1,
+      "description": "Code1",
+      "inputId": "10",
+      "outputId": "10",
+      "regexPattern": null,
+      "color": "#FF0000",
+      "children": null
+    },
+    {
+      "key": 2,
+      "description": "Net1",
+      "inputId": "20",
+      "outputId": "20",
+      "regexPattern": null,
+      "color": null,
+      "children": [
+        {
+          "key": 3,
+          "description": "Code2",
+          "inputId": "30",
+          "outputId": "30",
+          "regexPattern": null,
+          "color": "#FF0000",
+          "children": null
+        },
+        {
+          "key": 4,
+          "description": "Code3",
+          "inputId": "40",
+          "outputId": "40",
+          "regexPattern": null,
+          "color": "#0000FF",
+          "children": null
+        }
+      ]
+    }
+  ],
+  "errorMessage": null
+}

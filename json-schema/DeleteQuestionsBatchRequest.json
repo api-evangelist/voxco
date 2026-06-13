@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeleteQuestionsBatchRequest",
+  "required": [
+    "entityType",
+    "questionKeys"
+  ],
+  "type": "object",
+  "properties": {
+    "questionKeys": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "description": "Array of pairs of question key with error message. Error message is null for successfully deleted questions."
+    },
+    "entityType": {
+      "minLength": 1,
+      "type": "string",
+      "description": "Type of entity (Codes/QualityCodes/Responses/Question). For example 'Codes' will remove all applied codes from all questions in questionKeys array.\r\nTo remove questions themselves, entityType 'Question' should be chosed."
+    }
+  },
+  "additionalProperties": false,
+  "description": "Request contains array of question keys which should be handled. \r\nEntity type determines which items should be removed:\r\nCodes - removes applied codes from questions responses;\r\nQualityCodes - removes quality codes from questions responses;\r\nResponses - removes questions responses;\r\nQuestion - removes questons;"
+}

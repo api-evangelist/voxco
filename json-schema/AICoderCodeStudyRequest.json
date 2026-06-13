@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AICoderCodeStudyRequest",
+  "required": [
+    "questionKeys"
+  ],
+  "type": "object",
+  "properties": {
+    "codebook": {
+      "$ref": "#/components/schemas/CodebookAIOptions"
+    },
+    "generativeAIOptions": {
+      "$ref": "#/components/schemas/GenerativeAIOptions"
+    },
+    "nonGenerativeAIOptions": {
+      "$ref": "#/components/schemas/NonGenerativeAIOptions"
+    },
+    "useGenerativeAI": {
+      "type": "boolean",
+      "description": "Use or not generative AI for analysis"
+    },
+    "wordsToIgnore": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Set of words to ignore",
+      "nullable": true
+    },
+    "includeCodedResponses": {
+      "type": "boolean",
+      "description": "Should coded responses be included into analysis"
+    },
+    "useEnhancedThemeExtractor": {
+      "type": "boolean",
+      "description": "Enable/disable using of enhanced theme extractor.\r\nWhen the enhancedThemeExtractor is used, then the codebook options are ignored."
+    },
+    "enhancedThemeExtractor": {
+      "$ref": "#/components/schemas/EnhancedThemeExtractorOptions"
+    },
+    "questionKeys": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "description": "Set of questions to analyze",
+      "nullable": true
+    },
+    "existingCodebookKey": {
+      "type": "integer",
+      "description": "Key of existing codebook. By default it creates a new codebook.",
+      "format": "int32"
+    },
+    "existingCodebookSuggestNewCodes": {
+      "type": "boolean",
+      "description": "Should suggest new codes for existing codebook? It is false by default."
+    },
+    "existingCodebookOptions": {
+      "$ref": "#/components/schemas/ExistingCodebookOptions"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Contains parameters for study analyzing task"
+}

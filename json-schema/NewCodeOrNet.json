@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NewCodeOrNet",
+  "required": [
+    "description"
+  ],
+  "type": "object",
+  "properties": {
+    "description": {
+      "maxLength": 1000,
+      "minLength": 0,
+      "type": "string",
+      "description": "The description of the Code.\r\n\r\nThis description represents the concept expressed in the coded Response.\r\n\r\nMaximum allowed length is 1000 characters."
+    },
+    "inputId": {
+      "maxLength": 50,
+      "minLength": 0,
+      "type": "string",
+      "description": "A optional identifier which may be used during automatic coding of responses.\r\n  \r\nMaximum allowed length is 50 characters.",
+      "nullable": true
+    },
+    "outputId": {
+      "maxLength": 50,
+      "minLength": 0,
+      "type": "string",
+      "description": "A optional identifier which may be used to identify the code in tabulation software.  \r\nMaximum allowed length is 50 characters.",
+      "nullable": true
+    },
+    "regexPattern": {
+      "type": "string",
+      "description": "Optional regular expression pattern which may be used for assisting human coders or for automatic coding.",
+      "nullable": true
+    },
+    "color": {
+      "type": "string",
+      "description": "An optional color for the code in CSS hexadecimal six digit format, e.g. #FF0000 for red.\r\n\r\nIf not specified the code color will default to black.",
+      "nullable": true
+    },
+    "children": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/NewCodeOrNet"
+      },
+      "description": "The children of a Net.\r\n\r\nIf this list is not null or empty, this code will be a Net, and its children will be the codes or nets in the list.\r\n\r\nThe children will be inserted in the codebook in the order specified in this list.",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "A Code or Net in a Codebook."
+}

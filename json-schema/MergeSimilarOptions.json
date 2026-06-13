@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MergeSimilarOptions",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "minProximity": {
+      "type": "integer",
+      "description": "Minimum proximity value for merging codes",
+      "format": "int32"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Merge similar codes options"
+}

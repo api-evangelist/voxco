@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeleteCodebookCodesRequest",
+  "type": "object",
+  "properties": {
+    "codeKeys": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "description": "Array of keys of codes in the specified codebook to delete",
+      "nullable": true
+    },
+    "uncodeResponses": {
+      "type": "boolean",
+      "description": "Delete codes from responses as well when it is true"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Request contains an array of code keys to delete from codebook"
+}

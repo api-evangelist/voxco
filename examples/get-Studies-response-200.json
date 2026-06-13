@@ -1,0 +1,37 @@
+{
+  "studies": [
+    {
+      "key": 544,
+      "quota": 5,
+      "id": "S458-3",
+      "name": "An example of study",
+      "description": "Use this study only for testing",
+      "status": "c",
+      "supervisorKey": 1001,
+      "clientCompanyKey": 45,
+      "endCompanyKey": 46,
+      "help": "Call 02-863**90 if you have questions",
+      "createDateUtc": "0001-01-01T00:00:00",
+      "startDateUtc": "2026-06-13T20:21:47.3064269+00:00",
+      "dueDateUtc": "2026-06-20T20:21:47.3064279+00:00",
+      "externalStudyId": null
+    },
+    {
+      "key": 559,
+      "quota": null,
+      "id": "S890",
+      "name": null,
+      "description": null,
+      "status": "p",
+      "supervisorKey": null,
+      "clientCompanyKey": null,
+      "endCompanyKey": null,
+      "help": null,
+      "createDateUtc": "0001-01-01T00:00:00",
+      "startDateUtc": null,
+      "dueDateUtc": null,
+      "externalStudyId": null
+    }
+  ],
+  "errorMessage": null
+}

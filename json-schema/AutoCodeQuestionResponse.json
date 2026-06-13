@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AutoCodeQuestionResponse",
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "codesAdded": {
+      "type": "integer",
+      "description": "Number of codes added",
+      "format": "int32"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Returns information about results of AutoCode operation"
+}

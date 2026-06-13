@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GetUsersResponse",
+  "required": [
+    "users"
+  ],
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "users": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/User"
+      },
+      "description": "A list of users."
+    }
+  },
+  "additionalProperties": false,
+  "description": "The users property contains a list of users."
+}

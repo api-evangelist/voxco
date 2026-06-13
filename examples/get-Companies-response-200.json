@@ -1,0 +1,13 @@
+{
+  "companies": [
+    {
+      "key": 3,
+      "id": "ACME"
+    },
+    {
+      "key": 5,
+      "id": "AAA Research"
+    }
+  ],
+  "errorMessage": null
+}

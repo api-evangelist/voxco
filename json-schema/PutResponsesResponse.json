@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PutResponsesResponse",
+  "required": [
+    "existingResponsesUnchanged",
+    "existingResponsesUpdated",
+    "responsesAdded",
+    "responsesCoded"
+  ],
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "responsesAdded": {
+      "type": "integer",
+      "description": "The count of Responses added to the Question.\r\n\r\nThis is the number of responses in the PutResponsesRequest that had rid values that were not already present in this Question.",
+      "format": "int32"
+    },
+    "existingResponsesUpdated": {
+      "type": "integer",
+      "description": "The count of existing Responses updated.\r\n\r\nThis is the number of responses in the PutResponsesRequest that had rid values that were already present in this Question,\r\nand for which any of the text, translation, transcription, or notes values were specified in the request and differed from the existing value in the Response.",
+      "format": "int32"
+    },
+    "existingResponsesUnchanged": {
+      "type": "integer",
+      "description": "The count of existing Responses unchanged.\r\n\r\nThis is the number of responses in the PutResponsesRequest that had rid values that were already present in this Question,\r\nand for which all of the text, translation, transcription, or notes values were either not specified in the request or identical to the existing value in the Response.",
+      "format": "int32"
+    },
+    "responsesCoded": {
+      "type": "integer",
+      "description": "The count of responses coded.\r\n",
+      "format": "int32"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Returns information about the disposition of the Responses added."
+}

@@ -1,0 +1,13 @@
+{
+  "jobKey": 1000110,
+  "userKey": 1003,
+  "type": 6,
+  "status": 0,
+  "createDate": "2026-06-13T20:21:47.1884173Z",
+  "startDate": null,
+  "endDate": null,
+  "info": "Some information",
+  "error": "Message of excception if it occured while export operation",
+  "resultFileUri": "https://app.goascribe.us/JobResults/Tower1/20133/55dcac9c-5c88-4623-95ad-214f54a72a8b/file.xlsx",
+  "errorMessage": null
+}

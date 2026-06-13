@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ExistingCodebookOptions",
+  "type": "object",
+  "properties": {
+    "applyRegEx": {
+      "type": "boolean",
+      "description": "Determines of using regular expressions while data analysis"
+    },
+    "applyTrainingExamples": {
+      "type": "boolean",
+      "description": "Determines of using training examples while data analysis"
+    },
+    "applyCodingRules": {
+      "type": "boolean",
+      "description": "Determines of using coding rules while data analysis"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Options for analyzing of existing codebook"
+}

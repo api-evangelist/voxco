@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AddedResponseWithCodingInfo",
+  "required": [
+    "codes",
+    "rid"
+  ],
+  "type": "object",
+  "properties": {
+    "rid": {
+      "minLength": 1,
+      "type": "string",
+      "description": "The respondent id, which is unique among Responses in this Question.\r\n\r\nThis id identifies the respondent in the Study, and that respondent's Response in this Question."
+    },
+    "verbatim": {
+      "type": "string",
+      "description": "The verbatim text of the response, in other words the answer the respondent gave to the question posed.\r\n\r\nRequired if this is a new respondent, optional if updating an existing response for this respondent.",
+      "nullable": true
+    },
+    "translation": {
+      "type": "string",
+      "description": "Optional translation of the verbatim text.",
+      "nullable": true
+    },
+    "transcription": {
+      "type": "string",
+      "description": "Optional transcription of the response.",
+      "nullable": true
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional notes associated with the response.",
+      "nullable": true
+    },
+    "codes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AddedCode"
+      },
+      "description": "The codes automatically applied to the response."
+    }
+  },
+  "additionalProperties": false,
+  "description": "Added response with coding info"
+}

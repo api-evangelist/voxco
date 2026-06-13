@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeleteStudyRequest",
+  "required": [
+    "studyKey"
+  ],
+  "type": "object",
+  "properties": {
+    "studyKey": {
+      "type": "integer",
+      "description": "Key of study to delete",
+      "format": "int32"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Request for delete study action"
+}

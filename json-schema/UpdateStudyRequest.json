@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UpdateStudyRequest",
+  "required": [
+    "studyKey"
+  ],
+  "type": "object",
+  "properties": {
+    "studyKey": {
+      "type": "integer",
+      "description": "Key of a study that should be updated.",
+      "format": "int32"
+    },
+    "quota": {
+      "type": "integer",
+      "description": "The quota for the Study",
+      "format": "int32",
+      "nullable": true
+    },
+    "id": {
+      "maxLength": 30,
+      "minLength": 1,
+      "type": "string",
+      "description": "The id of the new Study.\r\n\r\nMust be unique among all Studies in the Ascribe account of the current session by case-insensitive comparison.\r\n\r\nMust be at least 1 character and not more than 30 characters.",
+      "nullable": true
+    },
+    "name": {
+      "maxLength": 50,
+      "minLength": 0,
+      "type": "string",
+      "description": "Optional name of this Study, intended to be more human-friendly than the id of the Study.\r\n\r\nMaximum of 50 characters.",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "description": "An optional description of the Study.",
+      "nullable": true
+    },
+    "status": {
+      "maxLength": 1,
+      "minLength": 0,
+      "type": "string",
+      "description": "Optional status of the Study.\r\n\r\nIf specified, one of:\r\n<ul><li>a: Archived\r\n</li><li>p: Coding in progress\r\n</li><li>c: Completed\r\n</li><li>d: Deleted\r\n</li><li>h: On hold\r\n</li><li>r: Review in progress\r\n</li><li>s: Shipping\r\n</li><li>u: Under construction</li></ul>",
+      "nullable": true
+    },
+    "supervisorKey": {
+      "type": "integer",
+      "description": "The key of the Person who will do revision of coding work\r\n\r\nIf no supervisor is set for the Study this field will not be present in the response.",
+      "format": "int32",
+      "nullable": true
+    },
+    "clientCompanyKey": {
+      "type": "integer",
+      "description": "Optional key of the Company for which this coding work is being performed.",
+      "format": "int32",
+      "nullable": true
+    },
+    "endCompanyKey": {
+      "type": "integer",
+      "description": "The key of the Company for which this coding work is being performed\r\n\r\nIf no end customer company is set for the Study this field will not be present in the response.",
+      "format": "int32",
+      "nullable": true
+    },
+    "help": {
+      "type": "string",
+      "description": "Optional text to assist workers coding this Study\r\n\r\nThis may be used to provide customer specific instructions to the coders for work on this Study.",
+      "nullable": true
+    },
+    "startDateUtc": {
+      "type": "string",
+      "description": "UTC date/time the Study was started.",
+      "format": "date-time",
+      "nullable": true
+    },
+    "dueDateUtc": {
+      "type": "string",
+      "description": "UTC date/time the Study was completed.",
+      "format": "date-time",
+      "nullable": true
+    },
+    "externalStudyId": {
+      "type": "string",
+      "description": "External study id from StudyMaps",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "A request to update a new Study."
+}

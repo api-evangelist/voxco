@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Company",
+  "required": [
+    "id",
+    "key"
+  ],
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "integer",
+      "description": "Identifying key for the Company.\r\n\r\nThis key will not change for the lifetime of the Company.",
+      "format": "int32"
+    },
+    "id": {
+      "minLength": 1,
+      "type": "string",
+      "description": "The id of the Company.\r\n  \r\nThis id is unique among Companies, but may be changed by the user."
+    }
+  },
+  "additionalProperties": false,
+  "description": "A company"
+}

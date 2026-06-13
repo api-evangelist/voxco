@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AddCodesIntoCodebooksBatchResultItem",
+  "type": "object",
+  "properties": {
+    "codebookKey": {
+      "type": "integer",
+      "description": "The key of codebook",
+      "format": "int32"
+    },
+    "codebook": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CodeOrNet"
+      },
+      "description": "The Codes in the Codebook, in the order they appear in the Codebook.\r\n  \r\n            Codebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\r\n  \r\n            Only the leaf nodes may be applied to a response.  These leaf nodes are Codes.\r\n\r\n            Nets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\r\n\r\n            Nets typically represent groups of related codes.",
+      "nullable": true
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Error message why codes can not be added into the Codebook",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Result item with information about status of adding codes into the specified codebook"
+}

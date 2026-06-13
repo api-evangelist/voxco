@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AICoderGroupCodesRequest",
+  "required": [
+    "aiCoderKey",
+    "netKey",
+    "netLevel"
+  ],
+  "type": "object",
+  "properties": {
+    "aiCoderKey": {
+      "type": "integer",
+      "description": "Key of AI Coder project",
+      "format": "int32"
+    },
+    "netKey": {
+      "type": "integer",
+      "description": "Key of target net",
+      "format": "int32"
+    },
+    "netLevel": {
+      "type": "integer",
+      "description": "Number of net levels in AICoder's codebook after operation of grouping. Set to 0, for removing nets.",
+      "format": "int32"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Contains parameters for grouping codes into target net task"
+}

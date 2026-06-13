@@ -1,0 +1,24 @@
+{
+  "responses": [
+    {
+      "appliedcodes": null,
+      "segmentcodes": null,
+      "rid": "34-22907",
+      "verbatim": "I do not like the red color",
+      "translation": null,
+      "transcription": null,
+      "notes": null
+    },
+    {
+      "appliedcodes": null,
+      "segmentcodes": null,
+      "rid": "34-22988",
+      "verbatim": "This is a fantastic product",
+      "translation": null,
+      "transcription": null,
+      "notes": null
+    }
+  ],
+  "codingMethod": 0,
+  "allowEmptyStrings": false
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GetScriptsResponse",
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "scripts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ScriptDefinition"
+      },
+      "description": "List of scripts",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Response for Coder/Exports (GET verb) method"
+}

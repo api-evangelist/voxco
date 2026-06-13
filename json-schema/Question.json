@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Question",
+  "required": [
+    "alternativeCodingSource",
+    "codebookKey",
+    "codingSource",
+    "countResponses",
+    "countResponsesCoded",
+    "countTranscriptions",
+    "countTranslations",
+    "key",
+    "tasks",
+    "text",
+    "type"
+  ],
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "integer",
+      "description": "The key of the Question.",
+      "format": "int32"
+    },
+    "codebookKey": {
+      "type": "integer",
+      "description": "The key of the Codebook for the Question.",
+      "format": "int32"
+    },
+    "id": {
+      "type": "string",
+      "description": "The id of the Question.\r\n\r\nThe id is unique by case-insensitive comparison across all Questions in this Study.\r\n\r\nNote that the id may be changed by the user, so while it uniquely identifies the Question at a given time, it is not guaranteed to remain unchanged for the lifetime of the Question.",
+      "nullable": true
+    },
+    "countResponses": {
+      "type": "integer",
+      "description": "The number of Responses in this Question.",
+      "format": "int32"
+    },
+    "countResponsesCoded": {
+      "type": "integer",
+      "description": "The number of Responses in this Question that have at least one Code applied.",
+      "format": "int32"
+    },
+    "countTranscriptions": {
+      "type": "integer",
+      "description": "The number of Responses in this Question that have transcriptions.",
+      "format": "int32"
+    },
+    "countTranslations": {
+      "type": "integer",
+      "description": "The number of Responses in this Question that have translations.",
+      "format": "int32"
+    },
+    "countQualityReviewed": {
+      "type": "integer",
+      "description": "The number of Responses in this question that are quality reviewed",
+      "format": "int32"
+    },
+    "tasks": {
+      "$ref": "#/components/schemas/TaskTypes"
+    },
+    "type": {
+      "$ref": "#/components/schemas/DBQuestionTypes"
+    },
+    "label": {
+      "type": "string",
+      "description": "The label for the Question, which may be empty.\r\n\r\nThe label is used as a short identifier for the Question in reports when the full id of the Question would be too long.",
+      "nullable": true
+    },
+    "text": {
+      "minLength": 1,
+      "type": "string",
+      "description": "The text of the Question posed to the respondent, which may be empty."
+    },
+    "help": {
+      "type": "string",
+      "description": "The help information for the Question, which may be empty.\r\n",
+      "nullable": true
+    },
+    "sortOrder": {
+      "type": "integer",
+      "description": "Ordinal number of the Question. It uses for sorting questions in list, tables, so on.",
+      "format": "int32",
+      "nullable": true
+    },
+    "codingSource": {
+      "$ref": "#/components/schemas/DBQuestionCodingSource"
+    },
+    "alternativeCodingSource": {
+      "$ref": "#/components/schemas/DBQuestionCodingSource"
+    },
+    "externalQuestionId": {
+      "type": "string",
+      "description": "External Question ID from QuestionMaps",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "A Question in a Study."
+}

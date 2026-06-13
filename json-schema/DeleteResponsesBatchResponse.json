@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeleteResponsesBatchResponse",
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "questionResponses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DeleteQuestionResponseResultItem"
+      },
+      "description": "List of result items of deletion of responses",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Response contains information about which responses were deleted and which ones were not."
+}

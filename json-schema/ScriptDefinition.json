@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ScriptDefinition",
+  "required": [
+    "key",
+    "name"
+  ],
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "integer",
+      "description": "Script key",
+      "format": "int32"
+    },
+    "name": {
+      "type": "string",
+      "description": "Script name",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "description": "Script description",
+      "nullable": true
+    },
+    "isForceToTextOption": {
+      "type": "boolean",
+      "description": "Indicates if the script output is forced to text format"
+    },
+    "friendlyName": {
+      "type": "string",
+      "description": "Provides a user-friendly, display-ready name for the script",
+      "nullable": true
+    },
+    "acceptsQuestionList": {
+      "type": "boolean",
+      "description": "Specifies if the script can accept a list of questions as a parameter"
+    },
+    "modifiesData": {
+      "type": "boolean",
+      "description": "Flags whether running the script will alter or update any data in the database"
+    },
+    "purpose": {
+      "$ref": "#/components/schemas/DBScriptPurpose"
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ScriptParameter"
+      },
+      "description": "Script parameters",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Script definition for Studies API"
+}

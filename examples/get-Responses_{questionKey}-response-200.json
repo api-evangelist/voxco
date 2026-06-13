@@ -1,0 +1,26 @@
+{
+  "responses": [
+    {
+      "rid": "34-22907",
+      "text": "I do not like the red color",
+      "transcription": null,
+      "translation": null,
+      "notes": null,
+      "codeKeys": [
+        4978,
+        886
+      ]
+    },
+    {
+      "rid": "34-22988",
+      "text": "This is a fantastic product",
+      "transcription": null,
+      "translation": null,
+      "notes": null,
+      "codeKeys": [
+        449
+      ]
+    }
+  ],
+  "errorMessage": null
+}

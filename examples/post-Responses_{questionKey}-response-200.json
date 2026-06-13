@@ -1,0 +1,33 @@
+{
+  "codebookKey": 86443,
+  "responsesAdded": 2,
+  "existingResponsesUnchanged": 0,
+  "responsesCoded": 0,
+  "responsesCodedByTextMatch": 0,
+  "responsesCodedByInputId": 0,
+  "responsesCodedByRegex": 0,
+  "addedResponses": [
+    {
+      "codes": [
+        {
+          "codeKey": 200404044,
+          "description": "Red"
+        }
+      ],
+      "rid": "34-22907",
+      "verbatim": null,
+      "translation": null,
+      "transcription": null,
+      "notes": null
+    },
+    {
+      "codes": [],
+      "rid": "34-22988",
+      "verbatim": null,
+      "translation": null,
+      "transcription": null,
+      "notes": null
+    }
+  ],
+  "errorMessage": null
+}

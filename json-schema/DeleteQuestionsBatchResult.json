@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeleteQuestionsBatchResult",
+  "type": "object",
+  "properties": {
+    "questionKey": {
+      "type": "integer",
+      "description": "Key of question",
+      "format": "int32"
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Error message why response can not be deleted",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Question key and error message why question can not be deleted. Successfully deleted Questions has null for errorMessage property."
+}

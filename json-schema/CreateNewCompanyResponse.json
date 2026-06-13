@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CreateNewCompanyResponse",
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "key": {
+      "type": "integer",
+      "description": "The key assigned to the new Company.",
+      "format": "int32"
+    },
+    "id": {
+      "type": "string",
+      "description": "The id of the new Company, which is trimmed of leading and trailing whitespace.",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Response contains information about the newly created company"
+}

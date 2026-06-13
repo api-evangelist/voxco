@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CreateQuestionRequest",
+  "type": "object",
+  "properties": {
+    "codebookKey": {
+      "type": "integer",
+      "description": "An optional key of an existing Codebook.\r\n\r\nUse this to specify that the new Question should share the Codebook of an existing Question.\r\n\r\nFor example, to specify that this new Question should share the Codebook of another Question in this Study, \r\nquery the Questions resource to find the desired existing Question.  Assign the codebookKey property in this request the same\r\nvalue as the codebookKey of the existing Question.",
+      "format": "int32",
+      "nullable": true
+    },
+    "id": {
+      "type": "string",
+      "description": "The id of the new Question, which must be unique by case insensitive comparison among all Questions in the Study.\r\n\r\nThe value provided here will be trimmed of leading and trailing whitespace.  The resulting id must contain at least one character and not more than 200 characters.",
+      "nullable": true
+    },
+    "tasks": {
+      "$ref": "#/components/schemas/TaskTypes"
+    },
+    "type": {
+      "$ref": "#/components/schemas/DBQuestionTypes"
+    },
+    "label": {
+      "type": "string",
+      "description": "The label for the Question, which may be empty but must not exceed 25 characters.\r\n\r\nThe label is used as a short identifier for the Question in reports when the full id of the Question would be too long.",
+      "nullable": true
+    },
+    "text": {
+      "type": "string",
+      "description": "The text of the Question posed to the respondent, which may be empty.",
+      "nullable": true
+    },
+    "help": {
+      "type": "string",
+      "description": "The help information for the Question, which may be empty.\r\n",
+      "nullable": true
+    },
+    "sortOrder": {
+      "type": "integer",
+      "description": "Ordinal number of the Question.\r\n\r\nWhen a list of Questions are displayed in Ascribe they are sorted first by this value, then by id.",
+      "format": "int32",
+      "nullable": true
+    },
+    "codingSource": {
+      "$ref": "#/components/schemas/DBQuestionCodingSource"
+    },
+    "alternativeCodingSource": {
+      "$ref": "#/components/schemas/DBQuestionCodingSource"
+    },
+    "externalQuestionId": {
+      "type": "string",
+      "description": "External Question ID from QuestionMaps",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "A request to create a new Question."
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PutResponsesRequest",
+  "required": [
+    "responses"
+  ],
+  "type": "object",
+  "properties": {
+    "responses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PutResponse"
+      },
+      "description": "The responses to be added or updated.\r\n\r\nAll strings in these responses will be trimmed of leading and trailing white space."
+    },
+    "codingMethod": {
+      "type": "integer",
+      "description": "Method of coding to use for this request.\r\n",
+      "format": "int32"
+    },
+    "allowEmptyStrings": {
+      "type": "boolean",
+      "description": "When it is true it allows setting empty string as value for verbatim/translation/transcription/notes fields. \r\nOtherwise empty string is ignored (i.e. it works like null value). By default it is false."
+    }
+  },
+  "additionalProperties": false,
+  "description": "A request to add Responses to the specified Question, or to update existing Responses."
+}

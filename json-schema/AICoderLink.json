@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AICoderLink",
+  "required": [
+    "link"
+  ],
+  "type": "object",
+  "properties": {
+    "distributionQuestionValue": {
+      "type": "string",
+      "description": "Value of the distribution question (variable name).",
+      "nullable": true
+    },
+    "link": {
+      "type": "string",
+      "description": "Url to the AI Coder project.",
+      "nullable": true
+    },
+    "expirationDateUtc": {
+      "type": "string",
+      "description": "Datetime when the link expires.",
+      "format": "date-time",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Class contains information about AI Coder link."
+}

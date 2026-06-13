@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CreateQuestionsBatchRequest",
+  "type": "object",
+  "properties": {
+    "questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CreateQuestionRequest"
+      },
+      "description": "Array of questions to create",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Request with inforamtion for creating multiple questions via one API call (batch operation)"
+}

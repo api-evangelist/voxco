@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GetStudiesResponse",
+  "required": [
+    "studies"
+  ],
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "studies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Study"
+      },
+      "description": "A list of Studies."
+    }
+  },
+  "additionalProperties": false,
+  "description": "Information about the requested Studies."
+}

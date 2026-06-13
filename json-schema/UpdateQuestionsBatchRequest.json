@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UpdateQuestionsBatchRequest",
+  "required": [
+    "questions"
+  ],
+  "type": "object",
+  "properties": {
+    "questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/UpdateQuestionBatch"
+      },
+      "description": "Questions to update"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Request contains collection of questions and their properties to update. Only non-null properties will be updated."
+}

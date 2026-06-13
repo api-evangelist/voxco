@@ -1,0 +1,16 @@
+{
+  "studyKey": 20000,
+  "questionKeys": [
+    1005,
+    1006,
+    1007
+  ],
+  "scriptKey": 1,
+  "parameters": [
+    "1000",
+    "test",
+    "export",
+    "3"
+  ],
+  "exportAsText": true
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CodebookGranularityOption",
+  "enum": [
+    "Low",
+    "Medium",
+    "High"
+  ],
+  "type": "string",
+  "description": "Defines the desired level of granularity (detail) for the automatically generated codebook themes.",
+  "format": ""
+}

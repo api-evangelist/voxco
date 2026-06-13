@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AICoderExcelExportGetStatusOfTaskResponse",
+  "required": [
+    "fileUrl"
+  ],
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "isCompleted": {
+      "type": "boolean",
+      "description": "True if the task is completed, otherwise false"
+    },
+    "fileUrl": {
+      "type": "string",
+      "description": "Url of result Excel file",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Contains status and result of exporting to Excel file task"
+}

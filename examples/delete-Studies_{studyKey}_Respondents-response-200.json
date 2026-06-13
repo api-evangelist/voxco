@@ -1,0 +1,16 @@
+{
+  "failedDeletions": [
+    {
+      "respondentID": "RID1",
+      "errorMessage": "Example error message"
+    },
+    {
+      "respondentID": "RID2",
+      "errorMessage": "Responses for Respondent ID not found"
+    }
+  ],
+  "notFoundRespondentIds": [
+    "RID2"
+  ],
+  "errorMessage": null
+}

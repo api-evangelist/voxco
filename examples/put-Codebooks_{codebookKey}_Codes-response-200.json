@@ -1,0 +1,39 @@
+{
+  "failedCodes": [
+    {
+      "key": "1234569",
+      "errorMessage": "Some error happens during updating of code with key '1234569'."
+    }
+  ],
+  "codebookKey": 0,
+  "codebook": [
+    {
+      "key": 1234567,
+      "description": "New Description for the code with key 1234567",
+      "inputId": "101",
+      "outputId": "101",
+      "regexPattern": null,
+      "color": "#00FF00",
+      "children": null
+    },
+    {
+      "key": 1234568,
+      "description": "New Description for the code with key 1234568",
+      "inputId": "102",
+      "outputId": "102",
+      "regexPattern": null,
+      "color": "#FF0000",
+      "children": null
+    },
+    {
+      "key": 1234569,
+      "description": "New Description for the code with key 1234569",
+      "inputId": "103",
+      "outputId": "103",
+      "regexPattern": "\\bnothing\\b",
+      "color": "#00CCCC",
+      "children": null
+    }
+  ],
+  "errorMessage": null
+}

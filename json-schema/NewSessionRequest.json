@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NewSessionRequest",
+  "required": [
+    "account",
+    "password",
+    "userName"
+  ],
+  "type": "object",
+  "properties": {
+    "account": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "userName": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "password": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

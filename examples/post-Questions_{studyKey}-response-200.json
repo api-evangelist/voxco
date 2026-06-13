@@ -1,0 +1,15 @@
+{
+  "key": 348,
+  "codebookKey": 4589,
+  "id": "Q1",
+  "tasks": "ct",
+  "type": "o",
+  "label": "Likes",
+  "text": "What did you like about the product?",
+  "help": "Any help string for the product",
+  "sortOrder": 10,
+  "codingSource": "v",
+  "alternativeCodingSource": "b",
+  "externalQuestionId": "external_question_id_12345",
+  "errorMessage": null
+}

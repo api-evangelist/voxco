@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TranslateStudyResponse",
+  "type": "object",
+  "properties": {
+    "errorMessage": {
+      "type": "string",
+      "nullable": true
+    },
+    "studyKey": {
+      "type": "integer",
+      "description": "Key of a study that was translated",
+      "format": "int32"
+    },
+    "totalTranslationsCount": {
+      "type": "integer",
+      "description": "Number of translations that were done",
+      "format": "int32"
+    },
+    "totalTransactionsCount": {
+      "type": "number",
+      "description": "Number of transactions",
+      "format": "double"
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TranslateQuestionResponse"
+      },
+      "description": "Information about the operation grouped by questions",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Response of translate study operation"
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignSegmentSiblingsOptions",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "minProximity": {
+      "type": "integer",
+      "description": "Minimum proximity percent value",
+      "format": "int32"
+    },
+    "minSiblings": {
+      "type": "integer",
+      "description": "Number of siblings",
+      "format": "int32"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Assign segment siblings options"
+}

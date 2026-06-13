@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PutResponsesBatchRequest",
+  "required": [
+    "questionResponses"
+  ],
+  "type": "object",
+  "properties": {
+    "questionResponses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PutQuestionResponses"
+      },
+      "description": "Array of questions with their responses to update"
+    },
+    "allowEmptyStrings": {
+      "type": "boolean",
+      "description": "When it is true it allows setting empty string as value for verbatim/translation/transcription/notes fields. \r\nOtherwise empty string is ignored (i.e. it works like null value). By default it is false."
+    }
+  },
+  "additionalProperties": false,
+  "description": "Request with inforamtion for updating multiple responses via one API call (batch operation)"
+}

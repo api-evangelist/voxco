@@ -1,0 +1,55 @@
+{
+  "codes": [
+    {
+      "description": "Likes",
+      "inputId": null,
+      "outputId": "1000",
+      "regexPattern": null,
+      "color": "#00FF00",
+      "children": [
+        {
+          "description": "Color",
+          "inputId": null,
+          "outputId": "1001",
+          "regexPattern": null,
+          "color": null,
+          "children": null
+        },
+        {
+          "description": "Taste",
+          "inputId": null,
+          "outputId": "1002",
+          "regexPattern": null,
+          "color": null,
+          "children": null
+        }
+      ]
+    },
+    {
+      "description": "Dislikes",
+      "inputId": null,
+      "outputId": "2000",
+      "regexPattern": null,
+      "color": "#FF0000",
+      "children": [
+        {
+          "description": "Color",
+          "inputId": null,
+          "outputId": "2001",
+          "regexPattern": null,
+          "color": null,
+          "children": null
+        },
+        {
+          "description": "Taste",
+          "inputId": null,
+          "outputId": "2002",
+          "regexPattern": null,
+          "color": null,
+          "children": null
+        }
+      ]
+    }
+  ],
+  "overwrite": false
+}

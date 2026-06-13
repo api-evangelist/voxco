@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeleteResponsesBatchRequest",
+  "type": "object",
+  "properties": {
+    "questionResponses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DeleteQuestionResponses"
+      },
+      "description": "Array of pairs of question key and respondent id",
+      "nullable": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Request contains array of pairs of question key and respondent id"
+}
