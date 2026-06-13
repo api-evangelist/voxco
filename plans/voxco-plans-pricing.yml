@@ -1,0 +1,76 @@
+name: Voxco Plans and Pricing
+description: Voxco offers flexible, custom pricing with no publicly published rates.
+  All plans require contacting the sales team for a tailored quote based on organizational
+  size, research volume, and feature requirements. Plans span online survey tools,
+  panel management, text analytics, and enterprise omnichannel solutions.
+url: https://www.voxco.com/pricing
+plans:
+  - name: Voxco Online
+    description: Robust cloud-based platform for online survey needs with 40+ question
+      types, real-time response monitoring, and access to 10M+ respondents.
+    pricing: Custom quote required
+    features:
+      - 40+ question types
+      - Easy-to-use survey design interface
+      - Real-time response monitoring
+      - Multi-channel distribution (web, mobile, email)
+      - Advanced survey logic and branching
+      - AI probing for automatic follow-up questions
+      - Reporting and dashboards
+      - REST API for system integrations
+      - Secure cloud hosting
+  - name: Voxco Online, Panel and Portal
+    description: Survey tool plus panel management and respondent portal for managing
+      ongoing research panels and community portals.
+    pricing: Custom quote required
+    features:
+      - All Voxco Online features
+      - Robust back-end panel management
+      - Detailed panelist activity monitoring
+      - Customized panel portals
+      - Panel recruitment and retention tools
+      - Member profiling and segmentation
+  - name: Voxco with Ascribe
+    description: Combines survey capabilities with AI-powered text analytics for
+      deep analysis of open-ended survey responses.
+    pricing: Custom quote required
+    features:
+      - All Voxco Online features
+      - Open-ended response analysis
+      - AI theme extraction
+      - Interactive text analytics
+      - Verbatim coding automation
+      - Ascribe Coder API access
+      - Ascribe CX Inspector API access
+      - Codebook generation
+  - name: CATI and Telephony
+    description: Phone survey and call center solution with integrated telephony,
+      predictive dialing, and IVR capabilities.
+    pricing: Custom quote required
+    features:
+      - Integrated telephony system
+      - Predictive dialing (4 modes)
+      - Quality control and voice recording
+      - IVR/TCPA capabilities
+      - CATI interview management
+      - Call center workflow tools
+  - name: Voxco Enterprise
+    description: Bespoke omnichannel research solutions with full multi-channel support,
+      enterprise security, and 24/7 global support.
+    pricing: Custom quote required
+    features:
+      - Multi-channel support (online, offline, telephony, mobile)
+      - Enterprise-grade security
+      - 24/7 global support
+      - On-premise deployment option
+      - Custom integrations and professional services
+      - Dedicated account management
+      - SLA guarantees
+contact:
+  phone: '+1 514-861-9255'
+  url: https://www.voxco.com/book-a-demo
+notes:
+  - Voxco does not publish pricing publicly; all plans require a custom quote
+  - API access is included as part of the platform subscription
+  - Professional services for API development and integration are available separately
+  - Enterprise customers may negotiate custom SLAs and support arrangements

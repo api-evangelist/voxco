@@ -1,0 +1,113 @@
+aid: voxco
+name: Voxco
+description: Voxco is an omnichannel survey platform serving market research firms
+  and corporate research teams across 40+ countries. It provides a REST API for managing
+  surveys, distributing questionnaires via multiple channels (online, CATI, mobile,
+  IVR), collecting responses, and accessing survey analytics. The Ascribe text analytics
+  API further enables AI-powered coding and analysis of open-ended survey responses.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/voxco/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Survey Software
+  - Market Research
+  - CATI
+  - Omnichannel
+  - Text Analytics
+  - Data Collection
+  - Panel Management
+apis:
+  - aid: voxco:voxco-survey-api
+    name: Voxco Survey API
+    description: REST API for integrating with the Voxco survey platform, enabling
+      programmatic management of surveys, distribution across channels, response collection,
+      and access to analytics. Authenticated via a 140-character Access Token.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.voxco.com/professional-services
+    baseURL: https://na1.voxco.com
+    tags:
+      - Surveys
+      - Data Collection
+      - Analytics
+    properties:
+      - type: Documentation
+        url: https://www.voxco.com/resources
+      - type: OpenAPI
+        url: https://webservices.goascribe.com/coder
+    contact:
+      - FN: Voxco Sales
+        url: https://www.voxco.com/book-a-demo
+        email: ''
+  - aid: voxco:voxco-ascribe-coder-api
+    name: Voxco Ascribe Coder API
+    description: REST API for automated coding and analysis of open-ended survey responses.
+      Supports creating studies, loading questions and responses, polling for coding
+      completion, and retrieving codebooks and coded results via Bearer token authentication.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.voxco.com/resources/automating-coding-workflow-with-the-ascribe-coder-api
+    baseURL: https://webservices.goascribe.com/coder
+    tags:
+      - Text Analytics
+      - AI Coding
+      - Open-Ended Responses
+      - Market Research
+    properties:
+      - type: Documentation
+        url: https://www.voxco.com/resources/using-swagger-documentation-postman-ascribe-apis
+      - type: Authentication
+        url: https://www.voxco.com/resources/ascribe-api-authentication
+      - type: OpenAPI
+        url: https://webservices.goascribe.com/coder
+    contact:
+      - FN: Voxco Sales
+        url: https://www.voxco.com/book-a-demo
+        email: ''
+  - aid: voxco:voxco-ascribe-cxi-api
+    name: Voxco Ascribe CX Inspector API
+    description: REST API for customer experience text analytics and verbatim coding,
+      enabling analysis of CX survey open-ended responses with AI-powered theme extraction
+      and sentiment analysis. Uses the same Bearer token authentication as the Ascribe
+      Coder API.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.voxco.com/resources/using-swagger-documentation-postman-ascribe-apis
+    baseURL: https://webservices.goascribe.com/cxi
+    tags:
+      - Customer Experience
+      - Text Analytics
+      - Sentiment Analysis
+      - Verbatim Coding
+    properties:
+      - type: Documentation
+        url: https://www.voxco.com/resources/using-swagger-documentation-postman-ascribe-apis
+      - type: Authentication
+        url: https://www.voxco.com/resources/ascribe-api-authentication
+      - type: OpenAPI
+        url: https://webservices.goascribe.com/cxi
+    contact:
+      - FN: Voxco Sales
+        url: https://www.voxco.com/book-a-demo
+        email: ''
+common:
+  - type: Website
+    url: https://www.voxco.com
+  - type: Documentation
+    url: https://www.voxco.com/resources
+  - type: Blog
+    url: https://www.voxco.com/blog/
+  - type: Pricing
+    url: https://www.voxco.com/pricing
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/voxco
+  - type: X
+    url: https://x.com/voxco
+  - type: Plans
+    url: plans/voxco-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/voxco-rate-limits.yml
+  - type: FinOps
+    url: finops/voxco-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

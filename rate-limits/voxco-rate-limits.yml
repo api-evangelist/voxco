@@ -1,0 +1,41 @@
+name: Voxco API Rate Limits
+description: Voxco does not publicly publish specific API rate limits for its Survey
+  API or Ascribe APIs. Known operational constraints are documented below based on
+  available developer guidance. Contact Voxco sales or support for enterprise-level
+  rate limit agreements.
+url: https://www.voxco.com/professional-services
+limits:
+  - api: Voxco Ascribe Coder API
+    resource: Responses
+    constraint: Batch size recommended limit of 1000 responses per POST request
+    notes: Larger batches may be submitted but 1000 responses per call is the recommended
+      maximum for reliability
+  - api: Voxco Ascribe Coder API
+    resource: Authentication Token (authenticationToken)
+    constraint: Expires after 30 minutes of inactivity
+    notes: Requires at least one API operation every 30 minutes to remain valid;
+      use bearerToken for long-running integrations
+  - api: Voxco Ascribe Coder API
+    resource: Bearer Token (bearerToken)
+    constraint: Does not expire
+    notes: Remains valid until the user account credentials are changed; suitable
+      for automated integrations and scheduled workflows
+  - api: Voxco Survey API
+    resource: General
+    constraint: Not publicly documented
+    notes: Rate limits are likely enforced at the platform tier level; contact Voxco
+      for enterprise SLA details
+policies:
+  - Duplicate respondent IDs within a single response batch are silently ignored
+    on resubmission
+  - A dedicated API user account is recommended to isolate time tracking and activity
+    attribution
+  - Regional instances (na1.voxco.com, na2.voxco.com) may have separate capacity
+    configurations
+contact:
+  url: https://www.voxco.com/book-a-demo
+  phone: '+1 514-861-9255'
+notes:
+  - Specific rate limits are not publicly disclosed by Voxco
+  - Enterprise customers should negotiate rate limit terms as part of their contract
+  - Operational constraints documented here are sourced from public developer guides

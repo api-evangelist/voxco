@@ -1,0 +1,65 @@
+name: Voxco FinOps
+description: Financial operations guidance for managing costs associated with Voxco
+  survey platform API usage. Voxco uses a custom, negotiated pricing model with no
+  public rate card. Cost optimization requires direct engagement with the Voxco sales
+  team and careful scoping of research volume, channel mix, and API integration requirements.
+url: https://www.voxco.com/pricing
+model: custom-negotiated
+visibility: private
+billing:
+  - type: Subscription
+    description: Platform access is sold as a subscription with pricing determined
+      by organizational size, number of users, survey volume, and enabled modules
+    public: false
+  - type: Professional Services
+    description: Additional fees apply for API development, integration services,
+      and custom implementation support provided by the Voxco professional services
+      team
+    public: false
+  - type: Add-on Modules
+    description: Features such as Ascribe text analytics, panel management, telephony/CATI,
+      and Voxco Audience may be licensed as additional modules on top of the base
+      platform
+    public: false
+cost_drivers:
+  - factor: Survey Volume
+    description: Number of surveys created, distributed, and completed responses
+      collected; higher volumes typically increase contract costs
+  - factor: Channel Mix
+    description: Multi-channel deployments (online, CATI, mobile, IVR) require additional
+      module licensing per channel activated
+  - factor: Respondent Access
+    description: Access to Voxco Audience panel of 10M+ respondents may be charged
+      on a per-response or per-project basis separate from platform fees
+  - factor: Text Analytics
+    description: Ascribe Coder and CX Inspector API usage for open-ended response
+      coding adds cost based on volume of responses processed
+  - factor: User Seats
+    description: Number of researcher or administrator seats provisioned on the platform
+      affects subscription pricing
+  - factor: Support Tier
+    description: Enterprise 24/7 global support and dedicated account management
+      incur premium costs over standard support tiers
+  - factor: Hosting Model
+    description: Cloud-hosted vs. on-premise deployment will have different cost
+      structures; on-premise typically involves higher upfront and maintenance costs
+optimization:
+  - tip: Batch API calls efficiently to maximize throughput within contracted limits
+  - tip: Use bearerToken (non-expiring) for automated integrations to avoid unnecessary
+      re-authentication overhead
+  - tip: Consolidate open-ended coding jobs into batches of up to 1000 responses
+      per Ascribe API call for efficiency
+  - tip: Negotiate response volume caps upfront to avoid overage charges on Audience
+      panel access
+  - tip: Evaluate which channels are actually needed before licensing all omnichannel
+      modules
+  - tip: Request a proof-of-concept or pilot engagement before committing to full
+      enterprise pricing
+contact:
+  url: https://www.voxco.com/book-a-demo
+  phone: '+1 514-861-9255'
+notes:
+  - Voxco pricing is entirely custom and requires direct negotiation with sales
+  - No public API usage tiers, free trials, or self-serve pricing pages exist
+  - Cost visibility requires a signed contract; request detailed line-item breakdowns
+    during negotiation
