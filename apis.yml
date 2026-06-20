@@ -5,7 +5,7 @@ description: Voxco is an omnichannel survey platform serving market research fir
   surveys, distributing questionnaires via multiple channels (online, CATI, mobile,
   IVR), collecting responses, and accessing survey analytics. The Ascribe text analytics
   API further enables AI-powered coding and analysis of open-ended survey responses.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/voxco/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -24,7 +24,7 @@ apis:
     description: REST API for integrating with the Voxco survey platform, enabling
       programmatic management of surveys, distribution across channels, response collection,
       and access to analytics. Authenticated via a 140-character Access Token.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.voxco.com/professional-services
     baseURL: https://na1.voxco.com
     tags:
@@ -45,7 +45,7 @@ apis:
     description: REST API for automated coding and analysis of open-ended survey responses.
       Supports creating studies, loading questions and responses, polling for coding
       completion, and retrieving codebooks and coded results via Bearer token authentication.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.voxco.com/resources/automating-coding-workflow-with-the-ascribe-coder-api
     baseURL: https://webservices.goascribe.com/coder
     tags:
@@ -70,7 +70,7 @@ apis:
       enabling analysis of CX survey open-ended responses with AI-powered theme extraction
       and sentiment analysis. Uses the same Bearer token authentication as the Ascribe
       Coder API.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.voxco.com/resources/using-swagger-documentation-postman-ascribe-apis
     baseURL: https://webservices.goascribe.com/cxi
     tags:
