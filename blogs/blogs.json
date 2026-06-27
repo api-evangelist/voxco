@@ -1,7 +1,7 @@
 {
   "aid": "voxco",
   "url": "https://www.voxco.com/blog",
-  "fetched": "2026-06-14T20:42:17Z",
+  "fetched": "2026-06-27T13:20:41Z",
   "posts": [
     {
       "title": "Five Takeaways from a Research Tech CEO on AI, Rigor, and Research (2026)",
@@ -67,11 +67,9 @@
   "repo": "voxco",
   "feeds": [
     {
-      "source": "https://www.voxco.com/resources",
-      "feed_url": "https://www.voxco.com/resources",
-      "title": "",
+      "source": "https://www.voxco.com/blog/",
       "saved": 0,
-      "method": "none"
+      "error": "HTTP 404 Not Found"
     }
   ],
   "post_count": 0
