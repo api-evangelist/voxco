@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/voxco-ascribe-coder-api-openapi.json
+summary:
+  types:
+  - http
+schemes:
+- name: Bearer
+  type: http
+  scheme: Bearer
+  bearerFormat: JWT
+  description: |-
+    Please enter a valid bearer token.
+
+    It should be in the format "bearer eyJhbGciOiJSU..."
+
+    It will be added to the "Authentication" HTTP header
+  sources:
+  - openapi/voxco-ascribe-coder-api-openapi.json
