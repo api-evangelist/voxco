@@ -90,6 +90,8 @@ apis:
         url: https://www.voxco.com/book-a-demo
         email: ''
 common:
+  - type: AgenticAccess
+    url: agentic-access/voxco-agentic-access.yml
   - type: DomainSecurity
     url: security/voxco-domain-security.yml
   - type: Authentication
