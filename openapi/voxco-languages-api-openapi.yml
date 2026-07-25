@@ -1,0 +1,112 @@
+openapi: 3.0.4
+info:
+  title: Ascribe Coder AICoder Languages API
+  description: <br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click "Try it out!"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.
+  contact:
+    email: support@goascribe.com
+  version: v2
+servers:
+- url: https://api.goascribe.us/coder/v2
+  description: US Servers
+- url: https://api.goascribe.eu/coder/v2
+  description: EU Servers
+- url: https://api-ca.goascribe.com/coder/v2
+  description: CA Servers
+security:
+- Bearer: []
+tags:
+- name: Languages
+paths:
+  /Languages/Translate:
+    get:
+      tags:
+      - Languages
+      summary: Returns the languages supported for translation
+      description: "The Code for a language is used to specify the language when translating responses.\r\n\r\nThe Name for a language is suitable for display on a user interface."
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetLanguagesToTranslateResponse'
+              example:
+                languages:
+                - code: en
+                  name: English
+                - code: de
+                  name: German
+                - code: fr
+                  name: French
+                - code: uk
+                  name: Ukrainian
+                errorMessage: null
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetLanguagesToTranslateResponse'
+              example:
+                languages:
+                - code: en
+                  name: English
+                - code: de
+                  name: German
+                - code: fr
+                  name: French
+                - code: uk
+                  name: Ukrainian
+                errorMessage: null
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetLanguagesToTranslateResponse'
+              example:
+                languages:
+                - code: en
+                  name: English
+                - code: de
+                  name: German
+                - code: fr
+                  name: French
+                - code: uk
+                  name: Ukrainian
+                errorMessage: null
+components:
+  schemas:
+    GetLanguagesToTranslateResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/NaturalLanguage'
+          description: List of supported languages
+          nullable: true
+      additionalProperties: false
+      description: Response that contains list of languages that are supported by this API.
+    NaturalLanguage:
+      type: object
+      properties:
+        code:
+          type: string
+          description: The language code, used to specify the language in API operations.
+          nullable: true
+        name:
+          type: string
+          description: The name of the language suitable for display to the user.
+          nullable: true
+      additionalProperties: false
+      description: A natural language supported by this API.
+  securitySchemes:
+    Bearer:
+      type: http
+      description: 'Please enter a valid bearer token.
+
+
+        It should be in the format "bearer eyJhbGciOiJSU..."
+
+
+        It will be added to the "Authentication" HTTP header'
+      scheme: Bearer
+      bearerFormat: JWT

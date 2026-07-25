@@ -1,0 +1,84 @@
+openapi: 3.0.4
+info:
+  title: Ascribe Coder AICoder Users API
+  description: <br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click "Try it out!"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.
+  contact:
+    email: support@goascribe.com
+  version: v2
+servers:
+- url: https://api.goascribe.us/coder/v2
+  description: US Servers
+- url: https://api.goascribe.eu/coder/v2
+  description: EU Servers
+- url: https://api-ca.goascribe.com/coder/v2
+  description: CA Servers
+security:
+- Bearer: []
+tags:
+- name: Users
+paths:
+  /Users:
+    get:
+      tags:
+      - Users
+      summary: Get a list of Users
+      description: This operation returns the key and ID of all Users in the Ascribe Account.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUsersResponse'
+              example:
+                users:
+                - key: 3
+                  id: John Doe
+                - key: 5
+                  id: Mr. Beast
+                errorMessage: null
+components:
+  schemas:
+    GetUsersResponse:
+      required:
+      - users
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+          description: A list of users.
+      additionalProperties: false
+      description: The users property contains a list of users.
+    User:
+      required:
+      - id
+      - key
+      type: object
+      properties:
+        key:
+          type: integer
+          description: The key for this user.  The key for a user cannot be changed, and will always identify that user in the account.
+          format: int32
+        id:
+          minLength: 1
+          type: string
+          description: The user's logon id.  This value is unique by case-insensitive comparison across all users in the account.  However, this value may be changed by an administrator of the account.
+      additionalProperties: false
+      description: Information about a user.
+  securitySchemes:
+    Bearer:
+      type: http
+      description: 'Please enter a valid bearer token.
+
+
+        It should be in the format "bearer eyJhbGciOiJSU..."
+
+
+        It will be added to the "Authentication" HTTP header'
+      scheme: Bearer
+      bearerFormat: JWT

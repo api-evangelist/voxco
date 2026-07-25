@@ -1,0 +1,1326 @@
+openapi: 3.0.4
+info:
+  title: Ascribe Coder AICoder Responses API
+  description: <br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click "Try it out!"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.
+  contact:
+    email: support@goascribe.com
+  version: v2
+servers:
+- url: https://api.goascribe.us/coder/v2
+  description: US Servers
+- url: https://api.goascribe.eu/coder/v2
+  description: EU Servers
+- url: https://api-ca.goascribe.com/coder/v2
+  description: CA Servers
+security:
+- Bearer: []
+tags:
+- name: Responses
+paths:
+  /Responses/{QuestionKey}/{RespondentID}:
+    delete:
+      tags:
+      - Responses
+      summary: Delete a response from the database by using pair of question key and respondent id
+      description: Method deletes the response by using question key and respondent id.
+      parameters:
+      - name: QuestionKey
+        in: path
+        description: Key of question
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: RespondentID
+        in: path
+        description: ID of respondent
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponseResponse'
+              example:
+                errorMessage: null
+  /Responses/Batch:
+    delete:
+      tags:
+      - Responses
+      summary: Delete a batch of responses from the database by using pairs of question key and respondent id
+      description: Method deletes a batch of responses by using pairs of question key and respondent id.
+      requestBody:
+        description: Array of pairs of question key and respondent id.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteResponsesBatchRequest'
+            example:
+              questionResponses:
+              - questionKey: 55
+                respondentIDs:
+                - '100001'
+                - '100002'
+              - questionKey: 56
+                respondentIDs:
+                - '200001'
+              - questionKey: 57
+                respondentIDs:
+                - '300001'
+                - '300002'
+                - '300003'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DeleteResponsesBatchRequest'
+            example:
+              questionResponses:
+              - questionKey: 55
+                respondentIDs:
+                - '100001'
+                - '100002'
+              - questionKey: 56
+                respondentIDs:
+                - '200001'
+              - questionKey: 57
+                respondentIDs:
+                - '300001'
+                - '300002'
+                - '300003'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DeleteResponsesBatchRequest'
+            example:
+              questionResponses:
+              - questionKey: 55
+                respondentIDs:
+                - '100001'
+                - '100002'
+              - questionKey: 56
+                respondentIDs:
+                - '200001'
+              - questionKey: 57
+                respondentIDs:
+                - '300001'
+                - '300002'
+                - '300003'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponsesBatchResponse'
+              example:
+                questionResponses:
+                - questionKey: 55
+                  respondentID: '100001'
+                  errorMessage: null
+                - questionKey: 55
+                  respondentID: '100002'
+                  errorMessage: null
+                - questionKey: 56
+                  respondentID: '200001'
+                  errorMessage: null
+                - questionKey: 57
+                  respondentID: '300001'
+                  errorMessage: 'SQL Exception: Cannot delete. Trigger TR_Responses_BeforeDeleteCheck.'
+                - questionKey: 57
+                  respondentID: '300002'
+                  errorMessage: null
+                - questionKey: 57
+                  respondentID: '300003'
+                  errorMessage: null
+                errorMessage: null
+  /Responses/{questionKey}:
+    get:
+      tags:
+      - Responses
+      summary: Get the Responses in the specified Question
+      description: "For coded responses the keys of the applied codes are returned for each response.\r\n\r\nThese keys can be matched to the keys of the codes returned in a query for the codebook to find the details of each of the applied codes.\r\n\r\n\r\nThe optional date query parameters are UTC date/time values.\r\n\r\nThese should be specified in the form:\r\n\r\nYYYY-MM-DDThh:mm:ss\r\n\r\nWhere the hour ranges from 0 to 23.  For example:\r\n\r\n2020-02-23T16:05:17\r\n\r\nIf the time portion of the date/time value is omitted it is assumed to be 00:00:00 GMT."
+      parameters:
+      - name: questionKey
+        in: path
+        description: The key of the Question, which must be an integer value.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: includeText
+        in: query
+        description: "If true, the text of each Response is returned.\r\n\r\n            If false or omitted the text is not returned."
+        schema:
+          type: boolean
+          default: false
+      - name: status
+        in: query
+        description: "If omitted, all Responses for the Question are returned.\r\n\r\nIf present, one of these values:\r\n<ul><li>coded: return only Responses with at least one Code applied.\r\n</li><li>uncoded: return only Responses with no Code applied.</li></ul>"
+        schema:
+          type: string
+      - name: codedAfter
+        in: query
+        description: If present, only responses with a code applied on or after the specified date/time are returned.
+        schema:
+          type: string
+          format: date-time
+      - name: codedBefore
+        in: query
+        description: If present, only responses with a code applied before the specified date/time are returned.
+        schema:
+          type: string
+          format: date-time
+      - name: loadedAfter
+        in: query
+        description: If present, only responses loaded on or after the specified date/time are returned.
+        schema:
+          type: string
+          format: date-time
+      - name: loadedBefore
+        in: query
+        description: If present, only responses loaded before the specified date/time are returned.
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetResponsesResponse'
+              example:
+                responses:
+                - rid: 34-22907
+                  text: I do not like the red color
+                  transcription: null
+                  translation: null
+                  notes: null
+                  codeKeys:
+                  - 4978
+                  - 886
+                - rid: 34-22988
+                  text: This is a fantastic product
+                  transcription: null
+                  translation: null
+                  notes: null
+                  codeKeys:
+                  - 449
+                errorMessage: null
+    post:
+      tags:
+      - Responses
+      summary: Add Responses to a Question
+      description: "This operation will add new responses to the specified question, optionally autocoding them. It will never modify existing responses.\r\n\r\nFor each QuestionResponse submitted, if the question does not have a response stored in Ascribe with the specified respondent id,\r\n\r\nthen the response will be added.\r\n \r\nOtherwise, the Response stored in Ascribe will not be modified. The QuestionResponse submitted will be ignored,\r\n\r\nand any codes that have been applied to the Response will be unchanged.\r\n\r\n\r\nThis operation allows the use of a Rule Set to modify or veto the Responses submitted, and automatically coding the responses as they are added.\r\n"
+      parameters:
+      - name: questionKey
+        in: path
+        description: The key of the question, which must be an integer value
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        description: The responses to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostResponsesRequest'
+            example:
+              responses:
+              - appliedcodes: null
+                segmentcodes: null
+                rid: 34-22907
+                verbatim: I do not like the red color
+                translation: null
+                transcription: null
+                notes: null
+              - appliedcodes: null
+                segmentcodes: null
+                rid: 34-22988
+                verbatim: This is a fantastic product
+                translation: null
+                transcription: null
+                notes: null
+              autoCodeTextMatch: false
+              autoCodeInputId: false
+              autoCodeByRegex: false
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostResponsesRequest'
+            example:
+              responses:
+              - appliedcodes: null
+                segmentcodes: null
+                rid: 34-22907
+                verbatim: I do not like the red color
+                translation: null
+                transcription: null
+                notes: null
+              - appliedcodes: null
+                segmentcodes: null
+                rid: 34-22988
+                verbatim: This is a fantastic product
+                translation: null
+                transcription: null
+                notes: null
+              autoCodeTextMatch: false
+              autoCodeInputId: false
+              autoCodeByRegex: false
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostResponsesRequest'
+            example:
+              responses:
+              - appliedcodes: null
+                segmentcodes: null
+                rid: 34-22907
+                verbatim: I do not like the red color
+                translation: null
+                transcription: null
+                notes: null
+              - appliedcodes: null
+                segmentcodes: null
+                rid: 34-22988
+                verbatim: This is a fantastic product
+                translation: null
+                transcription: null
+                notes: null
+              autoCodeTextMatch: false
+              autoCodeInputId: false
+              autoCodeByRegex: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostResponsesResponse'
+              example:
+                codebookKey: 86443
+                responsesAdded: 2
+                existingResponsesUnchanged: 0
+                responsesCoded: 0
+                responsesCodedByTextMatch: 0
+                responsesCodedByInputId: 0
+                responsesCodedByRegex: 0
+                addedResponses:
+                - codes:
+                  - codeKey: 200404044
+                    description: Red
+                  rid: 34-22907
+                  verbatim: null
+                  translation: null
+                  transcription: null
+                  notes: null
+                - codes: []
+                  rid: 34-22988
+                  verbatim: null
+                  translation: null
+                  transcription: null
+                  notes: null
+                errorMessage: null
+    put:
+      tags:
+      - Responses
+      summary: Add or update Responses in the specified Question
+      description: "If the Question does not have a Response stored in Ascribe with the specified respondent id, then the response will be added.\r\n \r\nOtherwise, the Response stored in Ascribe will be updated if any of the properties of in the request differ from the values of the current properties of the Response."
+      parameters:
+      - name: questionKey
+        in: path
+        description: The key of the Question, which must be an integer value.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        description: The Responses to add or update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutResponsesRequest'
+            example:
+              responses:
+              - appliedcodes: null
+                segmentcodes: null
+                rid: 34-22907
+                verbatim: I do not like the red color
+                translation: null
+                transcription: null
+                notes: null
+              - appliedcodes: null
+                segmentcodes: null
+                rid: 34-22988
+                verbatim: This is a fantastic product
+                translation: null
+                transcription: null
+                notes: null
+              codingMethod: 0
+              allowEmptyStrings: false
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PutResponsesRequest'
+            example:
+              responses:
+              - appliedcodes: null
+                segmentcodes: null
+                rid: 34-22907
+                verbatim: I do not like the red color
+                translation: null
+                transcription: null
+                notes: null
+              - appliedcodes: null
+                segmentcodes: null
+                rid: 34-22988
+                verbatim: This is a fantastic product
+                translation: null
+                transcription: null
+                notes: null
+              codingMethod: 0
+              allowEmptyStrings: false
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PutResponsesRequest'
+            example:
+              responses:
+              - appliedcodes: null
+                segmentcodes: null
+                rid: 34-22907
+                verbatim: I do not like the red color
+                translation: null
+                transcription: null
+                notes: null
+              - appliedcodes: null
+                segmentcodes: null
+                rid: 34-22988
+                verbatim: This is a fantastic product
+                translation: null
+                transcription: null
+                notes: null
+              codingMethod: 0
+              allowEmptyStrings: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutResponsesResponse'
+              example:
+                responsesAdded: 10
+                existingResponsesUpdated: 15
+                existingResponsesUnchanged: 5
+                responsesCoded: 0
+                errorMessage: null
+  /Responses/{studyKey}/Batch:
+    post:
+      tags:
+      - Responses
+      summary: Add Responses to the specified Study's Questions
+      description: "This operation will add new responses to the specified study's questions.\r\n \r\nFor each of question it will work absolutely the same way as POST /Responses/{questionKey} method does."
+      parameters:
+      - name: studyKey
+        in: path
+        description: The key of the study, which must be an integer value
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        description: The responses to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostResponsesBatchRequest'
+            example:
+              questionResponses:
+              - questionKey: 212345
+                responses:
+                - rid: 34-22907
+                  verbatim: I do not like the red color
+                  translation: null
+                  transcription: null
+                  notes: null
+                - rid: 34-22988
+                  verbatim: This is a fantastic product
+                  translation: null
+                  transcription: null
+                  notes: null
+              - questionKey: 212346
+                responses:
+                - rid: 34-22907
+                  verbatim: France
+                  translation: null
+                  transcription: null
+                  notes: null
+                - rid: 34-22988
+                  verbatim: USA
+                  translation: null
+                  transcription: null
+                  notes: null
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostResponsesBatchRequest'
+            example:
+              questionResponses:
+              - questionKey: 212345
+                responses:
+                - rid: 34-22907
+                  verbatim: I do not like the red color
+                  translation: null
+                  transcription: null
+                  notes: null
+                - rid: 34-22988
+                  verbatim: This is a fantastic product
+                  translation: null
+                  transcription: null
+                  notes: null
+              - questionKey: 212346
+                responses:
+                - rid: 34-22907
+                  verbatim: France
+                  translation: null
+                  transcription: null
+                  notes: null
+                - rid: 34-22988
+                  verbatim: USA
+                  translation: null
+                  transcription: null
+                  notes: null
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostResponsesBatchRequest'
+            example:
+              questionResponses:
+              - questionKey: 212345
+                responses:
+                - rid: 34-22907
+                  verbatim: I do not like the red color
+                  translation: null
+                  transcription: null
+                  notes: null
+                - rid: 34-22988
+                  verbatim: This is a fantastic product
+                  translation: null
+                  transcription: null
+                  notes: null
+              - questionKey: 212346
+                responses:
+                - rid: 34-22907
+                  verbatim: France
+                  translation: null
+                  transcription: null
+                  notes: null
+                - rid: 34-22988
+                  verbatim: USA
+                  translation: null
+                  transcription: null
+                  notes: null
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostResponsesBatchResponse'
+              example:
+                questionResponses:
+                - questionKey: 1001
+                  questionId: Q1
+                  addedResponses:
+                  - rid: 34-22907
+                    verbatim: I do not like the red color
+                    translation: null
+                    transcription: null
+                    notes: null
+                  - rid: 34-22988
+                    verbatim: This is a fantastic product
+                    translation: null
+                    transcription: null
+                    notes: null
+                - questionKey: 1002
+                  questionId: Q2
+                  addedResponses:
+                  - rid: 34-22907
+                    verbatim: France
+                    translation: null
+                    transcription: null
+                    notes: null
+                  - rid: 34-22988
+                    verbatim: USA
+                    translation: null
+                    transcription: null
+                    notes: null
+                errorMessage: null
+    put:
+      tags:
+      - Responses
+      summary: Add or update Responses to the specified Study's Questions
+      parameters:
+      - name: studyKey
+        in: path
+        description: Key of study
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        description: The study questions and their responses to update/add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutResponsesBatchRequest'
+            example:
+              questionResponses:
+              - questionKey: 200011
+                responses:
+                - rid: ABC_12345
+                  verbatim: I do not like the red color
+                  translation: null
+                  transcription: null
+                  notes: null
+                - rid: ABC_12346
+                  verbatim: This is a fantastic product
+                  translation: null
+                  transcription: null
+                  notes: null
+              - questionKey: 200012
+                responses:
+                - rid: ABC_12345
+                  verbatim: Very good
+                  translation: null
+                  transcription: null
+                  notes: null
+                - rid: ABC_12346
+                  verbatim: I can't answer this question
+                  translation: null
+                  transcription: null
+                  notes: null
+                - rid: ABC_12347
+                  verbatim: If it has green color, it would be better
+                  translation: null
+                  transcription: null
+                  notes: null
+              allowEmptyStrings: false
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PutResponsesBatchRequest'
+            example:
+              questionResponses:
+              - questionKey: 200011
+                responses:
+                - rid: ABC_12345
+                  verbatim: I do not like the red color
+                  translation: null
+                  transcription: null
+                  notes: null
+                - rid: ABC_12346
+                  verbatim: This is a fantastic product
+                  translation: null
+                  transcription: null
+                  notes: null
+              - questionKey: 200012
+                responses:
+                - rid: ABC_12345
+                  verbatim: Very good
+                  translation: null
+                  transcription: null
+                  notes: null
+                - rid: ABC_12346
+                  verbatim: I can't answer this question
+                  translation: null
+                  transcription: null
+                  notes: null
+                - rid: ABC_12347
+                  verbatim: If it has green color, it would be better
+                  translation: null
+                  transcription: null
+                  notes: null
+              allowEmptyStrings: false
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PutResponsesBatchRequest'
+            example:
+              questionResponses:
+              - questionKey: 200011
+                responses:
+                - rid: ABC_12345
+                  verbatim: I do not like the red color
+                  translation: null
+                  transcription: null
+                  notes: null
+                - rid: ABC_12346
+                  verbatim: This is a fantastic product
+                  translation: null
+                  transcription: null
+                  notes: null
+              - questionKey: 200012
+                responses:
+                - rid: ABC_12345
+                  verbatim: Very good
+                  translation: null
+                  transcription: null
+                  notes: null
+                - rid: ABC_12346
+                  verbatim: I can't answer this question
+                  translation: null
+                  transcription: null
+                  notes: null
+                - rid: ABC_12347
+                  verbatim: If it has green color, it would be better
+                  translation: null
+                  transcription: null
+                  notes: null
+              allowEmptyStrings: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutResponsesBatchResponse'
+              example:
+                questionResponses:
+                - questionKey: 1
+                  questionId: Q1
+                  updatedResponses:
+                  - rid: ABC_12345
+                    verbatim: I do not like the red color
+                    translation: null
+                    transcription: null
+                    notes: null
+                  - rid: ABC_12346
+                    verbatim: This is a fantastic product
+                    translation: null
+                    transcription: null
+                    notes: null
+                  addedResponses: []
+                  unchangedResponses: []
+                  errorMessage: null
+                - questionKey: 2
+                  questionId: Q2
+                  updatedResponses:
+                  - rid: ABC_12345
+                    verbatim: I do not like the red color
+                    translation: null
+                    transcription: null
+                    notes: null
+                  - rid: ABC_12346
+                    verbatim: This is a fantastic product
+                    translation: null
+                    transcription: null
+                    notes: null
+                  addedResponses:
+                  - rid: ABC_12347
+                    verbatim: If it has green color, it would be better
+                    translation: null
+                    transcription: null
+                    notes: null
+                  unchangedResponses: []
+                  errorMessage: null
+                errorMessage: null
+components:
+  schemas:
+    PostResponsesBatchRequest:
+      required:
+      - questionResponses
+      type: object
+      properties:
+        questionResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostQuestionResponses'
+          description: Array of questions with their responses to create
+      additionalProperties: false
+      description: Request with information for creating multiple responses via one API call (batch operation)
+    AddedResponseWithCodingInfo:
+      required:
+      - codes
+      - rid
+      type: object
+      properties:
+        rid:
+          minLength: 1
+          type: string
+          description: "The respondent id, which is unique among Responses in this Question.\r\n\r\nThis id identifies the respondent in the Study, and that respondent's Response in this Question."
+        verbatim:
+          type: string
+          description: "The verbatim text of the response, in other words the answer the respondent gave to the question posed.\r\n\r\nRequired if this is a new respondent, optional if updating an existing response for this respondent."
+          nullable: true
+        translation:
+          type: string
+          description: Optional translation of the verbatim text.
+          nullable: true
+        transcription:
+          type: string
+          description: Optional transcription of the response.
+          nullable: true
+        notes:
+          type: string
+          description: Optional notes associated with the response.
+          nullable: true
+        codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddedCode'
+          description: The codes automatically applied to the response.
+      additionalProperties: false
+      description: Added response with coding info
+    PutResponsesRequest:
+      required:
+      - responses
+      type: object
+      properties:
+        responses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PutResponse'
+          description: "The responses to be added or updated.\r\n\r\nAll strings in these responses will be trimmed of leading and trailing white space."
+        codingMethod:
+          type: integer
+          description: "Method of coding to use for this request.\r\n"
+          format: int32
+        allowEmptyStrings:
+          type: boolean
+          description: "When it is true it allows setting empty string as value for verbatim/translation/transcription/notes fields. \r\nOtherwise empty string is ignored (i.e. it works like null value). By default it is false."
+      additionalProperties: false
+      description: A request to add Responses to the specified Question, or to update existing Responses.
+    PostResponsesRequest:
+      required:
+      - responses
+      type: object
+      properties:
+        responses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostResponse'
+          description: "The responses to be added or updated.\r\n\r\nAll strings in these responses will be trimmed of leading and trailing white space."
+        autoCodeTextMatch:
+          type: boolean
+          description: "If true, this will attempt to AutoCode responses based on an exact (but case insensitive) text match with previously-coded responses.\r\nThis AutoCode will execute first, followed by (if requested) Input ID matching and Regular Expression matching."
+        autoCodeInputId:
+          type: boolean
+          description: "If set to True, it will attempt to Auto Code based on a code's Input ID (Closed ends and Other Specifies only).\r\n\r\nThis AutoCode will execute after the Text Match and before the Regular Expression match, if either is requested."
+        autoCodeByRegex:
+          type: boolean
+          description: "If set to True, it will attempt to Auto Code responses via the codes' Regular Expressions.\r\n\r\nThis AutoCode will execute after the Text Match and Input ID match, if requested."
+      additionalProperties: false
+      description: A request to add Responses to the specified Question, or to update existing Responses.
+    PutQuestionResponses:
+      required:
+      - questionKey
+      - responses
+      type: object
+      properties:
+        questionKey:
+          type: integer
+          description: Key of target question
+          format: int32
+        responses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PutResponseBatch'
+          description: Responses
+      additionalProperties: false
+      description: Question's responses to put
+    DeleteResponsesBatchResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        questionResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeleteQuestionResponseResultItem'
+          description: List of result items of deletion of responses
+          nullable: true
+      additionalProperties: false
+      description: Response contains information about which responses were deleted and which ones were not.
+    DeleteQuestionResponseResultItem:
+      type: object
+      properties:
+        questionKey:
+          type: integer
+          description: Key of question
+          format: int32
+        respondentID:
+          type: string
+          description: Respondent ID of response
+          nullable: true
+        errorMessage:
+          type: string
+          description: Error message why response can not be deleted
+          nullable: true
+      additionalProperties: false
+      description: Result item with information about status of deletion of some response in the specified question
+    PostResponse:
+      required:
+      - rid
+      type: object
+      properties:
+        rid:
+          minLength: 1
+          type: string
+          description: "The respondent id, which is unique among Responses in this Question.\r\n\r\nThis id identifies the respondent in the Study, and that respondent's Response in this Question."
+        verbatim:
+          type: string
+          description: "The verbatim text of the response, in other words the answer the respondent gave to the question posed.\r\n\r\nRequired if this is a new respondent, optional if updating an existing response for this respondent."
+          nullable: true
+        translation:
+          type: string
+          description: Optional translation of the verbatim text.
+          nullable: true
+        transcription:
+          type: string
+          description: Optional transcription of the response.
+          nullable: true
+        notes:
+          type: string
+          description: Optional notes associated with the response.
+          nullable: true
+        appliedcodes:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: Array of codes to apply to the response. Note this will ignore any listed codes already applied and will not remove any.
+          nullable: true
+        segmentcodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentCode'
+          description: Array of segments of applied codes
+          nullable: true
+      additionalProperties: false
+      description: A respondent's answer to the question.
+    SegmentCode:
+      required:
+      - codeKey
+      - length
+      - start
+      type: object
+      properties:
+        codeKey:
+          type: integer
+          description: Key of applied code
+          format: int32
+        start:
+          type: integer
+          description: Start index of segment
+          format: int32
+        length:
+          type: integer
+          description: Segment length
+          format: int32
+      additionalProperties: false
+      description: A descriptor class for code segment
+    PutResponsesBatchResult:
+      required:
+      - questionId
+      - questionKey
+      type: object
+      properties:
+        questionKey:
+          type: integer
+          description: Key of target question
+          format: int32
+        questionId:
+          type: string
+          description: Id of target question
+          nullable: true
+        updatedResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PutResponseBatch'
+          description: Updated responses
+          nullable: true
+        addedResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PutResponseBatch'
+          description: Added responses
+          nullable: true
+        unchangedResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PutResponseBatch'
+          description: Unchanged responses
+          nullable: true
+        errorMessage:
+          type: string
+          description: Error message when updating question responses finished with some error
+          nullable: true
+      additionalProperties: false
+      description: Class contains information about updated responses for target questions
+    ExistingResponse:
+      required:
+      - codeKeys
+      - rid
+      - text
+      type: object
+      properties:
+        rid:
+          minLength: 1
+          type: string
+          description: The respondent ID.
+        text:
+          minLength: 1
+          type: string
+          description: The verbatim text of the response.  In other words, the answer the respondent gave to the question.
+        transcription:
+          type: string
+          description: A transcription of the response, if present for the respondent.
+          nullable: true
+        translation:
+          type: string
+          description: A translation of the response, if present for the respondent.
+          nullable: true
+        notes:
+          type: string
+          description: Notes associated with the response, if present for the respondent.
+          nullable: true
+        codeKeys:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: "The keys of the codes applied to the response.\r\n\r\nUse these keys to map codes applied to a response to information about each code using the information returned by querying the Codebooks resource for the question."
+      additionalProperties: false
+      description: A respondent's response stored in the question.
+    PostResponsesResponse:
+      required:
+      - addedResponses
+      - codebookKey
+      - existingResponsesUnchanged
+      - responsesAdded
+      - responsesCoded
+      - responsesCodedByInputId
+      - responsesCodedByRegex
+      - responsesCodedByTextMatch
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        codebookKey:
+          type: integer
+          description: The key of the Codebook for this Question.
+          format: int32
+        responsesAdded:
+          type: integer
+          description: "The count of Responses added to the Question.\r\n\r\nThis is the number of responses in the PutResponsesRequest that had rid values that were not already present in this Question."
+          format: int32
+        existingResponsesUnchanged:
+          type: integer
+          description: "The count of existing Responses unchanged.\r\n\r\nThis is the number of responses in the PutResponsesRequest that had rid values that were already present in this Question."
+          format: int32
+        responsesCoded:
+          type: integer
+          description: "The count of responses coded.\r\n"
+          format: int32
+        responsesCodedByTextMatch:
+          type: integer
+          description: "The count of responses coded by text match.\r\n\r\nThis value will always be zero unless autoCodeTextMatch in the request is true."
+          format: int32
+        responsesCodedByInputId:
+          type: integer
+          description: "The count of responses coded by input ID.\r\n\r\nThis value will always be zero unless autoCodeInputId in the request is true."
+          format: int32
+        responsesCodedByRegex:
+          type: integer
+          description: "The count of responses coded by regular expression.\r\n\r\nThis value will always be zero unless autoCodeByRegex in the request is true."
+          format: int32
+        addedResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddedResponseWithCodingInfo'
+          description: The responses added to the question as a result of the POST operation.
+      additionalProperties: false
+      description: Returns information about the disposition of the Responses added.
+    PutResponsesBatchRequest:
+      required:
+      - questionResponses
+      type: object
+      properties:
+        questionResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PutQuestionResponses'
+          description: Array of questions with their responses to update
+        allowEmptyStrings:
+          type: boolean
+          description: "When it is true it allows setting empty string as value for verbatim/translation/transcription/notes fields. \r\nOtherwise empty string is ignored (i.e. it works like null value). By default it is false."
+      additionalProperties: false
+      description: Request with inforamtion for updating multiple responses via one API call (batch operation)
+    PutResponsesResponse:
+      required:
+      - existingResponsesUnchanged
+      - existingResponsesUpdated
+      - responsesAdded
+      - responsesCoded
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        responsesAdded:
+          type: integer
+          description: "The count of Responses added to the Question.\r\n\r\nThis is the number of responses in the PutResponsesRequest that had rid values that were not already present in this Question."
+          format: int32
+        existingResponsesUpdated:
+          type: integer
+          description: "The count of existing Responses updated.\r\n\r\nThis is the number of responses in the PutResponsesRequest that had rid values that were already present in this Question,\r\nand for which any of the text, translation, transcription, or notes values were specified in the request and differed from the existing value in the Response."
+          format: int32
+        existingResponsesUnchanged:
+          type: integer
+          description: "The count of existing Responses unchanged.\r\n\r\nThis is the number of responses in the PutResponsesRequest that had rid values that were already present in this Question,\r\nand for which all of the text, translation, transcription, or notes values were either not specified in the request or identical to the existing value in the Response."
+          format: int32
+        responsesCoded:
+          type: integer
+          description: "The count of responses coded.\r\n"
+          format: int32
+      additionalProperties: false
+      description: Returns information about the disposition of the Responses added.
+    PutResponseBatch:
+      required:
+      - rid
+      type: object
+      properties:
+        rid:
+          minLength: 1
+          type: string
+          description: "The respondent id, which is unique among Responses in this Question.\r\n\r\nThis id identifies the respondent in the Study, and that respondent's Response in this Question."
+        verbatim:
+          type: string
+          description: "The verbatim text of the response, in other words the answer the respondent gave to the question posed.\r\n\r\nRequired if this is a new respondent, optional if updating an existing response for this respondent."
+          nullable: true
+        translation:
+          type: string
+          description: Optional translation of the verbatim text.
+          nullable: true
+        transcription:
+          type: string
+          description: Optional transcription of the response.
+          nullable: true
+        notes:
+          type: string
+          description: Optional notes associated with the response.
+          nullable: true
+      additionalProperties: false
+      description: Response class for presenting study response data in the request for PUT BATCH operation.
+    PostQuestionResponses:
+      required:
+      - questionKey
+      - responses
+      type: object
+      properties:
+        questionKey:
+          type: integer
+          description: Key of target question
+          format: int32
+        responses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostResponseBatch'
+          description: Responses
+      additionalProperties: false
+      description: Question's responses to post
+    PostResponsesBatchResponse:
+      required:
+      - questionResponses
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        questionResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddedResponseBatchResult'
+          description: Array of questions with their responses to create
+      additionalProperties: false
+      description: Response contains information about newly created responses in target study questions
+    GetResponsesResponse:
+      required:
+      - responses
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        responses:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExistingResponse'
+          description: The requested responses in the Question.
+      additionalProperties: false
+      description: The response of a query to the Responses resource.
+    AddedResponseBatchResult:
+      required:
+      - addedResponses
+      - questionId
+      - questionKey
+      type: object
+      properties:
+        questionKey:
+          type: integer
+          description: Key of target question
+          format: int32
+        questionId:
+          type: string
+          description: Id of target question
+          nullable: true
+        addedResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostResponseBatch'
+          description: Responses
+          nullable: true
+      additionalProperties: false
+      description: Class contains information about newly created responses for target questions
+    PostResponseBatch:
+      required:
+      - rid
+      type: object
+      properties:
+        rid:
+          minLength: 1
+          type: string
+          description: "The respondent id, which is unique among Responses in this Question.\r\n\r\nThis id identifies the respondent in the Study, and that respondent's Response in this Question."
+        verbatim:
+          type: string
+          description: "The verbatim text of the response, in other words the answer the respondent gave to the question posed.\r\n\r\nRequired if this is a new respondent, optional if updating an existing response for this respondent."
+          nullable: true
+        translation:
+          type: string
+          description: Optional translation of the verbatim text.
+          nullable: true
+        transcription:
+          type: string
+          description: Optional transcription of the response.
+          nullable: true
+        notes:
+          type: string
+          description: Optional notes associated with the response.
+          nullable: true
+      additionalProperties: false
+      description: Response class for presenting study response data in the request for POST BATCH operation.
+    DeleteResponsesBatchRequest:
+      type: object
+      properties:
+        questionResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeleteQuestionResponses'
+          description: Array of pairs of question key and respondent id
+          nullable: true
+      additionalProperties: false
+      description: Request contains array of pairs of question key and respondent id
+    AddedCode:
+      required:
+      - codeKey
+      - description
+      type: object
+      properties:
+        codeKey:
+          type: integer
+          description: The key of the code, corresponding to the key of a code in the codebook.
+          format: int32
+        description:
+          minLength: 1
+          type: string
+          description: The text description of the code.
+      additionalProperties: false
+      description: A code automatically applied to the response.
+    DeleteResponseResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+      additionalProperties: false
+      description: Response of DeleteResponse API method
+    PutResponse:
+      required:
+      - rid
+      type: object
+      properties:
+        rid:
+          minLength: 1
+          type: string
+          description: "The respondent id, which is unique among Responses in this Question.\r\n\r\nThis id identifies the respondent in the Study, and that respondent's Response in this Question."
+        verbatim:
+          type: string
+          description: "The verbatim text of the response, in other words the answer the respondent gave to the question posed.\r\n\r\nRequired if this is a new respondent, optional if updating an existing response for this respondent."
+          nullable: true
+        translation:
+          type: string
+          description: Optional translation of the verbatim text.
+          nullable: true
+        transcription:
+          type: string
+          description: Optional transcription of the response.
+          nullable: true
+        notes:
+          type: string
+          description: Optional notes associated with the response.
+          nullable: true
+        appliedcodes:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: Array of codes to apply to the response. Note this will ignore any listed codes already applied and will not remove any.
+          nullable: true
+        segmentcodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentCode'
+          description: Array of segments of applied codes
+          nullable: true
+      additionalProperties: false
+      description: A respondent's answer to the question.
+    DeleteQuestionResponses:
+      type: object
+      properties:
+        questionKey:
+          type: integer
+          description: Key of question
+          format: int32
+        respondentIDs:
+          type: array
+          items:
+            type: string
+          description: Array of respondent ids to delete from the question
+          nullable: true
+      additionalProperties: false
+      description: Question respondents to delete.
+    PutResponsesBatchResponse:
+      required:
+      - questionResponses
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        questionResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PutResponsesBatchResult'
+          description: Array of questions with their responses which were added/updated
+      additionalProperties: false
+      description: Response contains information about updated responses in target study questions
+  securitySchemes:
+    Bearer:
+      type: http
+      description: 'Please enter a valid bearer token.
+
+
+        It should be in the format "bearer eyJhbGciOiJSU..."
+
+
+        It will be added to the "Authentication" HTTP header'
+      scheme: Bearer
+      bearerFormat: JWT

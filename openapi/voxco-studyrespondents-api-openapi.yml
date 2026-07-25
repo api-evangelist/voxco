@@ -1,0 +1,134 @@
+openapi: 3.0.4
+info:
+  title: Ascribe Coder AICoder StudyRespondents API
+  description: <br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click "Try it out!"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.
+  contact:
+    email: support@goascribe.com
+  version: v2
+servers:
+- url: https://api.goascribe.us/coder/v2
+  description: US Servers
+- url: https://api.goascribe.eu/coder/v2
+  description: EU Servers
+- url: https://api-ca.goascribe.com/coder/v2
+  description: CA Servers
+security:
+- Bearer: []
+tags:
+- name: StudyRespondents
+paths:
+  /Studies/{studyKey}/Respondents:
+    delete:
+      tags:
+      - StudyRespondents
+      summary: Delete a batch of respondents from the study by using an array of respondent ids
+      description: Method deletes a batch of respondents by using an array of respondent ids
+      parameters:
+      - name: studyKey
+        in: path
+        description: The key for the study from which to delete respondents
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        description: Array of respondent ids
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteStudyRespondentsRequest'
+            example:
+              respondentIds:
+              - RID1
+              - RID2
+              - RID3
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DeleteStudyRespondentsRequest'
+            example:
+              respondentIds:
+              - RID1
+              - RID2
+              - RID3
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DeleteStudyRespondentsRequest'
+            example:
+              respondentIds:
+              - RID1
+              - RID2
+              - RID3
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteStudyRespondentsResponse'
+              example:
+                failedDeletions:
+                - respondentID: RID1
+                  errorMessage: Example error message
+                - respondentID: RID2
+                  errorMessage: Responses for Respondent ID not found
+                notFoundRespondentIds:
+                - RID2
+                errorMessage: null
+components:
+  schemas:
+    DeleteStudyRespondentsResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        failedDeletions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeleteStudyRespondentFailure'
+          description: List of Respondent Ids that failed to be deleted
+          nullable: true
+        notFoundRespondentIds:
+          type: array
+          items:
+            type: string
+          description: Array of respondents with no responses found
+          nullable: true
+      additionalProperties: false
+      description: Response of DeleteStudyRespondents API method
+    DeleteStudyRespondentsRequest:
+      type: object
+      properties:
+        respondentIds:
+          type: array
+          items:
+            type: string
+          description: List of respondent identifiers to be deleted
+          nullable: true
+      additionalProperties: false
+      description: Request model for deleting study respondents
+    DeleteStudyRespondentFailure:
+      type: object
+      properties:
+        respondentID:
+          type: string
+          description: ID of the respondent that failed to be deleted
+          nullable: true
+        errorMessage:
+          type: string
+          description: Error message describing why the deletion failed
+          nullable: true
+      additionalProperties: false
+      description: Represents a failure to delete a study respondent
+  securitySchemes:
+    Bearer:
+      type: http
+      description: 'Please enter a valid bearer token.
+
+
+        It should be in the format "bearer eyJhbGciOiJSU..."
+
+
+        It will be added to the "Authentication" HTTP header'
+      scheme: Bearer
+      bearerFormat: JWT

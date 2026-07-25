@@ -1,0 +1,1502 @@
+openapi: 3.0.4
+info:
+  title: Ascribe Coder AICoder Questions API
+  description: <br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click "Try it out!"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.
+  contact:
+    email: support@goascribe.com
+  version: v2
+servers:
+- url: https://api.goascribe.us/coder/v2
+  description: US Servers
+- url: https://api.goascribe.eu/coder/v2
+  description: EU Servers
+- url: https://api-ca.goascribe.com/coder/v2
+  description: CA Servers
+security:
+- Bearer: []
+tags:
+- name: Questions
+paths:
+  /Questions/{studyKey}:
+    get:
+      tags:
+      - Questions
+      summary: Get the Questions in a Study
+      description: "Retrieves by default all of the Questions in the Study.\r\n\r\nYou can optionally retrieve only a sub-set of the questions, filtering by the question type or the tasks assigned to the question."
+      parameters:
+      - name: studyKey
+        in: path
+        description: The key of the Study, which must be an integer value.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: types
+        in: query
+        description: "Optional filter by Question type.\r\n\r\n            If omitted, Questions of all types are returned.\r\n\r\n            If present, a string containing these characters, the presence of which specifies the type of Question desired:\r\n<ul><li>c: Closed\r\n</li><li>d: Data\r\n</li><li>o: Open\r\n</li><li>s: Other/Specify\r\n</li><li>v: Value\r\n</li></ul>\r\n            For example, the value 'so' (or 'os') returns Open and Other/Specify Questions."
+        schema:
+          type: string
+      - name: tasks
+        in: query
+        description: "Optional filter by task.\r\n\r\nIf omitted, Questions are not filtered by task.\r\n\r\nIf present, a string containing these characters, the presence of which specified the task assigned to a Question:\r\n<ul><li>c: Code this Question\r\n</li><li>x: Crosstab this Question\r\n</li><li>b: Transcribe this Question\r\n</li><li>t: Translate this Question\r\n</li></ul>\r\nFor example, the value ('ct' or 'tc') returns Questions with the Code or Translate tasks set."
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetQuestionsResponse'
+              example:
+                questions:
+                - key: 8753
+                  codebookKey: 2357
+                  id: Q1
+                  countResponses: 5896
+                  countResponsesCoded: 1002
+                  countTranscriptions: 50
+                  countTranslations: 97
+                  countQualityReviewed: 0
+                  tasks: cbt
+                  type: o
+                  label: Likes
+                  text: What did you like about the product?
+                  help: null
+                  sortOrder: null
+                  codingSource: v
+                  alternativeCodingSource: b
+                  externalQuestionId: null
+                - key: 8754
+                  codebookKey: 458
+                  id: G
+                  countResponses: 6336
+                  countResponsesCoded: 6336
+                  countTranscriptions: 0
+                  countTranslations: 0
+                  countQualityReviewed: 0
+                  tasks: c
+                  type: c
+                  label: Gender
+                  text: What is your gender?
+                  help: null
+                  sortOrder: null
+                  codingSource: v
+                  alternativeCodingSource: b
+                  externalQuestionId: null
+                errorMessage: null
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetQuestionsResponse'
+              example:
+                questions:
+                - key: 8753
+                  codebookKey: 2357
+                  id: Q1
+                  countResponses: 5896
+                  countResponsesCoded: 1002
+                  countTranscriptions: 50
+                  countTranslations: 97
+                  countQualityReviewed: 0
+                  tasks: cbt
+                  type: o
+                  label: Likes
+                  text: What did you like about the product?
+                  help: null
+                  sortOrder: null
+                  codingSource: v
+                  alternativeCodingSource: b
+                  externalQuestionId: null
+                - key: 8754
+                  codebookKey: 458
+                  id: G
+                  countResponses: 6336
+                  countResponsesCoded: 6336
+                  countTranscriptions: 0
+                  countTranslations: 0
+                  countQualityReviewed: 0
+                  tasks: c
+                  type: c
+                  label: Gender
+                  text: What is your gender?
+                  help: null
+                  sortOrder: null
+                  codingSource: v
+                  alternativeCodingSource: b
+                  externalQuestionId: null
+                errorMessage: null
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetQuestionsResponse'
+              example:
+                questions:
+                - key: 8753
+                  codebookKey: 2357
+                  id: Q1
+                  countResponses: 5896
+                  countResponsesCoded: 1002
+                  countTranscriptions: 50
+                  countTranslations: 97
+                  countQualityReviewed: 0
+                  tasks: cbt
+                  type: o
+                  label: Likes
+                  text: What did you like about the product?
+                  help: null
+                  sortOrder: null
+                  codingSource: v
+                  alternativeCodingSource: b
+                  externalQuestionId: null
+                - key: 8754
+                  codebookKey: 458
+                  id: G
+                  countResponses: 6336
+                  countResponsesCoded: 6336
+                  countTranscriptions: 0
+                  countTranslations: 0
+                  countQualityReviewed: 0
+                  tasks: c
+                  type: c
+                  label: Gender
+                  text: What is your gender?
+                  help: null
+                  sortOrder: null
+                  codingSource: v
+                  alternativeCodingSource: b
+                  externalQuestionId: null
+                errorMessage: null
+    post:
+      tags:
+      - Questions
+      summary: Create a new Question in the specified Study
+      description: If the codebook key is not specified in the request a new empty codebook is created for the question and its key is returned in the response.
+      parameters:
+      - name: studyKey
+        in: path
+        description: The key of the Study, which must be an integer value.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        description: Information about the Question to create.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateQuestionRequest'
+            example:
+              codebookKey: null
+              id: Q1
+              tasks: cb
+              type: o
+              label: Likes
+              text: What did you like about the product?
+              help: Any help string for the product
+              sortOrder: 10
+              codingSource: v
+              alternativeCodingSource: b
+              externalQuestionId: null
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateQuestionRequest'
+            example:
+              codebookKey: null
+              id: Q1
+              tasks: cb
+              type: o
+              label: Likes
+              text: What did you like about the product?
+              help: Any help string for the product
+              sortOrder: 10
+              codingSource: v
+              alternativeCodingSource: b
+              externalQuestionId: null
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateQuestionRequest'
+            example:
+              codebookKey: null
+              id: Q1
+              tasks: cb
+              type: o
+              label: Likes
+              text: What did you like about the product?
+              help: Any help string for the product
+              sortOrder: 10
+              codingSource: v
+              alternativeCodingSource: b
+              externalQuestionId: null
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreateQuestionResponse'
+              example:
+                key: 348
+                codebookKey: 4589
+                id: Q1
+                tasks: ct
+                type: o
+                label: Likes
+                text: What did you like about the product?
+                help: Any help string for the product
+                sortOrder: 10
+                codingSource: v
+                alternativeCodingSource: b
+                externalQuestionId: external_question_id_12345
+                errorMessage: null
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateQuestionResponse'
+              example:
+                key: 348
+                codebookKey: 4589
+                id: Q1
+                tasks: ct
+                type: o
+                label: Likes
+                text: What did you like about the product?
+                help: Any help string for the product
+                sortOrder: 10
+                codingSource: v
+                alternativeCodingSource: b
+                externalQuestionId: external_question_id_12345
+                errorMessage: null
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreateQuestionResponse'
+              example:
+                key: 348
+                codebookKey: 4589
+                id: Q1
+                tasks: ct
+                type: o
+                label: Likes
+                text: What did you like about the product?
+                help: Any help string for the product
+                sortOrder: 10
+                codingSource: v
+                alternativeCodingSource: b
+                externalQuestionId: external_question_id_12345
+                errorMessage: null
+  /Questions/AutoCode/{questionKey}/{loadKey}:
+    post:
+      tags:
+      - Questions
+      summary: Initiate autocoding of responses in the specified question
+      description: There are three types of AutoCoding available, and will be executed in a certain order.  See the documentation for the body of the POST.
+      parameters:
+      - name: questionKey
+        in: path
+        description: The key of the question, which must be an integer value
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: loadKey
+        in: path
+        description: Key of load
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        description: Auto coding options
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AutoCodeQuestionRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AutoCodeQuestionRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AutoCodeQuestionRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AutoCodeQuestionResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutoCodeQuestionResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AutoCodeQuestionResponse'
+  /Questions/{questionKey}/{entityType}:
+    delete:
+      tags:
+      - Questions
+      summary: Delete an existing question or its linked entities
+      description: Method deletes the question or its linked entities such as Codes, QualityCodes, Responses.
+      parameters:
+      - name: questionKey
+        in: path
+        description: Key of question which should be removed by itself or should be removed its linked entities
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: entityType
+        in: path
+        description: 'One of following values: "Codes", "QualityCodes", "Responses", "Question"'
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DeleteQuestionResponse'
+              example:
+                entityType: Codes
+                entityItemsDeleted: 456
+                errorMessage: null
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteQuestionResponse'
+              example:
+                entityType: Codes
+                entityItemsDeleted: 456
+                errorMessage: null
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DeleteQuestionResponse'
+              example:
+                entityType: Codes
+                entityItemsDeleted: 456
+                errorMessage: null
+  /Questions/Translate:
+    post:
+      tags:
+      - Questions
+      summary: Translate responses in the specified question
+      description: "Method scans all untranslated yet responses in the specified question and translates them to target language.\r\n\r\nMethod returns some useful statistics about translating operation."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TranslateQuestionRequest'
+            example:
+              questionKey: 10000
+              targetLanguageCode: uk
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TranslateQuestionRequest'
+            example:
+              questionKey: 10000
+              targetLanguageCode: uk
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TranslateQuestionRequest'
+            example:
+              questionKey: 10000
+              targetLanguageCode: uk
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TranslateQuestionResponse'
+              example:
+                questionKey: 10000
+                responsesCount: 0
+                translationsCount: 5000
+                nonTranslatedResponsesCount: 0
+                transactionsCount: 15000
+                errorMessage: null
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslateQuestionResponse'
+              example:
+                questionKey: 10000
+                responsesCount: 0
+                translationsCount: 5000
+                nonTranslatedResponsesCount: 0
+                transactionsCount: 15000
+                errorMessage: null
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TranslateQuestionResponse'
+              example:
+                questionKey: 10000
+                responsesCount: 0
+                translationsCount: 5000
+                nonTranslatedResponsesCount: 0
+                transactionsCount: 15000
+                errorMessage: null
+  /Questions/Codebook/{questionKey}/{codebookKey}:
+    post:
+      tags:
+      - Questions
+      summary: Set a codebook for some specified question
+      description: Method sets the specified codebook to the specified question.
+      parameters:
+      - name: questionKey
+        in: path
+        description: Key of a question
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: codebookKey
+        in: path
+        description: Key of a codebook to set
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SetQuestionCodebookResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetQuestionCodebookResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SetQuestionCodebookResponse'
+  /Questions/{studyKey}/Batch:
+    post:
+      tags:
+      - Questions
+      summary: Creates new questions in the specified study by using one call to API
+      description: "This method expects an array of questions to create in specified study.\r\n\r\n\r\n  \r\nquestion.type property uses following coding schema: \r\n<ul><li>c: Closed\r\n</li><li>d: Data\r\n</li><li>o: Open\r\n</li><li>s: Other/Specify\r\n</li><li>v: Value\r\n</li></ul>\r\nFor example, the value 'so' (or 'os') returns Open and Other/Specify Questions.\r\n\r\n\r\n \r\nquestion.tasks property uses following coding schema: \r\n<ul><li>c: Code this Question\r\n</li><li>x: Crosstab this Question\r\n</li><li>b: Transcribe this Question\r\n</li><li>t: Translate this Question\r\n</li></ul>\r\nFor example, the value ('ct' or 'tc') adjust Question with the Code or Translate tasks set.\r\n\r\n\r\n\r\nquestion.codingSource and question.alternativeCodingSource properties use following codes: \r\n<ul><li>v: Verbatim\r\n</li><li>b: Transcription\r\n</li><li>t: Translation\r\n</li><li>empty string: None\r\n</li></ul>"
+      parameters:
+      - name: studyKey
+        in: path
+        description: Key of target study
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        description: Batch of question definitions
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateQuestionsBatchRequest'
+            example:
+              questions:
+              - codebookKey: null
+                id: Q1
+                tasks: cb
+                type: o
+                label: Likes
+                text: What did you like about the product?
+                help: Any help string for the product
+                sortOrder: 10
+                codingSource: v
+                alternativeCodingSource: b
+                externalQuestionId: null
+              - codebookKey: null
+                id: Q2
+                tasks: cb
+                type: o
+                label: Dislikes
+                text: What did you dislike about the product?
+                help: Any help string for the product
+                sortOrder: 20
+                codingSource: v
+                alternativeCodingSource: b
+                externalQuestionId: null
+              - codebookKey: null
+                id: Q3
+                tasks: c
+                type: c
+                label: Country
+                text: Where are you from?
+                help: Your country
+                sortOrder: 30
+                codingSource: v
+                alternativeCodingSource: ''
+                externalQuestionId: null
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateQuestionsBatchRequest'
+            example:
+              questions:
+              - codebookKey: null
+                id: Q1
+                tasks: cb
+                type: o
+                label: Likes
+                text: What did you like about the product?
+                help: Any help string for the product
+                sortOrder: 10
+                codingSource: v
+                alternativeCodingSource: b
+                externalQuestionId: null
+              - codebookKey: null
+                id: Q2
+                tasks: cb
+                type: o
+                label: Dislikes
+                text: What did you dislike about the product?
+                help: Any help string for the product
+                sortOrder: 20
+                codingSource: v
+                alternativeCodingSource: b
+                externalQuestionId: null
+              - codebookKey: null
+                id: Q3
+                tasks: c
+                type: c
+                label: Country
+                text: Where are you from?
+                help: Your country
+                sortOrder: 30
+                codingSource: v
+                alternativeCodingSource: ''
+                externalQuestionId: null
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateQuestionsBatchRequest'
+            example:
+              questions:
+              - codebookKey: null
+                id: Q1
+                tasks: cb
+                type: o
+                label: Likes
+                text: What did you like about the product?
+                help: Any help string for the product
+                sortOrder: 10
+                codingSource: v
+                alternativeCodingSource: b
+                externalQuestionId: null
+              - codebookKey: null
+                id: Q2
+                tasks: cb
+                type: o
+                label: Dislikes
+                text: What did you dislike about the product?
+                help: Any help string for the product
+                sortOrder: 20
+                codingSource: v
+                alternativeCodingSource: b
+                externalQuestionId: null
+              - codebookKey: null
+                id: Q3
+                tasks: c
+                type: c
+                label: Country
+                text: Where are you from?
+                help: Your country
+                sortOrder: 30
+                codingSource: v
+                alternativeCodingSource: ''
+                externalQuestionId: null
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreateQuestionsBatchResponse'
+              example:
+                studyKey: 35987
+                questions:
+                - key: 348
+                  codebookKey: 4589
+                  id: Q1
+                  tasks: cb
+                  type: o
+                  label: Likes
+                  text: What did you like about the product?
+                  help: Any help string for the product
+                  sortOrder: 10
+                  codingSource: v
+                  alternativeCodingSource: b
+                  externalQuestionId: external_question_id_12345
+                  errorMessage: null
+                - key: 349
+                  codebookKey: 4589
+                  id: Q2
+                  tasks: cb
+                  type: o
+                  label: Likes
+                  text: What did you dislike about the product?
+                  help: Any help string for the product
+                  sortOrder: 10
+                  codingSource: v
+                  alternativeCodingSource: b
+                  externalQuestionId: null
+                  errorMessage: null
+                - key: 350
+                  codebookKey: 4589
+                  id: Q3
+                  tasks: c
+                  type: c
+                  label: Country
+                  text: Where are you from?
+                  help: Your country
+                  sortOrder: 30
+                  codingSource: v
+                  alternativeCodingSource: ''
+                  externalQuestionId: external_question_id_67890
+                  errorMessage: null
+                failedQuestions: null
+                errorMessage: null
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateQuestionsBatchResponse'
+              example:
+                studyKey: 35987
+                questions:
+                - key: 348
+                  codebookKey: 4589
+                  id: Q1
+                  tasks: cb
+                  type: o
+                  label: Likes
+                  text: What did you like about the product?
+                  help: Any help string for the product
+                  sortOrder: 10
+                  codingSource: v
+                  alternativeCodingSource: b
+                  externalQuestionId: external_question_id_12345
+                  errorMessage: null
+                - key: 349
+                  codebookKey: 4589
+                  id: Q2
+                  tasks: cb
+                  type: o
+                  label: Likes
+                  text: What did you dislike about the product?
+                  help: Any help string for the product
+                  sortOrder: 10
+                  codingSource: v
+                  alternativeCodingSource: b
+                  externalQuestionId: null
+                  errorMessage: null
+                - key: 350
+                  codebookKey: 4589
+                  id: Q3
+                  tasks: c
+                  type: c
+                  label: Country
+                  text: Where are you from?
+                  help: Your country
+                  sortOrder: 30
+                  codingSource: v
+                  alternativeCodingSource: ''
+                  externalQuestionId: external_question_id_67890
+                  errorMessage: null
+                failedQuestions: null
+                errorMessage: null
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreateQuestionsBatchResponse'
+              example:
+                studyKey: 35987
+                questions:
+                - key: 348
+                  codebookKey: 4589
+                  id: Q1
+                  tasks: cb
+                  type: o
+                  label: Likes
+                  text: What did you like about the product?
+                  help: Any help string for the product
+                  sortOrder: 10
+                  codingSource: v
+                  alternativeCodingSource: b
+                  externalQuestionId: external_question_id_12345
+                  errorMessage: null
+                - key: 349
+                  codebookKey: 4589
+                  id: Q2
+                  tasks: cb
+                  type: o
+                  label: Likes
+                  text: What did you dislike about the product?
+                  help: Any help string for the product
+                  sortOrder: 10
+                  codingSource: v
+                  alternativeCodingSource: b
+                  externalQuestionId: null
+                  errorMessage: null
+                - key: 350
+                  codebookKey: 4589
+                  id: Q3
+                  tasks: c
+                  type: c
+                  label: Country
+                  text: Where are you from?
+                  help: Your country
+                  sortOrder: 30
+                  codingSource: v
+                  alternativeCodingSource: ''
+                  externalQuestionId: external_question_id_67890
+                  errorMessage: null
+                failedQuestions: null
+                errorMessage: null
+    put:
+      tags:
+      - Questions
+      summary: Adds new or updates existing questions in the specified study by using one call to API
+      description: "This method expects an array of questions to update them in specified study.\r\n\r\n\r\n  \r\nquestion.type property uses following coding schema: \r\n<ul><li>c: Closed\r\n</li><li>d: Data\r\n</li><li>o: Open\r\n</li><li>s: Other/Specify\r\n</li><li>v: Value\r\n</li></ul>\r\n\r\n \r\nquestion.tasks property uses following coding schema: \r\n<ul><li>c: Code this Question\r\n</li><li>x: Crosstab this Question\r\n</li><li>b: Transcribe this Question\r\n</li><li>t: Translate this Question\r\n</li></ul>\r\n\r\n\r\nquestion.codingSource and question.alternativeCodingSource properties use following codes: \r\n<ul><li>v: Verbatim\r\n</li><li>b: Transcription\r\n</li><li>t: Translation\r\n</li><li>empty string: None\r\n</li></ul>"
+      parameters:
+      - name: studyKey
+        in: path
+        description: Key of target study
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        description: Batch of question definitions
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateQuestionsBatchRequest'
+            example:
+              questions:
+              - key: 200001
+                id: null
+                tasks: ct
+                type: null
+                label: Likes
+                text: Updated title of q1
+                help: Any help string for the product
+                sortOrder: 10
+                codingSource: v
+                alternativeCodingSource: b
+                externalQuestionId: null
+              - key: 200002
+                id: null
+                tasks: null
+                type: null
+                label: Dislikes
+                text: What did you like about the product?
+                help: Any help string for the product
+                sortOrder: 20
+                codingSource: t
+                alternativeCodingSource: b
+                externalQuestionId: null
+              - key: 200003
+                id: null
+                tasks: b
+                type: null
+                label: Neutral Neutral Neutral Neutral Neutral Neutral Neutral Neutral
+                text: What did you like about the product?
+                help: Any help string for the product
+                sortOrder: 30
+                codingSource: ''
+                alternativeCodingSource: ''
+                externalQuestionId: null
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateQuestionsBatchRequest'
+            example:
+              questions:
+              - key: 200001
+                id: null
+                tasks: ct
+                type: null
+                label: Likes
+                text: Updated title of q1
+                help: Any help string for the product
+                sortOrder: 10
+                codingSource: v
+                alternativeCodingSource: b
+                externalQuestionId: null
+              - key: 200002
+                id: null
+                tasks: null
+                type: null
+                label: Dislikes
+                text: What did you like about the product?
+                help: Any help string for the product
+                sortOrder: 20
+                codingSource: t
+                alternativeCodingSource: b
+                externalQuestionId: null
+              - key: 200003
+                id: null
+                tasks: b
+                type: null
+                label: Neutral Neutral Neutral Neutral Neutral Neutral Neutral Neutral
+                text: What did you like about the product?
+                help: Any help string for the product
+                sortOrder: 30
+                codingSource: ''
+                alternativeCodingSource: ''
+                externalQuestionId: null
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateQuestionsBatchRequest'
+            example:
+              questions:
+              - key: 200001
+                id: null
+                tasks: ct
+                type: null
+                label: Likes
+                text: Updated title of q1
+                help: Any help string for the product
+                sortOrder: 10
+                codingSource: v
+                alternativeCodingSource: b
+                externalQuestionId: null
+              - key: 200002
+                id: null
+                tasks: null
+                type: null
+                label: Dislikes
+                text: What did you like about the product?
+                help: Any help string for the product
+                sortOrder: 20
+                codingSource: t
+                alternativeCodingSource: b
+                externalQuestionId: null
+              - key: 200003
+                id: null
+                tasks: b
+                type: null
+                label: Neutral Neutral Neutral Neutral Neutral Neutral Neutral Neutral
+                text: What did you like about the product?
+                help: Any help string for the product
+                sortOrder: 30
+                codingSource: ''
+                alternativeCodingSource: ''
+                externalQuestionId: null
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UpdateQuestionsBatchResponse'
+              example:
+                failedQuestions:
+                - key: '200003'
+                  errorMessage: Some error message
+                newQuestions: []
+                errorMessage: Some questions were not updated. See failedQuestions for details.
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateQuestionsBatchResponse'
+              example:
+                failedQuestions:
+                - key: '200003'
+                  errorMessage: Some error message
+                newQuestions: []
+                errorMessage: Some questions were not updated. See failedQuestions for details.
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UpdateQuestionsBatchResponse'
+              example:
+                failedQuestions:
+                - key: '200003'
+                  errorMessage: Some error message
+                newQuestions: []
+                errorMessage: Some questions were not updated. See failedQuestions for details.
+  /Questions/Batch:
+    delete:
+      tags:
+      - Questions
+      summary: Deletes specified questions or their items by using one call to API
+      description: "This method expects an array of question keys and entity type.\r\n\r\nEntity type:\r\n\r\nCodes - removes applied codes from questions responses;\r\n\r\nQualityCodes - removes quality codes from questions responses;\r\n\r\nResponses - removes questions responses;\r\n\r\nQuestion - removes questons;\r\n\r\nResponse will contain information about result of operation for each of handled questions.\r\n \r\nIf errorMessage is null it means that question/its items succeccfully deleted without error(s)."
+      requestBody:
+        description: Array of question keys and entity type
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteQuestionsBatchRequest'
+            example:
+              questionKeys:
+              - 200001
+              - 2000002
+              - 2000003
+              entityType: Codes
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DeleteQuestionsBatchRequest'
+            example:
+              questionKeys:
+              - 200001
+              - 2000002
+              - 2000003
+              entityType: Codes
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DeleteQuestionsBatchRequest'
+            example:
+              questionKeys:
+              - 200001
+              - 2000002
+              - 2000003
+              entityType: Codes
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DeleteQuestionsBatchResponse'
+              example:
+                deleteQuestionsBatchResults:
+                - questionKey: 200001
+                  errorMessage: null
+                - questionKey: 200002
+                  errorMessage: null
+                - questionKey: 200003
+                  errorMessage: Some error message
+                entityType: Codes
+                entityItemsDeleted: 2453
+                errorMessage: null
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteQuestionsBatchResponse'
+              example:
+                deleteQuestionsBatchResults:
+                - questionKey: 200001
+                  errorMessage: null
+                - questionKey: 200002
+                  errorMessage: null
+                - questionKey: 200003
+                  errorMessage: Some error message
+                entityType: Codes
+                entityItemsDeleted: 2453
+                errorMessage: null
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DeleteQuestionsBatchResponse'
+              example:
+                deleteQuestionsBatchResults:
+                - questionKey: 200001
+                  errorMessage: null
+                - questionKey: 200002
+                  errorMessage: null
+                - questionKey: 200003
+                  errorMessage: Some error message
+                entityType: Codes
+                entityItemsDeleted: 2453
+                errorMessage: null
+components:
+  schemas:
+    Question:
+      required:
+      - alternativeCodingSource
+      - codebookKey
+      - codingSource
+      - countResponses
+      - countResponsesCoded
+      - countTranscriptions
+      - countTranslations
+      - key
+      - tasks
+      - text
+      - type
+      type: object
+      properties:
+        key:
+          type: integer
+          description: The key of the Question.
+          format: int32
+        codebookKey:
+          type: integer
+          description: The key of the Codebook for the Question.
+          format: int32
+        id:
+          type: string
+          description: "The id of the Question.\r\n\r\nThe id is unique by case-insensitive comparison across all Questions in this Study.\r\n\r\nNote that the id may be changed by the user, so while it uniquely identifies the Question at a given time, it is not guaranteed to remain unchanged for the lifetime of the Question."
+          nullable: true
+        countResponses:
+          type: integer
+          description: The number of Responses in this Question.
+          format: int32
+        countResponsesCoded:
+          type: integer
+          description: The number of Responses in this Question that have at least one Code applied.
+          format: int32
+        countTranscriptions:
+          type: integer
+          description: The number of Responses in this Question that have transcriptions.
+          format: int32
+        countTranslations:
+          type: integer
+          description: The number of Responses in this Question that have translations.
+          format: int32
+        countQualityReviewed:
+          type: integer
+          description: The number of Responses in this question that are quality reviewed
+          format: int32
+        tasks:
+          $ref: '#/components/schemas/TaskTypes'
+        type:
+          $ref: '#/components/schemas/DBQuestionTypes'
+        label:
+          type: string
+          description: "The label for the Question, which may be empty.\r\n\r\nThe label is used as a short identifier for the Question in reports when the full id of the Question would be too long."
+          nullable: true
+        text:
+          minLength: 1
+          type: string
+          description: The text of the Question posed to the respondent, which may be empty.
+        help:
+          type: string
+          description: "The help information for the Question, which may be empty.\r\n"
+          nullable: true
+        sortOrder:
+          type: integer
+          description: Ordinal number of the Question. It uses for sorting questions in list, tables, so on.
+          format: int32
+          nullable: true
+        codingSource:
+          $ref: '#/components/schemas/DBQuestionCodingSource'
+        alternativeCodingSource:
+          $ref: '#/components/schemas/DBQuestionCodingSource'
+        externalQuestionId:
+          type: string
+          description: External Question ID from QuestionMaps
+          nullable: true
+      additionalProperties: false
+      description: A Question in a Study.
+    FailedQuestionIdBatch:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of failed question
+          nullable: true
+        errorMessage:
+          type: string
+          description: Error message
+          nullable: true
+      additionalProperties: false
+      description: Record contains information about failed questins in batch operation and reason/error message why it failed.
+    TranslateQuestionResponse:
+      required:
+      - questionKey
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        questionKey:
+          type: integer
+          description: Key of question that was translated
+          format: int32
+        responsesCount:
+          type: integer
+          description: Number of question's responses
+          format: int32
+        translationsCount:
+          type: integer
+          description: Number of translations that were done
+          format: int32
+        nonTranslatedResponsesCount:
+          type: integer
+          description: Number of responses that were not translated
+          format: int32
+        transactionsCount:
+          type: number
+          description: Number of transactions
+          format: double
+      additionalProperties: false
+      description: Response of translate question operation
+    UpdateQuestionBatch:
+      type: object
+      properties:
+        key:
+          type: integer
+          description: Key of question
+          format: int32
+          nullable: true
+        id:
+          type: string
+          description: ID of question
+          nullable: true
+        tasks:
+          type: string
+          description: Tasks assigned to question
+          nullable: true
+        type:
+          $ref: '#/components/schemas/DBQuestionTypes'
+        label:
+          type: string
+          description: The label is used as a short identifier for the Question in reports when the full id of the Question would be too long.
+          nullable: true
+        text:
+          type: string
+          description: The text of the Question posed to the respondent, which may be empty.
+          nullable: true
+        help:
+          type: string
+          description: "The help information for the Question, which may be empty.\r\n"
+          nullable: true
+        sortOrder:
+          type: integer
+          description: Ordinal number of the Question. It uses for sorting questions in list, tables, so on.
+          format: int32
+          nullable: true
+        codingSource:
+          $ref: '#/components/schemas/DBQuestionCodingSource'
+        alternativeCodingSource:
+          $ref: '#/components/schemas/DBQuestionCodingSource'
+        externalQuestionId:
+          type: string
+          description: External Question ID from QuestionMaps
+          nullable: true
+      additionalProperties: false
+      description: Class contains question properties which should be updated
+    DeleteQuestionsBatchResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        deleteQuestionsBatchResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeleteQuestionsBatchResult'
+          description: Array of pairs of question key with error message. Error message is null for successfully deleted questions.
+          nullable: true
+        entityType:
+          type: string
+          description: Type of entity (Codes/QualityCodes/Responses/Question). It duplicates value from request to the API method.
+          nullable: true
+        entityItemsDeleted:
+          type: integer
+          description: Number of deleted items
+          format: int32
+      additionalProperties: false
+      description: Response contains data about which question or question items were deleted in the batch operation.
+    GetQuestionsResponse:
+      required:
+      - questions
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+          description: A list of Questions.
+      additionalProperties: false
+      description: Questions in a Study.
+    AutoCodeQuestionResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        codesAdded:
+          type: integer
+          description: Number of codes added
+          format: int32
+      additionalProperties: false
+      description: Returns information about results of AutoCode operation
+    AutoCodeQuestionRequest:
+      type: object
+      properties:
+        autoCodeInputId:
+          type: boolean
+          description: "If set to True, it will attempt to Auto Code based on a code's Input ID (Closed ends and Other Specifies only).\r\n\r\nThis AutoCode will execute after the Text Match and before the Regular Expression match, if either is enabled."
+        autoCodeByRegex:
+          type: boolean
+          description: "If set to True, it will attempt to Auto Code responses via the codes' Regular Expressions.\r\n\r\nThis AutoCode will execute after the Text Match and Input ID match, if enabled."
+        autoCodeTextMatch:
+          type: boolean
+          description: "If true, this will attempt to AutoCode responses based on an exact (but case insensitive) text match with previously-coded responses.\r\nThis AutoCode will execute first, followed by (if requested) Input ID matching and Regular Expression matching."
+      additionalProperties: false
+      description: A request to autocode a question
+    TranslateQuestionRequest:
+      required:
+      - questionKey
+      - targetLanguageCode
+      type: object
+      properties:
+        questionKey:
+          type: integer
+          description: Key of question to translate
+          format: int32
+        targetLanguageCode:
+          minLength: 1
+          type: string
+          description: Code of target language
+      additionalProperties: false
+      description: Request to translate specified question
+    CreateQuestionsBatchResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        studyKey:
+          type: integer
+          description: Key of study
+          format: int32
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateQuestionResponse'
+          description: Array of questions
+          nullable: true
+        failedQuestions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FailedQuestionIdBatch'
+          description: Array of failed questions
+          nullable: true
+      additionalProperties: false
+      description: Response contains information about newly created study questions
+    UpdateQuestionsBatchRequest:
+      required:
+      - questions
+      type: object
+      properties:
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateQuestionBatch'
+          description: Questions to update
+      additionalProperties: false
+      description: Request contains collection of questions and their properties to update. Only non-null properties will be updated.
+    CreateQuestionResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        key:
+          type: integer
+          description: The key of the newly created question
+          format: int32
+        codebookKey:
+          type: integer
+          description: The key of the Codebook for the Question. If you did not specify a codebook key in the request, this is the key of a newly created empty Codebook.
+          format: int32
+          nullable: true
+        id:
+          type: string
+          description: The ID of the new question
+          nullable: true
+        tasks:
+          $ref: '#/components/schemas/TaskTypes'
+        type:
+          $ref: '#/components/schemas/DBQuestionTypes'
+        label:
+          type: string
+          description: The label of the new question
+          nullable: true
+        text:
+          type: string
+          description: The text of the new Question. This is the question posed to the respondent.
+          nullable: true
+        help:
+          type: string
+          description: "The help information for the Question, which may be empty.\r\n"
+          nullable: true
+        sortOrder:
+          type: integer
+          description: Ordinal number of the Question. It uses for sorting questions in list, tables, so on.
+          format: int32
+          nullable: true
+        codingSource:
+          $ref: '#/components/schemas/DBQuestionCodingSource'
+        alternativeCodingSource:
+          $ref: '#/components/schemas/DBQuestionCodingSource'
+        externalQuestionId:
+          type: string
+          description: External Question ID from QuestionMaps
+          nullable: true
+      additionalProperties: false
+      description: Response of Create Question web method, it contains data of the newly created question
+    FailedQuestionKeyBatch:
+      type: object
+      properties:
+        key:
+          type: string
+          description: ID of failed question
+          nullable: true
+        errorMessage:
+          type: string
+          description: Error message
+          nullable: true
+      additionalProperties: false
+      description: Record contains information about failed questins in batch operation and reason/error message why it failed.
+    SetQuestionCodebookResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+      additionalProperties: false
+      description: A response for SetQuestionCodebook web method
+    DeleteQuestionsBatchRequest:
+      required:
+      - entityType
+      - questionKeys
+      type: object
+      properties:
+        questionKeys:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: Array of pairs of question key with error message. Error message is null for successfully deleted questions.
+        entityType:
+          minLength: 1
+          type: string
+          description: "Type of entity (Codes/QualityCodes/Responses/Question). For example 'Codes' will remove all applied codes from all questions in questionKeys array.\r\nTo remove questions themselves, entityType 'Question' should be chosed."
+      additionalProperties: false
+      description: "Request contains array of question keys which should be handled. \r\nEntity type determines which items should be removed:\r\nCodes - removes applied codes from questions responses;\r\nQualityCodes - removes quality codes from questions responses;\r\nResponses - removes questions responses;\r\nQuestion - removes questons;"
+    DBQuestionCodingSource:
+      enum:
+      - Verbatim
+      - Transcription
+      - Translation
+      - None
+      type: string
+      format: ''
+    DeleteQuestionResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        entityType:
+          type: string
+          description: Type of entity (Codes/QualityCodes/Responses/Question)
+          nullable: true
+        entityItemsDeleted:
+          type: integer
+          description: Number of deleted items
+          format: int32
+      additionalProperties: false
+      description: Response of Delete Question API method
+    DBQuestionTypes:
+      enum:
+      - Open
+      - Closed
+      - OS
+      - Value
+      - Data
+      - UnKnown
+      type: string
+      format: ''
+    TaskTypes:
+      enum:
+      - None
+      - Code
+      - Crosstab
+      - Transcribe
+      - Translate
+      type: string
+      description: Task types
+      format: ''
+    UpdateQuestionsBatchResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        failedQuestions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FailedQuestionKeyBatch'
+          description: Failed questions
+          nullable: true
+        newQuestions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateQuestionResponse'
+          description: Newly created questions
+          nullable: true
+      additionalProperties: false
+      description: Response contains information about failed questions i.e. questions that could not be updated be some error/reason.
+    CreateQuestionsBatchRequest:
+      type: object
+      properties:
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateQuestionRequest'
+          description: Array of questions to create
+          nullable: true
+      additionalProperties: false
+      description: Request with inforamtion for creating multiple questions via one API call (batch operation)
+    CreateQuestionRequest:
+      type: object
+      properties:
+        codebookKey:
+          type: integer
+          description: "An optional key of an existing Codebook.\r\n\r\nUse this to specify that the new Question should share the Codebook of an existing Question.\r\n\r\nFor example, to specify that this new Question should share the Codebook of another Question in this Study, \r\nquery the Questions resource to find the desired existing Question.  Assign the codebookKey property in this request the same\r\nvalue as the codebookKey of the existing Question."
+          format: int32
+          nullable: true
+        id:
+          type: string
+          description: "The id of the new Question, which must be unique by case insensitive comparison among all Questions in the Study.\r\n\r\nThe value provided here will be trimmed of leading and trailing whitespace.  The resulting id must contain at least one character and not more than 200 characters."
+          nullable: true
+        tasks:
+          $ref: '#/components/schemas/TaskTypes'
+        type:
+          $ref: '#/components/schemas/DBQuestionTypes'
+        label:
+          type: string
+          description: "The label for the Question, which may be empty but must not exceed 25 characters.\r\n\r\nThe label is used as a short identifier for the Question in reports when the full id of the Question would be too long."
+          nullable: true
+        text:
+          type: string
+          description: The text of the Question posed to the respondent, which may be empty.
+          nullable: true
+        help:
+          type: string
+          description: "The help information for the Question, which may be empty.\r\n"
+          nullable: true
+        sortOrder:
+          type: integer
+          description: "Ordinal number of the Question.\r\n\r\nWhen a list of Questions are displayed in Ascribe they are sorted first by this value, then by id."
+          format: int32
+          nullable: true
+        codingSource:
+          $ref: '#/components/schemas/DBQuestionCodingSource'
+        alternativeCodingSource:
+          $ref: '#/components/schemas/DBQuestionCodingSource'
+        externalQuestionId:
+          type: string
+          description: External Question ID from QuestionMaps
+          nullable: true
+      additionalProperties: false
+      description: A request to create a new Question.
+    DeleteQuestionsBatchResult:
+      type: object
+      properties:
+        questionKey:
+          type: integer
+          description: Key of question
+          format: int32
+        errorMessage:
+          type: string
+          description: Error message why response can not be deleted
+          nullable: true
+      additionalProperties: false
+      description: Question key and error message why question can not be deleted. Successfully deleted Questions has null for errorMessage property.
+  securitySchemes:
+    Bearer:
+      type: http
+      description: 'Please enter a valid bearer token.
+
+
+        It should be in the format "bearer eyJhbGciOiJSU..."
+
+
+        It will be added to the "Authentication" HTTP header'
+      scheme: Bearer
+      bearerFormat: JWT

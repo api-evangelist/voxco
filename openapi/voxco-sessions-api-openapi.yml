@@ -1,0 +1,107 @@
+openapi: 3.0.4
+info:
+  title: Ascribe Coder AICoder Sessions API
+  description: <br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click "Try it out!"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.
+  contact:
+    email: support@goascribe.com
+  version: v2
+servers:
+- url: https://api.goascribe.us/coder/v2
+  description: US Servers
+- url: https://api.goascribe.eu/coder/v2
+  description: EU Servers
+- url: https://api-ca.goascribe.com/coder/v2
+  description: CA Servers
+security:
+- Bearer: []
+tags:
+- name: Sessions
+paths:
+  /Session/New:
+    post:
+      tags:
+      - Sessions
+      summary: Create a new session for interaction with this API
+      description: "The credentialed user must have Adminstrator privilege in Ascribe.\r\n\r\nThe response message contains two tokens, one of which must be passed in a header for all other operations with this API.\r\n\r\nYou may either use the bearerToken or the authenticationToken.  Either send a header with key \"authentication\" and value the authenticationToken returned in this response,\r\nor send a header with key \"Authorization\" and value the bearerToken returned in this response.\r\n\r\nThe bearerToken does not expire, but will become invalid if the user's credentials change.\r\n\r\nThe authenticationToken remains valid until no request is sent to this API using the authenticationToken for 30 minutes."
+      requestBody:
+        description: The credentials for the session.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewSessionRequest'
+            example:
+              account: MyAscribeAccount
+              userName: john.doe
+              password: '--------'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/NewSessionRequest'
+            example:
+              account: MyAscribeAccount
+              userName: john.doe
+              password: '--------'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/NewSessionRequest'
+            example:
+              account: MyAscribeAccount
+              userName: john.doe
+              password: '--------'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewSessionResponse'
+              example:
+                authenticationToken: 0a6b6255-7e8b-4b71-bb93-1d568110ddae
+                bearerToken: bearer eyJhbGciOiJSUzI1NiIsInR5cC ... WiiVzXPhdgSWNvH1hNOIirNmg
+                errorMessage: null
+components:
+  schemas:
+    NewSessionRequest:
+      required:
+      - account
+      - password
+      - userName
+      type: object
+      properties:
+        account:
+          minLength: 1
+          type: string
+        userName:
+          minLength: 1
+          type: string
+        password:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    NewSessionResponse:
+      required:
+      - authenticationToken
+      - bearerToken
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        authenticationToken:
+          type: string
+          format: uuid
+        bearerToken:
+          minLength: 1
+          type: string
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: 'Please enter a valid bearer token.
+
+
+        It should be in the format "bearer eyJhbGciOiJSU..."
+
+
+        It will be added to the "Authentication" HTTP header'
+      scheme: Bearer
+      bearerFormat: JWT

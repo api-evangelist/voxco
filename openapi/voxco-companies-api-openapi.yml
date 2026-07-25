@@ -1,0 +1,146 @@
+openapi: 3.0.4
+info:
+  title: Ascribe Coder AICoder Companies API
+  description: <br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click "Try it out!"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.
+  contact:
+    email: support@goascribe.com
+  version: v2
+servers:
+- url: https://api.goascribe.us/coder/v2
+  description: US Servers
+- url: https://api.goascribe.eu/coder/v2
+  description: EU Servers
+- url: https://api-ca.goascribe.com/coder/v2
+  description: CA Servers
+security:
+- Bearer: []
+tags:
+- name: Companies
+paths:
+  /Companies:
+    get:
+      tags:
+      - Companies
+      summary: Get a list of Companies
+      description: This operation returns the key and ID of all Companies in the Ascribe Account.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCompaniesResponse'
+              example:
+                companies:
+                - key: 3
+                  id: ACME
+                - key: 5
+                  id: AAA Research
+                errorMessage: null
+    post:
+      tags:
+      - Companies
+      summary: Create a new Company
+      description: "The id assigned to the company must not already exist.\r\n\r\nThe maximum length of the id is 100 characters.\r\nThe id must not begin with an underscore character '_'."
+      requestBody:
+        description: The information for the new Company.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNewCompanyRequest'
+            example:
+              id: ACME
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateNewCompanyRequest'
+            example:
+              id: ACME
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateNewCompanyRequest'
+            example:
+              id: ACME
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateNewCompanyResponse'
+              example:
+                key: 3
+                id: ACME
+                errorMessage: null
+components:
+  schemas:
+    CreateNewCompanyResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        key:
+          type: integer
+          description: The key assigned to the new Company.
+          format: int32
+        id:
+          type: string
+          description: The id of the new Company, which is trimmed of leading and trailing whitespace.
+          nullable: true
+      additionalProperties: false
+      description: Response contains information about the newly created company
+    CreateNewCompanyRequest:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          maxLength: 100
+          minLength: 1
+          type: string
+          description: "The id for the new Company, which must be unique among all Companies by case insensitive comparison.\r\n\r\nThe id provided will be trimmed of leading and trailing whitespace.\r\n  \r\nThe trimmed value must be from 1 to 100 characters in length and may not start with an underscore character '_'."
+      additionalProperties: false
+      description: Request to create a new Company
+    Company:
+      required:
+      - id
+      - key
+      type: object
+      properties:
+        key:
+          type: integer
+          description: "Identifying key for the Company.\r\n\r\nThis key will not change for the lifetime of the Company."
+          format: int32
+        id:
+          minLength: 1
+          type: string
+          description: "The id of the Company.\r\n  \r\nThis id is unique among Companies, but may be changed by the user."
+      additionalProperties: false
+      description: A company
+    GetCompaniesResponse:
+      required:
+      - companies
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        companies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Company'
+          description: List of Companies
+      additionalProperties: false
+      description: Response contains list of available companies
+  securitySchemes:
+    Bearer:
+      type: http
+      description: 'Please enter a valid bearer token.
+
+
+        It should be in the format "bearer eyJhbGciOiJSU..."
+
+
+        It will be added to the "Authentication" HTTP header'
+      scheme: Bearer
+      bearerFormat: JWT

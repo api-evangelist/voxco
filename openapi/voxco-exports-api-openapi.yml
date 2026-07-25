@@ -1,0 +1,432 @@
+openapi: 3.0.4
+info:
+  title: Ascribe Coder AICoder Exports API
+  description: <br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click "Try it out!"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.
+  contact:
+    email: support@goascribe.com
+  version: v2
+servers:
+- url: https://api.goascribe.us/coder/v2
+  description: US Servers
+- url: https://api.goascribe.eu/coder/v2
+  description: EU Servers
+- url: https://api-ca.goascribe.com/coder/v2
+  description: CA Servers
+security:
+- Bearer: []
+tags:
+- name: Exports
+paths:
+  /Exports:
+    get:
+      tags:
+      - Exports
+      summary: Retrieves a list of all scripts available to the current account, including global scripts.
+      description: Method returns a list of all script definitions which are available in current account, including all global ones.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetScriptsResponse'
+              example:
+                scripts:
+                - key: 5
+                  name: Translation Complete Report
+                  description: Uses the specified closed-end as language data to identify translation production by question
+                  isForceToTextOption: true
+                  friendlyName: Translation Report
+                  acceptsQuestionList: true
+                  modifiesData: false
+                  purpose: Export
+                  parameters:
+                  - key: 1
+                    name: Language/Country question
+                    description: null
+                    verifyRegEx: null
+                    ordinal: 0
+                    isRequired: true
+                    parameterType: String
+                  - key: 2
+                    name: Email list
+                    description: null
+                    verifyRegEx: null
+                    ordinal: 0
+                    isRequired: false
+                    parameterType: String
+                - key: 6
+                  name: ORC MP3 loader
+                  description: ''
+                  isForceToTextOption: false
+                  friendlyName: ORC Audio Loader
+                  acceptsQuestionList: false
+                  modifiesData: true
+                  purpose: DataUpdate
+                  parameters: []
+                errorMessage: null
+    post:
+      tags:
+      - Exports
+      summary: Initiates a new export job
+      description: "Method initiates a new export job by using specified script and target questions and returns back a unique key of it.\r\n\r\nThe Job key should be used as inner parameter for **/Exports/{jobKey}** method."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportsRequest'
+            example:
+              studyKey: 20000
+              questionKeys:
+              - 1005
+              - 1006
+              - 1007
+              scriptKey: 1
+              parameters:
+              - '1000'
+              - test
+              - export
+              - '3'
+              exportAsText: true
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ExportsRequest'
+            example:
+              studyKey: 20000
+              questionKeys:
+              - 1005
+              - 1006
+              - 1007
+              scriptKey: 1
+              parameters:
+              - '1000'
+              - test
+              - export
+              - '3'
+              exportAsText: true
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ExportsRequest'
+            example:
+              studyKey: 20000
+              questionKeys:
+              - 1005
+              - 1006
+              - 1007
+              scriptKey: 1
+              parameters:
+              - '1000'
+              - test
+              - export
+              - '3'
+              exportAsText: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportsResponse'
+              example:
+                jobKey: 1000110
+                errorMessage: null
+  /Exports/{jobKey}:
+    get:
+      tags:
+      - Exports
+      summary: Retrieves a current status of specified job
+      description: "This method expects a job key as an input parameter from the **[POST] /Exports** method.\r\n\r\nIt returns information about current status of exporting of the job or result.\r\n\r\nIf the job is not yet completed, the method should be called again after a delay.\r\n\r\nContinue calling this method until the job is either completed or rejected due to an error."
+      parameters:
+      - name: jobKey
+        in: path
+        description: Key of job
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ExportsJobStatusResponse'
+              example:
+                jobKey: 1000110
+                userKey: 1003
+                type: 6
+                status: 0
+                createDate: '2026-06-13T20:21:47.1884173Z'
+                startDate: null
+                endDate: null
+                info: Some information
+                error: Message of excception if it occured while export operation
+                resultFileUri: https://app.goascribe.us/JobResults/Tower1/20133/55dcac9c-5c88-4623-95ad-214f54a72a8b/file.xlsx
+                errorMessage: null
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportsJobStatusResponse'
+              example:
+                jobKey: 1000110
+                userKey: 1003
+                type: 6
+                status: 0
+                createDate: '2026-06-13T20:21:47.1884173Z'
+                startDate: null
+                endDate: null
+                info: Some information
+                error: Message of excception if it occured while export operation
+                resultFileUri: https://app.goascribe.us/JobResults/Tower1/20133/55dcac9c-5c88-4623-95ad-214f54a72a8b/file.xlsx
+                errorMessage: null
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ExportsJobStatusResponse'
+              example:
+                jobKey: 1000110
+                userKey: 1003
+                type: 6
+                status: 0
+                createDate: '2026-06-13T20:21:47.1884173Z'
+                startDate: null
+                endDate: null
+                info: Some information
+                error: Message of excception if it occured while export operation
+                resultFileUri: https://app.goascribe.us/JobResults/Tower1/20133/55dcac9c-5c88-4623-95ad-214f54a72a8b/file.xlsx
+                errorMessage: null
+components:
+  schemas:
+    GetScriptsResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        scripts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScriptDefinition'
+          description: List of scripts
+          nullable: true
+      additionalProperties: false
+      description: Response for Coder/Exports (GET verb) method
+    ExportsJobStatusResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        jobKey:
+          type: integer
+          description: Key of job
+          format: int32
+        userKey:
+          type: integer
+          description: Key of user
+          format: int32
+        type:
+          $ref: '#/components/schemas/DBJobType'
+        status:
+          $ref: '#/components/schemas/DBJobStatus'
+        createDate:
+          type: string
+          description: Date when the job was created
+          format: date-time
+        startDate:
+          type: string
+          description: Date when the job change status to Running
+          format: date-time
+          nullable: true
+        endDate:
+          type: string
+          description: Date when the job change status to Complete
+          format: date-time
+          nullable: true
+        info:
+          type: string
+          description: Information about the job
+          nullable: true
+        error:
+          type: string
+          description: Message of error if it occured during the job's execution
+          nullable: true
+        resultFileUri:
+          type: string
+          description: Url for downloading result file
+          nullable: true
+      additionalProperties: false
+      description: Class presents an information about current status of specified job
+    ExportsRequest:
+      required:
+      - questionKeys
+      - scriptKey
+      - studyKey
+      type: object
+      properties:
+        studyKey:
+          type: integer
+          description: Key of study
+          format: int32
+        questionKeys:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: Keys of questions
+        scriptKey:
+          type: integer
+          description: Name of script to use for new job
+          format: int32
+        parameters:
+          type: array
+          items:
+            type: string
+          description: Additional job's parameters
+          nullable: true
+        exportAsText:
+          type: boolean
+          description: "Request text format output instead of default Excel format.\r\nOnly works if the script has ScriptXlsxTextOption=true, otherwise parameter is ignored.\r\nCookie is always set: if not provided or false, exports as Excel; if true, exports as text."
+          nullable: true
+      additionalProperties: false
+      description: Class contains necessary export options to create a job
+    DBJobStatus:
+      enum:
+      - Queued
+      - Running
+      - Paused
+      - Complete
+      type: string
+      format: ''
+    DBScriptParameterType:
+      enum:
+      - Unknown
+      - Boolean
+      - String
+      - Integer
+      - Float
+      - Date
+      - StudyList
+      type: string
+      format: ''
+    DBScriptPurpose:
+      enum:
+      - Unknown
+      - Export
+      - DataUpdate
+      - DataCleaning
+      - Coding
+      - System
+      type: string
+      format: ''
+    DBJobType:
+      enum:
+      - LoadFromAscribe
+      - LoadFromFtp
+      - SaveStudy
+      - RestoreStudy
+      - MergeStudy
+      - ScriptedOutput
+      - SaveAcm
+      - RestoreAcm
+      - AutoCode
+      - AutoTranslateStudy
+      - AICoder
+      type: string
+      format: ''
+    ScriptDefinition:
+      required:
+      - key
+      - name
+      type: object
+      properties:
+        key:
+          type: integer
+          description: Script key
+          format: int32
+        name:
+          type: string
+          description: Script name
+          nullable: true
+        description:
+          type: string
+          description: Script description
+          nullable: true
+        isForceToTextOption:
+          type: boolean
+          description: Indicates if the script output is forced to text format
+        friendlyName:
+          type: string
+          description: Provides a user-friendly, display-ready name for the script
+          nullable: true
+        acceptsQuestionList:
+          type: boolean
+          description: Specifies if the script can accept a list of questions as a parameter
+        modifiesData:
+          type: boolean
+          description: Flags whether running the script will alter or update any data in the database
+        purpose:
+          $ref: '#/components/schemas/DBScriptPurpose'
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScriptParameter'
+          description: Script parameters
+          nullable: true
+      additionalProperties: false
+      description: Script definition for Studies API
+    ScriptParameter:
+      required:
+      - key
+      - name
+      type: object
+      properties:
+        key:
+          type: integer
+          description: Key of script parameter
+          format: int32
+        name:
+          type: string
+          description: Name of script parameter
+          nullable: true
+        description:
+          type: string
+          description: Description of script parameter
+          nullable: true
+        verifyRegEx:
+          type: string
+          description: Verify regular expression
+          nullable: true
+        ordinal:
+          type: integer
+          description: Ordinal number. It is used for sorting.
+          format: int32
+        isRequired:
+          type: boolean
+          description: Indicates whether this parameter is required
+        parameterType:
+          $ref: '#/components/schemas/DBScriptParameterType'
+      additionalProperties: false
+      description: Script parameter definition for Studies API
+    ExportsResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+        jobKey:
+          type: integer
+          description: Key of created job
+          format: int32
+      additionalProperties: false
+      description: Class contains an information of created job
+  securitySchemes:
+    Bearer:
+      type: http
+      description: 'Please enter a valid bearer token.
+
+
+        It should be in the format "bearer eyJhbGciOiJSU..."
+
+
+        It will be added to the "Authentication" HTTP header'
+      scheme: Bearer
+      bearerFormat: JWT
