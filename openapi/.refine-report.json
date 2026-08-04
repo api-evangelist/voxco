@@ -1,0 +1,34 @@
+{
+  "provider": "voxco",
+  "sources": [
+    "voxco-aicoder-api-openapi.yml",
+    "voxco-codebooks-api-openapi.yml",
+    "voxco-companies-api-openapi.yml",
+    "voxco-exports-api-openapi.yml",
+    "voxco-languages-api-openapi.yml",
+    "voxco-questions-api-openapi.yml",
+    "voxco-responses-api-openapi.yml",
+    "voxco-sessions-api-openapi.yml",
+    "voxco-studies-api-openapi.yml",
+    "voxco-studyrespondents-api-openapi.yml",
+    "voxco-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "voxco-aicoder-api-openapi.yml",
+    "voxco-codebooks-api-openapi.yml",
+    "voxco-companies-api-openapi.yml",
+    "voxco-exports-api-openapi.yml",
+    "voxco-languages-api-openapi.yml",
+    "voxco-questions-api-openapi.yml",
+    "voxco-responses-api-openapi.yml",
+    "voxco-sessions-api-openapi.yml",
+    "voxco-studies-api-openapi.yml",
+    "voxco-studyrespondents-api-openapi.yml",
+    "voxco-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
