@@ -1,0 +1,205 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascribe Coder AICoder Responses API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Responses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete a response from the database by using pair of question key and respondent id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.goascribe.us/coder/v2/Responses/:QuestionKey/:RespondentID",
+            "params": [
+              {
+                "name": "QuestionKey",
+                "value": "",
+                "type": "path",
+                "description": "Key of question"
+              },
+              {
+                "name": "RespondentID",
+                "value": "",
+                "type": "path",
+                "description": "ID of respondent"
+              }
+            ]
+          },
+          "docs": "Method deletes the response by using question key and respondent id."
+        },
+        {
+          "info": {
+            "name": "Delete a batch of responses from the database by using pairs of question key and respondent id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.goascribe.us/coder/v2/Responses/Batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Method deletes a batch of responses by using pairs of question key and respondent id."
+        },
+        {
+          "info": {
+            "name": "Get the Responses in the specified Question",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/Responses/:questionKey",
+            "params": [
+              {
+                "name": "questionKey",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Question, which must be an integer value."
+              },
+              {
+                "name": "includeText",
+                "value": "",
+                "type": "query",
+                "description": "If true, the text of each Response is returned.\r\n\r\n            If false or omitted the text is not returned."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "If omitted, all Responses for the Question are returned.\r\n\r\nIf present, one of these values:\r\n<ul><li>coded: return only Responses with at least one Code applied.\r\n</li><li>uncoded: return only Responses with no Code applied.</li></ul>"
+              },
+              {
+                "name": "codedAfter",
+                "value": "",
+                "type": "query",
+                "description": "If present, only responses with a code applied on or after the specified date/time are returned."
+              },
+              {
+                "name": "codedBefore",
+                "value": "",
+                "type": "query",
+                "description": "If present, only responses with a code applied before the specified date/time are returned."
+              },
+              {
+                "name": "loadedAfter",
+                "value": "",
+                "type": "query",
+                "description": "If present, only responses loaded on or after the specified date/time are returned."
+              },
+              {
+                "name": "loadedBefore",
+                "value": "",
+                "type": "query",
+                "description": "If present, only responses loaded before the specified date/time are returned."
+              }
+            ]
+          },
+          "docs": "For coded responses the keys of the applied codes are returned for each response.\r\n\r\nThese keys can be matched to the keys of the codes returned in a query for the codebook to find the details of each of the applied codes.\r\n\r\n\r\nThe optional date query parameters are UTC date/time values.\r\n\r\nThese should be specified in the form:\r\n\r\nYYYY-MM-DDThh:mm:ss\r\n\r\nWhere the hour ranges from 0 to 23.  For example:\r\n\r\n2020-02-23T16:05:17\r\n\r\nIf the time portion of the date/time value is omitted it is assumed"
+        },
+        {
+          "info": {
+            "name": "Add Responses to a Question",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/Responses/:questionKey",
+            "params": [
+              {
+                "name": "questionKey",
+                "value": "",
+                "type": "path",
+                "description": "The key of the question, which must be an integer value"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This operation will add new responses to the specified question, optionally autocoding them. It will never modify existing responses.\r\n\r\nFor each QuestionResponse submitted, if the question does not have a response stored in Ascribe with the specified respondent id,\r\n\r\nthen the response will be added.\r\n \r\nOtherwise, the Response stored in Ascribe will not be modified. The QuestionResponse submitted will be ignored,\r\n\r\nand any codes that have been applied to the Response will be unchanged.\r\n\r\n\r\nT"
+        },
+        {
+          "info": {
+            "name": "Add or update Responses in the specified Question",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.goascribe.us/coder/v2/Responses/:questionKey",
+            "params": [
+              {
+                "name": "questionKey",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Question, which must be an integer value."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "If the Question does not have a Response stored in Ascribe with the specified respondent id, then the response will be added.\r\n \r\nOtherwise, the Response stored in Ascribe will be updated if any of the properties of in the request differ from the values of the current properties of the Response."
+        },
+        {
+          "info": {
+            "name": "Add Responses to the specified Study's Questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/Responses/:studyKey/Batch",
+            "params": [
+              {
+                "name": "studyKey",
+                "value": "",
+                "type": "path",
+                "description": "The key of the study, which must be an integer value"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This operation will add new responses to the specified study's questions.\r\n \r\nFor each of question it will work absolutely the same way as POST /Responses/{questionKey} method does."
+        },
+        {
+          "info": {
+            "name": "Add or update Responses to the specified Study's Questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.goascribe.us/coder/v2/Responses/:studyKey/Batch",
+            "params": [
+              {
+                "name": "studyKey",
+                "value": "",
+                "type": "path",
+                "description": "Key of study"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or update Responses to the specified Study's Questions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

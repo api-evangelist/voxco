@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascribe Coder AICoder Languages API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Languages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the languages supported for translation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/Languages/Translate"
+          },
+          "docs": "The Code for a language is used to specify the language when translating responses.\r\n\r\nThe Name for a language is suitable for display on a user interface."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

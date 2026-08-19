@@ -1,0 +1,227 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascribe Coder AICoder Questions API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Questions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the Questions in a Study",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/Questions/:studyKey",
+            "params": [
+              {
+                "name": "studyKey",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Study, which must be an integer value."
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter by Question type.\r\n\r\n            If omitted, Questions of all types are returned.\r\n\r\n            If present, a string containing these characters, the presence of which specifies the type of Question desired:\r\n<ul><li>c: Closed\r\n</li><li>d: Data\r\n</li><li>o: Open\r\n</li><li>s: Other/Specify\r\n</li><li>v: Value\r\n</li></ul>\r\n            For example, the value 'so' (or 'os') returns Open and Other/Specify Questions."
+              },
+              {
+                "name": "tasks",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter by task.\r\n\r\nIf omitted, Questions are not filtered by task.\r\n\r\nIf present, a string containing these characters, the presence of which specified the task assigned to a Question:\r\n<ul><li>c: Code this Question\r\n</li><li>x: Crosstab this Question\r\n</li><li>b: Transcribe this Question\r\n</li><li>t: Translate this Question\r\n</li></ul>\r\nFor example, the value ('ct' or 'tc') returns Questions with the Code or Translate tasks set."
+              }
+            ]
+          },
+          "docs": "Retrieves by default all of the Questions in the Study.\r\n\r\nYou can optionally retrieve only a sub-set of the questions, filtering by the question type or the tasks assigned to the question."
+        },
+        {
+          "info": {
+            "name": "Create a new Question in the specified Study",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/Questions/:studyKey",
+            "params": [
+              {
+                "name": "studyKey",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Study, which must be an integer value."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "If the codebook key is not specified in the request a new empty codebook is created for the question and its key is returned in the response."
+        },
+        {
+          "info": {
+            "name": "Initiate autocoding of responses in the specified question",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/Questions/AutoCode/:questionKey/:loadKey",
+            "params": [
+              {
+                "name": "questionKey",
+                "value": "",
+                "type": "path",
+                "description": "The key of the question, which must be an integer value"
+              },
+              {
+                "name": "loadKey",
+                "value": "",
+                "type": "path",
+                "description": "Key of load"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "There are three types of AutoCoding available, and will be executed in a certain order.  See the documentation for the body of the POST."
+        },
+        {
+          "info": {
+            "name": "Delete an existing question or its linked entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.goascribe.us/coder/v2/Questions/:questionKey/:entityType",
+            "params": [
+              {
+                "name": "questionKey",
+                "value": "",
+                "type": "path",
+                "description": "Key of question which should be removed by itself or should be removed its linked entities"
+              },
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "path",
+                "description": "One of following values: \"Codes\", \"QualityCodes\", \"Responses\", \"Question\""
+              }
+            ]
+          },
+          "docs": "Method deletes the question or its linked entities such as Codes, QualityCodes, Responses."
+        },
+        {
+          "info": {
+            "name": "Translate responses in the specified question",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/Questions/Translate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Method scans all untranslated yet responses in the specified question and translates them to target language.\r\n\r\nMethod returns some useful statistics about translating operation."
+        },
+        {
+          "info": {
+            "name": "Set a codebook for some specified question",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/Questions/Codebook/:questionKey/:codebookKey",
+            "params": [
+              {
+                "name": "questionKey",
+                "value": "",
+                "type": "path",
+                "description": "Key of a question"
+              },
+              {
+                "name": "codebookKey",
+                "value": "",
+                "type": "path",
+                "description": "Key of a codebook to set"
+              }
+            ]
+          },
+          "docs": "Method sets the specified codebook to the specified question."
+        },
+        {
+          "info": {
+            "name": "Creates new questions in the specified study by using one call to API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/Questions/:studyKey/Batch",
+            "params": [
+              {
+                "name": "studyKey",
+                "value": "",
+                "type": "path",
+                "description": "Key of target study"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method expects an array of questions to create in specified study.\r\n\r\n\r\n  \r\nquestion.type property uses following coding schema: \r\n<ul><li>c: Closed\r\n</li><li>d: Data\r\n</li><li>o: Open\r\n</li><li>s: Other/Specify\r\n</li><li>v: Value\r\n</li></ul>\r\nFor example, the value 'so' (or 'os') returns Open and Other/Specify Questions.\r\n\r\n\r\n \r\nquestion.tasks property uses following coding schema: \r\n<ul><li>c: Code this Question\r\n</li><li>x: Crosstab this Question\r\n</li><li>b: Transcribe this Question\r\n</"
+        },
+        {
+          "info": {
+            "name": "Adds new or updates existing questions in the specified study by using one call to API",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.goascribe.us/coder/v2/Questions/:studyKey/Batch",
+            "params": [
+              {
+                "name": "studyKey",
+                "value": "",
+                "type": "path",
+                "description": "Key of target study"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method expects an array of questions to update them in specified study.\r\n\r\n\r\n  \r\nquestion.type property uses following coding schema: \r\n<ul><li>c: Closed\r\n</li><li>d: Data\r\n</li><li>o: Open\r\n</li><li>s: Other/Specify\r\n</li><li>v: Value\r\n</li></ul>\r\n\r\n \r\nquestion.tasks property uses following coding schema: \r\n<ul><li>c: Code this Question\r\n</li><li>x: Crosstab this Question\r\n</li><li>b: Transcribe this Question\r\n</li><li>t: Translate this Question\r\n</li></ul>\r\n\r\n\r\nquestion.codingSource and q"
+        },
+        {
+          "info": {
+            "name": "Deletes specified questions or their items by using one call to API",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.goascribe.us/coder/v2/Questions/Batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method expects an array of question keys and entity type.\r\n\r\nEntity type:\r\n\r\nCodes - removes applied codes from questions responses;\r\n\r\nQualityCodes - removes quality codes from questions responses;\r\n\r\nResponses - removes questions responses;\r\n\r\nQuestion - removes questons;\r\n\r\nResponse will contain information about result of operation for each of handled questions.\r\n \r\nIf errorMessage is null it means that question/its items succeccfully deleted without error(s)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,881 @@
+{
+  "item": [
+    {
+      "id": "ed9a1edf-fc59-47ab-92c1-4ae54cf82426",
+      "name": "Responses",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bba417fb-f7b3-430e-9b31-14b847b985d2",
+          "name": "Delete a response from the database by using pair of question key and respondent id",
+          "request": {
+            "name": "Delete a response from the database by using pair of question key and respondent id",
+            "description": {
+              "content": "Method deletes the response by using question key and respondent id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Responses",
+                ":QuestionKey",
+                ":RespondentID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "QuestionKey",
+                  "description": "(Required) Key of question"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "RespondentID",
+                  "description": "(Required) ID of respondent"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "687f55f6-d9e1-4d3c-b2dd-aa63c67b2d9a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Responses",
+                    ":QuestionKey",
+                    ":RespondentID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "QuestionKey",
+                      "description": "(Required) Key of question"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "RespondentID",
+                      "description": "(Required) ID of respondent"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d3673f9-7b41-4640-bc19-13cdaffa97b3",
+          "name": "Delete a batch of responses from the database by using pairs of question key and respondent id",
+          "request": {
+            "name": "Delete a batch of responses from the database by using pairs of question key and respondent id",
+            "description": {
+              "content": "Method deletes a batch of responses by using pairs of question key and respondent id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Responses",
+                "Batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"questionResponses\": [\n    {\n      \"questionKey\": \"<integer>\",\n      \"respondentIDs\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"questionKey\": \"<integer>\",\n      \"respondentIDs\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a9a473b8-46f4-4159-ba42-b6cfa10d6a07",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Responses",
+                    "Batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"questionResponses\": [\n    {\n      \"questionKey\": 55,\n      \"respondentIDs\": [\n        \"100001\",\n        \"100002\"\n      ]\n    },\n    {\n      \"questionKey\": 56,\n      \"respondentIDs\": [\n        \"200001\"\n      ]\n    },\n    {\n      \"questionKey\": 57,\n      \"respondentIDs\": [\n        \"300001\",\n        \"300002\",\n        \"300003\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"questionResponses\": [\n    {\n      \"questionKey\": 55,\n      \"respondentID\": \"100001\",\n      \"errorMessage\": null\n    },\n    {\n      \"questionKey\": 55,\n      \"respondentID\": \"100002\",\n      \"errorMessage\": null\n    },\n    {\n      \"questionKey\": 56,\n      \"respondentID\": \"200001\",\n      \"errorMessage\": null\n    },\n    {\n      \"questionKey\": 57,\n      \"respondentID\": \"300001\",\n      \"errorMessage\": \"SQL Exception: Cannot delete. Trigger TR_Responses_BeforeDeleteCheck.\"\n    },\n    {\n      \"questionKey\": 57,\n      \"respondentID\": \"300002\",\n      \"errorMessage\": null\n    },\n    {\n      \"questionKey\": 57,\n      \"respondentID\": \"300003\",\n      \"errorMessage\": null\n    }\n  ],\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0af17555-8b72-45df-a5f4-a0fa3992473b",
+          "name": "Get the Responses in the specified Question",
+          "request": {
+            "name": "Get the Responses in the specified Question",
+            "description": {
+              "content": "For coded responses the keys of the applied codes are returned for each response.\r\n\r\nThese keys can be matched to the keys of the codes returned in a query for the codebook to find the details of each of the applied codes.\r\n\r\n\r\nThe optional date query parameters are UTC date/time values.\r\n\r\nThese should be specified in the form:\r\n\r\nYYYY-MM-DDThh:mm:ss\r\n\r\nWhere the hour ranges from 0 to 23.  For example:\r\n\r\n2020-02-23T16:05:17\r\n\r\nIf the time portion of the date/time value is omitted it is assumed to be 00:00:00 GMT.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Responses",
+                ":questionKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeText",
+                  "value": "false",
+                  "description": "If true, the text of each Response is returned.\r\n\r\n            If false or omitted the text is not returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "If omitted, all Responses for the Question are returned.\r\n\r\nIf present, one of these values:\r\n<ul><li>coded: return only Responses with at least one Code applied.\r\n</li><li>uncoded: return only Responses with no Code applied.</li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "codedAfter",
+                  "value": "<dateTime>",
+                  "description": "If present, only responses with a code applied on or after the specified date/time are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "codedBefore",
+                  "value": "<dateTime>",
+                  "description": "If present, only responses with a code applied before the specified date/time are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "loadedAfter",
+                  "value": "<dateTime>",
+                  "description": "If present, only responses loaded on or after the specified date/time are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "loadedBefore",
+                  "value": "<dateTime>",
+                  "description": "If present, only responses loaded before the specified date/time are returned."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "questionKey",
+                  "description": "(Required) The key of the Question, which must be an integer value."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2fb6db89-fc87-4038-8ca1-faf7a9250391",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Responses",
+                    ":questionKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeText",
+                      "value": "false"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "codedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "codedBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "loadedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "loadedBefore",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "questionKey",
+                      "description": "(Required) The key of the Question, which must be an integer value."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responses\": [\n    {\n      \"rid\": \"34-22907\",\n      \"text\": \"I do not like the red color\",\n      \"transcription\": null,\n      \"translation\": null,\n      \"notes\": null,\n      \"codeKeys\": [\n        4978,\n        886\n      ]\n    },\n    {\n      \"rid\": \"34-22988\",\n      \"text\": \"This is a fantastic product\",\n      \"transcription\": null,\n      \"translation\": null,\n      \"notes\": null,\n      \"codeKeys\": [\n        449\n      ]\n    }\n  ],\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "acabcc39-54e3-4294-b89e-6960d2f08c55",
+          "name": "Add Responses to a Question",
+          "request": {
+            "name": "Add Responses to a Question",
+            "description": {
+              "content": "This operation will add new responses to the specified question, optionally autocoding them. It will never modify existing responses.\r\n\r\nFor each QuestionResponse submitted, if the question does not have a response stored in Ascribe with the specified respondent id,\r\n\r\nthen the response will be added.\r\n \r\nOtherwise, the Response stored in Ascribe will not be modified. The QuestionResponse submitted will be ignored,\r\n\r\nand any codes that have been applied to the Response will be unchanged.\r\n\r\n\r\nThis operation allows the use of a Rule Set to modify or veto the Responses submitted, and automatically coding the responses as they are added.\r\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Responses",
+                ":questionKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "questionKey",
+                  "description": "(Required) The key of the question, which must be an integer value"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"responses\": [\n    {\n      \"rid\": \"<string>\",\n      \"verbatim\": \"<string>\",\n      \"translation\": \"<string>\",\n      \"transcription\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"appliedcodes\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"segmentcodes\": [\n        {\n          \"codeKey\": \"<integer>\",\n          \"length\": \"<integer>\",\n          \"start\": \"<integer>\"\n        },\n        {\n          \"codeKey\": \"<integer>\",\n          \"length\": \"<integer>\",\n          \"start\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"rid\": \"<string>\",\n      \"verbatim\": \"<string>\",\n      \"translation\": \"<string>\",\n      \"transcription\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"appliedcodes\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"segmentcodes\": [\n        {\n          \"codeKey\": \"<integer>\",\n          \"length\": \"<integer>\",\n          \"start\": \"<integer>\"\n        },\n        {\n          \"codeKey\": \"<integer>\",\n          \"length\": \"<integer>\",\n          \"start\": \"<integer>\"\n        }\n      ]\n    }\n  ],\n  \"autoCodeTextMatch\": \"<boolean>\",\n  \"autoCodeInputId\": \"<boolean>\",\n  \"autoCodeByRegex\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "55cb04e9-dab1-4d3f-9b74-d7a55c8a3357",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Responses",
+                    ":questionKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "questionKey",
+                      "description": "(Required) The key of the question, which must be an integer value"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"responses\": [\n    {\n      \"appliedcodes\": null,\n      \"segmentcodes\": null,\n      \"rid\": \"34-22907\",\n      \"verbatim\": \"I do not like the red color\",\n      \"translation\": null,\n      \"transcription\": null,\n      \"notes\": null\n    },\n    {\n      \"appliedcodes\": null,\n      \"segmentcodes\": null,\n      \"rid\": \"34-22988\",\n      \"verbatim\": \"This is a fantastic product\",\n      \"translation\": null,\n      \"transcription\": null,\n      \"notes\": null\n    }\n  ],\n  \"autoCodeTextMatch\": false,\n  \"autoCodeInputId\": false,\n  \"autoCodeByRegex\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"codebookKey\": 86443,\n  \"responsesAdded\": 2,\n  \"existingResponsesUnchanged\": 0,\n  \"responsesCoded\": 0,\n  \"responsesCodedByTextMatch\": 0,\n  \"responsesCodedByInputId\": 0,\n  \"responsesCodedByRegex\": 0,\n  \"addedResponses\": [\n    {\n      \"codes\": [\n        {\n          \"codeKey\": 200404044,\n          \"description\": \"Red\"\n        }\n      ],\n      \"rid\": \"34-22907\",\n      \"verbatim\": null,\n      \"translation\": null,\n      \"transcription\": null,\n      \"notes\": null\n    },\n    {\n      \"codes\": [],\n      \"rid\": \"34-22988\",\n      \"verbatim\": null,\n      \"translation\": null,\n      \"transcription\": null,\n      \"notes\": null\n    }\n  ],\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3249def8-9648-4bf8-9733-7c1bbe8476ca",
+          "name": "Add or update Responses in the specified Question",
+          "request": {
+            "name": "Add or update Responses in the specified Question",
+            "description": {
+              "content": "If the Question does not have a Response stored in Ascribe with the specified respondent id, then the response will be added.\r\n \r\nOtherwise, the Response stored in Ascribe will be updated if any of the properties of in the request differ from the values of the current properties of the Response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Responses",
+                ":questionKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "questionKey",
+                  "description": "(Required) The key of the Question, which must be an integer value."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"responses\": [\n    {\n      \"rid\": \"<string>\",\n      \"verbatim\": \"<string>\",\n      \"translation\": \"<string>\",\n      \"transcription\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"appliedcodes\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"segmentcodes\": [\n        {\n          \"codeKey\": \"<integer>\",\n          \"length\": \"<integer>\",\n          \"start\": \"<integer>\"\n        },\n        {\n          \"codeKey\": \"<integer>\",\n          \"length\": \"<integer>\",\n          \"start\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"rid\": \"<string>\",\n      \"verbatim\": \"<string>\",\n      \"translation\": \"<string>\",\n      \"transcription\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"appliedcodes\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"segmentcodes\": [\n        {\n          \"codeKey\": \"<integer>\",\n          \"length\": \"<integer>\",\n          \"start\": \"<integer>\"\n        },\n        {\n          \"codeKey\": \"<integer>\",\n          \"length\": \"<integer>\",\n          \"start\": \"<integer>\"\n        }\n      ]\n    }\n  ],\n  \"codingMethod\": \"<integer>\",\n  \"allowEmptyStrings\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b27ade4c-3524-4399-956e-f93b34226d7f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Responses",
+                    ":questionKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "questionKey",
+                      "description": "(Required) The key of the Question, which must be an integer value."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"responses\": [\n    {\n      \"appliedcodes\": null,\n      \"segmentcodes\": null,\n      \"rid\": \"34-22907\",\n      \"verbatim\": \"I do not like the red color\",\n      \"translation\": null,\n      \"transcription\": null,\n      \"notes\": null\n    },\n    {\n      \"appliedcodes\": null,\n      \"segmentcodes\": null,\n      \"rid\": \"34-22988\",\n      \"verbatim\": \"This is a fantastic product\",\n      \"translation\": null,\n      \"transcription\": null,\n      \"notes\": null\n    }\n  ],\n  \"codingMethod\": 0,\n  \"allowEmptyStrings\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responsesAdded\": 10,\n  \"existingResponsesUpdated\": 15,\n  \"existingResponsesUnchanged\": 5,\n  \"responsesCoded\": 0,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f66d3242-2e6d-49ed-9032-733b6b23b0f0",
+          "name": "Add Responses to the specified Study's Questions",
+          "request": {
+            "name": "Add Responses to the specified Study's Questions",
+            "description": {
+              "content": "This operation will add new responses to the specified study's questions.\r\n \r\nFor each of question it will work absolutely the same way as POST /Responses/{questionKey} method does.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Responses",
+                ":studyKey",
+                "Batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "studyKey",
+                  "description": "(Required) The key of the study, which must be an integer value"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"questionResponses\": [\n    {\n      \"questionKey\": \"<integer>\",\n      \"responses\": [\n        {\n          \"rid\": \"<string>\",\n          \"verbatim\": \"<string>\",\n          \"translation\": \"<string>\",\n          \"transcription\": \"<string>\",\n          \"notes\": \"<string>\"\n        },\n        {\n          \"rid\": \"<string>\",\n          \"verbatim\": \"<string>\",\n          \"translation\": \"<string>\",\n          \"transcription\": \"<string>\",\n          \"notes\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"questionKey\": \"<integer>\",\n      \"responses\": [\n        {\n          \"rid\": \"<string>\",\n          \"verbatim\": \"<string>\",\n          \"translation\": \"<string>\",\n          \"transcription\": \"<string>\",\n          \"notes\": \"<string>\"\n        },\n        {\n          \"rid\": \"<string>\",\n          \"verbatim\": \"<string>\",\n          \"translation\": \"<string>\",\n          \"transcription\": \"<string>\",\n          \"notes\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "adeb2a7a-269a-4185-8854-d4c82fabcd66",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Responses",
+                    ":studyKey",
+                    "Batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "studyKey",
+                      "description": "(Required) The key of the study, which must be an integer value"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"questionResponses\": [\n    {\n      \"questionKey\": 212345,\n      \"responses\": [\n        {\n          \"rid\": \"34-22907\",\n          \"verbatim\": \"I do not like the red color\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        },\n        {\n          \"rid\": \"34-22988\",\n          \"verbatim\": \"This is a fantastic product\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        }\n      ]\n    },\n    {\n      \"questionKey\": 212346,\n      \"responses\": [\n        {\n          \"rid\": \"34-22907\",\n          \"verbatim\": \"France\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        },\n        {\n          \"rid\": \"34-22988\",\n          \"verbatim\": \"USA\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"questionResponses\": [\n    {\n      \"questionKey\": 1001,\n      \"questionId\": \"Q1\",\n      \"addedResponses\": [\n        {\n          \"rid\": \"34-22907\",\n          \"verbatim\": \"I do not like the red color\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        },\n        {\n          \"rid\": \"34-22988\",\n          \"verbatim\": \"This is a fantastic product\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        }\n      ]\n    },\n    {\n      \"questionKey\": 1002,\n      \"questionId\": \"Q2\",\n      \"addedResponses\": [\n        {\n          \"rid\": \"34-22907\",\n          \"verbatim\": \"France\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        },\n        {\n          \"rid\": \"34-22988\",\n          \"verbatim\": \"USA\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        }\n      ]\n    }\n  ],\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f228987-3f27-43ad-8550-9d51dce071cb",
+          "name": "Add or update Responses to the specified Study's Questions",
+          "request": {
+            "name": "Add or update Responses to the specified Study's Questions",
+            "description": {},
+            "url": {
+              "path": [
+                "Responses",
+                ":studyKey",
+                "Batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "studyKey",
+                  "description": "(Required) Key of study"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"questionResponses\": [\n    {\n      \"questionKey\": \"<integer>\",\n      \"responses\": [\n        {\n          \"rid\": \"<string>\",\n          \"verbatim\": \"<string>\",\n          \"translation\": \"<string>\",\n          \"transcription\": \"<string>\",\n          \"notes\": \"<string>\"\n        },\n        {\n          \"rid\": \"<string>\",\n          \"verbatim\": \"<string>\",\n          \"translation\": \"<string>\",\n          \"transcription\": \"<string>\",\n          \"notes\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"questionKey\": \"<integer>\",\n      \"responses\": [\n        {\n          \"rid\": \"<string>\",\n          \"verbatim\": \"<string>\",\n          \"translation\": \"<string>\",\n          \"transcription\": \"<string>\",\n          \"notes\": \"<string>\"\n        },\n        {\n          \"rid\": \"<string>\",\n          \"verbatim\": \"<string>\",\n          \"translation\": \"<string>\",\n          \"transcription\": \"<string>\",\n          \"notes\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"allowEmptyStrings\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9cfc0d68-8e30-4d31-8e77-74207a389981",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Responses",
+                    ":studyKey",
+                    "Batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "studyKey",
+                      "description": "(Required) Key of study"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"questionResponses\": [\n    {\n      \"questionKey\": 200011,\n      \"responses\": [\n        {\n          \"rid\": \"ABC_12345\",\n          \"verbatim\": \"I do not like the red color\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        },\n        {\n          \"rid\": \"ABC_12346\",\n          \"verbatim\": \"This is a fantastic product\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        }\n      ]\n    },\n    {\n      \"questionKey\": 200012,\n      \"responses\": [\n        {\n          \"rid\": \"ABC_12345\",\n          \"verbatim\": \"Very good\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        },\n        {\n          \"rid\": \"ABC_12346\",\n          \"verbatim\": \"I can't answer this question\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        },\n        {\n          \"rid\": \"ABC_12347\",\n          \"verbatim\": \"If it has green color, it would be better\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        }\n      ]\n    }\n  ],\n  \"allowEmptyStrings\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"questionResponses\": [\n    {\n      \"questionKey\": 1,\n      \"questionId\": \"Q1\",\n      \"updatedResponses\": [\n        {\n          \"rid\": \"ABC_12345\",\n          \"verbatim\": \"I do not like the red color\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        },\n        {\n          \"rid\": \"ABC_12346\",\n          \"verbatim\": \"This is a fantastic product\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        }\n      ],\n      \"addedResponses\": [],\n      \"unchangedResponses\": [],\n      \"errorMessage\": null\n    },\n    {\n      \"questionKey\": 2,\n      \"questionId\": \"Q2\",\n      \"updatedResponses\": [\n        {\n          \"rid\": \"ABC_12345\",\n          \"verbatim\": \"I do not like the red color\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        },\n        {\n          \"rid\": \"ABC_12346\",\n          \"verbatim\": \"This is a fantastic product\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        }\n      ],\n      \"addedResponses\": [\n        {\n          \"rid\": \"ABC_12347\",\n          \"verbatim\": \"If it has green color, it would be better\",\n          \"translation\": null,\n          \"transcription\": null,\n          \"notes\": null\n        }\n      ],\n      \"unchangedResponses\": [],\n      \"errorMessage\": null\n    }\n  ],\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.goascribe.us/coder/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "76d31bab-88d1-4353-8880-4d0581f65668",
+    "name": "Ascribe Coder AICoder Responses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click \"Try it out!\"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.\n\nContact Support:\n Email: support@goascribe.com",
+      "type": "text/plain"
+    }
+  }
+}

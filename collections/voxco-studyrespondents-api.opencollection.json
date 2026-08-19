@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascribe Coder AICoder StudyRespondents API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "StudyRespondents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete a batch of respondents from the study by using an array of respondent ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.goascribe.us/coder/v2/Studies/:studyKey/Respondents",
+            "params": [
+              {
+                "name": "studyKey",
+                "value": "",
+                "type": "path",
+                "description": "The key for the study from which to delete respondents"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Method deletes a batch of respondents by using an array of respondent ids"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

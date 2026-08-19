@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascribe Coder AICoder Sessions API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new session for interaction with this API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/Session/New",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The credentialed user must have Adminstrator privilege in Ascribe.\r\n\r\nThe response message contains two tokens, one of which must be passed in a header for all other operations with this API.\r\n\r\nYou may either use the bearerToken or the authenticationToken.  Either send a header with key \"authentication\" and value the authenticationToken returned in this response,\r\nor send a header with key \"Authorization\" and value the bearerToken returned in this response.\r\n\r\nThe bearerToken does not expire, b"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

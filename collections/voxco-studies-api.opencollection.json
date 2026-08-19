@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascribe Coder AICoder Studies API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Studies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all studies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/Studies",
+            "params": [
+              {
+                "name": "idFilter",
+                "value": "",
+                "type": "query",
+                "description": "If omitted, the returned Studies are not filtered by id.\r\n\r\nOtherwise filter the returned Studies by this case-insensitive value.\r\n\r\nLeading and/or trailing asterisk characters (character code 42) may be used:\r\n\r\n<ul><li>Leading and trailing asterisk : study id must contain the string between the asterisk characters.\r\n</li><li>Leading asterisk: study id must end with the string after the asterisk character.\r\n</li><li>Trailing asterisk: study id must start with the string before the asterisk character.\r\n</li><li>No leading or trailing asterisk: study id must match the specified value.\r\n\r\n</li></ul>\r\nAny asterisk character which is not the first or last character of the value is considered to be part of the requested id."
+              },
+              {
+                "name": "statusMask",
+                "value": "",
+                "type": "query",
+                "description": "If omitted, Studies with any status are returned.\r\n\r\nIf present, a string containing these characters, the presence of which specifies the status of the Studies desired:\r\n<ul><li>a: Archived\r\n</li><li>p: Coding in progress\r\n</li><li>c: Completed\r\n</li><li>d: Deleted\r\n</li><li>h: On hold\r\n</li><li>r: Review in progress\r\n</li><li>s: Shipping\r\n</li><li>u: Under construction\r\n\r\n</li></ul>\r\nFor example, the value 'pc' (or 'cp') returns Studies with 'Coding in progress' or 'Completed' status."
+              },
+              {
+                "name": "clientCompanyKey",
+                "value": "",
+                "type": "query",
+                "description": "If omitted or null, the Studies returned are not filtered by Company.\r\n\r\nOtherwise, the Studies returned are those assigned to the Company with the specified key."
+              }
+            ]
+          },
+          "docs": "The list of Studies returned may be optionally filtered by id, status, and client company.\r\n\r\nWhen filtering by id the asterisk * character may optionally be used as a leading or trailing wildcard."
+        },
+        {
+          "info": {
+            "name": "Create a new study",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/Studies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Method creates a new study based on data from request body."
+        },
+        {
+          "info": {
+            "name": "Update an existing study",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.goascribe.us/coder/v2/Studies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Method updates an existing study by using data from request body."
+        },
+        {
+          "info": {
+            "name": "Delete study by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.goascribe.us/coder/v2/Studies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Method deletes the study by its key."
+        },
+        {
+          "info": {
+            "name": "Get a study",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/Studies/:studyKey",
+            "params": [
+              {
+                "name": "studyKey",
+                "value": "",
+                "type": "path",
+                "description": "The key of the desired Study, which must be an integer value."
+              }
+            ]
+          },
+          "docs": "Method returns a definition of requested study by using its key."
+        },
+        {
+          "info": {
+            "name": "Translate all Responses in a Study",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/Studies/Translate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The method scans all questions in the specified study and checks for the **Translate Task** option.\r\n\r\nQuestions with this option enabled are included in the translation process to the target language.\r\n\r\nFor each of the question the method scans all untranslated yet responses and translates them.\r\n \r\nAt the end of the translation operation, the method provides statistics, including the number of responses translated\r\n\r\nand the number of transactions performed for each translated question."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

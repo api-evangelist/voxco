@@ -1,0 +1,121 @@
+{
+  "item": [
+    {
+      "id": "262e7d8e-1ec3-4a36-9b23-41838d7577b8",
+      "name": "Languages",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0965eada-a020-4cab-b4bd-7e1d5e27b5f1",
+          "name": "Returns the languages supported for translation",
+          "request": {
+            "name": "Returns the languages supported for translation",
+            "description": {
+              "content": "The Code for a language is used to specify the language when translating responses.\r\n\r\nThe Name for a language is suitable for display on a user interface.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Languages",
+                "Translate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "64e13a7f-ee20-41cb-8e88-bef38bb873b9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Languages",
+                    "Translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"languages\": [\n    {\n      \"code\": \"en\",\n      \"name\": \"English\"\n    },\n    {\n      \"code\": \"de\",\n      \"name\": \"German\"\n    },\n    {\n      \"code\": \"fr\",\n      \"name\": \"French\"\n    },\n    {\n      \"code\": \"uk\",\n      \"name\": \"Ukrainian\"\n    }\n  ],\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.goascribe.us/coder/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c5b7330d-c27b-4e8e-a464-bfd46d4f9106",
+    "name": "Ascribe Coder AICoder Languages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click \"Try it out!\"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.\n\nContact Support:\n Email: support@goascribe.com",
+      "type": "text/plain"
+    }
+  }
+}

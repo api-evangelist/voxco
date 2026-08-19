@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascribe Coder AICoder Exports API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Exports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves a list of all scripts available to the current account, including global scripts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/Exports"
+          },
+          "docs": "Method returns a list of all script definitions which are available in current account, including all global ones."
+        },
+        {
+          "info": {
+            "name": "Initiates a new export job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/Exports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Method initiates a new export job by using specified script and target questions and returns back a unique key of it.\r\n\r\nThe Job key should be used as inner parameter for **/Exports/{jobKey}** method."
+        },
+        {
+          "info": {
+            "name": "Retrieves a current status of specified job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/Exports/:jobKey",
+            "params": [
+              {
+                "name": "jobKey",
+                "value": "",
+                "type": "path",
+                "description": "Key of job"
+              }
+            ]
+          },
+          "docs": "This method expects a job key as an input parameter from the **[POST] /Exports** method.\r\n\r\nIt returns information about current status of exporting of the job or result.\r\n\r\nIf the job is not yet completed, the method should be called again after a delay.\r\n\r\nContinue calling this method until the job is either completed or rejected due to an error."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

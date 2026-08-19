@@ -1,0 +1,175 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascribe Coder AICoder Codebooks API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Codebooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a Codebook by its key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/Codebooks/:codebookKey",
+            "params": [
+              {
+                "name": "codebookKey",
+                "value": "",
+                "type": "path",
+                "description": "The Codebook key, which must be an integer value."
+              },
+              {
+                "name": "tree",
+                "value": "",
+                "type": "query",
+                "description": "Optional query parameter.\r\n\r\n            If true, return a tree-structured representation of the Codebook.\r\n  \r\n            When tree=false (the default) only the Codes are returned (no Nets) as a single list."
+              }
+            ]
+          },
+          "docs": "Each Question has exactly one Codebook, which may be shared across multiple Questions.\r\n\r\nA Codebook is tree-structured, where the leaf nodes are Codes and non-leaf nodes are Nets.  Only Codes may be used to code a Response.\r\n\r\n\r\nThis resource can return the Codes in the Codebook as a flattened list containing only the Codes, or as a tree with the full structure of the Codebook.\r\n"
+        },
+        {
+          "info": {
+            "name": "Get the Codebook for a Question",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/Codebooks/Question/:questionKey",
+            "params": [
+              {
+                "name": "questionKey",
+                "value": "",
+                "type": "path",
+                "description": "The Question key, which must be an integer value."
+              },
+              {
+                "name": "tree",
+                "value": "",
+                "type": "query",
+                "description": "Optional query parameter.\r\n\r\n            If true, return a tree-structured representation of the Codebook.\r\n  \r\n            When tree=false (the default) only the Codes are returned (no Nets) as a single list."
+              }
+            ]
+          },
+          "docs": "Each Question has exactly one Codebook, which may be shared across multiple Questions.\r\n\r\nA Codebook is tree-structured, where the leaf nodes are Codes and non-leaf nodes are Nets.  Only Codes may be used to code a Response.\r\n\r\n\r\nThis resource can return the Codes in the Codebook as a flattened list containing only the Codes, or as a tree with the full structure of the Codebook.\r\n"
+        },
+        {
+          "info": {
+            "name": "Create a new Codebook for a Question",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/Codebooks/:questionKey",
+            "params": [
+              {
+                "name": "questionKey",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Question."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This operation replaces any existing Codebook for the specified Question with the new Codebook.\r\n\r\nThis operation is permitted only if there are no coded responses in the Question."
+        },
+        {
+          "info": {
+            "name": "Add codes to a codebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/Codebooks/:codebookKey/Codes",
+            "params": [
+              {
+                "name": "codebookKey",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Codebook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This operation adds the given codes to the specified codebook."
+        },
+        {
+          "info": {
+            "name": "Updates codes in a specified codebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.goascribe.us/coder/v2/Codebooks/:codebookKey/Codes",
+            "params": [
+              {
+                "name": "codebookKey",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Codebook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This operation updates the given codes in a specified codebook."
+        },
+        {
+          "info": {
+            "name": "Deletes codes from the specified codebook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.goascribe.us/coder/v2/Codebooks/:codebookKey/Codes",
+            "params": [
+              {
+                "name": "codebookKey",
+                "value": "",
+                "type": "path",
+                "description": "Key of the codebook"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes codes from the specified codebook."
+        },
+        {
+          "info": {
+            "name": "Add codes into target codebooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/Codebooks/Codes/Batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This operation adds the given codes to the corresponding codebooks."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

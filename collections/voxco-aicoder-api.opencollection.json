@@ -1,0 +1,255 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascribe Coder AICoder API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AICoder",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiates a new task to export AI Coder project data into an Excel file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/AICoder/Export/Excel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method exports AI Coder project data into an Excel file.\r\n\r\nAfter the method triggers an export task, it returns a unique task key.\r\n\r\nThis key can be used for tracking the status of exporting through the API endpoint: **AICoder/Export/Excel/{taskStatusKey:long}**."
+        },
+        {
+          "info": {
+            "name": "Retrieves the current status of an Excel file export task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/AICoder/Export/Excel/:taskStatusKey",
+            "params": [
+              {
+                "name": "taskStatusKey",
+                "value": "1020309999",
+                "type": "path",
+                "description": "The key associated with the ongoing task."
+              }
+            ]
+          },
+          "docs": "This method requires a task key as an input parameter, which is obtained from the response of the **AICoder/Export/Excel** method.\r\n \r\nIt returns the current status of the export task, including its result if completed.\r\n\r\nIf the task is not yet completed, the method should be called again after a delay.\r\n\r\nContinue calling this method until the task is either completed or rejected due to an error."
+        },
+        {
+          "info": {
+            "name": "Initiates a new task to export the generated codebook from an AI Coder project to a Coder study.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/AICoder/Export/Codebook",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "It allows to export generated codebook in AI Coder back into Coder codebook by using some export strategy (Append, Overwrite, or Merge)\r\n\r\nand determine whether responses should be coded automatically after the export.\r\n\r\nAfter the method triggers generating codebook task, it returns a unique task key.\r\n\r\nThis key can be used for tracking the status of generating codebook through the API endpoint: **AICoder/Export/Codebook/{taskStatusKey:long}**.\r\n\r\nParameter **ExportType:** Specifies the strate"
+        },
+        {
+          "info": {
+            "name": "Retrieves the current status of Codebook export task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/AICoder/Export/Codebook/:taskStatusKey",
+            "params": [
+              {
+                "name": "taskStatusKey",
+                "value": "1020309999",
+                "type": "path",
+                "description": "The key associated with the ongoing task."
+              }
+            ]
+          },
+          "docs": "This method requires a task key as an input parameter, which is obtained from the response of the **AICoder/Export/Codebook** method.\r\n\r\nIt returns the current status of the export task, including its result if completed.\r\n\r\nIf the task is not yet completed, the method should be called again after a delay.\r\n\r\nContinue calling this method until the task is either completed or rejected due to an error."
+        },
+        {
+          "info": {
+            "name": "Initiates a new task for analyzing study using Codebook Builder (UI-aligned v3 contract).",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/AICoder/Analyze/v3",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method analyzes responses from some study questions using Codebook Builder: prompt embeddings and clustering to build a prototype codebook.\r\n\r\nRequest `CodebookBuilder` options match the AI Coder app defaults and ranges (granularity 25–150, creation method AI vs data-driven,\r\nminimum responses per code 1–250 default 3, classification strictness 75–95%, optional topic-based code cap 1–50 when enabled,\r\noptional analyze-by closed-ended question).\r\n\r\nGiven codebook prototype can be used in app"
+        },
+        {
+          "info": {
+            "name": "Initiates a new task for analyzing study.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/AICoder/Analyze",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method analyzes responses from some study questions by applying artificial intelligence (AI)\r\n\r\nor special algorithms for automatically constructing a hierarchical model of a prototype codebook.\r\n \r\nGiven codebook prototype can be used in applications such as Ascribe Coder with pre-editing it in AI Coder or without it.\r\n\r\nAdditionally, this process generates a structured dataset that can be utilized for:  \r\n- Comprehensive analysis of the content of survey responses;\r\n- Creation of detailed"
+        },
+        {
+          "info": {
+            "name": "Initiates a new task for incremental analyzing study.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/AICoder/Analyze/Incremental",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method does the same as **/AICoder/Analyze**, but for newly loaded responses only.\r\nOptional `SuggestNewCodes` on the request body matches the AI Coder **Suggest new codes** checkbox when adding a load\r\n(`addNewCodesWhenAddAICoderLoad`); default is `false`."
+        },
+        {
+          "info": {
+            "name": "Retrieves a status of analyzing (incremental analyzing) study task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/AICoder/Analyze/:taskStatusKey",
+            "params": [
+              {
+                "name": "taskStatusKey",
+                "value": "1020309999",
+                "type": "path",
+                "description": "The key of the executing task."
+              }
+            ]
+          },
+          "docs": "This method expects a task key as an input parameter from the **/AICoder/Analyze** or **/AICoder/Analyze/Incremental**.\r\n\r\nIt returns information about current status of the analyzing task or result."
+        },
+        {
+          "info": {
+            "name": "Retrieves a list of available codebooks from AI Coder projects.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/AICoder/Analyze/Codebooks"
+          },
+          "docs": "This method scans AI Coder projects for non-deleting codebooks and returns list of their defenitions.\r\n\r\nIf value of **id** property ends with \"GAI\" it means that codebook was created by using generative artificial intelligence.\r\n\r\nIf value of **id** property ends with \"AI\" it means that codebook was created by using simple artificial intelligence.\r\n\r\nIf value of **id** property does not include \"GAI\" or \"AI\" in the tail it means that codebook was created without using any kind of artificial int"
+        },
+        {
+          "info": {
+            "name": "Initiates a new task for grouping codes into target net.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/AICoder/NetCodes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method re-builds the entire codebook of specified AI Coder project or its part.\r\n\r\nParameter **NetKey** allows specifying a child net as the root of a branch and rebuilding only that part.\r\n \r\nIf **NetKey** is set to **0**, the entire codebook will be processed.\r\n\r\nSetting the **NetLevel** parameter to **0** removes all nets, otherwise this value must be positive and can be less than or greater than the current net level of the codebook."
+        },
+        {
+          "info": {
+            "name": "Retrieves a status of grouping codes to target net task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/AICoder/NetCodes/:taskStatusKey",
+            "params": [
+              {
+                "name": "taskStatusKey",
+                "value": "1020309999",
+                "type": "path",
+                "description": "The key of the executing task."
+              }
+            ]
+          },
+          "docs": "This method expects a task key as an input parameter from the **/AICoder/NetCodes** method.\r\n\r\nIt returns information about current status of the grouping nets task or result."
+        },
+        {
+          "info": {
+            "name": "Retrieves a list of all AI Coder projects that available to current user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/AICoder/Projects"
+          },
+          "docs": "This method prepares a list of AI Coder project defenitions which available for the current user.\r\n\r\nThe result list includes deleted projects as well."
+        },
+        {
+          "info": {
+            "name": "Create new link(s) to an AI Coder project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/AICoder/Links",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method generates temporary short link(s) for sharing. The link(s) leads to specified AI Coder project's page."
+        },
+        {
+          "info": {
+            "name": "Initiates a new task for exporting of dichotomous report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/AICoder/Export/Dichotomous",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "After the method triggers exporting of dichotomous report task, it returns a unique task key.\r\n\r\nThis key can be used for tracking the status of generating of dichotomous report through the API endpoint: **AICoder/Export/Dichotomous/{taskStatusKey:long}**."
+        },
+        {
+          "info": {
+            "name": "Retrieves a status of exporting of dichotomous report task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/AICoder/Export/Dichotomous/:taskStatusKey",
+            "params": [
+              {
+                "name": "taskStatusKey",
+                "value": "1020309999",
+                "type": "path",
+                "description": "The key of the executing task."
+              }
+            ]
+          },
+          "docs": "This method expects a task key as an input parameter from the **/AICoder/Export/Dichotomous** method.\r\n\r\nIt returns information about current status of exporting of dichotomous report task or result.\r\n\r\nIf the task is not yet completed, the method should be called again after a delay.\r\n\r\nContinue calling this method until the task is either completed or rejected due to an error."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

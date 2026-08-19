@@ -1,0 +1,1077 @@
+{
+  "item": [
+    {
+      "id": "562e6b31-cd01-4e1b-a0b1-2500d46b63d4",
+      "name": "Questions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7a74987d-e4ce-4440-ad52-f00fc4bf2e3a",
+          "name": "Get the Questions in a Study",
+          "request": {
+            "name": "Get the Questions in a Study",
+            "description": {
+              "content": "Retrieves by default all of the Questions in the Study.\r\n\r\nYou can optionally retrieve only a sub-set of the questions, filtering by the question type or the tasks assigned to the question.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Questions",
+                ":studyKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "<string>",
+                  "description": "Optional filter by Question type.\r\n\r\n            If omitted, Questions of all types are returned.\r\n\r\n            If present, a string containing these characters, the presence of which specifies the type of Question desired:\r\n<ul><li>c: Closed\r\n</li><li>d: Data\r\n</li><li>o: Open\r\n</li><li>s: Other/Specify\r\n</li><li>v: Value\r\n</li></ul>\r\n            For example, the value 'so' (or 'os') returns Open and Other/Specify Questions."
+                },
+                {
+                  "disabled": false,
+                  "key": "tasks",
+                  "value": "<string>",
+                  "description": "Optional filter by task.\r\n\r\nIf omitted, Questions are not filtered by task.\r\n\r\nIf present, a string containing these characters, the presence of which specified the task assigned to a Question:\r\n<ul><li>c: Code this Question\r\n</li><li>x: Crosstab this Question\r\n</li><li>b: Transcribe this Question\r\n</li><li>t: Translate this Question\r\n</li></ul>\r\nFor example, the value ('ct' or 'tc') returns Questions with the Code or Translate tasks set."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "studyKey",
+                  "description": "(Required) The key of the Study, which must be an integer value."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d54e339-4cb9-4f27-b02e-60257cc2b18c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Questions",
+                    ":studyKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tasks",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "studyKey",
+                      "description": "(Required) The key of the Study, which must be an integer value."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"questions\": [\n    {\n      \"key\": 8753,\n      \"codebookKey\": 2357,\n      \"id\": \"Q1\",\n      \"countResponses\": 5896,\n      \"countResponsesCoded\": 1002,\n      \"countTranscriptions\": 50,\n      \"countTranslations\": 97,\n      \"countQualityReviewed\": 0,\n      \"tasks\": \"cbt\",\n      \"type\": \"o\",\n      \"label\": \"Likes\",\n      \"text\": \"What did you like about the product?\",\n      \"help\": null,\n      \"sortOrder\": null,\n      \"codingSource\": \"v\",\n      \"alternativeCodingSource\": \"b\",\n      \"externalQuestionId\": null\n    },\n    {\n      \"key\": 8754,\n      \"codebookKey\": 458,\n      \"id\": \"G\",\n      \"countResponses\": 6336,\n      \"countResponsesCoded\": 6336,\n      \"countTranscriptions\": 0,\n      \"countTranslations\": 0,\n      \"countQualityReviewed\": 0,\n      \"tasks\": \"c\",\n      \"type\": \"c\",\n      \"label\": \"Gender\",\n      \"text\": \"What is your gender?\",\n      \"help\": null,\n      \"sortOrder\": null,\n      \"codingSource\": \"v\",\n      \"alternativeCodingSource\": \"b\",\n      \"externalQuestionId\": null\n    }\n  ],\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "285e2c94-a1c9-4d04-9826-e2f8bd09e551",
+          "name": "Create a new Question in the specified Study",
+          "request": {
+            "name": "Create a new Question in the specified Study",
+            "description": {
+              "content": "If the codebook key is not specified in the request a new empty codebook is created for the question and its key is returned in the response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Questions",
+                ":studyKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "studyKey",
+                  "description": "(Required) The key of the Study, which must be an integer value."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codebookKey\": \"<integer>\",\n  \"id\": \"<string>\",\n  \"label\": \"<string>\",\n  \"text\": \"<string>\",\n  \"help\": \"<string>\",\n  \"sortOrder\": \"<integer>\",\n  \"externalQuestionId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "19d29758-0c47-4e95-8b52-6c4bcc1a68f0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Questions",
+                    ":studyKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "studyKey",
+                      "description": "(Required) The key of the Study, which must be an integer value."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"codebookKey\": null,\n  \"id\": \"Q1\",\n  \"tasks\": \"cb\",\n  \"type\": \"o\",\n  \"label\": \"Likes\",\n  \"text\": \"What did you like about the product?\",\n  \"help\": \"Any help string for the product\",\n  \"sortOrder\": 10,\n  \"codingSource\": \"v\",\n  \"alternativeCodingSource\": \"b\",\n  \"externalQuestionId\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": 348,\n  \"codebookKey\": 4589,\n  \"id\": \"Q1\",\n  \"tasks\": \"ct\",\n  \"type\": \"o\",\n  \"label\": \"Likes\",\n  \"text\": \"What did you like about the product?\",\n  \"help\": \"Any help string for the product\",\n  \"sortOrder\": 10,\n  \"codingSource\": \"v\",\n  \"alternativeCodingSource\": \"b\",\n  \"externalQuestionId\": \"external_question_id_12345\",\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7edc041d-dc6b-49be-b3de-e71217047943",
+          "name": "Initiate autocoding of responses in the specified question",
+          "request": {
+            "name": "Initiate autocoding of responses in the specified question",
+            "description": {
+              "content": "There are three types of AutoCoding available, and will be executed in a certain order.  See the documentation for the body of the POST.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Questions",
+                "AutoCode",
+                ":questionKey",
+                ":loadKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "questionKey",
+                  "description": "(Required) The key of the question, which must be an integer value"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "loadKey",
+                  "description": "(Required) Key of load"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"autoCodeInputId\": \"<boolean>\",\n  \"autoCodeByRegex\": \"<boolean>\",\n  \"autoCodeTextMatch\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8820332e-ba79-4a53-ba9b-3a2bca939a16",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Questions",
+                    "AutoCode",
+                    ":questionKey",
+                    ":loadKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "questionKey",
+                      "description": "(Required) The key of the question, which must be an integer value"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "loadKey",
+                      "description": "(Required) Key of load"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"autoCodeInputId\": \"<boolean>\",\n  \"autoCodeByRegex\": \"<boolean>\",\n  \"autoCodeTextMatch\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"codesAdded\": 1811\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83ccadf8-9d17-456c-bfd4-379f55ca3292",
+          "name": "Delete an existing question or its linked entities",
+          "request": {
+            "name": "Delete an existing question or its linked entities",
+            "description": {
+              "content": "Method deletes the question or its linked entities such as Codes, QualityCodes, Responses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Questions",
+                ":questionKey",
+                ":entityType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "questionKey",
+                  "description": "(Required) Key of question which should be removed by itself or should be removed its linked entities"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityType",
+                  "description": "(Required) One of following values: \"Codes\", \"QualityCodes\", \"Responses\", \"Question\""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7eeb621b-f887-4e7f-a4bd-4bfc856752ff",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Questions",
+                    ":questionKey",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "questionKey",
+                      "description": "(Required) Key of question which should be removed by itself or should be removed its linked entities"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) One of following values: \"Codes\", \"QualityCodes\", \"Responses\", \"Question\""
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entityType\": \"Codes\",\n  \"entityItemsDeleted\": 456,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a45faa8c-49cd-4f55-9469-3502912a399e",
+          "name": "Translate responses in the specified question",
+          "request": {
+            "name": "Translate responses in the specified question",
+            "description": {
+              "content": "Method scans all untranslated yet responses in the specified question and translates them to target language.\r\n\r\nMethod returns some useful statistics about translating operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Questions",
+                "Translate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"questionKey\": \"<integer>\",\n  \"targetLanguageCode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f7599b7b-2cc4-4996-9ecc-ba3faeaad2ef",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Questions",
+                    "Translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"questionKey\": 10000,\n  \"targetLanguageCode\": \"uk\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"questionKey\": 10000,\n  \"responsesCount\": 0,\n  \"translationsCount\": 5000,\n  \"nonTranslatedResponsesCount\": 0,\n  \"transactionsCount\": 15000,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b5427db-a1d7-4663-af1c-ff7a05140e20",
+          "name": "Set a codebook for some specified question",
+          "request": {
+            "name": "Set a codebook for some specified question",
+            "description": {
+              "content": "Method sets the specified codebook to the specified question.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Questions",
+                "Codebook",
+                ":questionKey",
+                ":codebookKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "questionKey",
+                  "description": "(Required) Key of a question"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "codebookKey",
+                  "description": "(Required) Key of a codebook to set"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93ee6528-55d1-45a1-8c31-efae824ff0dc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Questions",
+                    "Codebook",
+                    ":questionKey",
+                    ":codebookKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "questionKey",
+                      "description": "(Required) Key of a question"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "codebookKey",
+                      "description": "(Required) Key of a codebook to set"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "958c5239-4ac8-4ad6-b853-0930c676b25c",
+          "name": "Creates new questions in the specified study by using one call to API",
+          "request": {
+            "name": "Creates new questions in the specified study by using one call to API",
+            "description": {
+              "content": "This method expects an array of questions to create in specified study.\r\n\r\n\r\n  \r\nquestion.type property uses following coding schema: \r\n<ul><li>c: Closed\r\n</li><li>d: Data\r\n</li><li>o: Open\r\n</li><li>s: Other/Specify\r\n</li><li>v: Value\r\n</li></ul>\r\nFor example, the value 'so' (or 'os') returns Open and Other/Specify Questions.\r\n\r\n\r\n \r\nquestion.tasks property uses following coding schema: \r\n<ul><li>c: Code this Question\r\n</li><li>x: Crosstab this Question\r\n</li><li>b: Transcribe this Question\r\n</li><li>t: Translate this Question\r\n</li></ul>\r\nFor example, the value ('ct' or 'tc') adjust Question with the Code or Translate tasks set.\r\n\r\n\r\n\r\nquestion.codingSource and question.alternativeCodingSource properties use following codes: \r\n<ul><li>v: Verbatim\r\n</li><li>b: Transcription\r\n</li><li>t: Translation\r\n</li><li>empty string: None\r\n</li></ul>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Questions",
+                ":studyKey",
+                "Batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "studyKey",
+                  "description": "(Required) Key of target study"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"questions\": [\n    {\n      \"codebookKey\": \"<integer>\",\n      \"id\": \"<string>\",\n      \"label\": \"<string>\",\n      \"text\": \"<string>\",\n      \"help\": \"<string>\",\n      \"sortOrder\": \"<integer>\",\n      \"externalQuestionId\": \"<string>\"\n    },\n    {\n      \"codebookKey\": \"<integer>\",\n      \"id\": \"<string>\",\n      \"label\": \"<string>\",\n      \"text\": \"<string>\",\n      \"help\": \"<string>\",\n      \"sortOrder\": \"<integer>\",\n      \"externalQuestionId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca6f1176-9fd7-4d12-b742-2d36578c389b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Questions",
+                    ":studyKey",
+                    "Batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "studyKey",
+                      "description": "(Required) Key of target study"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"questions\": [\n    {\n      \"codebookKey\": null,\n      \"id\": \"Q1\",\n      \"tasks\": \"cb\",\n      \"type\": \"o\",\n      \"label\": \"Likes\",\n      \"text\": \"What did you like about the product?\",\n      \"help\": \"Any help string for the product\",\n      \"sortOrder\": 10,\n      \"codingSource\": \"v\",\n      \"alternativeCodingSource\": \"b\",\n      \"externalQuestionId\": null\n    },\n    {\n      \"codebookKey\": null,\n      \"id\": \"Q2\",\n      \"tasks\": \"cb\",\n      \"type\": \"o\",\n      \"label\": \"Dislikes\",\n      \"text\": \"What did you dislike about the product?\",\n      \"help\": \"Any help string for the product\",\n      \"sortOrder\": 20,\n      \"codingSource\": \"v\",\n      \"alternativeCodingSource\": \"b\",\n      \"externalQuestionId\": null\n    },\n    {\n      \"codebookKey\": null,\n      \"id\": \"Q3\",\n      \"tasks\": \"c\",\n      \"type\": \"c\",\n      \"label\": \"Country\",\n      \"text\": \"Where are you from?\",\n      \"help\": \"Your country\",\n      \"sortOrder\": 30,\n      \"codingSource\": \"v\",\n      \"alternativeCodingSource\": \"\",\n      \"externalQuestionId\": null\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"studyKey\": 35987,\n  \"questions\": [\n    {\n      \"key\": 348,\n      \"codebookKey\": 4589,\n      \"id\": \"Q1\",\n      \"tasks\": \"cb\",\n      \"type\": \"o\",\n      \"label\": \"Likes\",\n      \"text\": \"What did you like about the product?\",\n      \"help\": \"Any help string for the product\",\n      \"sortOrder\": 10,\n      \"codingSource\": \"v\",\n      \"alternativeCodingSource\": \"b\",\n      \"externalQuestionId\": \"external_question_id_12345\",\n      \"errorMessage\": null\n    },\n    {\n      \"key\": 349,\n      \"codebookKey\": 4589,\n      \"id\": \"Q2\",\n      \"tasks\": \"cb\",\n      \"type\": \"o\",\n      \"label\": \"Likes\",\n      \"text\": \"What did you dislike about the product?\",\n      \"help\": \"Any help string for the product\",\n      \"sortOrder\": 10,\n      \"codingSource\": \"v\",\n      \"alternativeCodingSource\": \"b\",\n      \"externalQuestionId\": null,\n      \"errorMessage\": null\n    },\n    {\n      \"key\": 350,\n      \"codebookKey\": 4589,\n      \"id\": \"Q3\",\n      \"tasks\": \"c\",\n      \"type\": \"c\",\n      \"label\": \"Country\",\n      \"text\": \"Where are you from?\",\n      \"help\": \"Your country\",\n      \"sortOrder\": 30,\n      \"codingSource\": \"v\",\n      \"alternativeCodingSource\": \"\",\n      \"externalQuestionId\": \"external_question_id_67890\",\n      \"errorMessage\": null\n    }\n  ],\n  \"failedQuestions\": null,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1049f307-763c-4b4c-8b87-6daa8b0cf324",
+          "name": "Adds new or updates existing questions in the specified study by using one call to API",
+          "request": {
+            "name": "Adds new or updates existing questions in the specified study by using one call to API",
+            "description": {
+              "content": "This method expects an array of questions to update them in specified study.\r\n\r\n\r\n  \r\nquestion.type property uses following coding schema: \r\n<ul><li>c: Closed\r\n</li><li>d: Data\r\n</li><li>o: Open\r\n</li><li>s: Other/Specify\r\n</li><li>v: Value\r\n</li></ul>\r\n\r\n \r\nquestion.tasks property uses following coding schema: \r\n<ul><li>c: Code this Question\r\n</li><li>x: Crosstab this Question\r\n</li><li>b: Transcribe this Question\r\n</li><li>t: Translate this Question\r\n</li></ul>\r\n\r\n\r\nquestion.codingSource and question.alternativeCodingSource properties use following codes: \r\n<ul><li>v: Verbatim\r\n</li><li>b: Transcription\r\n</li><li>t: Translation\r\n</li><li>empty string: None\r\n</li></ul>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Questions",
+                ":studyKey",
+                "Batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "studyKey",
+                  "description": "(Required) Key of target study"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"questions\": [\n    {\n      \"key\": \"<integer>\",\n      \"id\": \"<string>\",\n      \"tasks\": \"<string>\",\n      \"label\": \"<string>\",\n      \"text\": \"<string>\",\n      \"help\": \"<string>\",\n      \"sortOrder\": \"<integer>\",\n      \"externalQuestionId\": \"<string>\"\n    },\n    {\n      \"key\": \"<integer>\",\n      \"id\": \"<string>\",\n      \"tasks\": \"<string>\",\n      \"label\": \"<string>\",\n      \"text\": \"<string>\",\n      \"help\": \"<string>\",\n      \"sortOrder\": \"<integer>\",\n      \"externalQuestionId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "201f7565-c3e0-4ac7-bada-a3280af2de40",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Questions",
+                    ":studyKey",
+                    "Batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "studyKey",
+                      "description": "(Required) Key of target study"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"questions\": [\n    {\n      \"key\": 200001,\n      \"id\": null,\n      \"tasks\": \"ct\",\n      \"type\": null,\n      \"label\": \"Likes\",\n      \"text\": \"Updated title of q1\",\n      \"help\": \"Any help string for the product\",\n      \"sortOrder\": 10,\n      \"codingSource\": \"v\",\n      \"alternativeCodingSource\": \"b\",\n      \"externalQuestionId\": null\n    },\n    {\n      \"key\": 200002,\n      \"id\": null,\n      \"tasks\": null,\n      \"type\": null,\n      \"label\": \"Dislikes\",\n      \"text\": \"What did you like about the product?\",\n      \"help\": \"Any help string for the product\",\n      \"sortOrder\": 20,\n      \"codingSource\": \"t\",\n      \"alternativeCodingSource\": \"b\",\n      \"externalQuestionId\": null\n    },\n    {\n      \"key\": 200003,\n      \"id\": null,\n      \"tasks\": \"b\",\n      \"type\": null,\n      \"label\": \"Neutral Neutral Neutral Neutral Neutral Neutral Neutral Neutral\",\n      \"text\": \"What did you like about the product?\",\n      \"help\": \"Any help string for the product\",\n      \"sortOrder\": 30,\n      \"codingSource\": \"\",\n      \"alternativeCodingSource\": \"\",\n      \"externalQuestionId\": null\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"failedQuestions\": [\n    {\n      \"key\": \"200003\",\n      \"errorMessage\": \"Some error message\"\n    }\n  ],\n  \"newQuestions\": [],\n  \"errorMessage\": \"Some questions were not updated. See failedQuestions for details.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec0dcb21-1c65-46db-8188-55534ae40093",
+          "name": "Deletes specified questions or their items by using one call to API",
+          "request": {
+            "name": "Deletes specified questions or their items by using one call to API",
+            "description": {
+              "content": "This method expects an array of question keys and entity type.\r\n\r\nEntity type:\r\n\r\nCodes - removes applied codes from questions responses;\r\n\r\nQualityCodes - removes quality codes from questions responses;\r\n\r\nResponses - removes questions responses;\r\n\r\nQuestion - removes questons;\r\n\r\nResponse will contain information about result of operation for each of handled questions.\r\n \r\nIf errorMessage is null it means that question/its items succeccfully deleted without error(s).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Questions",
+                "Batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entityType\": \"<string>\",\n  \"questionKeys\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d8d81263-12ec-4fc6-8f32-2e2f394882b4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Questions",
+                    "Batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"questionKeys\": [\n    200001,\n    2000002,\n    2000003\n  ],\n  \"entityType\": \"Codes\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deleteQuestionsBatchResults\": [\n    {\n      \"questionKey\": 200001,\n      \"errorMessage\": null\n    },\n    {\n      \"questionKey\": 200002,\n      \"errorMessage\": null\n    },\n    {\n      \"questionKey\": 200003,\n      \"errorMessage\": \"Some error message\"\n    }\n  ],\n  \"entityType\": \"Codes\",\n  \"entityItemsDeleted\": 2453,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.goascribe.us/coder/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5e73b074-4c78-45d5-9f42-ba2d50349ca4",
+    "name": "Ascribe Coder AICoder Questions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click \"Try it out!\"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.\n\nContact Support:\n Email: support@goascribe.com",
+      "type": "text/plain"
+    }
+  }
+}

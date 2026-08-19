@@ -1,0 +1,645 @@
+{
+  "item": [
+    {
+      "id": "ab3da10a-6dbd-40b9-9042-60d61ac1a196",
+      "name": "Studies",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "afa75629-946b-4e7b-af4a-f919f19ed822",
+          "name": "Get all studies",
+          "request": {
+            "name": "Get all studies",
+            "description": {
+              "content": "The list of Studies returned may be optionally filtered by id, status, and client company.\r\n\r\nWhen filtering by id the asterisk * character may optionally be used as a leading or trailing wildcard.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Studies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "idFilter",
+                  "value": "<string>",
+                  "description": "If omitted, the returned Studies are not filtered by id.\r\n\r\nOtherwise filter the returned Studies by this case-insensitive value.\r\n\r\nLeading and/or trailing asterisk characters (character code 42) may be used:\r\n\r\n<ul><li>Leading and trailing asterisk : study id must contain the string between the asterisk characters.\r\n</li><li>Leading asterisk: study id must end with the string after the asterisk character.\r\n</li><li>Trailing asterisk: study id must start with the string before the asterisk character.\r\n</li><li>No leading or trailing asterisk: study id must match the specified value.\r\n\r\n</li></ul>\r\nAny asterisk character which is not the first or last character of the value is considered to be part of the requested id."
+                },
+                {
+                  "disabled": false,
+                  "key": "statusMask",
+                  "value": "<string>",
+                  "description": "If omitted, Studies with any status are returned.\r\n\r\nIf present, a string containing these characters, the presence of which specifies the status of the Studies desired:\r\n<ul><li>a: Archived\r\n</li><li>p: Coding in progress\r\n</li><li>c: Completed\r\n</li><li>d: Deleted\r\n</li><li>h: On hold\r\n</li><li>r: Review in progress\r\n</li><li>s: Shipping\r\n</li><li>u: Under construction\r\n\r\n</li></ul>\r\nFor example, the value 'pc' (or 'cp') returns Studies with 'Coding in progress' or 'Completed' status."
+                },
+                {
+                  "disabled": false,
+                  "key": "clientCompanyKey",
+                  "value": "<integer>",
+                  "description": "If omitted or null, the Studies returned are not filtered by Company.\r\n\r\nOtherwise, the Studies returned are those assigned to the Company with the specified key."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85b68523-7f03-43f2-9194-cf867b459fe5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Studies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statusMask",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientCompanyKey",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"studies\": [\n    {\n      \"key\": 544,\n      \"quota\": 5,\n      \"id\": \"S458-3\",\n      \"name\": \"An example of study\",\n      \"description\": \"Use this study only for testing\",\n      \"status\": \"c\",\n      \"supervisorKey\": 1001,\n      \"clientCompanyKey\": 45,\n      \"endCompanyKey\": 46,\n      \"help\": \"Call 02-863**90 if you have questions\",\n      \"createDateUtc\": \"0001-01-01T00:00:00\",\n      \"startDateUtc\": \"2026-06-13T20:21:47.3064269+00:00\",\n      \"dueDateUtc\": \"2026-06-20T20:21:47.3064279+00:00\",\n      \"externalStudyId\": null\n    },\n    {\n      \"key\": 559,\n      \"quota\": null,\n      \"id\": \"S890\",\n      \"name\": null,\n      \"description\": null,\n      \"status\": \"p\",\n      \"supervisorKey\": null,\n      \"clientCompanyKey\": null,\n      \"endCompanyKey\": null,\n      \"help\": null,\n      \"createDateUtc\": \"0001-01-01T00:00:00\",\n      \"startDateUtc\": null,\n      \"dueDateUtc\": null,\n      \"externalStudyId\": null\n    }\n  ],\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a261b01-b2b7-45e2-baab-b8fe025ef156",
+          "name": "Create a new study",
+          "request": {
+            "name": "Create a new study",
+            "description": {
+              "content": "Method creates a new study based on data from request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Studies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"quota\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"supervisorKey\": \"<integer>\",\n  \"clientCompanyKey\": \"<integer>\",\n  \"endCompanyKey\": \"<integer>\",\n  \"help\": \"<string>\",\n  \"startDateUtc\": \"<dateTime>\",\n  \"dueDateUtc\": \"<dateTime>\",\n  \"externalStudyId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "384ef29c-ad74-4aa4-af99-2086a18eec75",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Studies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quota\": 3,\n  \"id\": \"S458-3\",\n  \"name\": \"Hair care\",\n  \"description\": \"Test of hair care products\",\n  \"status\": \"p\",\n  \"supervisorKey\": 44,\n  \"clientCompanyKey\": 45,\n  \"endCompanyKey\": 46,\n  \"help\": \"Code frames must be spell-checked!\",\n  \"startDateUtc\": \"2026-06-13T20:21:47.3196928+00:00\",\n  \"dueDateUtc\": \"2026-06-20T20:21:47.3197193+00:00\",\n  \"externalStudyId\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": 544,\n  \"quota\": null,\n  \"id\": \"S458-3\",\n  \"name\": \"Hair care\",\n  \"description\": \"Test of hair care products\",\n  \"status\": \"p\",\n  \"supervisorKey\": null,\n  \"supervisorAssociateKey\": null,\n  \"clientCompanyKey\": 45,\n  \"endCompanyKey\": null,\n  \"help\": \"Code frames must be spell-checked!\",\n  \"createDateUtc\": \"2026-04-29T20:21:47.3117267Z\",\n  \"startDateUtc\": null,\n  \"dueDateUtc\": null,\n  \"countQuestions\": 0,\n  \"countResponses\": 0,\n  \"countResponsesCoded\": 0,\n  \"countTransactions\": 0,\n  \"externalStudyId\": null,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5d80d28-d848-4a85-9e96-ce768d6e747e",
+          "name": "Update an existing study",
+          "request": {
+            "name": "Update an existing study",
+            "description": {
+              "content": "Method updates an existing study by using data from request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Studies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studyKey\": \"<integer>\",\n  \"quota\": \"<integer>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"supervisorKey\": \"<integer>\",\n  \"clientCompanyKey\": \"<integer>\",\n  \"endCompanyKey\": \"<integer>\",\n  \"help\": \"<string>\",\n  \"startDateUtc\": \"<dateTime>\",\n  \"dueDateUtc\": \"<dateTime>\",\n  \"externalStudyId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c925d549-534b-46ae-8dfb-e105274175fb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Studies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"studyKey\": 10000,\n  \"quota\": 3,\n  \"id\": \"S458-3\",\n  \"name\": \"Hair care\",\n  \"description\": \"Test of hair care products\",\n  \"status\": \"p\",\n  \"supervisorKey\": 44,\n  \"clientCompanyKey\": 45,\n  \"endCompanyKey\": 46,\n  \"help\": \"Code frames must be spell-checked!\",\n  \"startDateUtc\": \"2026-06-13T20:21:47.3265196+00:00\",\n  \"dueDateUtc\": \"2026-06-20T20:21:47.3265468+00:00\",\n  \"externalStudyId\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": 544,\n  \"quota\": null,\n  \"id\": \"S458-3\",\n  \"name\": \"Hair care\",\n  \"description\": \"Test of hair care products\",\n  \"status\": \"p\",\n  \"supervisorKey\": null,\n  \"supervisorAssociateKey\": null,\n  \"clientCompanyKey\": 45,\n  \"endCompanyKey\": null,\n  \"help\": \"Code frames must be spell-checked!\",\n  \"createDateUtc\": \"2026-04-29T20:21:47.32497Z\",\n  \"startDateUtc\": null,\n  \"dueDateUtc\": null,\n  \"countQuestions\": 0,\n  \"countResponses\": 0,\n  \"countResponsesCoded\": 0,\n  \"countTransactions\": 0,\n  \"externalStudyId\": null,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13488d94-0bae-4196-8b6f-be96f80e6423",
+          "name": "Delete study by key",
+          "request": {
+            "name": "Delete study by key",
+            "description": {
+              "content": "Method deletes the study by its key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Studies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studyKey\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "40fafdff-bb6d-489b-a70f-76d2a28003a5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Studies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"studyKey\": 29999\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b7d4b0b-e46e-41a5-9382-5c10032b910a",
+          "name": "Get a study",
+          "request": {
+            "name": "Get a study",
+            "description": {
+              "content": "Method returns a definition of requested study by using its key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Studies",
+                ":studyKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "studyKey",
+                  "description": "(Required) The key of the desired Study, which must be an integer value."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dad65bcf-9da7-44b5-8787-7edb22699f57",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Studies",
+                    ":studyKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "studyKey",
+                      "description": "(Required) The key of the desired Study, which must be an integer value."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": 544,\n  \"quota\": null,\n  \"id\": \"S458-3\",\n  \"name\": \"Hair care\",\n  \"description\": \"Test of hair care products\",\n  \"status\": \"c\",\n  \"supervisorKey\": null,\n  \"supervisorAssociateKey\": null,\n  \"clientCompanyKey\": 45,\n  \"endCompanyKey\": null,\n  \"help\": \"Code frames must be spell-checked!\",\n  \"createDateUtc\": \"2026-04-29T20:21:47.3332828Z\",\n  \"startDateUtc\": null,\n  \"dueDateUtc\": null,\n  \"countQuestions\": 22,\n  \"countResponses\": 4968,\n  \"countResponsesCoded\": 2379,\n  \"countTransactions\": 2379,\n  \"externalStudyId\": null,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3fecab1e-1199-44ed-9e81-9ceac229025d",
+          "name": "Translate all Responses in a Study",
+          "request": {
+            "name": "Translate all Responses in a Study",
+            "description": {
+              "content": "The method scans all questions in the specified study and checks for the **Translate Task** option.\r\n\r\nQuestions with this option enabled are included in the translation process to the target language.\r\n\r\nFor each of the question the method scans all untranslated yet responses and translates them.\r\n \r\nAt the end of the translation operation, the method provides statistics, including the number of responses translated\r\n\r\nand the number of transactions performed for each translated question.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Studies",
+                "Translate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studyKey\": \"<integer>\",\n  \"targetLanguageCode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "351e3048-d639-4d59-aa37-70b886df5187",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Studies",
+                    "Translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"studyKey\": 10000,\n  \"targetLanguageCode\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"studyKey\": 10000,\n  \"targetLanguageCode\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.goascribe.us/coder/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "208f0a5f-7cc6-4de5-bc58-35f49b33d576",
+    "name": "Ascribe Coder AICoder Studies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click \"Try it out!\"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.\n\nContact Support:\n Email: support@goascribe.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1517 @@
+{
+  "item": [
+    {
+      "id": "82ce6062-3167-46e0-b744-4cc6437f3baa",
+      "name": "AICoder",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0bac982c-7042-473e-98ed-81a2092907ed",
+          "name": "Initiates a new task to export AI Coder project data into an Excel file.",
+          "request": {
+            "name": "Initiates a new task to export AI Coder project data into an Excel file.",
+            "description": {
+              "content": "This method exports AI Coder project data into an Excel file.\r\n\r\nAfter the method triggers an export task, it returns a unique task key.\r\n\r\nThis key can be used for tracking the status of exporting through the API endpoint: **AICoder/Export/Excel/{taskStatusKey:long}**.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AICoder",
+                "Export",
+                "Excel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aiCoderKey\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "66c4def7-747d-41cd-a82a-49e44c19980c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AICoder",
+                    "Export",
+                    "Excel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aiCoderKey\": 39999\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskStatusKey\": 1020309999,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa78a84d-7b34-491d-8184-647ccc430105",
+          "name": "Retrieves the current status of an Excel file export task.",
+          "request": {
+            "name": "Retrieves the current status of an Excel file export task.",
+            "description": {
+              "content": "This method requires a task key as an input parameter, which is obtained from the response of the **AICoder/Export/Excel** method.\r\n \r\nIt returns the current status of the export task, including its result if completed.\r\n\r\nIf the task is not yet completed, the method should be called again after a delay.\r\n\r\nContinue calling this method until the task is either completed or rejected due to an error.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AICoder",
+                "Export",
+                "Excel",
+                ":taskStatusKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "taskStatusKey",
+                  "description": "(Required) The key associated with the ongoing task."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed826eba-2e3d-4531-8e83-93f2ee8f348d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AICoder",
+                    "Export",
+                    "Excel",
+                    ":taskStatusKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "taskStatusKey",
+                      "description": "(Required) The key associated with the ongoing task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isCompleted\": true,\n  \"fileUrl\": \"https://goascribe.com/xfjfoejgreo.xls\",\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94eb876b-21c1-425f-8c7d-04d48ac6ffb8",
+          "name": "Initiates a new task to export the generated codebook from an AI Coder project to a Coder study.",
+          "request": {
+            "name": "Initiates a new task to export the generated codebook from an AI Coder project to a Coder study.",
+            "description": {
+              "content": "It allows to export generated codebook in AI Coder back into Coder codebook by using some export strategy (Append, Overwrite, or Merge)\r\n\r\nand determine whether responses should be coded automatically after the export.\r\n\r\nAfter the method triggers generating codebook task, it returns a unique task key.\r\n\r\nThis key can be used for tracking the status of generating codebook through the API endpoint: **AICoder/Export/Codebook/{taskStatusKey:long}**.\r\n\r\nParameter **ExportType:** Specifies the strategy to be used for exporting the codebook.\r\n\r\nCommon options include:\r\n  - **Append**: Adds the new codebook data into the existing codebook of Coder study.\r\n  - **Overwrite**: Fully replaces the existing codebook in the Coder study with the new one.\r\n  - **Merge**: Combines the new codebook with the existing one, replacing any existing codes with the same name and input/output IDs while adding new information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AICoder",
+                "Export",
+                "Codebook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aiCoderKey\": \"<integer>\",\n  \"analyzedVariable\": \"<integer>\",\n  \"skipResponcesCoding\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "58b5d017-37db-4825-97b4-abac8203393f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AICoder",
+                    "Export",
+                    "Codebook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aiCoderKey\": 39999,\n  \"analyzedVariable\": 203399,\n  \"exportType\": \"Append\",\n  \"skipResponcesCoding\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskStatusKey\": 1020309999,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad06fc11-a670-46e1-a4b0-d68f3ec528b1",
+          "name": "Retrieves the current status of Codebook export task.",
+          "request": {
+            "name": "Retrieves the current status of Codebook export task.",
+            "description": {
+              "content": "This method requires a task key as an input parameter, which is obtained from the response of the **AICoder/Export/Codebook** method.\r\n\r\nIt returns the current status of the export task, including its result if completed.\r\n\r\nIf the task is not yet completed, the method should be called again after a delay.\r\n\r\nContinue calling this method until the task is either completed or rejected due to an error.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AICoder",
+                "Export",
+                "Codebook",
+                ":taskStatusKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "taskStatusKey",
+                  "description": "(Required) The key associated with the ongoing task."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5949f5d7-28d7-4d23-a2f1-d86934524c2e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AICoder",
+                    "Export",
+                    "Codebook",
+                    ":taskStatusKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "taskStatusKey",
+                      "description": "(Required) The key associated with the ongoing task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isCompleted\": true,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98a1fb1d-2be9-4028-88f8-14acd85d71a2",
+          "name": "Initiates a new task for analyzing study using Codebook Builder (UI-aligned v3 contract).",
+          "request": {
+            "name": "Initiates a new task for analyzing study using Codebook Builder (UI-aligned v3 contract).",
+            "description": {
+              "content": "This method analyzes responses from some study questions using Codebook Builder: prompt embeddings and clustering to build a prototype codebook.\r\n\r\nRequest `CodebookBuilder` options match the AI Coder app defaults and ranges (granularity 25–150, creation method AI vs data-driven,\r\nminimum responses per code 1–250 default 3, classification strictness 75–95%, optional topic-based code cap 1–50 when enabled,\r\noptional analyze-by closed-ended question).\r\n\r\nGiven codebook prototype can be used in applications such as Ascribe Coder with pre-editing it in AI Coder or without it.\r\n\r\nAdditionally, this process generates a structured dataset that can be utilized for:  \r\n- Comprehensive analysis of the content of survey responses;\r\n- Creation of detailed reports based on the analyzed data;  \r\n\r\nThis method enhances the efficiency of processing textual data and facilitates its interpretation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AICoder",
+                "Analyze",
+                "v3"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"questionKeys\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"codebookBuilder\": {\n    \"codebookGranularity\": \"<integer>\",\n    \"minimumResponsesPerCode\": \"<integer>\",\n    \"classificationStrictness\": \"<integer>\",\n    \"maxTopicBasedCodesEnabled\": \"<boolean>\",\n    \"maxTopicBasedCodes\": \"<integer>\",\n    \"analyzeByClosedEnd\": {\n      \"questionKey\": \"<integer>\",\n      \"codes\": [\n        {\n          \"codeKey\": \"<integer>\",\n          \"codeIsAbout\": \"<string>\"\n        },\n        {\n          \"codeKey\": \"<integer>\",\n          \"codeIsAbout\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"includeCodedResponses\": \"<boolean>\",\n  \"wordsToIgnore\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"generativeAIOptions\": {\n    \"dataIsAbout\": \"<string>\",\n    \"codebookLanguage\": \"<string>\"\n  },\n  \"nonGenerativeAIOptions\": {\n    \"splitCharacters\": \"<string>\",\n    \"splitWords\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"responsesAreAllEnglish\": \"<boolean>\"\n  },\n  \"useGenerativeAI\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4fec2f9b-7d1a-4dcf-9830-b15cbe043e8b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AICoder",
+                    "Analyze",
+                    "v3"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"questionKeys\": [\n    100,\n    101,\n    102,\n    103\n  ],\n  \"codebookBuilder\": {\n    \"codebookGranularity\": 100,\n    \"creationMethod\": \"AIGenerated\",\n    \"minimumResponsesPerCode\": 3,\n    \"classificationStrictness\": 80,\n    \"maxTopicBasedCodesEnabled\": false,\n    \"maxTopicBasedCodes\": 10,\n    \"analyzeByClosedEnd\": null\n  },\n  \"includeCodedResponses\": false,\n  \"wordsToIgnore\": [\n    \"some\",\n    \"words\",\n    \"to\",\n    \"ignore\"\n  ],\n  \"generativeAIOptions\": {\n    \"dataIsAbout\": null,\n    \"codebookLanguage\": \"en\"\n  },\n  \"nonGenerativeAIOptions\": {\n    \"splitCharacters\": \".!?|\",\n    \"splitWords\": [\n      \"but\",\n      \"however\",\n      \"nevertheless\",\n      \"nonetheless\",\n      \"yet\",\n      \"thus\",\n      \"also\",\n      \"additionally\",\n      \"nor\",\n      \"and\"\n    ],\n    \"responsesAreAllEnglish\": true\n  },\n  \"useGenerativeAI\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskStatusKey\": 1020309999,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1201acc-cd48-4e97-8e22-a4319207e47b",
+          "name": "Initiates a new task for analyzing study.",
+          "request": {
+            "name": "Initiates a new task for analyzing study.",
+            "description": {
+              "content": "This method analyzes responses from some study questions by applying artificial intelligence (AI)\r\n\r\nor special algorithms for automatically constructing a hierarchical model of a prototype codebook.\r\n \r\nGiven codebook prototype can be used in applications such as Ascribe Coder with pre-editing it in AI Coder or without it.\r\n\r\nAdditionally, this process generates a structured dataset that can be utilized for:  \r\n- Comprehensive analysis of the content of survey responses;\r\n- Creation of detailed reports based on the analyzed data;  \r\n\r\nThis method enhances the efficiency of processing textual data and facilitates its interpretation.\r\n\r\nNote: For Codebook Builder (prompt embeddings) analysis aligned with the AI Coder app, use `POST /AICoder/Analyze/v3`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AICoder",
+                "Analyze"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"questionKeys\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"codebook\": {\n    \"initial\": {\n      \"minProximity\": \"<integer>\",\n      \"minSegmentsPerCode\": \"<integer>\",\n      \"approxMaxCodes\": \"<integer>\"\n    },\n    \"mergeSimilar\": {\n      \"enabled\": \"<boolean>\",\n      \"minProximity\": \"<integer>\"\n    },\n    \"assignSegmentSiblings\": {\n      \"enabled\": \"<boolean>\",\n      \"minProximity\": \"<integer>\",\n      \"minSiblings\": \"<integer>\"\n    },\n    \"assignTopSegments\": {\n      \"enabled\": \"<boolean>\",\n      \"minProximity\": \"<integer>\",\n      \"topSegments\": \"<integer>\"\n    }\n  },\n  \"generativeAIOptions\": {\n    \"dataIsAbout\": \"<string>\",\n    \"codebookLanguage\": \"<string>\"\n  },\n  \"nonGenerativeAIOptions\": {\n    \"splitCharacters\": \"<string>\",\n    \"splitWords\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"responsesAreAllEnglish\": \"<boolean>\"\n  },\n  \"useGenerativeAI\": \"<boolean>\",\n  \"wordsToIgnore\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includeCodedResponses\": \"<boolean>\",\n  \"useEnhancedThemeExtractor\": \"<boolean>\",\n  \"enhancedThemeExtractor\": {\n    \"maxNumberOfNets\": \"<integer>\",\n    \"maxNumberOfCodes\": \"<integer>\",\n    \"codebookBuilderPrompt\": \"<string>\",\n    \"analyzeByClosedEnd\": {\n      \"questionKey\": \"<integer>\",\n      \"codes\": [\n        {\n          \"codeKey\": \"<integer>\",\n          \"codeIsAbout\": \"<string>\"\n        },\n        {\n          \"codeKey\": \"<integer>\",\n          \"codeIsAbout\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"existingCodebookKey\": \"<integer>\",\n  \"existingCodebookSuggestNewCodes\": \"<boolean>\",\n  \"existingCodebookOptions\": {\n    \"applyRegEx\": \"<boolean>\",\n    \"applyTrainingExamples\": \"<boolean>\",\n    \"applyCodingRules\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "edc844e2-c003-438d-b3c7-bcad4dec8360",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AICoder",
+                    "Analyze"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"questionKeys\": [\n    100,\n    101,\n    102,\n    103\n  ],\n  \"existingCodebookKey\": -1,\n  \"existingCodebookSuggestNewCodes\": false,\n  \"existingCodebookOptions\": null,\n  \"codebook\": {\n    \"initial\": {\n      \"minProximity\": 75,\n      \"minSegmentsPerCode\": 3,\n      \"approxMaxCodes\": 100\n    },\n    \"mergeSimilar\": {\n      \"enabled\": true,\n      \"minProximity\": 85\n    },\n    \"assignSegmentSiblings\": {\n      \"enabled\": true,\n      \"minProximity\": 75,\n      \"minSiblings\": 3\n    },\n    \"assignTopSegments\": {\n      \"enabled\": true,\n      \"minProximity\": 75,\n      \"topSegments\": 10\n    }\n  },\n  \"generativeAIOptions\": {\n    \"dataIsAbout\": null,\n    \"codebookLanguage\": \"en\"\n  },\n  \"nonGenerativeAIOptions\": {\n    \"splitCharacters\": \".!?|\",\n    \"splitWords\": [\n      \"but\",\n      \"however\",\n      \"nevertheless\",\n      \"nonetheless\",\n      \"yet\",\n      \"thus\",\n      \"also\",\n      \"additionally\",\n      \"nor\",\n      \"and\"\n    ],\n    \"responsesAreAllEnglish\": true\n  },\n  \"useGenerativeAI\": false,\n  \"wordsToIgnore\": [\n    \"some\",\n    \"words\",\n    \"to\",\n    \"ignore\"\n  ],\n  \"includeCodedResponses\": false,\n  \"useEnhancedThemeExtractor\": false,\n  \"enhancedThemeExtractor\": {\n    \"maxNumberOfNets\": 10,\n    \"maxNumberOfCodes\": 100,\n    \"codebookBuilderPrompt\": null,\n    \"analyzeByClosedEnd\": null,\n    \"codebookGranularity\": null\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskStatusKey\": 1020309999,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4fcaa6f-7a43-42a9-9281-ce411bda17f3",
+          "name": "Initiates a new task for incremental analyzing study.",
+          "request": {
+            "name": "Initiates a new task for incremental analyzing study.",
+            "description": {
+              "content": "This method does the same as **/AICoder/Analyze**, but for newly loaded responses only.\r\nOptional `SuggestNewCodes` on the request body matches the AI Coder **Suggest new codes** checkbox when adding a load\r\n(`addNewCodesWhenAddAICoderLoad`); default is `false`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AICoder",
+                "Analyze",
+                "Incremental"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<integer>\",\n  \"suggestNewCodes\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7a2a54fe-25d2-4a41-bab3-efde6880d772",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AICoder",
+                    "Analyze",
+                    "Incremental"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": 19999,\n  \"suggestNewCodes\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskStatusKey\": 1020309999,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "534d7ea7-604a-48e8-953c-04a6beb261ea",
+          "name": "Retrieves a status of analyzing (incremental analyzing) study task.",
+          "request": {
+            "name": "Retrieves a status of analyzing (incremental analyzing) study task.",
+            "description": {
+              "content": "This method expects a task key as an input parameter from the **/AICoder/Analyze** or **/AICoder/Analyze/Incremental**.\r\n\r\nIt returns information about current status of the analyzing task or result.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AICoder",
+                "Analyze",
+                ":taskStatusKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "taskStatusKey",
+                  "description": "(Required) The key of the executing task."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1006a08-0129-4d13-aba2-a45a261543bd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AICoder",
+                    "Analyze",
+                    ":taskStatusKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "taskStatusKey",
+                      "description": "(Required) The key of the executing task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isCompleted\": true,\n  \"project\": null,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0767cf32-f4f4-4c3d-b73a-db3cefd7f98e",
+          "name": "Retrieves a list of available codebooks from AI Coder projects.",
+          "request": {
+            "name": "Retrieves a list of available codebooks from AI Coder projects.",
+            "description": {
+              "content": "This method scans AI Coder projects for non-deleting codebooks and returns list of their defenitions.\r\n\r\nIf value of **id** property ends with \"GAI\" it means that codebook was created by using generative artificial intelligence.\r\n\r\nIf value of **id** property ends with \"AI\" it means that codebook was created by using simple artificial intelligence.\r\n\r\nIf value of **id** property does not include \"GAI\" or \"AI\" in the tail it means that codebook was created without using any kind of artificial intelligence.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AICoder",
+                "Analyze",
+                "Codebooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6ae93db-1dd7-4aaa-9225-cd763238afa5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AICoder",
+                    "Analyze",
+                    "Codebooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"codebooks\": [\n    {\n      \"key\": -1,\n      \"id\": \"New Codebook\"\n    },\n    {\n      \"key\": 190001,\n      \"id\": \"Test Codebook 1\"\n    },\n    {\n      \"key\": 190002,\n      \"id\": \"Test Codebook 2 - GAI\"\n    },\n    {\n      \"key\": 190003,\n      \"id\": \"Test Codebook 3\"\n    }\n  ],\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65297248-13a6-48a8-ab04-0daa7369c405",
+          "name": "Initiates a new task for grouping codes into target net.",
+          "request": {
+            "name": "Initiates a new task for grouping codes into target net.",
+            "description": {
+              "content": "This method re-builds the entire codebook of specified AI Coder project or its part.\r\n\r\nParameter **NetKey** allows specifying a child net as the root of a branch and rebuilding only that part.\r\n \r\nIf **NetKey** is set to **0**, the entire codebook will be processed.\r\n\r\nSetting the **NetLevel** parameter to **0** removes all nets, otherwise this value must be positive and can be less than or greater than the current net level of the codebook.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AICoder",
+                "NetCodes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aiCoderKey\": \"<integer>\",\n  \"netKey\": \"<integer>\",\n  \"netLevel\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4fd4c555-afe6-4c18-ba67-17925a074560",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AICoder",
+                    "NetCodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aiCoderKey\": 1,\n  \"netKey\": 1005,\n  \"netLevel\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskStatusKey\": 1020309999,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "05b75dc1-8fca-4379-a112-f3a27a3ad255",
+          "name": "Retrieves a status of grouping codes to target net task.",
+          "request": {
+            "name": "Retrieves a status of grouping codes to target net task.",
+            "description": {
+              "content": "This method expects a task key as an input parameter from the **/AICoder/NetCodes** method.\r\n\r\nIt returns information about current status of the grouping nets task or result.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AICoder",
+                "NetCodes",
+                ":taskStatusKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "taskStatusKey",
+                  "description": "(Required) The key of the executing task."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1e28697-2a2b-4cbb-a81a-b9592adcd7d2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AICoder",
+                    "NetCodes",
+                    ":taskStatusKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "taskStatusKey",
+                      "description": "(Required) The key of the executing task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isCompleted\": true,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17e910ce-247f-4928-906f-a2141a76878b",
+          "name": "Retrieves a list of all AI Coder projects that available to current user.",
+          "request": {
+            "name": "Retrieves a list of all AI Coder projects that available to current user.",
+            "description": {
+              "content": "This method prepares a list of AI Coder project defenitions which available for the current user.\r\n\r\nThe result list includes deleted projects as well.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AICoder",
+                "Projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58d372eb-2e8d-4267-818c-31be68d4cacf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AICoder",
+                    "Projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aiCoderProjects\": [\n    {\n      \"key\": 29999,\n      \"description\": \"\",\n      \"questionKeys\": [\n        18999,\n        20000,\n        20001\n      ],\n      \"responsesCount\": 100,\n      \"responsesCodedCount\": 200,\n      \"codesAppliedCount\": 200,\n      \"owner\": \"some.user\",\n      \"createDate\": \"2026-06-13T20:21:47.08939+00:00\",\n      \"updateDate\": \"2026-06-13T20:21:47.0893906+00:00\",\n      \"deleteDate\": null,\n      \"isPublic\": false\n    }\n  ],\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18f0e45c-0e85-417b-a459-51eeaf7fcc07",
+          "name": "Create new link(s) to an AI Coder project",
+          "request": {
+            "name": "Create new link(s) to an AI Coder project",
+            "description": {
+              "content": "This method generates temporary short link(s) for sharing. The link(s) leads to specified AI Coder project's page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AICoder",
+                "Links"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectKey\": \"<integer>\",\n  \"distributionQuestionKey\": \"<integer>\",\n  \"expirationDateUtc\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b40a5404-204d-41dc-babc-3208f950060e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AICoder",
+                    "Links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectKey\": 29999,\n  \"distributionQuestionKey\": 39999,\n  \"expirationDateUtc\": \"2026-06-13T20:21:47.0923631Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": [\n    {\n      \"distributionQuestionValue\": \"Some value\",\n      \"link\": \"https://goascribe.com/xfjfoejgreo\",\n      \"expirationDateUtc\": \"2026-06-13T20:21:47.0940103Z\"\n    }\n  ],\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b445a3ff-36f1-4206-a876-ea7712fc93d0",
+          "name": "Initiates a new task for exporting of dichotomous report",
+          "request": {
+            "name": "Initiates a new task for exporting of dichotomous report",
+            "description": {
+              "content": "After the method triggers exporting of dichotomous report task, it returns a unique task key.\r\n\r\nThis key can be used for tracking the status of generating of dichotomous report through the API endpoint: **AICoder/Export/Dichotomous/{taskStatusKey:long}**.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AICoder",
+                "Export",
+                "Dichotomous"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectKey\": \"<integer>\",\n  \"removeEmptyColumns\": \"<boolean>\",\n  \"useAverageSentimentPerRow\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a663da11-1d06-44c7-b37e-2e2e86e4e90d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AICoder",
+                    "Export",
+                    "Dichotomous"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectKey\": 29999,\n  \"removeEmptyColumns\": true,\n  \"useAverageSentimentPerRow\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskStatusKey\": 1020309999,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63d03f8c-abbf-41f3-89be-febbc46da130",
+          "name": "Retrieves a status of exporting of dichotomous report task.",
+          "request": {
+            "name": "Retrieves a status of exporting of dichotomous report task.",
+            "description": {
+              "content": "This method expects a task key as an input parameter from the **/AICoder/Export/Dichotomous** method.\r\n\r\nIt returns information about current status of exporting of dichotomous report task or result.\r\n\r\nIf the task is not yet completed, the method should be called again after a delay.\r\n\r\nContinue calling this method until the task is either completed or rejected due to an error.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AICoder",
+                "Export",
+                "Dichotomous",
+                ":taskStatusKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "taskStatusKey",
+                  "description": "(Required) The key of the executing task."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b52ed1b-1ced-4bf7-b316-e320972b8fe7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AICoder",
+                    "Export",
+                    "Dichotomous",
+                    ":taskStatusKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "taskStatusKey",
+                      "description": "(Required) The key of the executing task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isCompleted\": true,\n  \"fileUrl\": \"https://goascribe.com/xfjfoejgreo.xls\",\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.goascribe.us/coder/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "226d468b-ef87-4460-a041-b0fe676146cd",
+    "name": "Ascribe Coder AICoder API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click \"Try it out!\"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.\n\nContact Support:\n Email: support@goascribe.com",
+      "type": "text/plain"
+    }
+  }
+}

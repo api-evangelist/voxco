@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascribe Coder AICoder Companies API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of Companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goascribe.us/coder/v2/Companies"
+          },
+          "docs": "This operation returns the key and ID of all Companies in the Ascribe Account."
+        },
+        {
+          "info": {
+            "name": "Create a new Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goascribe.us/coder/v2/Companies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The id assigned to the company must not already exist.\r\n\r\nThe maximum length of the id is 100 characters.\r\nThe id must not begin with an underscore character '_'."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

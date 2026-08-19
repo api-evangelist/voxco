@@ -1,0 +1,314 @@
+{
+  "item": [
+    {
+      "id": "2ba71c3f-4cf9-49be-8d31-d00758bdf663",
+      "name": "Exports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8d59229b-5d25-4d4e-9318-880f4e3777ac",
+          "name": "Retrieves a list of all scripts available to the current account, including global scripts.",
+          "request": {
+            "name": "Retrieves a list of all scripts available to the current account, including global scripts.",
+            "description": {
+              "content": "Method returns a list of all script definitions which are available in current account, including all global ones.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Exports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04f39627-b169-4a49-9a95-93c8c51c6a5b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"scripts\": [\n    {\n      \"key\": 5,\n      \"name\": \"Translation Complete Report\",\n      \"description\": \"Uses the specified closed-end as language data to identify translation production by question\",\n      \"isForceToTextOption\": true,\n      \"friendlyName\": \"Translation Report\",\n      \"acceptsQuestionList\": true,\n      \"modifiesData\": false,\n      \"purpose\": \"Export\",\n      \"parameters\": [\n        {\n          \"key\": 1,\n          \"name\": \"Language/Country question\",\n          \"description\": null,\n          \"verifyRegEx\": null,\n          \"ordinal\": 0,\n          \"isRequired\": true,\n          \"parameterType\": \"String\"\n        },\n        {\n          \"key\": 2,\n          \"name\": \"Email list\",\n          \"description\": null,\n          \"verifyRegEx\": null,\n          \"ordinal\": 0,\n          \"isRequired\": false,\n          \"parameterType\": \"String\"\n        }\n      ]\n    },\n    {\n      \"key\": 6,\n      \"name\": \"ORC MP3 loader\",\n      \"description\": \"\",\n      \"isForceToTextOption\": false,\n      \"friendlyName\": \"ORC Audio Loader\",\n      \"acceptsQuestionList\": false,\n      \"modifiesData\": true,\n      \"purpose\": \"DataUpdate\",\n      \"parameters\": []\n    }\n  ],\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9832c3e-5780-4d73-a4a1-f76c1530ab4a",
+          "name": "Initiates a new export job",
+          "request": {
+            "name": "Initiates a new export job",
+            "description": {
+              "content": "Method initiates a new export job by using specified script and target questions and returns back a unique key of it.\r\n\r\nThe Job key should be used as inner parameter for **/Exports/{jobKey}** method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Exports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"questionKeys\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"scriptKey\": \"<integer>\",\n  \"studyKey\": \"<integer>\",\n  \"parameters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"exportAsText\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5836bd95-9c45-463c-84ce-be836117145e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"studyKey\": 20000,\n  \"questionKeys\": [\n    1005,\n    1006,\n    1007\n  ],\n  \"scriptKey\": 1,\n  \"parameters\": [\n    \"1000\",\n    \"test\",\n    \"export\",\n    \"3\"\n  ],\n  \"exportAsText\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobKey\": 1000110,\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ec977ef-3115-4d71-95e5-5c8b8e2079eb",
+          "name": "Retrieves a current status of specified job",
+          "request": {
+            "name": "Retrieves a current status of specified job",
+            "description": {
+              "content": "This method expects a job key as an input parameter from the **[POST] /Exports** method.\r\n\r\nIt returns information about current status of exporting of the job or result.\r\n\r\nIf the job is not yet completed, the method should be called again after a delay.\r\n\r\nContinue calling this method until the job is either completed or rejected due to an error.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Exports",
+                ":jobKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "jobKey",
+                  "description": "(Required) Key of job"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10b9c983-f1b7-4821-9e1d-06f9241ad85a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Exports",
+                    ":jobKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "jobKey",
+                      "description": "(Required) Key of job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobKey\": 1000110,\n  \"userKey\": 1003,\n  \"type\": 6,\n  \"status\": 0,\n  \"createDate\": \"2026-06-13T20:21:47.1884173Z\",\n  \"startDate\": null,\n  \"endDate\": null,\n  \"info\": \"Some information\",\n  \"error\": \"Message of excception if it occured while export operation\",\n  \"resultFileUri\": \"https://app.goascribe.us/JobResults/Tower1/20133/55dcac9c-5c88-4623-95ad-214f54a72a8b/file.xlsx\",\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.goascribe.us/coder/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f3bc6a0c-9a57-49ed-b0fb-84259816943d",
+    "name": "Ascribe Coder AICoder Exports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click \"Try it out!\"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.\n\nContact Support:\n Email: support@goascribe.com",
+      "type": "text/plain"
+    }
+  }
+}

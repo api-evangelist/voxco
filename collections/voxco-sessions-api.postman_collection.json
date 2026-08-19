@@ -1,0 +1,142 @@
+{
+  "item": [
+    {
+      "id": "e1b9c335-0a60-4414-b469-f19f3c9b6803",
+      "name": "Sessions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b6883372-f83d-4c68-928c-e71a0dfe6e94",
+          "name": "Create a new session for interaction with this API",
+          "request": {
+            "name": "Create a new session for interaction with this API",
+            "description": {
+              "content": "The credentialed user must have Adminstrator privilege in Ascribe.\r\n\r\nThe response message contains two tokens, one of which must be passed in a header for all other operations with this API.\r\n\r\nYou may either use the bearerToken or the authenticationToken.  Either send a header with key \"authentication\" and value the authenticationToken returned in this response,\r\nor send a header with key \"Authorization\" and value the bearerToken returned in this response.\r\n\r\nThe bearerToken does not expire, but will become invalid if the user's credentials change.\r\n\r\nThe authenticationToken remains valid until no request is sent to this API using the authenticationToken for 30 minutes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Session",
+                "New"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account\": \"<string>\",\n  \"password\": \"<string>\",\n  \"userName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c3021ec-013b-4e27-85bb-1b7b9bf4c9a0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Session",
+                    "New"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": \"MyAscribeAccount\",\n  \"userName\": \"john.doe\",\n  \"password\": \"--------\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"authenticationToken\": \"0a6b6255-7e8b-4b71-bb93-1d568110ddae\",\n  \"bearerToken\": \"bearer eyJhbGciOiJSUzI1NiIsInR5cC ... WiiVzXPhdgSWNvH1hNOIirNmg\",\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.goascribe.us/coder/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "030085e4-a6fc-4f82-ab85-a9fb24fc8756",
+    "name": "Ascribe Coder AICoder Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click \"Try it out!\"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.\n\nContact Support:\n Email: support@goascribe.com",
+      "type": "text/plain"
+    }
+  }
+}
