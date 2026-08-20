@@ -86,6 +86,8 @@ apis:
   humanURL: https://www.voxco.com/professional-services
   baseURL: https://na1.voxco.com
   tags:
+  - Export
+  tags_raw:
   - Exports
   properties:
   - type: OpenAPI
@@ -102,6 +104,8 @@ apis:
   humanURL: https://www.voxco.com/professional-services
   baseURL: https://na1.voxco.com
   tags:
+  - Language
+  tags_raw:
   - Languages
   properties:
   - type: OpenAPI
@@ -198,6 +202,8 @@ apis:
   humanURL: https://www.voxco.com/professional-services
   baseURL: https://na1.voxco.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
