@@ -5,6 +5,18 @@ description: Voxco is an omnichannel survey platform serving market research fir
   surveys, distributing questionnaires via multiple channels (online, CATI, mobile,
   IVR), collecting responses, and accessing survey analytics. The Ascribe text analytics
   API further enables AI-powered coding and analysis of open-ended survey responses.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
