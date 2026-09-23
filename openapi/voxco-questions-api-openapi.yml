@@ -1,7 +1,7 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Ascribe Coder AICoder Questions API
-  description: <br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click "Try it out!"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.
+  title: Ascribe Coder Questions API
+  description: To import this API to Postman, copy the URL from the top of this page.
   contact:
     email: support@goascribe.com
   version: v2
@@ -22,7 +22,10 @@ paths:
       tags:
       - Questions
       summary: Get the Questions in a Study
-      description: "Retrieves by default all of the Questions in the Study.\r\n\r\nYou can optionally retrieve only a sub-set of the questions, filtering by the question type or the tasks assigned to the question."
+      description: 'Retrieves by default all of the Questions in the Study.
+
+
+        You can optionally retrieve only a sub-set of the questions, filtering by the question type or the tasks assigned to the question.'
       parameters:
       - name: studyKey
         in: path
@@ -33,12 +36,30 @@ paths:
           format: int32
       - name: types
         in: query
-        description: "Optional filter by Question type.\r\n\r\n            If omitted, Questions of all types are returned.\r\n\r\n            If present, a string containing these characters, the presence of which specifies the type of Question desired:\r\n<ul><li>c: Closed\r\n</li><li>d: Data\r\n</li><li>o: Open\r\n</li><li>s: Other/Specify\r\n</li><li>v: Value\r\n</li></ul>\r\n            For example, the value 'so' (or 'os') returns Open and Other/Specify Questions."
+        description: "Optional filter by Question type.\n\n            If omitted, Questions of all types are returned.\n\n            If present, a string containing these characters, the presence of which specifies the type of Question desired:\n<ul><li>c: Closed\n</li><li>d: Data\n</li><li>o: Open\n</li><li>s: Other/Specify\n</li><li>v: Value\n</li></ul>\n            For example, the value 'so' (or 'os') returns Open and Other/Specify Questions."
         schema:
           type: string
       - name: tasks
         in: query
-        description: "Optional filter by task.\r\n\r\nIf omitted, Questions are not filtered by task.\r\n\r\nIf present, a string containing these characters, the presence of which specified the task assigned to a Question:\r\n<ul><li>c: Code this Question\r\n</li><li>x: Crosstab this Question\r\n</li><li>b: Transcribe this Question\r\n</li><li>t: Translate this Question\r\n</li></ul>\r\nFor example, the value ('ct' or 'tc') returns Questions with the Code or Translate tasks set."
+        description: 'Optional filter by task.
+
+
+          If omitted, Questions are not filtered by task.
+
+
+          If present, a string containing these characters, the presence of which specified the task assigned to a Question:
+
+          <ul><li>c: Code this Question
+
+          </li><li>x: Crosstab this Question
+
+          </li><li>b: Transcribe this Question
+
+          </li><li>t: Translate this Question
+
+          </li></ul>
+
+          For example, the value (''ct'' or ''tc'') returns Questions with the Code or Translate tasks set.'
         schema:
           type: string
       responses:
@@ -165,6 +186,8 @@ paths:
                   alternativeCodingSource: b
                   externalQuestionId: null
                 errorMessage: null
+      operationId: getQuestionsByStudyKey
+      x-operation-id-source: derived
     post:
       tags:
       - Questions
@@ -281,12 +304,14 @@ paths:
                 alternativeCodingSource: b
                 externalQuestionId: external_question_id_12345
                 errorMessage: null
+      operationId: postQuestionsByStudyKey
+      x-operation-id-source: derived
   /Questions/AutoCode/{questionKey}/{loadKey}:
     post:
       tags:
       - Questions
       summary: Initiate autocoding of responses in the specified question
-      description: There are three types of AutoCoding available, and will be executed in a certain order.  See the documentation for the body of the POST.
+      description: There are three types of AutoCoding available, and will be executed in a certain order. See the documentation for the body of the POST.
       parameters:
       - name: questionKey
         in: path
@@ -327,6 +352,8 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/AutoCodeQuestionResponse'
+      operationId: postQuestionsAutoCodeByQuestionKeyByLoadKey
+      x-operation-id-source: derived
   /Questions/{questionKey}/{entityType}:
     delete:
       tags:
@@ -372,12 +399,17 @@ paths:
                 entityType: Codes
                 entityItemsDeleted: 456
                 errorMessage: null
+      operationId: deleteQuestionsByQuestionKeyByEntityType
+      x-operation-id-source: derived
   /Questions/Translate:
     post:
       tags:
       - Questions
       summary: Translate responses in the specified question
-      description: "Method scans all untranslated yet responses in the specified question and translates them to target language.\r\n\r\nMethod returns some useful statistics about translating operation."
+      description: 'Method scans all untranslated yet responses in the specified question and translates them to target language.
+
+
+        Method returns some useful statistics about translating operation.'
       requestBody:
         content:
           application/json:
@@ -432,6 +464,8 @@ paths:
                 nonTranslatedResponsesCount: 0
                 transactionsCount: 15000
                 errorMessage: null
+      operationId: postQuestionsTranslate
+      x-operation-id-source: derived
   /Questions/Codebook/{questionKey}/{codebookKey}:
     post:
       tags:
@@ -466,12 +500,68 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/SetQuestionCodebookResponse'
+      operationId: postQuestionsCodebookByQuestionKeyByCodebookKey
+      x-operation-id-source: derived
   /Questions/{studyKey}/Batch:
     post:
       tags:
       - Questions
       summary: Creates new questions in the specified study by using one call to API
-      description: "This method expects an array of questions to create in specified study.\r\n\r\n\r\n  \r\nquestion.type property uses following coding schema: \r\n<ul><li>c: Closed\r\n</li><li>d: Data\r\n</li><li>o: Open\r\n</li><li>s: Other/Specify\r\n</li><li>v: Value\r\n</li></ul>\r\nFor example, the value 'so' (or 'os') returns Open and Other/Specify Questions.\r\n\r\n\r\n \r\nquestion.tasks property uses following coding schema: \r\n<ul><li>c: Code this Question\r\n</li><li>x: Crosstab this Question\r\n</li><li>b: Transcribe this Question\r\n</li><li>t: Translate this Question\r\n</li></ul>\r\nFor example, the value ('ct' or 'tc') adjust Question with the Code or Translate tasks set.\r\n\r\n\r\n\r\nquestion.codingSource and question.alternativeCodingSource properties use following codes: \r\n<ul><li>v: Verbatim\r\n</li><li>b: Transcription\r\n</li><li>t: Translation\r\n</li><li>empty string: None\r\n</li></ul>"
+      description: 'This method expects an array of questions to create in specified study.
+
+
+        question.type property uses following coding schema:
+
+
+        c: Closed
+
+
+        d: Data
+
+
+        o: Open
+
+
+        s: Other/Specify
+
+
+        v: Value
+
+
+        For example, the value ''so'' (or ''os'') returns Open and Other/Specify Questions.
+
+
+        question.tasks property uses following coding schema:
+
+
+        c: Code this Question
+
+
+        x: Crosstab this Question
+
+
+        b: Transcribe this Question
+
+
+        t: Translate this Question
+
+
+        For example, the value (''ct'' or ''tc'') adjust Question with the Code or Translate tasks set.
+
+
+        question.codingSource and question.alternativeCodingSource properties use following codes:
+
+
+        v: Verbatim
+
+
+        b: Transcription
+
+
+        t: Translation
+
+
+        empty string: None'
       parameters:
       - name: studyKey
         in: path
@@ -742,11 +832,61 @@ paths:
                   errorMessage: null
                 failedQuestions: null
                 errorMessage: null
+      operationId: postQuestionsByStudyKeyBatch
+      x-operation-id-source: derived
     put:
       tags:
       - Questions
-      summary: Adds new or updates existing questions in the specified study by using one call to API
-      description: "This method expects an array of questions to update them in specified study.\r\n\r\n\r\n  \r\nquestion.type property uses following coding schema: \r\n<ul><li>c: Closed\r\n</li><li>d: Data\r\n</li><li>o: Open\r\n</li><li>s: Other/Specify\r\n</li><li>v: Value\r\n</li></ul>\r\n\r\n \r\nquestion.tasks property uses following coding schema: \r\n<ul><li>c: Code this Question\r\n</li><li>x: Crosstab this Question\r\n</li><li>b: Transcribe this Question\r\n</li><li>t: Translate this Question\r\n</li></ul>\r\n\r\n\r\nquestion.codingSource and question.alternativeCodingSource properties use following codes: \r\n<ul><li>v: Verbatim\r\n</li><li>b: Transcription\r\n</li><li>t: Translation\r\n</li><li>empty string: None\r\n</li></ul>"
+      summary: Adds new or updates existing questions in the specified study by using one call…
+      description: 'This method expects an array of questions to update them in specified study.
+
+
+        question.type property uses following coding schema:
+
+
+        c: Closed
+
+
+        d: Data
+
+
+        o: Open
+
+
+        s: Other/Specify
+
+
+        v: Value
+
+
+        question.tasks property uses following coding schema:
+
+
+        c: Code this Question
+
+
+        x: Crosstab this Question
+
+
+        b: Transcribe this Question
+
+
+        t: Translate this Question
+
+
+        question.codingSource and question.alternativeCodingSource properties use following codes:
+
+
+        v: Verbatim
+
+
+        b: Transcription
+
+
+        t: Translation
+
+
+        empty string: None'
       parameters:
       - name: studyKey
         in: path
@@ -903,12 +1043,35 @@ paths:
                   errorMessage: Some error message
                 newQuestions: []
                 errorMessage: Some questions were not updated. See failedQuestions for details.
+      operationId: putQuestionsByStudyKeyBatch
+      x-operation-id-source: derived
   /Questions/Batch:
     delete:
       tags:
       - Questions
       summary: Deletes specified questions or their items by using one call to API
-      description: "This method expects an array of question keys and entity type.\r\n\r\nEntity type:\r\n\r\nCodes - removes applied codes from questions responses;\r\n\r\nQualityCodes - removes quality codes from questions responses;\r\n\r\nResponses - removes questions responses;\r\n\r\nQuestion - removes questons;\r\n\r\nResponse will contain information about result of operation for each of handled questions.\r\n \r\nIf errorMessage is null it means that question/its items succeccfully deleted without error(s)."
+      description: 'This method expects an array of question keys and entity type.
+
+
+        Entity type:
+
+
+        Codes - removes applied codes from questions responses;
+
+
+        QualityCodes - removes quality codes from questions responses;
+
+
+        Responses - removes questions responses;
+
+
+        Question - removes questons;
+
+
+        Response will contain information about result of operation for each of handled questions.
+
+
+        If errorMessage is null it means that question/its items succeccfully deleted without error(s).'
       requestBody:
         description: Array of question keys and entity type
         content:
@@ -985,8 +1148,160 @@ paths:
                 entityType: Codes
                 entityItemsDeleted: 2453
                 errorMessage: null
+      operationId: deleteQuestionsBatch
+      x-operation-id-source: derived
 components:
   schemas:
+    DeleteQuestionsBatchResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        deleteQuestionsBatchResults:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DeleteQuestionsBatchResult'
+          description: Array of pairs of question key with error message. Error message is null for successfully deleted questions.
+        entityType:
+          type:
+          - string
+          - 'null'
+          description: Type of entity (Codes/QualityCodes/Responses/Question). It duplicates value from request to the API method.
+        entityItemsDeleted:
+          type: integer
+          description: Number of deleted items
+          format: int32
+      additionalProperties: false
+      description: Response contains data about which question or question items were deleted in the batch operation.
+    CreateQuestionsBatchRequest:
+      type: object
+      properties:
+        questions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CreateQuestionRequest'
+          description: Array of questions to create
+      additionalProperties: false
+      description: Request with inforamtion for creating multiple questions via one API call (batch operation)
+    UpdateQuestionsBatchResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        failedQuestions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FailedQuestionKeyBatch'
+          description: Failed questions
+        newQuestions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CreateQuestionResponse'
+          description: Newly created questions
+      additionalProperties: false
+      description: Response contains information about failed questions i.e. questions that could not be updated be some error/reason.
+    CreateQuestionResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        key:
+          type: integer
+          description: The key of the newly created question
+          format: int32
+        codebookKey:
+          type:
+          - integer
+          - 'null'
+          description: The key of the Codebook for the Question. If you did not specify a codebook key in the request, this is the key of a newly created empty Codebook.
+          format: int32
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the new question
+        tasks:
+          $ref: '#/components/schemas/TaskTypes'
+        type:
+          $ref: '#/components/schemas/DBQuestionTypes'
+        label:
+          type:
+          - string
+          - 'null'
+          description: The label of the new question
+        text:
+          type:
+          - string
+          - 'null'
+          description: The text of the new Question. This is the question posed to the respondent.
+        help:
+          type:
+          - string
+          - 'null'
+          description: 'The help information for the Question, which may be empty.
+
+            '
+        sortOrder:
+          type:
+          - integer
+          - 'null'
+          description: Ordinal number of the Question. It uses for sorting questions in list, tables, so on.
+          format: int32
+        codingSource:
+          $ref: '#/components/schemas/DBQuestionCodingSource'
+        alternativeCodingSource:
+          $ref: '#/components/schemas/DBQuestionCodingSource'
+        externalQuestionId:
+          type:
+          - string
+          - 'null'
+          description: External Question ID from QuestionMaps
+      additionalProperties: false
+      description: Response of Create Question web method, it contains data of the newly created question
+    DeleteQuestionsBatchRequest:
+      required:
+      - entityType
+      - questionKeys
+      type: object
+      properties:
+        questionKeys:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: Array of pairs of question key with error message. Error message is null for successfully deleted questions.
+        entityType:
+          minLength: 1
+          type: string
+          description: 'Type of entity (Codes/QualityCodes/Responses/Question). For example ''Codes'' will remove all applied codes from all questions in questionKeys array.
+
+            To remove questions themselves, entityType ''Question'' should be chosed.'
+      additionalProperties: false
+      description: "Request contains array of question keys which should be handled. \nEntity type determines which items should be removed:\nCodes - removes applied codes from questions responses;\nQualityCodes - removes quality codes from questions responses;\nResponses - removes questions responses;\nQuestion - removes questons;"
+    DBQuestionTypes:
+      enum:
+      - Open
+      - Closed
+      - OS
+      - Value
+      - Data
+      - UnKnown
+      type: string
+      format: ''
     Question:
       required:
       - alternativeCodingSource
@@ -1011,9 +1326,16 @@ components:
           description: The key of the Codebook for the Question.
           format: int32
         id:
-          type: string
-          description: "The id of the Question.\r\n\r\nThe id is unique by case-insensitive comparison across all Questions in this Study.\r\n\r\nNote that the id may be changed by the user, so while it uniquely identifies the Question at a given time, it is not guaranteed to remain unchanged for the lifetime of the Question."
-          nullable: true
+          type:
+          - string
+          - 'null'
+          description: 'The id of the Question.
+
+
+            The id is unique by case-insensitive comparison across all Questions in this Study.
+
+
+            Note that the id may be changed by the user, so while it uniquely identifies the Question at a given time, it is not guaranteed to remain unchanged for the lifetime of the Question.'
         countResponses:
           type: integer
           description: The number of Responses in this Question.
@@ -1039,53 +1361,323 @@ components:
         type:
           $ref: '#/components/schemas/DBQuestionTypes'
         label:
-          type: string
-          description: "The label for the Question, which may be empty.\r\n\r\nThe label is used as a short identifier for the Question in reports when the full id of the Question would be too long."
-          nullable: true
+          type:
+          - string
+          - 'null'
+          description: 'The label for the Question, which may be empty.
+
+
+            The label is used as a short identifier for the Question in reports when the full id of the Question would be too long.'
         text:
           minLength: 1
           type: string
           description: The text of the Question posed to the respondent, which may be empty.
         help:
-          type: string
-          description: "The help information for the Question, which may be empty.\r\n"
-          nullable: true
+          type:
+          - string
+          - 'null'
+          description: 'The help information for the Question, which may be empty.
+
+            '
         sortOrder:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Ordinal number of the Question. It uses for sorting questions in list, tables, so on.
           format: int32
-          nullable: true
         codingSource:
           $ref: '#/components/schemas/DBQuestionCodingSource'
         alternativeCodingSource:
           $ref: '#/components/schemas/DBQuestionCodingSource'
         externalQuestionId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: External Question ID from QuestionMaps
-          nullable: true
       additionalProperties: false
       description: A Question in a Study.
+    TranslateQuestionRequest:
+      required:
+      - questionKey
+      - targetLanguageCode
+      type: object
+      properties:
+        questionKey:
+          type: integer
+          description: Key of question to translate
+          format: int32
+        targetLanguageCode:
+          minLength: 1
+          type: string
+          description: Code of target language
+      additionalProperties: false
+      description: Request to translate specified question
+    UpdateQuestionsBatchRequest:
+      required:
+      - questions
+      type: object
+      properties:
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateQuestionBatch'
+          description: Questions to update
+      additionalProperties: false
+      description: Request contains collection of questions and their properties to update. Only non-null properties will be updated.
+    DBQuestionCodingSource:
+      enum:
+      - Verbatim
+      - Transcription
+      - Translation
+      - None
+      type: string
+      format: ''
+    UpdateQuestionBatch:
+      type: object
+      properties:
+        key:
+          type:
+          - integer
+          - 'null'
+          description: Key of question
+          format: int32
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of question
+        tasks:
+          type:
+          - string
+          - 'null'
+          description: Tasks assigned to question
+        type:
+          $ref: '#/components/schemas/DBQuestionTypes'
+        label:
+          type:
+          - string
+          - 'null'
+          description: The label is used as a short identifier for the Question in reports when the full id of the Question would be too long.
+        text:
+          type:
+          - string
+          - 'null'
+          description: The text of the Question posed to the respondent, which may be empty.
+        help:
+          type:
+          - string
+          - 'null'
+          description: 'The help information for the Question, which may be empty.
+
+            '
+        sortOrder:
+          type:
+          - integer
+          - 'null'
+          description: Ordinal number of the Question. It uses for sorting questions in list, tables, so on.
+          format: int32
+        codingSource:
+          $ref: '#/components/schemas/DBQuestionCodingSource'
+        alternativeCodingSource:
+          $ref: '#/components/schemas/DBQuestionCodingSource'
+        externalQuestionId:
+          type:
+          - string
+          - 'null'
+          description: External Question ID from QuestionMaps
+      additionalProperties: false
+      description: Class contains question properties which should be updated
     FailedQuestionIdBatch:
       type: object
       properties:
         id:
-          type: string
+          type:
+          - string
+          - 'null'
           description: ID of failed question
-          nullable: true
         errorMessage:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Error message
-          nullable: true
       additionalProperties: false
       description: Record contains information about failed questins in batch operation and reason/error message why it failed.
+    TaskTypes:
+      enum:
+      - None
+      - Code
+      - Crosstab
+      - Transcribe
+      - Translate
+      type: string
+      description: Task types
+      format: ''
+    GetQuestionsResponse:
+      required:
+      - questions
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+          description: A list of Questions.
+      additionalProperties: false
+      description: Questions in a Study.
+    AutoCodeQuestionResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        codesAdded:
+          type: integer
+          description: Number of codes added
+          format: int32
+      additionalProperties: false
+      description: Returns information about results of AutoCode operation
+    AutoCodeQuestionRequest:
+      type: object
+      properties:
+        autoCodeInputId:
+          type: boolean
+          description: 'If set to True, it will attempt to Auto Code based on a code''s Input ID (Closed ends and Other Specifies only).
+
+
+            This AutoCode will execute after the Text Match and before the Regular Expression match, if either is enabled.'
+        autoCodeByRegex:
+          type: boolean
+          description: 'If set to True, it will attempt to Auto Code responses via the codes'' Regular Expressions.
+
+
+            This AutoCode will execute after the Text Match and Input ID match, if enabled.'
+        autoCodeTextMatch:
+          type: boolean
+          description: 'If true, this will attempt to AutoCode responses based on an exact (but case insensitive) text match with previously-coded responses.
+
+            This AutoCode will execute first, followed by (if requested) Input ID matching and Regular Expression matching.'
+      additionalProperties: false
+      description: A request to autocode a question
+    CreateQuestionRequest:
+      type: object
+      properties:
+        codebookKey:
+          type:
+          - integer
+          - 'null'
+          description: "An optional key of an existing Codebook.\n\nUse this to specify that the new Question should share the Codebook of an existing Question.\n\nFor example, to specify that this new Question should share the Codebook of another Question in this Study, \nquery the Questions resource to find the desired existing Question.  Assign the codebookKey property in this request the same\nvalue as the codebookKey of the existing Question."
+          format: int32
+        id:
+          type:
+          - string
+          - 'null'
+          description: 'The id of the new Question, which must be unique by case insensitive comparison among all Questions in the Study.
+
+
+            The value provided here will be trimmed of leading and trailing whitespace.  The resulting id must contain at least one character and not more than 200 characters.'
+        tasks:
+          $ref: '#/components/schemas/TaskTypes'
+        type:
+          $ref: '#/components/schemas/DBQuestionTypes'
+        label:
+          type:
+          - string
+          - 'null'
+          description: 'The label for the Question, which may be empty but must not exceed 25 characters.
+
+
+            The label is used as a short identifier for the Question in reports when the full id of the Question would be too long.'
+        text:
+          type:
+          - string
+          - 'null'
+          description: The text of the Question posed to the respondent, which may be empty.
+        help:
+          type:
+          - string
+          - 'null'
+          description: 'The help information for the Question, which may be empty.
+
+            '
+        sortOrder:
+          type:
+          - integer
+          - 'null'
+          description: 'Ordinal number of the Question.
+
+
+            When a list of Questions are displayed in Ascribe they are sorted first by this value, then by id.'
+          format: int32
+        codingSource:
+          $ref: '#/components/schemas/DBQuestionCodingSource'
+        alternativeCodingSource:
+          $ref: '#/components/schemas/DBQuestionCodingSource'
+        externalQuestionId:
+          type:
+          - string
+          - 'null'
+          description: External Question ID from QuestionMaps
+      additionalProperties: false
+      description: A request to create a new Question.
+    DeleteQuestionResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        entityType:
+          type:
+          - string
+          - 'null'
+          description: Type of entity (Codes/QualityCodes/Responses/Question)
+        entityItemsDeleted:
+          type: integer
+          description: Number of deleted items
+          format: int32
+      additionalProperties: false
+      description: Response of Delete Question API method
+    CreateQuestionsBatchResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        studyKey:
+          type: integer
+          description: Key of study
+          format: int32
+        questions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CreateQuestionResponse'
+          description: Array of questions
+        failedQuestions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FailedQuestionIdBatch'
+          description: Array of failed questions
+      additionalProperties: false
+      description: Response contains information about newly created study questions
     TranslateQuestionResponse:
       required:
       - questionKey
       type: object
       properties:
         errorMessage:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         questionKey:
           type: integer
           description: Key of question that was translated
@@ -1108,373 +1700,30 @@ components:
           format: double
       additionalProperties: false
       description: Response of translate question operation
-    UpdateQuestionBatch:
-      type: object
-      properties:
-        key:
-          type: integer
-          description: Key of question
-          format: int32
-          nullable: true
-        id:
-          type: string
-          description: ID of question
-          nullable: true
-        tasks:
-          type: string
-          description: Tasks assigned to question
-          nullable: true
-        type:
-          $ref: '#/components/schemas/DBQuestionTypes'
-        label:
-          type: string
-          description: The label is used as a short identifier for the Question in reports when the full id of the Question would be too long.
-          nullable: true
-        text:
-          type: string
-          description: The text of the Question posed to the respondent, which may be empty.
-          nullable: true
-        help:
-          type: string
-          description: "The help information for the Question, which may be empty.\r\n"
-          nullable: true
-        sortOrder:
-          type: integer
-          description: Ordinal number of the Question. It uses for sorting questions in list, tables, so on.
-          format: int32
-          nullable: true
-        codingSource:
-          $ref: '#/components/schemas/DBQuestionCodingSource'
-        alternativeCodingSource:
-          $ref: '#/components/schemas/DBQuestionCodingSource'
-        externalQuestionId:
-          type: string
-          description: External Question ID from QuestionMaps
-          nullable: true
-      additionalProperties: false
-      description: Class contains question properties which should be updated
-    DeleteQuestionsBatchResponse:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-          nullable: true
-        deleteQuestionsBatchResults:
-          type: array
-          items:
-            $ref: '#/components/schemas/DeleteQuestionsBatchResult'
-          description: Array of pairs of question key with error message. Error message is null for successfully deleted questions.
-          nullable: true
-        entityType:
-          type: string
-          description: Type of entity (Codes/QualityCodes/Responses/Question). It duplicates value from request to the API method.
-          nullable: true
-        entityItemsDeleted:
-          type: integer
-          description: Number of deleted items
-          format: int32
-      additionalProperties: false
-      description: Response contains data about which question or question items were deleted in the batch operation.
-    GetQuestionsResponse:
-      required:
-      - questions
-      type: object
-      properties:
-        errorMessage:
-          type: string
-          nullable: true
-        questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Question'
-          description: A list of Questions.
-      additionalProperties: false
-      description: Questions in a Study.
-    AutoCodeQuestionResponse:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-          nullable: true
-        codesAdded:
-          type: integer
-          description: Number of codes added
-          format: int32
-      additionalProperties: false
-      description: Returns information about results of AutoCode operation
-    AutoCodeQuestionRequest:
-      type: object
-      properties:
-        autoCodeInputId:
-          type: boolean
-          description: "If set to True, it will attempt to Auto Code based on a code's Input ID (Closed ends and Other Specifies only).\r\n\r\nThis AutoCode will execute after the Text Match and before the Regular Expression match, if either is enabled."
-        autoCodeByRegex:
-          type: boolean
-          description: "If set to True, it will attempt to Auto Code responses via the codes' Regular Expressions.\r\n\r\nThis AutoCode will execute after the Text Match and Input ID match, if enabled."
-        autoCodeTextMatch:
-          type: boolean
-          description: "If true, this will attempt to AutoCode responses based on an exact (but case insensitive) text match with previously-coded responses.\r\nThis AutoCode will execute first, followed by (if requested) Input ID matching and Regular Expression matching."
-      additionalProperties: false
-      description: A request to autocode a question
-    TranslateQuestionRequest:
-      required:
-      - questionKey
-      - targetLanguageCode
-      type: object
-      properties:
-        questionKey:
-          type: integer
-          description: Key of question to translate
-          format: int32
-        targetLanguageCode:
-          minLength: 1
-          type: string
-          description: Code of target language
-      additionalProperties: false
-      description: Request to translate specified question
-    CreateQuestionsBatchResponse:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-          nullable: true
-        studyKey:
-          type: integer
-          description: Key of study
-          format: int32
-        questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateQuestionResponse'
-          description: Array of questions
-          nullable: true
-        failedQuestions:
-          type: array
-          items:
-            $ref: '#/components/schemas/FailedQuestionIdBatch'
-          description: Array of failed questions
-          nullable: true
-      additionalProperties: false
-      description: Response contains information about newly created study questions
-    UpdateQuestionsBatchRequest:
-      required:
-      - questions
-      type: object
-      properties:
-        questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/UpdateQuestionBatch'
-          description: Questions to update
-      additionalProperties: false
-      description: Request contains collection of questions and their properties to update. Only non-null properties will be updated.
-    CreateQuestionResponse:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-          nullable: true
-        key:
-          type: integer
-          description: The key of the newly created question
-          format: int32
-        codebookKey:
-          type: integer
-          description: The key of the Codebook for the Question. If you did not specify a codebook key in the request, this is the key of a newly created empty Codebook.
-          format: int32
-          nullable: true
-        id:
-          type: string
-          description: The ID of the new question
-          nullable: true
-        tasks:
-          $ref: '#/components/schemas/TaskTypes'
-        type:
-          $ref: '#/components/schemas/DBQuestionTypes'
-        label:
-          type: string
-          description: The label of the new question
-          nullable: true
-        text:
-          type: string
-          description: The text of the new Question. This is the question posed to the respondent.
-          nullable: true
-        help:
-          type: string
-          description: "The help information for the Question, which may be empty.\r\n"
-          nullable: true
-        sortOrder:
-          type: integer
-          description: Ordinal number of the Question. It uses for sorting questions in list, tables, so on.
-          format: int32
-          nullable: true
-        codingSource:
-          $ref: '#/components/schemas/DBQuestionCodingSource'
-        alternativeCodingSource:
-          $ref: '#/components/schemas/DBQuestionCodingSource'
-        externalQuestionId:
-          type: string
-          description: External Question ID from QuestionMaps
-          nullable: true
-      additionalProperties: false
-      description: Response of Create Question web method, it contains data of the newly created question
-    FailedQuestionKeyBatch:
-      type: object
-      properties:
-        key:
-          type: string
-          description: ID of failed question
-          nullable: true
-        errorMessage:
-          type: string
-          description: Error message
-          nullable: true
-      additionalProperties: false
-      description: Record contains information about failed questins in batch operation and reason/error message why it failed.
     SetQuestionCodebookResponse:
       type: object
       properties:
         errorMessage:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
       description: A response for SetQuestionCodebook web method
-    DeleteQuestionsBatchRequest:
-      required:
-      - entityType
-      - questionKeys
+    FailedQuestionKeyBatch:
       type: object
       properties:
-        questionKeys:
-          type: array
-          items:
-            type: integer
-            format: int32
-          description: Array of pairs of question key with error message. Error message is null for successfully deleted questions.
-        entityType:
-          minLength: 1
-          type: string
-          description: "Type of entity (Codes/QualityCodes/Responses/Question). For example 'Codes' will remove all applied codes from all questions in questionKeys array.\r\nTo remove questions themselves, entityType 'Question' should be chosed."
-      additionalProperties: false
-      description: "Request contains array of question keys which should be handled. \r\nEntity type determines which items should be removed:\r\nCodes - removes applied codes from questions responses;\r\nQualityCodes - removes quality codes from questions responses;\r\nResponses - removes questions responses;\r\nQuestion - removes questons;"
-    DBQuestionCodingSource:
-      enum:
-      - Verbatim
-      - Transcription
-      - Translation
-      - None
-      type: string
-      format: ''
-    DeleteQuestionResponse:
-      type: object
-      properties:
+        key:
+          type:
+          - string
+          - 'null'
+          description: ID of failed question
         errorMessage:
-          type: string
-          nullable: true
-        entityType:
-          type: string
-          description: Type of entity (Codes/QualityCodes/Responses/Question)
-          nullable: true
-        entityItemsDeleted:
-          type: integer
-          description: Number of deleted items
-          format: int32
+          type:
+          - string
+          - 'null'
+          description: Error message
       additionalProperties: false
-      description: Response of Delete Question API method
-    DBQuestionTypes:
-      enum:
-      - Open
-      - Closed
-      - OS
-      - Value
-      - Data
-      - UnKnown
-      type: string
-      format: ''
-    TaskTypes:
-      enum:
-      - None
-      - Code
-      - Crosstab
-      - Transcribe
-      - Translate
-      type: string
-      description: Task types
-      format: ''
-    UpdateQuestionsBatchResponse:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-          nullable: true
-        failedQuestions:
-          type: array
-          items:
-            $ref: '#/components/schemas/FailedQuestionKeyBatch'
-          description: Failed questions
-          nullable: true
-        newQuestions:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateQuestionResponse'
-          description: Newly created questions
-          nullable: true
-      additionalProperties: false
-      description: Response contains information about failed questions i.e. questions that could not be updated be some error/reason.
-    CreateQuestionsBatchRequest:
-      type: object
-      properties:
-        questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateQuestionRequest'
-          description: Array of questions to create
-          nullable: true
-      additionalProperties: false
-      description: Request with inforamtion for creating multiple questions via one API call (batch operation)
-    CreateQuestionRequest:
-      type: object
-      properties:
-        codebookKey:
-          type: integer
-          description: "An optional key of an existing Codebook.\r\n\r\nUse this to specify that the new Question should share the Codebook of an existing Question.\r\n\r\nFor example, to specify that this new Question should share the Codebook of another Question in this Study, \r\nquery the Questions resource to find the desired existing Question.  Assign the codebookKey property in this request the same\r\nvalue as the codebookKey of the existing Question."
-          format: int32
-          nullable: true
-        id:
-          type: string
-          description: "The id of the new Question, which must be unique by case insensitive comparison among all Questions in the Study.\r\n\r\nThe value provided here will be trimmed of leading and trailing whitespace.  The resulting id must contain at least one character and not more than 200 characters."
-          nullable: true
-        tasks:
-          $ref: '#/components/schemas/TaskTypes'
-        type:
-          $ref: '#/components/schemas/DBQuestionTypes'
-        label:
-          type: string
-          description: "The label for the Question, which may be empty but must not exceed 25 characters.\r\n\r\nThe label is used as a short identifier for the Question in reports when the full id of the Question would be too long."
-          nullable: true
-        text:
-          type: string
-          description: The text of the Question posed to the respondent, which may be empty.
-          nullable: true
-        help:
-          type: string
-          description: "The help information for the Question, which may be empty.\r\n"
-          nullable: true
-        sortOrder:
-          type: integer
-          description: "Ordinal number of the Question.\r\n\r\nWhen a list of Questions are displayed in Ascribe they are sorted first by this value, then by id."
-          format: int32
-          nullable: true
-        codingSource:
-          $ref: '#/components/schemas/DBQuestionCodingSource'
-        alternativeCodingSource:
-          $ref: '#/components/schemas/DBQuestionCodingSource'
-        externalQuestionId:
-          type: string
-          description: External Question ID from QuestionMaps
-          nullable: true
-      additionalProperties: false
-      description: A request to create a new Question.
+      description: Record contains information about failed questins in batch operation and reason/error message why it failed.
     DeleteQuestionsBatchResult:
       type: object
       properties:
@@ -1483,9 +1732,10 @@ components:
           description: Key of question
           format: int32
         errorMessage:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Error message why response can not be deleted
-          nullable: true
       additionalProperties: false
       description: Question key and error message why question can not be deleted. Successfully deleted Questions has null for errorMessage property.
   securitySchemes:

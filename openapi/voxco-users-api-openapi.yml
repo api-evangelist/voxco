@@ -1,7 +1,7 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Ascribe Coder AICoder Users API
-  description: <br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click "Try it out!"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.
+  title: Ascribe Coder Users API
+  description: To import this API to Postman, copy the URL from the top of this page.
   contact:
     email: support@goascribe.com
   version: v2
@@ -37,6 +37,8 @@ paths:
                 - key: 5
                   id: Mr. Beast
                 errorMessage: null
+      operationId: getUsers
+      x-operation-id-source: derived
 components:
   schemas:
     GetUsersResponse:
@@ -45,8 +47,9 @@ components:
       type: object
       properties:
         errorMessage:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         users:
           type: array
           items:

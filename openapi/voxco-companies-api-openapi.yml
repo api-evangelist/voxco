@@ -1,7 +1,7 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Ascribe Coder AICoder Companies API
-  description: <br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click "Try it out!"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.
+  title: Ascribe Coder Companies API
+  description: To import this API to Postman, copy the URL from the top of this page.
   contact:
     email: support@goascribe.com
   version: v2
@@ -37,11 +37,18 @@ paths:
                 - key: 5
                   id: AAA Research
                 errorMessage: null
+      operationId: getCompanies
+      x-operation-id-source: derived
     post:
       tags:
       - Companies
       summary: Create a new Company
-      description: "The id assigned to the company must not already exist.\r\n\r\nThe maximum length of the id is 100 characters.\r\nThe id must not begin with an underscore character '_'."
+      description: 'The id assigned to the company must not already exist.
+
+
+        The maximum length of the id is 100 characters.
+
+        The id must not begin with an underscore character ''_''.'
       requestBody:
         description: The information for the new Company.
         content:
@@ -71,24 +78,45 @@ paths:
                 key: 3
                 id: ACME
                 errorMessage: null
+      operationId: postCompanies
+      x-operation-id-source: derived
 components:
   schemas:
-    CreateNewCompanyResponse:
+    GetCompaniesResponse:
+      required:
+      - companies
       type: object
       properties:
         errorMessage:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
+        companies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Company'
+          description: List of Companies
+      additionalProperties: false
+      description: Response contains list of available companies
+    Company:
+      required:
+      - id
+      - key
+      type: object
+      properties:
         key:
           type: integer
-          description: The key assigned to the new Company.
+          description: 'Identifying key for the Company.
+
+
+            This key will not change for the lifetime of the Company.'
           format: int32
         id:
+          minLength: 1
           type: string
-          description: The id of the new Company, which is trimmed of leading and trailing whitespace.
-          nullable: true
+          description: "The id of the Company.\n  \nThis id is unique among Companies, but may be changed by the user."
       additionalProperties: false
-      description: Response contains information about the newly created company
+      description: A company
     CreateNewCompanyRequest:
       required:
       - id
@@ -98,40 +126,27 @@ components:
           maxLength: 100
           minLength: 1
           type: string
-          description: "The id for the new Company, which must be unique among all Companies by case insensitive comparison.\r\n\r\nThe id provided will be trimmed of leading and trailing whitespace.\r\n  \r\nThe trimmed value must be from 1 to 100 characters in length and may not start with an underscore character '_'."
+          description: "The id for the new Company, which must be unique among all Companies by case insensitive comparison.\n\nThe id provided will be trimmed of leading and trailing whitespace.\n  \nThe trimmed value must be from 1 to 100 characters in length and may not start with an underscore character '_'."
       additionalProperties: false
       description: Request to create a new Company
-    Company:
-      required:
-      - id
-      - key
-      type: object
-      properties:
-        key:
-          type: integer
-          description: "Identifying key for the Company.\r\n\r\nThis key will not change for the lifetime of the Company."
-          format: int32
-        id:
-          minLength: 1
-          type: string
-          description: "The id of the Company.\r\n  \r\nThis id is unique among Companies, but may be changed by the user."
-      additionalProperties: false
-      description: A company
-    GetCompaniesResponse:
-      required:
-      - companies
+    CreateNewCompanyResponse:
       type: object
       properties:
         errorMessage:
-          type: string
-          nullable: true
-        companies:
-          type: array
-          items:
-            $ref: '#/components/schemas/Company'
-          description: List of Companies
+          type:
+          - string
+          - 'null'
+        key:
+          type: integer
+          description: The key assigned to the new Company.
+          format: int32
+        id:
+          type:
+          - string
+          - 'null'
+          description: The id of the new Company, which is trimmed of leading and trailing whitespace.
       additionalProperties: false
-      description: Response contains list of available companies
+      description: Response contains information about the newly created company
   securitySchemes:
     Bearer:
       type: http

@@ -1,17 +1,7 @@
 {
   "provider": "voxco",
   "sources": [
-    "voxco-aicoder-api-openapi.yml",
-    "voxco-codebooks-api-openapi.yml",
-    "voxco-companies-api-openapi.yml",
-    "voxco-exports-api-openapi.yml",
-    "voxco-languages-api-openapi.yml",
-    "voxco-questions-api-openapi.yml",
-    "voxco-responses-api-openapi.yml",
-    "voxco-sessions-api-openapi.yml",
-    "voxco-studies-api-openapi.yml",
-    "voxco-studyrespondents-api-openapi.yml",
-    "voxco-users-api-openapi.yml"
+    "_original/voxco-ascribe-coder-api-openapi.json"
   ],
   "outputs": [
     "voxco-aicoder-api-openapi.yml",
@@ -29,6 +19,33 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "voxco-ascribe-coder-api-openapi.json: upgraded openapi 3.0.4 -> OpenAPI 3.2.0",
+    "voxco-ascribe-coder-api-openapi.json: declared missing tag: AICoder",
+    "voxco-ascribe-coder-api-openapi.json: declared missing tag: Codebooks",
+    "voxco-ascribe-coder-api-openapi.json: declared missing tag: Companies",
+    "voxco-ascribe-coder-api-openapi.json: declared missing tag: Exports",
+    "voxco-ascribe-coder-api-openapi.json: declared missing tag: Languages",
+    "voxco-ascribe-coder-api-openapi.json: declared missing tag: Questions",
+    "voxco-ascribe-coder-api-openapi.json: declared missing tag: Responses",
+    "voxco-ascribe-coder-api-openapi.json: declared missing tag: Sessions",
+    "voxco-ascribe-coder-api-openapi.json: declared missing tag: Studies",
+    "voxco-ascribe-coder-api-openapi.json: declared missing tag: StudyRespondents",
+    "voxco-ascribe-coder-api-openapi.json: declared missing tag: Users",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "voxco-aicoder-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "voxco-codebooks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "voxco-companies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "voxco-exports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "voxco-languages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "voxco-questions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "voxco-responses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "voxco-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "voxco-studies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "voxco-studyrespondents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "voxco-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,7 +1,7 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Ascribe Coder AICoder Languages API
-  description: <br/>      To import this API to Postman, copy the URL from the top of this page.<br/>      Open Postman, and select Import.<br/>      In the dialog select 'Import From Link'.<br/>      Paste the URL and click Import.<br/><br/>      To use this API interactively from this page, open the POST Sessions operation below.<br/>      Click the Example Value in the Parameters section to move it to the request.<br/>      Modify the request with your credentials, then click "Try it out!"<br/>      Copy the value of the bearerToken returned in the response to the api_key text box at the top of this page.<br/>      You can now interact with the other resources on this page.<br/>      You can save the bearer token for future use without needing to POST to the Sessions resource again.
+  title: Ascribe Coder Languages API
+  description: To import this API to Postman, copy the URL from the top of this page.
   contact:
     email: support@goascribe.com
   version: v2
@@ -22,7 +22,10 @@ paths:
       tags:
       - Languages
       summary: Returns the languages supported for translation
-      description: "The Code for a language is used to specify the language when translating responses.\r\n\r\nThe Name for a language is suitable for display on a user interface."
+      description: 'The Code for a language is used to specify the language when translating responses.
+
+
+        The Name for a language is suitable for display on a user interface.'
       responses:
         '200':
           description: OK
@@ -69,33 +72,39 @@ paths:
                 - code: uk
                   name: Ukrainian
                 errorMessage: null
+      operationId: getLanguagesTranslate
+      x-operation-id-source: derived
 components:
   schemas:
     GetLanguagesToTranslateResponse:
       type: object
       properties:
         errorMessage:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         languages:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/NaturalLanguage'
           description: List of supported languages
-          nullable: true
       additionalProperties: false
       description: Response that contains list of languages that are supported by this API.
     NaturalLanguage:
       type: object
       properties:
         code:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The language code, used to specify the language in API operations.
-          nullable: true
         name:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The name of the language suitable for display to the user.
-          nullable: true
       additionalProperties: false
       description: A natural language supported by this API.
   securitySchemes:
