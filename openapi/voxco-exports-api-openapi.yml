@@ -226,19 +226,12 @@ components:
           format: int32
       additionalProperties: false
       description: Class contains an information of created job
-    DBJobType:
+    DBJobStatus:
       enum:
-      - LoadFromAscribe
-      - LoadFromFtp
-      - SaveStudy
-      - RestoreStudy
-      - MergeStudy
-      - ScriptedOutput
-      - SaveAcm
-      - RestoreAcm
-      - AutoCode
-      - AutoTranslateStudy
-      - AICoder
+      - Queued
+      - Running
+      - Paused
+      - Complete
       type: string
       format: ''
     DBScriptPurpose:
@@ -249,64 +242,6 @@ components:
       - DataCleaning
       - Coding
       - System
-      type: string
-      format: ''
-    ExportsRequest:
-      required:
-      - questionKeys
-      - scriptKey
-      - studyKey
-      type: object
-      properties:
-        studyKey:
-          type: integer
-          description: Key of study
-          format: int32
-        questionKeys:
-          type: array
-          items:
-            type: integer
-            format: int32
-          description: Keys of questions
-        scriptKey:
-          type: integer
-          description: Name of script to use for new job
-          format: int32
-        parameters:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Additional job's parameters
-        exportAsText:
-          type:
-          - boolean
-          - 'null'
-          description: 'Request text format output instead of default Excel format.
-
-            Only works if the script has ScriptXlsxTextOption=true, otherwise parameter is ignored.
-
-            Cookie is always set: if not provided or false, exports as Excel; if true, exports as text.'
-      additionalProperties: false
-      description: Class contains necessary export options to create a job
-    DBJobStatus:
-      enum:
-      - Queued
-      - Running
-      - Paused
-      - Complete
-      type: string
-      format: ''
-    DBScriptParameterType:
-      enum:
-      - Unknown
-      - Boolean
-      - String
-      - Integer
-      - Float
-      - Date
-      - StudyList
       type: string
       format: ''
     GetScriptsResponse:
@@ -361,6 +296,116 @@ components:
           $ref: '#/components/schemas/DBScriptParameterType'
       additionalProperties: false
       description: Script parameter definition for Studies API
+    ScriptDefinition:
+      required:
+      - key
+      - name
+      type: object
+      properties:
+        key:
+          type: integer
+          description: Script key
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+          description: Script name
+        description:
+          type:
+          - string
+          - 'null'
+          description: Script description
+        isForceToTextOption:
+          type: boolean
+          description: Indicates if the script output is forced to text format
+        friendlyName:
+          type:
+          - string
+          - 'null'
+          description: Provides a user-friendly, display-ready name for the script
+        acceptsQuestionList:
+          type: boolean
+          description: Specifies if the script can accept a list of questions as a parameter
+        modifiesData:
+          type: boolean
+          description: Flags whether running the script will alter or update any data in the database
+        purpose:
+          $ref: '#/components/schemas/DBScriptPurpose'
+        parameters:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ScriptParameter'
+          description: Script parameters
+      additionalProperties: false
+      description: Script definition for Studies API
+    DBJobType:
+      enum:
+      - LoadFromAscribe
+      - LoadFromFtp
+      - SaveStudy
+      - RestoreStudy
+      - MergeStudy
+      - ScriptedOutput
+      - SaveAcm
+      - RestoreAcm
+      - AutoCode
+      - AutoTranslateStudy
+      - AICoder
+      type: string
+      format: ''
+    ExportsRequest:
+      required:
+      - questionKeys
+      - scriptKey
+      - studyKey
+      type: object
+      properties:
+        studyKey:
+          type: integer
+          description: Key of study
+          format: int32
+        questionKeys:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: Keys of questions
+        scriptKey:
+          type: integer
+          description: Name of script to use for new job
+          format: int32
+        parameters:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Additional job's parameters
+        exportAsText:
+          type:
+          - boolean
+          - 'null'
+          description: 'Request text format output instead of default Excel format.
+
+            Only works if the script has ScriptXlsxTextOption=true, otherwise parameter is ignored.
+
+            Cookie is always set: if not provided or false, exports as Excel; if true, exports as text.'
+      additionalProperties: false
+      description: Class contains necessary export options to create a job
+    DBScriptParameterType:
+      enum:
+      - Unknown
+      - Boolean
+      - String
+      - Integer
+      - Float
+      - Date
+      - StudyList
+      type: string
+      format: ''
     ExportsJobStatusResponse:
       type: object
       properties:
@@ -413,51 +458,6 @@ components:
           description: Url for downloading result file
       additionalProperties: false
       description: Class presents an information about current status of specified job
-    ScriptDefinition:
-      required:
-      - key
-      - name
-      type: object
-      properties:
-        key:
-          type: integer
-          description: Script key
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-          description: Script name
-        description:
-          type:
-          - string
-          - 'null'
-          description: Script description
-        isForceToTextOption:
-          type: boolean
-          description: Indicates if the script output is forced to text format
-        friendlyName:
-          type:
-          - string
-          - 'null'
-          description: Provides a user-friendly, display-ready name for the script
-        acceptsQuestionList:
-          type: boolean
-          description: Specifies if the script can accept a list of questions as a parameter
-        modifiesData:
-          type: boolean
-          description: Flags whether running the script will alter or update any data in the database
-        purpose:
-          $ref: '#/components/schemas/DBScriptPurpose'
-        parameters:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ScriptParameter'
-          description: Script parameters
-      additionalProperties: false
-      description: Script definition for Studies API
   securitySchemes:
     Bearer:
       type: http

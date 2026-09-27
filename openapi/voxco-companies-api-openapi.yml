@@ -82,22 +82,36 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GetCompaniesResponse:
-      required:
-      - companies
+    CreateNewCompanyResponse:
       type: object
       properties:
         errorMessage:
           type:
           - string
           - 'null'
-        companies:
-          type: array
-          items:
-            $ref: '#/components/schemas/Company'
-          description: List of Companies
+        key:
+          type: integer
+          description: The key assigned to the new Company.
+          format: int32
+        id:
+          type:
+          - string
+          - 'null'
+          description: The id of the new Company, which is trimmed of leading and trailing whitespace.
       additionalProperties: false
-      description: Response contains list of available companies
+      description: Response contains information about the newly created company
+    CreateNewCompanyRequest:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          maxLength: 100
+          minLength: 1
+          type: string
+          description: "The id for the new Company, which must be unique among all Companies by case insensitive comparison.\n\nThe id provided will be trimmed of leading and trailing whitespace.\n  \nThe trimmed value must be from 1 to 100 characters in length and may not start with an underscore character '_'."
+      additionalProperties: false
+      description: Request to create a new Company
     Company:
       required:
       - id
@@ -117,36 +131,22 @@ components:
           description: "The id of the Company.\n  \nThis id is unique among Companies, but may be changed by the user."
       additionalProperties: false
       description: A company
-    CreateNewCompanyRequest:
+    GetCompaniesResponse:
       required:
-      - id
-      type: object
-      properties:
-        id:
-          maxLength: 100
-          minLength: 1
-          type: string
-          description: "The id for the new Company, which must be unique among all Companies by case insensitive comparison.\n\nThe id provided will be trimmed of leading and trailing whitespace.\n  \nThe trimmed value must be from 1 to 100 characters in length and may not start with an underscore character '_'."
-      additionalProperties: false
-      description: Request to create a new Company
-    CreateNewCompanyResponse:
+      - companies
       type: object
       properties:
         errorMessage:
           type:
           - string
           - 'null'
-        key:
-          type: integer
-          description: The key assigned to the new Company.
-          format: int32
-        id:
-          type:
-          - string
-          - 'null'
-          description: The id of the new Company, which is trimmed of leading and trailing whitespace.
+        companies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Company'
+          description: List of Companies
       additionalProperties: false
-      description: Response contains information about the newly created company
+      description: Response contains list of available companies
   securitySchemes:
     Bearer:
       type: http

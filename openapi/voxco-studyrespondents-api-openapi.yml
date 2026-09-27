@@ -78,21 +78,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    DeleteStudyRespondentFailure:
-      type: object
-      properties:
-        respondentID:
-          type:
-          - string
-          - 'null'
-          description: ID of the respondent that failed to be deleted
-        errorMessage:
-          type:
-          - string
-          - 'null'
-          description: Error message describing why the deletion failed
-      additionalProperties: false
-      description: Represents a failure to delete a study respondent
     DeleteStudyRespondentsRequest:
       type: object
       properties:
@@ -128,6 +113,21 @@ components:
           description: Array of respondents with no responses found
       additionalProperties: false
       description: Response of DeleteStudyRespondents API method
+    DeleteStudyRespondentFailure:
+      type: object
+      properties:
+        respondentID:
+          type:
+          - string
+          - 'null'
+          description: ID of the respondent that failed to be deleted
+        errorMessage:
+          type:
+          - string
+          - 'null'
+          description: Error message describing why the deletion failed
+      additionalProperties: false
+      description: Represents a failure to delete a study respondent
   securitySchemes:
     Bearer:
       type: http
