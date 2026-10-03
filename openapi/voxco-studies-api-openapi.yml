@@ -435,6 +435,693 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    DeleteStudyResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+      description: Response for delete study action
+    NewStudyResponse:
+      required:
+      - countQuestions
+      - countResponses
+      - countResponsesCoded
+      - countTransactions
+      - createDateUtc
+      - id
+      - key
+      - status
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        key:
+          type: integer
+          description: The key of the Study.
+          format: int32
+        quota:
+          type:
+          - integer
+          - 'null'
+          description: The quota for the Study
+          format: int32
+        id:
+          minLength: 1
+          type: string
+          description: The id of the Study.
+        name:
+          type:
+          - string
+          - 'null'
+          description: A user-friendly display name of the Study.
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description of the Study.
+        status:
+          minLength: 1
+          type: string
+          description: 'A one-character string which specifies the status of the Study:
+
+            <ul><li>a: Archived
+
+            </li><li>p: Coding in progress
+
+            </li><li>c: Completed
+
+            </li><li>d: Deleted
+
+            </li><li>h: On hold
+
+            </li><li>r: Review in progress
+
+            </li><li>s: Shipping
+
+            </li><li>u: Under construction</li></ul>'
+        supervisorKey:
+          type:
+          - integer
+          - 'null'
+          description: 'The key of the Person who will do revision of coding work
+
+            '
+          format: int32
+        supervisorAssociateKey:
+          type:
+          - integer
+          - 'null'
+          description: 'The key of the supervisor''s associate
+
+            '
+          format: int32
+        clientCompanyKey:
+          type:
+          - integer
+          - 'null'
+          description: The Company to which this Study is assigned, or null if the Study is not assigned to a Company.
+          format: int32
+        endCompanyKey:
+          type:
+          - integer
+          - 'null'
+          description: 'The key of the Company for which this coding work is being performed
+
+            '
+          format: int32
+        help:
+          type:
+          - string
+          - 'null'
+          description: Information to coders to assist in coding this Study.
+        createDateUtc:
+          type: string
+          description: The UTC date/time the Study was created.
+          format: date-time
+        startDateUtc:
+          type:
+          - string
+          - 'null'
+          description: UTC date/time the Study was started.
+          format: date-time
+        dueDateUtc:
+          type:
+          - string
+          - 'null'
+          description: UTC date/time the Study was completed.
+          format: date-time
+        countQuestions:
+          type: integer
+          description: The number of Questions in the Study.
+          format: int32
+        countResponses:
+          type: integer
+          description: The sum of the number of Responses in each Question in the Study.
+          format: int32
+        countResponsesCoded:
+          type: integer
+          description: The sum of the number of Responses to which at least one Code has been assigned in each Question in the Study.
+          format: int32
+        countTransactions:
+          type: number
+          description: The number of transactions used by this Study.  Transactions are tokens of work performed on the Study.
+          format: double
+        externalStudyId:
+          type:
+          - string
+          - 'null'
+          description: External study id from StudyMaps
+      additionalProperties: false
+      description: The response with data of created study.
+    UpdateStudyResponse:
+      required:
+      - countQuestions
+      - countResponses
+      - countResponsesCoded
+      - countTransactions
+      - createDateUtc
+      - id
+      - key
+      - status
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        key:
+          type: integer
+          description: The key of the Study.
+          format: int32
+        quota:
+          type:
+          - integer
+          - 'null'
+          description: The quota for the Study
+          format: int32
+        id:
+          minLength: 1
+          type: string
+          description: The id of the Study.
+        name:
+          type:
+          - string
+          - 'null'
+          description: A user-friendly display name of the Study.
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description of the Study.
+        status:
+          minLength: 1
+          type: string
+          description: 'A one-character string which specifies the status of the Study:
+
+            <ul><li>a: Archived
+
+            </li><li>p: Coding in progress
+
+            </li><li>c: Completed
+
+            </li><li>d: Deleted
+
+            </li><li>h: On hold
+
+            </li><li>r: Review in progress
+
+            </li><li>s: Shipping
+
+            </li><li>u: Under construction</li></ul>'
+        supervisorKey:
+          type:
+          - integer
+          - 'null'
+          description: 'The key of the Person who will do revision of coding work
+
+            '
+          format: int32
+        supervisorAssociateKey:
+          type:
+          - integer
+          - 'null'
+          description: 'The key of the supervisor''s associate
+
+            '
+          format: int32
+        clientCompanyKey:
+          type:
+          - integer
+          - 'null'
+          description: The Company to which this Study is assigned, or null if the Study is not assigned to a Company.
+          format: int32
+        endCompanyKey:
+          type:
+          - integer
+          - 'null'
+          description: 'The key of the Company for which this coding work is being performed
+
+            '
+          format: int32
+        help:
+          type:
+          - string
+          - 'null'
+          description: Information to coders to assist in coding this Study.
+        createDateUtc:
+          type: string
+          description: The UTC date/time the Study was created.
+          format: date-time
+        startDateUtc:
+          type:
+          - string
+          - 'null'
+          description: UTC date/time the Study was started.
+          format: date-time
+        dueDateUtc:
+          type:
+          - string
+          - 'null'
+          description: UTC date/time the Study was completed.
+          format: date-time
+        countQuestions:
+          type: integer
+          description: The number of Questions in the Study.
+          format: int32
+        countResponses:
+          type: integer
+          description: The sum of the number of Responses in each Question in the Study.
+          format: int32
+        countResponsesCoded:
+          type: integer
+          description: The sum of the number of Responses to which at least one Code has been assigned in each Question in the Study.
+          format: int32
+        countTransactions:
+          type: number
+          description: The number of transactions used by this Study.  Transactions are tokens of work performed on the Study.
+          format: double
+        externalStudyId:
+          type:
+          - string
+          - 'null'
+          description: External study id from StudyMaps
+      additionalProperties: false
+      description: The response with data of created study.
+    Study:
+      required:
+      - createDateUtc
+      - id
+      - key
+      - status
+      type: object
+      properties:
+        key:
+          type: integer
+          description: The key of the Study, which will not change for the lifetime of the Study.
+          format: int32
+        quota:
+          type:
+          - integer
+          - 'null'
+          description: 'The quota for the Study
+
+            If no quota is set for the Study this field will not be present in the response.'
+          format: int32
+        id:
+          minLength: 1
+          type: string
+          description: The id of the Study.
+        name:
+          type:
+          - string
+          - 'null'
+          description: 'The name of the Study.
+
+
+            If no study name is set for the Study this field will not be present in the response.'
+        description:
+          type:
+          - string
+          - 'null'
+          description: 'The description of the Study.
+
+
+            If no description is set for the Study this field will not be present in the response.'
+        status:
+          minLength: 1
+          type: string
+          description: 'A one-character string which specifies the status of the Study:
+
+            <ul><li>a: Archived
+
+            </li><li>p: Coding in progress
+
+            </li><li>c: Completed
+
+            </li><li>d: Deleted
+
+            </li><li>h: On hold
+
+            </li><li>r: Review in progress
+
+            </li><li>s: Shipping
+
+            </li><li>u: Under construction</li></ul>'
+        supervisorKey:
+          type:
+          - integer
+          - 'null'
+          description: 'The key of the Person who will do revision of coding work
+
+
+            If no supervisor is set for the Study this field will not be present in the response.'
+          format: int32
+        clientCompanyKey:
+          type:
+          - integer
+          - 'null'
+          description: 'The key of the Company for which this coding work is assigned
+
+
+            If no client company is set for the Study this field will not be present in the response.'
+          format: int32
+        endCompanyKey:
+          type:
+          - integer
+          - 'null'
+          description: 'The key of the Company for which this coding work is being performed
+
+
+            If no end customer company is set for the Study this field will not be present in the response.'
+          format: int32
+        help:
+          type:
+          - string
+          - 'null'
+          description: 'The information about the Study
+
+
+            If no help information is set for the Study this field will not be present in the response.'
+        createDateUtc:
+          type: string
+          description: The UTC date/time the Study was created.
+          format: date-time
+        startDateUtc:
+          type:
+          - string
+          - 'null'
+          description: 'UTC date/time the Study was started.
+
+
+            If the date is not set yet for the Study this field will not be present in the response.'
+          format: date-time
+        dueDateUtc:
+          type:
+          - string
+          - 'null'
+          description: 'UTC date/time the Study was completed.
+
+
+            If the date is not set yet for the Study this field will not be present in the response.'
+          format: date-time
+        externalStudyId:
+          type:
+          - string
+          - 'null'
+          description: External study id from StudyMaps
+      additionalProperties: false
+      description: A Study.
+    TranslateQuestionResponse:
+      required:
+      - questionKey
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        questionKey:
+          type: integer
+          description: Key of question that was translated
+          format: int32
+        responsesCount:
+          type: integer
+          description: Number of question's responses
+          format: int32
+        translationsCount:
+          type: integer
+          description: Number of translations that were done
+          format: int32
+        nonTranslatedResponsesCount:
+          type: integer
+          description: Number of responses that were not translated
+          format: int32
+        transactionsCount:
+          type: number
+          description: Number of transactions
+          format: double
+      additionalProperties: false
+      description: Response of translate question operation
+    NewStudyRequest:
+      required:
+      - id
+      type: object
+      properties:
+        quota:
+          type:
+          - integer
+          - 'null'
+          description: The quota for the Study
+          format: int32
+        id:
+          maxLength: 30
+          minLength: 1
+          type: string
+          description: 'The id of the new Study.
+
+
+            Must be unique among all Studies in the Ascribe account of the current session by case-insensitive comparison.
+
+
+            Must be at least 1 character and not more than 30 characters.'
+        name:
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+          description: 'Optional name of this Study, intended to be more human-friendly than the id of the Study.
+
+
+            Maximum of 50 characters.'
+        description:
+          type:
+          - string
+          - 'null'
+          description: An optional description of the Study.
+        status:
+          maxLength: 1
+          minLength: 0
+          type:
+          - string
+          - 'null'
+          description: 'Optional status of the Study at the time it is created.
+
+
+            If specified, one of:
+
+            <ul><li>u: Under construction
+
+            </li><li>p: Coding in progress
+
+            </li><li>h: On hold
+
+            </li></ul>
+
+            If omitted the default status is ''Coding in progress''.'
+        supervisorKey:
+          type:
+          - integer
+          - 'null'
+          description: 'The key of the Person who will do revision of coding work
+
+
+            If no supervisor is set for the Study this field will not be present in the response.'
+          format: int32
+        clientCompanyKey:
+          type:
+          - integer
+          - 'null'
+          description: Optional key of the Company for which this coding work is being performed.
+          format: int32
+        endCompanyKey:
+          type:
+          - integer
+          - 'null'
+          description: 'The key of the Company for which this coding work is being performed
+
+
+            If no end customer company is set for the Study this field will not be present in the response.'
+          format: int32
+        help:
+          type:
+          - string
+          - 'null'
+          description: 'Optional text to assist workers coding this Study
+
+
+            This may be used to provide customer specific instructions to the coders for work on this Study.'
+        startDateUtc:
+          type:
+          - string
+          - 'null'
+          description: UTC date/time the Study was started.
+          format: date-time
+        dueDateUtc:
+          type:
+          - string
+          - 'null'
+          description: UTC date/time the Study was completed.
+          format: date-time
+        externalStudyId:
+          type:
+          - string
+          - 'null'
+          description: External study id from StudyMaps
+      additionalProperties: false
+      description: A request to create a new Study.
+    UpdateStudyRequest:
+      required:
+      - studyKey
+      type: object
+      properties:
+        studyKey:
+          type: integer
+          description: Key of a study that should be updated.
+          format: int32
+        quota:
+          type:
+          - integer
+          - 'null'
+          description: The quota for the Study
+          format: int32
+        id:
+          maxLength: 30
+          minLength: 1
+          type:
+          - string
+          - 'null'
+          description: 'The id of the new Study.
+
+
+            Must be unique among all Studies in the Ascribe account of the current session by case-insensitive comparison.
+
+
+            Must be at least 1 character and not more than 30 characters.'
+        name:
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+          description: 'Optional name of this Study, intended to be more human-friendly than the id of the Study.
+
+
+            Maximum of 50 characters.'
+        description:
+          type:
+          - string
+          - 'null'
+          description: An optional description of the Study.
+        status:
+          maxLength: 1
+          minLength: 0
+          type:
+          - string
+          - 'null'
+          description: 'Optional status of the Study.
+
+
+            If specified, one of:
+
+            <ul><li>a: Archived
+
+            </li><li>p: Coding in progress
+
+            </li><li>c: Completed
+
+            </li><li>d: Deleted
+
+            </li><li>h: On hold
+
+            </li><li>r: Review in progress
+
+            </li><li>s: Shipping
+
+            </li><li>u: Under construction</li></ul>'
+        supervisorKey:
+          type:
+          - integer
+          - 'null'
+          description: 'The key of the Person who will do revision of coding work
+
+
+            If no supervisor is set for the Study this field will not be present in the response.'
+          format: int32
+        clientCompanyKey:
+          type:
+          - integer
+          - 'null'
+          description: Optional key of the Company for which this coding work is being performed.
+          format: int32
+        endCompanyKey:
+          type:
+          - integer
+          - 'null'
+          description: 'The key of the Company for which this coding work is being performed
+
+
+            If no end customer company is set for the Study this field will not be present in the response.'
+          format: int32
+        help:
+          type:
+          - string
+          - 'null'
+          description: 'Optional text to assist workers coding this Study
+
+
+            This may be used to provide customer specific instructions to the coders for work on this Study.'
+        startDateUtc:
+          type:
+          - string
+          - 'null'
+          description: UTC date/time the Study was started.
+          format: date-time
+        dueDateUtc:
+          type:
+          - string
+          - 'null'
+          description: UTC date/time the Study was completed.
+          format: date-time
+        externalStudyId:
+          type:
+          - string
+          - 'null'
+          description: External study id from StudyMaps
+      additionalProperties: false
+      description: A request to update a new Study.
+    GetStudiesResponse:
+      required:
+      - studies
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        studies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Study'
+          description: A list of Studies.
+      additionalProperties: false
+      description: Information about the requested Studies.
+    DeleteStudyRequest:
+      required:
+      - studyKey
+      type: object
+      properties:
+        studyKey:
+          type: integer
+          description: Key of study to delete
+          format: int32
+      additionalProperties: false
+      description: Request for delete study action
     GetStudyResponse:
       required:
       - countQuestions
@@ -597,314 +1284,6 @@ components:
           description: Information about the operation grouped by questions
       additionalProperties: false
       description: Response of translate study operation
-    DeleteStudyResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-      description: Response for delete study action
-    UpdateStudyResponse:
-      required:
-      - countQuestions
-      - countResponses
-      - countResponsesCoded
-      - countTransactions
-      - createDateUtc
-      - id
-      - key
-      - status
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        key:
-          type: integer
-          description: The key of the Study.
-          format: int32
-        quota:
-          type:
-          - integer
-          - 'null'
-          description: The quota for the Study
-          format: int32
-        id:
-          minLength: 1
-          type: string
-          description: The id of the Study.
-        name:
-          type:
-          - string
-          - 'null'
-          description: A user-friendly display name of the Study.
-        description:
-          type:
-          - string
-          - 'null'
-          description: A description of the Study.
-        status:
-          minLength: 1
-          type: string
-          description: 'A one-character string which specifies the status of the Study:
-
-            <ul><li>a: Archived
-
-            </li><li>p: Coding in progress
-
-            </li><li>c: Completed
-
-            </li><li>d: Deleted
-
-            </li><li>h: On hold
-
-            </li><li>r: Review in progress
-
-            </li><li>s: Shipping
-
-            </li><li>u: Under construction</li></ul>'
-        supervisorKey:
-          type:
-          - integer
-          - 'null'
-          description: 'The key of the Person who will do revision of coding work
-
-            '
-          format: int32
-        supervisorAssociateKey:
-          type:
-          - integer
-          - 'null'
-          description: 'The key of the supervisor''s associate
-
-            '
-          format: int32
-        clientCompanyKey:
-          type:
-          - integer
-          - 'null'
-          description: The Company to which this Study is assigned, or null if the Study is not assigned to a Company.
-          format: int32
-        endCompanyKey:
-          type:
-          - integer
-          - 'null'
-          description: 'The key of the Company for which this coding work is being performed
-
-            '
-          format: int32
-        help:
-          type:
-          - string
-          - 'null'
-          description: Information to coders to assist in coding this Study.
-        createDateUtc:
-          type: string
-          description: The UTC date/time the Study was created.
-          format: date-time
-        startDateUtc:
-          type:
-          - string
-          - 'null'
-          description: UTC date/time the Study was started.
-          format: date-time
-        dueDateUtc:
-          type:
-          - string
-          - 'null'
-          description: UTC date/time the Study was completed.
-          format: date-time
-        countQuestions:
-          type: integer
-          description: The number of Questions in the Study.
-          format: int32
-        countResponses:
-          type: integer
-          description: The sum of the number of Responses in each Question in the Study.
-          format: int32
-        countResponsesCoded:
-          type: integer
-          description: The sum of the number of Responses to which at least one Code has been assigned in each Question in the Study.
-          format: int32
-        countTransactions:
-          type: number
-          description: The number of transactions used by this Study.  Transactions are tokens of work performed on the Study.
-          format: double
-        externalStudyId:
-          type:
-          - string
-          - 'null'
-          description: External study id from StudyMaps
-      additionalProperties: false
-      description: The response with data of created study.
-    NewStudyResponse:
-      required:
-      - countQuestions
-      - countResponses
-      - countResponsesCoded
-      - countTransactions
-      - createDateUtc
-      - id
-      - key
-      - status
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        key:
-          type: integer
-          description: The key of the Study.
-          format: int32
-        quota:
-          type:
-          - integer
-          - 'null'
-          description: The quota for the Study
-          format: int32
-        id:
-          minLength: 1
-          type: string
-          description: The id of the Study.
-        name:
-          type:
-          - string
-          - 'null'
-          description: A user-friendly display name of the Study.
-        description:
-          type:
-          - string
-          - 'null'
-          description: A description of the Study.
-        status:
-          minLength: 1
-          type: string
-          description: 'A one-character string which specifies the status of the Study:
-
-            <ul><li>a: Archived
-
-            </li><li>p: Coding in progress
-
-            </li><li>c: Completed
-
-            </li><li>d: Deleted
-
-            </li><li>h: On hold
-
-            </li><li>r: Review in progress
-
-            </li><li>s: Shipping
-
-            </li><li>u: Under construction</li></ul>'
-        supervisorKey:
-          type:
-          - integer
-          - 'null'
-          description: 'The key of the Person who will do revision of coding work
-
-            '
-          format: int32
-        supervisorAssociateKey:
-          type:
-          - integer
-          - 'null'
-          description: 'The key of the supervisor''s associate
-
-            '
-          format: int32
-        clientCompanyKey:
-          type:
-          - integer
-          - 'null'
-          description: The Company to which this Study is assigned, or null if the Study is not assigned to a Company.
-          format: int32
-        endCompanyKey:
-          type:
-          - integer
-          - 'null'
-          description: 'The key of the Company for which this coding work is being performed
-
-            '
-          format: int32
-        help:
-          type:
-          - string
-          - 'null'
-          description: Information to coders to assist in coding this Study.
-        createDateUtc:
-          type: string
-          description: The UTC date/time the Study was created.
-          format: date-time
-        startDateUtc:
-          type:
-          - string
-          - 'null'
-          description: UTC date/time the Study was started.
-          format: date-time
-        dueDateUtc:
-          type:
-          - string
-          - 'null'
-          description: UTC date/time the Study was completed.
-          format: date-time
-        countQuestions:
-          type: integer
-          description: The number of Questions in the Study.
-          format: int32
-        countResponses:
-          type: integer
-          description: The sum of the number of Responses in each Question in the Study.
-          format: int32
-        countResponsesCoded:
-          type: integer
-          description: The sum of the number of Responses to which at least one Code has been assigned in each Question in the Study.
-          format: int32
-        countTransactions:
-          type: number
-          description: The number of transactions used by this Study.  Transactions are tokens of work performed on the Study.
-          format: double
-        externalStudyId:
-          type:
-          - string
-          - 'null'
-          description: External study id from StudyMaps
-      additionalProperties: false
-      description: The response with data of created study.
-    TranslateQuestionResponse:
-      required:
-      - questionKey
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        questionKey:
-          type: integer
-          description: Key of question that was translated
-          format: int32
-        responsesCount:
-          type: integer
-          description: Number of question's responses
-          format: int32
-        translationsCount:
-          type: integer
-          description: Number of translations that were done
-          format: int32
-        nonTranslatedResponsesCount:
-          type: integer
-          description: Number of responses that were not translated
-          format: int32
-        transactionsCount:
-          type: number
-          description: Number of transactions
-          format: double
-      additionalProperties: false
-      description: Response of translate question operation
     TranslateStudyRequest:
       required:
       - studyKey
@@ -921,385 +1300,6 @@ components:
           description: Code of target language
       additionalProperties: false
       description: Request for translating study
-    UpdateStudyRequest:
-      required:
-      - studyKey
-      type: object
-      properties:
-        studyKey:
-          type: integer
-          description: Key of a study that should be updated.
-          format: int32
-        quota:
-          type:
-          - integer
-          - 'null'
-          description: The quota for the Study
-          format: int32
-        id:
-          maxLength: 30
-          minLength: 1
-          type:
-          - string
-          - 'null'
-          description: 'The id of the new Study.
-
-
-            Must be unique among all Studies in the Ascribe account of the current session by case-insensitive comparison.
-
-
-            Must be at least 1 character and not more than 30 characters.'
-        name:
-          maxLength: 50
-          minLength: 0
-          type:
-          - string
-          - 'null'
-          description: 'Optional name of this Study, intended to be more human-friendly than the id of the Study.
-
-
-            Maximum of 50 characters.'
-        description:
-          type:
-          - string
-          - 'null'
-          description: An optional description of the Study.
-        status:
-          maxLength: 1
-          minLength: 0
-          type:
-          - string
-          - 'null'
-          description: 'Optional status of the Study.
-
-
-            If specified, one of:
-
-            <ul><li>a: Archived
-
-            </li><li>p: Coding in progress
-
-            </li><li>c: Completed
-
-            </li><li>d: Deleted
-
-            </li><li>h: On hold
-
-            </li><li>r: Review in progress
-
-            </li><li>s: Shipping
-
-            </li><li>u: Under construction</li></ul>'
-        supervisorKey:
-          type:
-          - integer
-          - 'null'
-          description: 'The key of the Person who will do revision of coding work
-
-
-            If no supervisor is set for the Study this field will not be present in the response.'
-          format: int32
-        clientCompanyKey:
-          type:
-          - integer
-          - 'null'
-          description: Optional key of the Company for which this coding work is being performed.
-          format: int32
-        endCompanyKey:
-          type:
-          - integer
-          - 'null'
-          description: 'The key of the Company for which this coding work is being performed
-
-
-            If no end customer company is set for the Study this field will not be present in the response.'
-          format: int32
-        help:
-          type:
-          - string
-          - 'null'
-          description: 'Optional text to assist workers coding this Study
-
-
-            This may be used to provide customer specific instructions to the coders for work on this Study.'
-        startDateUtc:
-          type:
-          - string
-          - 'null'
-          description: UTC date/time the Study was started.
-          format: date-time
-        dueDateUtc:
-          type:
-          - string
-          - 'null'
-          description: UTC date/time the Study was completed.
-          format: date-time
-        externalStudyId:
-          type:
-          - string
-          - 'null'
-          description: External study id from StudyMaps
-      additionalProperties: false
-      description: A request to update a new Study.
-    DeleteStudyRequest:
-      required:
-      - studyKey
-      type: object
-      properties:
-        studyKey:
-          type: integer
-          description: Key of study to delete
-          format: int32
-      additionalProperties: false
-      description: Request for delete study action
-    GetStudiesResponse:
-      required:
-      - studies
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        studies:
-          type: array
-          items:
-            $ref: '#/components/schemas/Study'
-          description: A list of Studies.
-      additionalProperties: false
-      description: Information about the requested Studies.
-    Study:
-      required:
-      - createDateUtc
-      - id
-      - key
-      - status
-      type: object
-      properties:
-        key:
-          type: integer
-          description: The key of the Study, which will not change for the lifetime of the Study.
-          format: int32
-        quota:
-          type:
-          - integer
-          - 'null'
-          description: 'The quota for the Study
-
-            If no quota is set for the Study this field will not be present in the response.'
-          format: int32
-        id:
-          minLength: 1
-          type: string
-          description: The id of the Study.
-        name:
-          type:
-          - string
-          - 'null'
-          description: 'The name of the Study.
-
-
-            If no study name is set for the Study this field will not be present in the response.'
-        description:
-          type:
-          - string
-          - 'null'
-          description: 'The description of the Study.
-
-
-            If no description is set for the Study this field will not be present in the response.'
-        status:
-          minLength: 1
-          type: string
-          description: 'A one-character string which specifies the status of the Study:
-
-            <ul><li>a: Archived
-
-            </li><li>p: Coding in progress
-
-            </li><li>c: Completed
-
-            </li><li>d: Deleted
-
-            </li><li>h: On hold
-
-            </li><li>r: Review in progress
-
-            </li><li>s: Shipping
-
-            </li><li>u: Under construction</li></ul>'
-        supervisorKey:
-          type:
-          - integer
-          - 'null'
-          description: 'The key of the Person who will do revision of coding work
-
-
-            If no supervisor is set for the Study this field will not be present in the response.'
-          format: int32
-        clientCompanyKey:
-          type:
-          - integer
-          - 'null'
-          description: 'The key of the Company for which this coding work is assigned
-
-
-            If no client company is set for the Study this field will not be present in the response.'
-          format: int32
-        endCompanyKey:
-          type:
-          - integer
-          - 'null'
-          description: 'The key of the Company for which this coding work is being performed
-
-
-            If no end customer company is set for the Study this field will not be present in the response.'
-          format: int32
-        help:
-          type:
-          - string
-          - 'null'
-          description: 'The information about the Study
-
-
-            If no help information is set for the Study this field will not be present in the response.'
-        createDateUtc:
-          type: string
-          description: The UTC date/time the Study was created.
-          format: date-time
-        startDateUtc:
-          type:
-          - string
-          - 'null'
-          description: 'UTC date/time the Study was started.
-
-
-            If the date is not set yet for the Study this field will not be present in the response.'
-          format: date-time
-        dueDateUtc:
-          type:
-          - string
-          - 'null'
-          description: 'UTC date/time the Study was completed.
-
-
-            If the date is not set yet for the Study this field will not be present in the response.'
-          format: date-time
-        externalStudyId:
-          type:
-          - string
-          - 'null'
-          description: External study id from StudyMaps
-      additionalProperties: false
-      description: A Study.
-    NewStudyRequest:
-      required:
-      - id
-      type: object
-      properties:
-        quota:
-          type:
-          - integer
-          - 'null'
-          description: The quota for the Study
-          format: int32
-        id:
-          maxLength: 30
-          minLength: 1
-          type: string
-          description: 'The id of the new Study.
-
-
-            Must be unique among all Studies in the Ascribe account of the current session by case-insensitive comparison.
-
-
-            Must be at least 1 character and not more than 30 characters.'
-        name:
-          maxLength: 50
-          minLength: 0
-          type:
-          - string
-          - 'null'
-          description: 'Optional name of this Study, intended to be more human-friendly than the id of the Study.
-
-
-            Maximum of 50 characters.'
-        description:
-          type:
-          - string
-          - 'null'
-          description: An optional description of the Study.
-        status:
-          maxLength: 1
-          minLength: 0
-          type:
-          - string
-          - 'null'
-          description: 'Optional status of the Study at the time it is created.
-
-
-            If specified, one of:
-
-            <ul><li>u: Under construction
-
-            </li><li>p: Coding in progress
-
-            </li><li>h: On hold
-
-            </li></ul>
-
-            If omitted the default status is ''Coding in progress''.'
-        supervisorKey:
-          type:
-          - integer
-          - 'null'
-          description: 'The key of the Person who will do revision of coding work
-
-
-            If no supervisor is set for the Study this field will not be present in the response.'
-          format: int32
-        clientCompanyKey:
-          type:
-          - integer
-          - 'null'
-          description: Optional key of the Company for which this coding work is being performed.
-          format: int32
-        endCompanyKey:
-          type:
-          - integer
-          - 'null'
-          description: 'The key of the Company for which this coding work is being performed
-
-
-            If no end customer company is set for the Study this field will not be present in the response.'
-          format: int32
-        help:
-          type:
-          - string
-          - 'null'
-          description: 'Optional text to assist workers coding this Study
-
-
-            This may be used to provide customer specific instructions to the coders for work on this Study.'
-        startDateUtc:
-          type:
-          - string
-          - 'null'
-          description: UTC date/time the Study was started.
-          format: date-time
-        dueDateUtc:
-          type:
-          - string
-          - 'null'
-          description: UTC date/time the Study was completed.
-          format: date-time
-        externalStudyId:
-          type:
-          - string
-          - 'null'
-          description: External study id from StudyMaps
-      additionalProperties: false
-      description: A request to create a new Study.
   securitySchemes:
     Bearer:
       type: http

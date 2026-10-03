@@ -76,23 +76,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    NewSessionRequest:
-      required:
-      - account
-      - password
-      - userName
-      type: object
-      properties:
-        account:
-          minLength: 1
-          type: string
-        userName:
-          minLength: 1
-          type: string
-        password:
-          minLength: 1
-          type: string
-      additionalProperties: false
     NewSessionResponse:
       required:
       - authenticationToken
@@ -107,6 +90,23 @@ components:
           type: string
           format: uuid
         bearerToken:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    NewSessionRequest:
+      required:
+      - account
+      - password
+      - userName
+      type: object
+      properties:
+        account:
+          minLength: 1
+          type: string
+        userName:
+          minLength: 1
+          type: string
+        password:
           minLength: 1
           type: string
       additionalProperties: false

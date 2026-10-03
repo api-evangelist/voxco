@@ -82,24 +82,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CreateNewCompanyResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        key:
-          type: integer
-          description: The key assigned to the new Company.
-          format: int32
-        id:
-          type:
-          - string
-          - 'null'
-          description: The id of the new Company, which is trimmed of leading and trailing whitespace.
-      additionalProperties: false
-      description: Response contains information about the newly created company
     CreateNewCompanyRequest:
       required:
       - id
@@ -131,6 +113,24 @@ components:
           description: "The id of the Company.\n  \nThis id is unique among Companies, but may be changed by the user."
       additionalProperties: false
       description: A company
+    CreateNewCompanyResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        key:
+          type: integer
+          description: The key assigned to the new Company.
+          format: int32
+        id:
+          type:
+          - string
+          - 'null'
+          description: The id of the new Company, which is trimmed of leading and trailing whitespace.
+      additionalProperties: false
+      description: Response contains information about the newly created company
     GetCompaniesResponse:
       required:
       - companies

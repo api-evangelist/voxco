@@ -41,22 +41,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    User:
-      required:
-      - id
-      - key
-      type: object
-      properties:
-        key:
-          type: integer
-          description: The key for this user.  The key for a user cannot be changed, and will always identify that user in the account.
-          format: int32
-        id:
-          minLength: 1
-          type: string
-          description: The user's logon id.  This value is unique by case-insensitive comparison across all users in the account.  However, this value may be changed by an administrator of the account.
-      additionalProperties: false
-      description: Information about a user.
     GetUsersResponse:
       required:
       - users
@@ -73,6 +57,22 @@ components:
           description: A list of users.
       additionalProperties: false
       description: The users property contains a list of users.
+    User:
+      required:
+      - id
+      - key
+      type: object
+      properties:
+        key:
+          type: integer
+          description: The key for this user.  The key for a user cannot be changed, and will always identify that user in the account.
+          format: int32
+        id:
+          minLength: 1
+          type: string
+          description: The user's logon id.  This value is unique by case-insensitive comparison across all users in the account.  However, this value may be changed by an administrator of the account.
+      additionalProperties: false
+      description: Information about a user.
   securitySchemes:
     Bearer:
       type: http
