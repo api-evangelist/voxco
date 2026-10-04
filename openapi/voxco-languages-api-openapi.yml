@@ -76,21 +76,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    NaturalLanguage:
-      type: object
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-          description: The language code, used to specify the language in API operations.
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the language suitable for display to the user.
-      additionalProperties: false
-      description: A natural language supported by this API.
     GetLanguagesToTranslateResponse:
       type: object
       properties:
@@ -107,6 +92,21 @@ components:
           description: List of supported languages
       additionalProperties: false
       description: Response that contains list of languages that are supported by this API.
+    NaturalLanguage:
+      type: object
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+          description: The language code, used to specify the language in API operations.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the language suitable for display to the user.
+      additionalProperties: false
+      description: A natural language supported by this API.
   securitySchemes:
     Bearer:
       type: http

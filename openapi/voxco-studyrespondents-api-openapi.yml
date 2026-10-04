@@ -78,6 +78,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    DeleteStudyRespondentsRequest:
+      type: object
+      properties:
+        respondentIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: List of respondent identifiers to be deleted
+      additionalProperties: false
+      description: Request model for deleting study respondents
     DeleteStudyRespondentsResponse:
       type: object
       properties:
@@ -101,18 +113,6 @@ components:
           description: Array of respondents with no responses found
       additionalProperties: false
       description: Response of DeleteStudyRespondents API method
-    DeleteStudyRespondentsRequest:
-      type: object
-      properties:
-        respondentIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: List of respondent identifiers to be deleted
-      additionalProperties: false
-      description: Request model for deleting study respondents
     DeleteStudyRespondentFailure:
       type: object
       properties:

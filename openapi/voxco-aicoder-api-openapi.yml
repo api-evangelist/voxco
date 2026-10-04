@@ -925,78 +925,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CodebookAIOptions:
+    CodebookInitialOptions:
       type: object
       properties:
-        initial:
-          $ref: '#/components/schemas/CodebookInitialOptions'
-        mergeSimilar:
-          $ref: '#/components/schemas/MergeSimilarOptions'
-        assignSegmentSiblings:
-          $ref: '#/components/schemas/AssignSegmentSiblingsOptions'
-        assignTopSegments:
-          $ref: '#/components/schemas/AssignTopSegmentsOptions'
-      additionalProperties: false
-      description: Common codebook's options
-    AICoderGroupCodesResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        taskStatusKey:
+        minProximity:
           type: integer
-          description: Key of a newly created task
-          format: int64
-      additionalProperties: false
-      description: Contains key of grouping codes into target net task
-    AICoderExcelExportRequest:
-      required:
-      - aiCoderKey
-      type: object
-      properties:
-        aiCoderKey:
+          description: Initial codes minimum proximity
+          format: int32
+        minSegmentsPerCode:
           type: integer
-          description: Key of target AI Coder project which data should be exported into Excel file
+          description: Minimum number of segments per code
+          format: int32
+        approxMaxCodes:
+          type: integer
+          description: Approximate maximum number of codes
           format: int32
       additionalProperties: false
-      description: Contains request data of the exporting to Excel file task
-    AnalyzeByClosedEndOption:
-      required:
-      - questionKey
-      type: object
-      properties:
-        questionKey:
-          type: integer
-          description: Required. The numeric key of the closed-ended question to analyze responses by.
-          format: int32
-          example: 111
-        codes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AnalyzeByClosedEndCodesOption'
-          description: 'Optional. A list of specific codes from the question''s codebook (CoderApiV2.Models.Coder.AnalyzeByClosedEndCodesOption) to focus the analysis on.
-
-            If omitted or empty, the AI may consider all codes or infer themes based on the overall responses for the question.'
-      additionalProperties: false
-      description: Configuration for generating themes based on responses grouped by a closed-ended question.
-    AICoderCodeStudyStatusOfTaskResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        isCompleted:
-          type: boolean
-          description: True if the task is completed, otherwise false
-        project:
-          $ref: '#/components/schemas/AICoderProjectAPI'
-      additionalProperties: false
-      description: Contains current status of analyzing study task
+      description: Codebook initial options
     AICoderCreateLinkRequest:
       required:
       - projectKey
@@ -1020,26 +965,236 @@ components:
           format: date-time
       additionalProperties: false
       description: Request data for AICoderCreateLinks method.
-    NonGenerativeAIOptions:
+    AICoderCodebookExportGetStatusOfTaskResponse:
       type: object
       properties:
-        splitCharacters:
+        errorMessage:
           type:
           - string
           - 'null'
-          description: Set of characters for splitting on words
-        splitWords:
+        isCompleted:
+          type: boolean
+          description: True if the task is completed, otherwise false
+      additionalProperties: false
+      description: Contains current status of exporting codebook into Coder task
+    AnalyzeByClosedEndOption:
+      required:
+      - questionKey
+      type: object
+      properties:
+        questionKey:
+          type: integer
+          description: Required. The numeric key of the closed-ended question to analyze responses by.
+          format: int32
+          example: 111
+        codes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AnalyzeByClosedEndCodesOption'
+          description: 'Optional. A list of specific codes from the question''s codebook (CoderApiV2.Models.Coder.AnalyzeByClosedEndCodesOption) to focus the analysis on.
+
+            If omitted or empty, the AI may consider all codes or infer themes based on the overall responses for the question.'
+      additionalProperties: false
+      description: Configuration for generating themes based on responses grouped by a closed-ended question.
+    AICoderDichotomousExportRequest:
+      required:
+      - projectKey
+      type: object
+      properties:
+        projectKey:
+          type: integer
+          description: Key of target AI Coder project which data should be exported into Excel file
+          format: int32
+        removeEmptyColumns:
+          type: boolean
+          description: Removes empty columns from the report (i.e. columns that don't have any 1 value in its cells).
+        useAverageSentimentPerRow:
+          type: boolean
+          description: Adds a column with the average sentiment per row.
+      additionalProperties: false
+      description: Contains request data of the exporting to dichotomous report file task
+    MergeSimilarOptions:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        minProximity:
+          type: integer
+          description: Minimum proximity value for merging codes
+          format: int32
+      additionalProperties: false
+      description: Merge similar codes options
+    AICoderCodeStudyResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        taskStatusKey:
+          type: integer
+          description: Key of a newly created task
+          format: int64
+      additionalProperties: false
+      description: Contains key of study analyzing task
+    AICoderAnalyzeGetCodebooksResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        codebooks:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CodebookItem'
+          description: List of available codebooks to use
+      additionalProperties: false
+      description: Contains list of available codebooks for using in further interaction with the API
+    AICoderExcelExportResponse:
+      required:
+      - taskStatusKey
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        taskStatusKey:
+          type: integer
+          description: The key of the task
+          format: int64
+      additionalProperties: false
+      description: Contains response data from the method that start exporting to Excel file task
+    AICoderCodeStudyRequest:
+      required:
+      - questionKeys
+      type: object
+      properties:
+        codebook:
+          $ref: '#/components/schemas/CodebookAIOptions'
+        generativeAIOptions:
+          $ref: '#/components/schemas/GenerativeAIOptions'
+        nonGenerativeAIOptions:
+          $ref: '#/components/schemas/NonGenerativeAIOptions'
+        useGenerativeAI:
+          type: boolean
+          description: Use or not generative AI for analysis
+        wordsToIgnore:
           type:
           - array
           - 'null'
           items:
             type: string
-          description: Set of short-words for splitting
-        responsesAreAllEnglish:
+          description: Set of words to ignore
+        includeCodedResponses:
           type: boolean
-          description: True if all responses in English, otherwise false
+          description: Should coded responses be included into analysis
+        useEnhancedThemeExtractor:
+          type: boolean
+          description: 'Enable/disable using of enhanced theme extractor.
+
+            When the enhancedThemeExtractor is used, then the codebook options are ignored.'
+        enhancedThemeExtractor:
+          $ref: '#/components/schemas/EnhancedThemeExtractorOptions'
+        questionKeys:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+          description: Set of questions to analyze
+        existingCodebookKey:
+          type: integer
+          description: Key of existing codebook. By default it creates a new codebook.
+          format: int32
+        existingCodebookSuggestNewCodes:
+          type: boolean
+          description: Should suggest new codes for existing codebook? It is false by default.
+        existingCodebookOptions:
+          $ref: '#/components/schemas/ExistingCodebookOptions'
       additionalProperties: false
-      description: Non-generative AI options
+      description: Contains parameters for study analyzing task
+    CodebookAIOptions:
+      type: object
+      properties:
+        initial:
+          $ref: '#/components/schemas/CodebookInitialOptions'
+        mergeSimilar:
+          $ref: '#/components/schemas/MergeSimilarOptions'
+        assignSegmentSiblings:
+          $ref: '#/components/schemas/AssignSegmentSiblingsOptions'
+        assignTopSegments:
+          $ref: '#/components/schemas/AssignTopSegmentsOptions'
+      additionalProperties: false
+      description: Common codebook's options
+    AICoderCodeStudyIncrementallyResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        taskStatusKey:
+          type: integer
+          description: Key of a newly created task
+          format: int64
+      additionalProperties: false
+      description: Contains key of incremental study analyzing task
+    ExportToCoderType:
+      enum:
+      - Append
+      - Overwrite
+      - NewCodebookAnalyzedQuestions
+      - NewCodebookAllSharedQuestions
+      - AscribeCodebook
+      - Merge
+      type: string
+      format: ''
+    AICoderCodebookExportResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        taskStatusKey:
+          type: integer
+          description: Key of newly created task
+          format: int64
+      additionalProperties: false
+      description: Contains key of codebook exporting into Coder task
+    AnalyzeByClosedEndCodesOption:
+      required:
+      - codeKey
+      type: object
+      properties:
+        codeKey:
+          type: integer
+          description: The numeric key of the code from the closed-ended question's codebook.
+          format: int32
+          example: 55
+        codeIsAbout:
+          type:
+          - string
+          - 'null'
+          description: Optional. A hint to the AI about the meaning or topic of this specific code.
+          example: Negative feedback about pricing
+      additionalProperties: false
+      description: Represents a specific code to consider when using the CoderApiV2.Models.Coder.AnalyzeByClosedEndOption.
+    CodebookGranularityOption:
+      enum:
+      - Low
+      - Medium
+      - High
+      type: string
+      description: Defines the desired level of granularity (detail) for the automatically generated codebook themes.
+      format: ''
     AICoderCodeStudyV3Request:
       required:
       - questionKeys
@@ -1074,83 +1229,7 @@ components:
           description: Use or not generative AI for analysis
       additionalProperties: false
       description: Parameters for study analysis using Codebook Builder via `POST /AICoder/Analyze/v3`.
-    CodebookBuilderV3Options:
-      type: object
-      properties:
-        codebookGranularity:
-          type: integer
-          description: Approximate target number of codes in the generated codebook.
-          format: int32
-          example: 100
-        creationMethod:
-          $ref: '#/components/schemas/CodebookBuilderCreationMethod'
-        minimumResponsesPerCode:
-          type: integer
-          description: Minimum number of responses that should support a code (segment frequency threshold for Codebook Builder).
-          format: int32
-          example: 3
-        classificationStrictness:
-          type: integer
-          description: How strictly open-ended responses must align with a code during classification, expressed as a percentage (higher is stricter).
-          format: int32
-          example: 80
-        maxTopicBasedCodesEnabled:
-          type: boolean
-          description: When true, limits how many topic-based codes may appear in the codebook.
-        maxTopicBasedCodes:
-          type: integer
-          description: Maximum number of topic-based codes when CoderApiV2.Models.Coder.CodebookBuilderV3Options.MaxTopicBasedCodesEnabled is true.
-          format: int32
-          example: 10
-        analyzeByClosedEnd:
-          $ref: '#/components/schemas/AnalyzeByClosedEndOption'
-      additionalProperties: false
-      description: Codebook Builder options for `POST /AICoder/Analyze/v3`.
-    AICoderGroupCodesRequest:
-      required:
-      - aiCoderKey
-      - netKey
-      - netLevel
-      type: object
-      properties:
-        aiCoderKey:
-          type: integer
-          description: Key of AI Coder project
-          format: int32
-        netKey:
-          type: integer
-          description: Key of target net
-          format: int32
-        netLevel:
-          type: integer
-          description: Number of net levels in AICoder's codebook after operation of grouping. Set to 0, for removing nets.
-          format: int32
-      additionalProperties: false
-      description: Contains parameters for grouping codes into target net task
-    AICoderLink:
-      required:
-      - link
-      type: object
-      properties:
-        distributionQuestionValue:
-          type:
-          - string
-          - 'null'
-          description: Value of the distribution question (variable name).
-        link:
-          type:
-          - string
-          - 'null'
-          description: Url to the AI Coder project.
-        expirationDateUtc:
-          type:
-          - string
-          - 'null'
-          description: Datetime when the link expires.
-          format: date-time
-      additionalProperties: false
-      description: Class contains information about AI Coder link.
-    AICoderCodebookExportResponse:
+    AICoderDichotomousExportResponse:
       type: object
       properties:
         errorMessage:
@@ -1159,42 +1238,40 @@ components:
           - 'null'
         taskStatusKey:
           type: integer
-          description: Key of newly created task
+          description: Key of a newly created task
           format: int64
       additionalProperties: false
-      description: Contains key of codebook exporting into Coder task
-    AICoderExcelExportResponse:
-      required:
-      - taskStatusKey
+      description: Contains key of generating dichotomous report task
+    ExistingCodebookOptions:
       type: object
       properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        taskStatusKey:
-          type: integer
-          description: The key of the task
-          format: int64
-      additionalProperties: false
-      description: Contains response data from the method that start exporting to Excel file task
-    AICoderDichotomousExportGetStatusOfTaskResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        isCompleted:
+        applyRegEx:
           type: boolean
-          description: True if the task is completed, otherwise false
-        fileUrl:
+          description: Determines of using regular expressions while data analysis
+        applyTrainingExamples:
+          type: boolean
+          description: Determines of using training examples while data analysis
+        applyCodingRules:
+          type: boolean
+          description: Determines of using coding rules while data analysis
+      additionalProperties: false
+      description: Options for analyzing of existing codebook
+    AICoderGetProjectsTaskResponse:
+      type: object
+      properties:
+        errorMessage:
           type:
           - string
           - 'null'
-          description: Url of result Excel file
+        aiCoderProjects:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AICoderProjectAPI'
+          description: Array of AI Coder projects
       additionalProperties: false
-      description: Contains current status of generating dichotomous report task
+      description: Constains AI Coder projects which are available for current user
     AICoderCodebookExportRequest:
       required:
       - aiCoderKey
@@ -1216,48 +1293,6 @@ components:
           description: False if responses should be coded after success export of the codebook, otherwise true
       additionalProperties: false
       description: Contains parameters for codebook exporting into Coder task
-    AssignSegmentSiblingsOptions:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        minProximity:
-          type: integer
-          description: Minimum proximity percent value
-          format: int32
-        minSiblings:
-          type: integer
-          description: Number of siblings
-          format: int32
-      additionalProperties: false
-      description: Assign segment siblings options
-    GenerativeAIOptions:
-      type: object
-      properties:
-        dataIsAbout:
-          type:
-          - string
-          - 'null'
-          description: String that describing common sense of analyzing data
-        codebookLanguage:
-          type:
-          - string
-          - 'null'
-          description: Language of codes in codebook
-      additionalProperties: false
-      description: Generative AI options
-    AICoderCodebookExportGetStatusOfTaskResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        isCompleted:
-          type: boolean
-          description: True if the task is completed, otherwise false
-      additionalProperties: false
-      description: Contains current status of exporting codebook into Coder task
     CodebookBuilderCreationMethod:
       enum:
       - AIGenerated
@@ -1281,172 +1316,87 @@ components:
           description: Array of AI Coder links.
       additionalProperties: false
       description: Response data for AICoderGetLinks method.
-    AICoderAnalyzeGetCodebooksResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        codebooks:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CodebookItem'
-          description: List of available codebooks to use
-      additionalProperties: false
-      description: Contains list of available codebooks for using in further interaction with the API
-    ExportToCoderType:
-      enum:
-      - Append
-      - Overwrite
-      - NewCodebookAnalyzedQuestions
-      - NewCodebookAllSharedQuestions
-      - AscribeCodebook
-      - Merge
-      type: string
-      format: ''
-    AICoderDichotomousExportResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        taskStatusKey:
-          type: integer
-          description: Key of a newly created task
-          format: int64
-      additionalProperties: false
-      description: Contains key of generating dichotomous report task
-    CodebookInitialOptions:
-      type: object
-      properties:
-        minProximity:
-          type: integer
-          description: Initial codes minimum proximity
-          format: int32
-        minSegmentsPerCode:
-          type: integer
-          description: Minimum number of segments per code
-          format: int32
-        approxMaxCodes:
-          type: integer
-          description: Approximate maximum number of codes
-          format: int32
-      additionalProperties: false
-      description: Codebook initial options
-    ExistingCodebookOptions:
-      type: object
-      properties:
-        applyRegEx:
-          type: boolean
-          description: Determines of using regular expressions while data analysis
-        applyTrainingExamples:
-          type: boolean
-          description: Determines of using training examples while data analysis
-        applyCodingRules:
-          type: boolean
-          description: Determines of using coding rules while data analysis
-      additionalProperties: false
-      description: Options for analyzing of existing codebook
-    CodebookItem:
+    AICoderCodeStudyIncrementallyRequest:
+      required:
+      - key
       type: object
       properties:
         key:
           type: integer
+          description: Key of AI Coder project. It is required.
           format: int32
-        id:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    AICoderCodeStudyIncrementallyResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        taskStatusKey:
-          type: integer
-          description: Key of a newly created task
-          format: int64
-      additionalProperties: false
-      description: Contains key of incremental study analyzing task
-    CodebookGranularityOption:
-      enum:
-      - Low
-      - Medium
-      - High
-      type: string
-      description: Defines the desired level of granularity (detail) for the automatically generated codebook themes.
-      format: ''
-    AICoderGetProjectsTaskResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        aiCoderProjects:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AICoderProjectAPI'
-          description: Array of AI Coder projects
-      additionalProperties: false
-      description: Constains AI Coder projects which are available for current user
-    AICoderCodeStudyResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        taskStatusKey:
-          type: integer
-          description: Key of a newly created task
-          format: int64
-      additionalProperties: false
-      description: Contains key of study analyzing task
-    AICoderDichotomousExportRequest:
-      required:
-      - projectKey
-      type: object
-      properties:
-        projectKey:
-          type: integer
-          description: Key of target AI Coder project which data should be exported into Excel file
-          format: int32
-        removeEmptyColumns:
+        suggestNewCodes:
           type: boolean
-          description: Removes empty columns from the report (i.e. columns that don't have any 1 value in its cells).
-        useAverageSentimentPerRow:
-          type: boolean
-          description: Adds a column with the average sentiment per row.
+          description: 'When `true`, after loading additional responses the engine may suggest new codes for uncoded segments
+
+            (same as the AI Coder **Suggest new codes** option when adding a load; `addNewCodesWhenAddAICoderLoad`).
+
+            Default `false` matches the UI default.'
       additionalProperties: false
-      description: Contains request data of the exporting to dichotomous report file task
-    AnalyzeByClosedEndCodesOption:
-      required:
-      - codeKey
+      description: Contains parameters for incremental study analyzing task.
+    AssignTopSegmentsOptions:
       type: object
       properties:
-        codeKey:
+        enabled:
+          type: boolean
+        minProximity:
           type: integer
-          description: The numeric key of the code from the closed-ended question's codebook.
+          description: Minimum proximity percent value
           format: int32
-          example: 55
-        codeIsAbout:
+        topSegments:
+          type: integer
+          description: Number of top segments
+          format: int32
+      additionalProperties: false
+      description: Assign top segments options
+    AICoderGroupCodesRequest:
+      required:
+      - aiCoderKey
+      - netKey
+      - netLevel
+      type: object
+      properties:
+        aiCoderKey:
+          type: integer
+          description: Key of AI Coder project
+          format: int32
+        netKey:
+          type: integer
+          description: Key of target net
+          format: int32
+        netLevel:
+          type: integer
+          description: Number of net levels in AICoder's codebook after operation of grouping. Set to 0, for removing nets.
+          format: int32
+      additionalProperties: false
+      description: Contains parameters for grouping codes into target net task
+    AICoderGroupCodesStatusOfTaskResponse:
+      type: object
+      properties:
+        errorMessage:
           type:
           - string
           - 'null'
-          description: Optional. A hint to the AI about the meaning or topic of this specific code.
-          example: Negative feedback about pricing
+        isCompleted:
+          type: boolean
+          description: True if the task is completed, otherwise false
       additionalProperties: false
-      description: Represents a specific code to consider when using the CoderApiV2.Models.Coder.AnalyzeByClosedEndOption.
+      description: Contains a current status of grouping codes into target net task
+    AssignSegmentSiblingsOptions:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        minProximity:
+          type: integer
+          description: Minimum proximity percent value
+          format: int32
+        minSiblings:
+          type: integer
+          description: Number of siblings
+          format: int32
+      additionalProperties: false
+      description: Assign segment siblings options
     AICoderExcelExportGetStatusOfTaskResponse:
       required:
       - fileUrl
@@ -1466,6 +1416,38 @@ components:
           description: Url of result Excel file
       additionalProperties: false
       description: Contains status and result of exporting to Excel file task
+    AICoderDichotomousExportGetStatusOfTaskResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        isCompleted:
+          type: boolean
+          description: True if the task is completed, otherwise false
+        fileUrl:
+          type:
+          - string
+          - 'null'
+          description: Url of result Excel file
+      additionalProperties: false
+      description: Contains current status of generating dichotomous report task
+    GenerativeAIOptions:
+      type: object
+      properties:
+        dataIsAbout:
+          type:
+          - string
+          - 'null'
+          description: String that describing common sense of analyzing data
+        codebookLanguage:
+          type:
+          - string
+          - 'null'
+          description: Language of codes in codebook
+      additionalProperties: false
+      description: Generative AI options
     AICoderProjectAPI:
       required:
       - owner
@@ -1525,6 +1507,99 @@ components:
           description: True if the project is public (shared for all users), otherwise false
       additionalProperties: false
       description: Presents AI Coder project in the Coder API
+    CodebookItem:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int32
+        id:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    AICoderLink:
+      required:
+      - link
+      type: object
+      properties:
+        distributionQuestionValue:
+          type:
+          - string
+          - 'null'
+          description: Value of the distribution question (variable name).
+        link:
+          type:
+          - string
+          - 'null'
+          description: Url to the AI Coder project.
+        expirationDateUtc:
+          type:
+          - string
+          - 'null'
+          description: Datetime when the link expires.
+          format: date-time
+      additionalProperties: false
+      description: Class contains information about AI Coder link.
+    AICoderCodeStudyStatusOfTaskResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        isCompleted:
+          type: boolean
+          description: True if the task is completed, otherwise false
+        project:
+          $ref: '#/components/schemas/AICoderProjectAPI'
+      additionalProperties: false
+      description: Contains current status of analyzing study task
+    AICoderGroupCodesResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        taskStatusKey:
+          type: integer
+          description: Key of a newly created task
+          format: int64
+      additionalProperties: false
+      description: Contains key of grouping codes into target net task
+    CodebookBuilderV3Options:
+      type: object
+      properties:
+        codebookGranularity:
+          type: integer
+          description: Approximate target number of codes in the generated codebook.
+          format: int32
+          example: 100
+        creationMethod:
+          $ref: '#/components/schemas/CodebookBuilderCreationMethod'
+        minimumResponsesPerCode:
+          type: integer
+          description: Minimum number of responses that should support a code (segment frequency threshold for Codebook Builder).
+          format: int32
+          example: 3
+        classificationStrictness:
+          type: integer
+          description: How strictly open-ended responses must align with a code during classification, expressed as a percentage (higher is stricter).
+          format: int32
+          example: 80
+        maxTopicBasedCodesEnabled:
+          type: boolean
+          description: When true, limits how many topic-based codes may appear in the codebook.
+        maxTopicBasedCodes:
+          type: integer
+          description: Maximum number of topic-based codes when CoderApiV2.Models.Coder.CodebookBuilderV3Options.MaxTopicBasedCodesEnabled is true.
+          format: int32
+          example: 10
+        analyzeByClosedEnd:
+          $ref: '#/components/schemas/AnalyzeByClosedEndOption'
+      additionalProperties: false
+      description: Codebook Builder options for `POST /AICoder/Analyze/v3`.
     EnhancedThemeExtractorOptions:
       type: object
       properties:
@@ -1550,112 +1625,37 @@ components:
           $ref: '#/components/schemas/CodebookGranularityOption'
       additionalProperties: false
       description: Enhanced theme extractor options
-    AICoderGroupCodesStatusOfTaskResponse:
+    AICoderExcelExportRequest:
+      required:
+      - aiCoderKey
       type: object
       properties:
-        errorMessage:
+        aiCoderKey:
+          type: integer
+          description: Key of target AI Coder project which data should be exported into Excel file
+          format: int32
+      additionalProperties: false
+      description: Contains request data of the exporting to Excel file task
+    NonGenerativeAIOptions:
+      type: object
+      properties:
+        splitCharacters:
           type:
           - string
           - 'null'
-        isCompleted:
-          type: boolean
-          description: True if the task is completed, otherwise false
-      additionalProperties: false
-      description: Contains a current status of grouping codes into target net task
-    MergeSimilarOptions:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        minProximity:
-          type: integer
-          description: Minimum proximity value for merging codes
-          format: int32
-      additionalProperties: false
-      description: Merge similar codes options
-    AICoderCodeStudyIncrementallyRequest:
-      required:
-      - key
-      type: object
-      properties:
-        key:
-          type: integer
-          description: Key of AI Coder project. It is required.
-          format: int32
-        suggestNewCodes:
-          type: boolean
-          description: 'When `true`, after loading additional responses the engine may suggest new codes for uncoded segments
-
-            (same as the AI Coder **Suggest new codes** option when adding a load; `addNewCodesWhenAddAICoderLoad`).
-
-            Default `false` matches the UI default.'
-      additionalProperties: false
-      description: Contains parameters for incremental study analyzing task.
-    AssignTopSegmentsOptions:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        minProximity:
-          type: integer
-          description: Minimum proximity percent value
-          format: int32
-        topSegments:
-          type: integer
-          description: Number of top segments
-          format: int32
-      additionalProperties: false
-      description: Assign top segments options
-    AICoderCodeStudyRequest:
-      required:
-      - questionKeys
-      type: object
-      properties:
-        codebook:
-          $ref: '#/components/schemas/CodebookAIOptions'
-        generativeAIOptions:
-          $ref: '#/components/schemas/GenerativeAIOptions'
-        nonGenerativeAIOptions:
-          $ref: '#/components/schemas/NonGenerativeAIOptions'
-        useGenerativeAI:
-          type: boolean
-          description: Use or not generative AI for analysis
-        wordsToIgnore:
+          description: Set of characters for splitting on words
+        splitWords:
           type:
           - array
           - 'null'
           items:
             type: string
-          description: Set of words to ignore
-        includeCodedResponses:
+          description: Set of short-words for splitting
+        responsesAreAllEnglish:
           type: boolean
-          description: Should coded responses be included into analysis
-        useEnhancedThemeExtractor:
-          type: boolean
-          description: 'Enable/disable using of enhanced theme extractor.
-
-            When the enhancedThemeExtractor is used, then the codebook options are ignored.'
-        enhancedThemeExtractor:
-          $ref: '#/components/schemas/EnhancedThemeExtractorOptions'
-        questionKeys:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int32
-          description: Set of questions to analyze
-        existingCodebookKey:
-          type: integer
-          description: Key of existing codebook. By default it creates a new codebook.
-          format: int32
-        existingCodebookSuggestNewCodes:
-          type: boolean
-          description: Should suggest new codes for existing codebook? It is false by default.
-        existingCodebookOptions:
-          $ref: '#/components/schemas/ExistingCodebookOptions'
+          description: True if all responses in English, otherwise false
       additionalProperties: false
-      description: Contains parameters for study analyzing task
+      description: Non-generative AI options
   securitySchemes:
     Bearer:
       type: http

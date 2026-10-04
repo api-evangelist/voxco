@@ -1024,329 +1024,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AddCodesIntoCodebookRequest:
-      type: object
-      properties:
-        codes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/NewCodeOrNet'
-          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
-        overwrite:
-          type: boolean
-          description: Overwrites non-unique codes
-      additionalProperties: false
-      description: A codebook presentation to create for specified question
-    UpdateCode:
-      type: object
-      properties:
-        key:
-          type:
-          - integer
-          - 'null'
-          description: Key of code
-          format: int32
-        description:
-          type:
-          - string
-          - 'null'
-          description: Description of code
-        inputId:
-          type:
-          - string
-          - 'null'
-          description: Input ID value of code
-        outputId:
-          type:
-          - string
-          - 'null'
-          description: Output ID value of code
-        regexPattern:
-          type:
-          - string
-          - 'null'
-          description: Regular expression pattern which may be used for assisting human coders or for automatic coding.
-        color:
-          type:
-          - string
-          - 'null'
-          description: 'Color for the code in CSS hexadecimal six digit format, e.g. #FF0000 for red.
-
-
-            If the code color is the default value of #000000 (black) this field will not be present in the response.'
-      additionalProperties: false
-      description: "Class contains information about code and its properties to update. \nOnly not-null properties will be updated, i.e. for properties with null value the code saves original value."
-    AddCodesIntoCodebookResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        codebookKey:
-          type: integer
-          description: The key of the Codebook.
-          format: int32
-        codebook:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CodeOrNet'
-          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
-      additionalProperties: false
-      description: Contains a presentation of codebook
-    DeleteCodebookCodesResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        codeKeysDeleted:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int32
-          description: Array of code keys which were successfully deleted from the codebook.
-        codeKeysNotDeleted:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int32
-          description: Array of code keys which were not deleted by some reason. Usually such codes are applied to response(s).
-        codesRemovedFromResponses:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ResponseCodeRemoved'
-          description: Array of response-code pairs that were uncoded from responses in process of codes deletion.
-      additionalProperties: false
-      description: 'Response contains two arrays with successfully-deleted and failed codes after the try of deletion.
-
-        Codebook code can not be deleted if it is applied for some response. Only unused codebook codes can be deleted.'
-    AddCodesIntoCodebooksBatchResultItem:
-      type: object
-      properties:
-        codebookKey:
-          type: integer
-          description: The key of codebook
-          format: int32
-        codebook:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CodeOrNet'
-          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \n            Codebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \n            Only the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\n            Nets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\n            Nets typically represent groups of related codes."
-        errorMessage:
-          type:
-          - string
-          - 'null'
-          description: Error message why codes can not be added into the Codebook
-      additionalProperties: false
-      description: Result item with information about status of adding codes into the specified codebook
-    NewCodeOrNet:
-      required:
-      - description
-      type: object
-      properties:
-        description:
-          maxLength: 1000
-          minLength: 0
-          type: string
-          description: 'The description of the Code.
-
-
-            This description represents the concept expressed in the coded Response.
-
-
-            Maximum allowed length is 1000 characters.'
-        inputId:
-          maxLength: 50
-          minLength: 0
-          type:
-          - string
-          - 'null'
-          description: "A optional identifier which may be used during automatic coding of responses.\n  \nMaximum allowed length is 50 characters."
-        outputId:
-          maxLength: 50
-          minLength: 0
-          type:
-          - string
-          - 'null'
-          description: "A optional identifier which may be used to identify the code in tabulation software.  \nMaximum allowed length is 50 characters."
-        regexPattern:
-          type:
-          - string
-          - 'null'
-          description: Optional regular expression pattern which may be used for assisting human coders or for automatic coding.
-        color:
-          type:
-          - string
-          - 'null'
-          description: 'An optional color for the code in CSS hexadecimal six digit format, e.g. #FF0000 for red.
-
-
-            If not specified the code color will default to black.'
-        children:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/NewCodeOrNet'
-          description: 'The children of a Net.
-
-
-            If this list is not null or empty, this code will be a Net, and its children will be the codes or nets in the list.
-
-
-            The children will be inserted in the codebook in the order specified in this list.'
-      additionalProperties: false
-      description: A Code or Net in a Codebook.
-    GetCodebookResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        codebookKey:
-          type: integer
-          description: The key of the Codebook.
-          format: int32
-        codebook:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CodeOrNet'
-          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
-      additionalProperties: false
-      description: Contains a presentation of codebook
-    CreateCodebookForQuestionResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        codebookKey:
-          type: integer
-          description: The key of the Codebook.
-          format: int32
-        codebook:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CodeOrNet'
-          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
-      additionalProperties: false
-      description: Contains a presentation of codebook
-    GetQuestionCodebookResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        codebookKey:
-          type: integer
-          description: The key of the Codebook.
-          format: int32
-        codebook:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CodeOrNet'
-          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
-      additionalProperties: false
-      description: Contains a presentation of codebook
-    UpdateCodesInCodebookResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        codebookKey:
-          type: integer
-          description: The key of the Codebook.
-          format: int32
-        codebook:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CodeOrNet'
-          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
-        failedCodes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/FailedCode'
-          description: Codes that were failed while updating by some reason or error.
-      additionalProperties: false
-      description: Response contains information about failed codes. If a code with some key from the request is not presented in failedCodes collection it means that the code was successfully updated.
-    UpdateCodesInCodebookRequest:
-      required:
-      - codes
-      type: object
-      properties:
-        codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/UpdateCode'
-          description: Codes to update
-        overwrite:
-          type: boolean
-          description: Overwrites non-unique codes
-      additionalProperties: false
-      description: Request contains information
-    ResponseCodeRemoved:
-      required:
-      - codeId
-      - codeKey
-      - questionId
-      - questionKey
-      - respondentId
-      type: object
-      properties:
-        questionKey:
-          type: integer
-          description: Key of question
-          format: int32
-        questionId:
-          type:
-          - string
-          - 'null'
-          description: Id of question
-        respondentId:
-          type:
-          - string
-          - 'null'
-          description: Id of respondent
-        codeKey:
-          type: integer
-          description: Key of code
-          format: int32
-        codeId:
-          type:
-          - string
-          - 'null'
-          description: Code Id (output)
-      additionalProperties: false
-      description: Contains information about codes that were uncode from responses
     DeleteCodebookCodesRequest:
       type: object
       properties:
@@ -1363,6 +1040,53 @@ components:
           description: Delete codes from responses as well when it is true
       additionalProperties: false
       description: Request contains an array of code keys to delete from codebook
+    AddCodesIntoCodebookRequest:
+      type: object
+      properties:
+        codes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/NewCodeOrNet'
+          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
+        overwrite:
+          type: boolean
+          description: Overwrites non-unique codes
+      additionalProperties: false
+      description: A codebook presentation to create for specified question
+    AddCodesIntoCodebooksBatchResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        codebooksBatch:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AddCodesIntoCodebooksBatchResultItem'
+          description: Array of result items of batch adding of codes into codebooks
+      additionalProperties: false
+      description: Response contains information about added codes into a linked codebook or error message
+    CodebookNewCodes:
+      type: object
+      properties:
+        codebookKey:
+          type: integer
+          description: Key of the Codebook
+          format: int32
+        codes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/NewCodeOrNet'
+          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
+      additionalProperties: false
+      description: Codebook and its codes or nets tree structure
     CodeOrNet:
       required:
       - description
@@ -1423,22 +1147,172 @@ components:
             The children are listed in the order they appear in the Codebook.'
       additionalProperties: false
       description: A Code or Net in a Codebook.
-    AddCodesIntoCodebooksBatchResponse:
+    CreateCodebookForQuestionResponse:
       type: object
       properties:
         errorMessage:
           type:
           - string
           - 'null'
-        codebooksBatch:
+        codebookKey:
+          type: integer
+          description: The key of the Codebook.
+          format: int32
+        codebook:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/AddCodesIntoCodebooksBatchResultItem'
-          description: Array of result items of batch adding of codes into codebooks
+            $ref: '#/components/schemas/CodeOrNet'
+          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
       additionalProperties: false
-      description: Response contains information about added codes into a linked codebook or error message
+      description: Contains a presentation of codebook
+    GetQuestionCodebookResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        codebookKey:
+          type: integer
+          description: The key of the Codebook.
+          format: int32
+        codebook:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CodeOrNet'
+          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
+      additionalProperties: false
+      description: Contains a presentation of codebook
+    ResponseCodeRemoved:
+      required:
+      - codeId
+      - codeKey
+      - questionId
+      - questionKey
+      - respondentId
+      type: object
+      properties:
+        questionKey:
+          type: integer
+          description: Key of question
+          format: int32
+        questionId:
+          type:
+          - string
+          - 'null'
+          description: Id of question
+        respondentId:
+          type:
+          - string
+          - 'null'
+          description: Id of respondent
+        codeKey:
+          type: integer
+          description: Key of code
+          format: int32
+        codeId:
+          type:
+          - string
+          - 'null'
+          description: Code Id (output)
+      additionalProperties: false
+      description: Contains information about codes that were uncode from responses
+    NewCodeOrNet:
+      required:
+      - description
+      type: object
+      properties:
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          description: 'The description of the Code.
+
+
+            This description represents the concept expressed in the coded Response.
+
+
+            Maximum allowed length is 1000 characters.'
+        inputId:
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+          description: "A optional identifier which may be used during automatic coding of responses.\n  \nMaximum allowed length is 50 characters."
+        outputId:
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+          description: "A optional identifier which may be used to identify the code in tabulation software.  \nMaximum allowed length is 50 characters."
+        regexPattern:
+          type:
+          - string
+          - 'null'
+          description: Optional regular expression pattern which may be used for assisting human coders or for automatic coding.
+        color:
+          type:
+          - string
+          - 'null'
+          description: 'An optional color for the code in CSS hexadecimal six digit format, e.g. #FF0000 for red.
+
+
+            If not specified the code color will default to black.'
+        children:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/NewCodeOrNet'
+          description: 'The children of a Net.
+
+
+            If this list is not null or empty, this code will be a Net, and its children will be the codes or nets in the list.
+
+
+            The children will be inserted in the codebook in the order specified in this list.'
+      additionalProperties: false
+      description: A Code or Net in a Codebook.
+    DeleteCodebookCodesResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        codeKeysDeleted:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+          description: Array of code keys which were successfully deleted from the codebook.
+        codeKeysNotDeleted:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+          description: Array of code keys which were not deleted by some reason. Usually such codes are applied to response(s).
+        codesRemovedFromResponses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResponseCodeRemoved'
+          description: Array of response-code pairs that were uncoded from responses in process of codes deletion.
+      additionalProperties: false
+      description: 'Response contains two arrays with successfully-deleted and failed codes after the try of deletion.
+
+        Codebook code can not be deleted if it is applied for some response. Only unused codebook codes can be deleted.'
     FailedCode:
       type: object
       properties:
@@ -1454,6 +1328,106 @@ components:
           description: Error message or reason why the code could not be updated.
       additionalProperties: false
       description: Contains information about failed code.
+    AddCodesIntoCodebooksBatchResultItem:
+      type: object
+      properties:
+        codebookKey:
+          type: integer
+          description: The key of codebook
+          format: int32
+        codebook:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CodeOrNet'
+          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \n            Codebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \n            Only the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\n            Nets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\n            Nets typically represent groups of related codes."
+        errorMessage:
+          type:
+          - string
+          - 'null'
+          description: Error message why codes can not be added into the Codebook
+      additionalProperties: false
+      description: Result item with information about status of adding codes into the specified codebook
+    UpdateCodesInCodebookResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        codebookKey:
+          type: integer
+          description: The key of the Codebook.
+          format: int32
+        codebook:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CodeOrNet'
+          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
+        failedCodes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FailedCode'
+          description: Codes that were failed while updating by some reason or error.
+      additionalProperties: false
+      description: Response contains information about failed codes. If a code with some key from the request is not presented in failedCodes collection it means that the code was successfully updated.
+    CreateCodebookForQuestionRequest:
+      required:
+      - codes
+      type: object
+      properties:
+        codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NewCodeOrNet'
+          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
+      additionalProperties: false
+      description: A codebook presentation to create for specified question
+    GetCodebookResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        codebookKey:
+          type: integer
+          description: The key of the Codebook.
+          format: int32
+        codebook:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CodeOrNet'
+          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
+      additionalProperties: false
+      description: Contains a presentation of codebook
+    AddCodesIntoCodebookResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        codebookKey:
+          type: integer
+          description: The key of the Codebook.
+          format: int32
+        codebook:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CodeOrNet'
+          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
+      additionalProperties: false
+      description: Contains a presentation of codebook
     AddCodesIntoCodebooksBatchRequest:
       type: object
       properties:
@@ -1469,23 +1443,7 @@ components:
           description: Overwrites non-unique codes
       additionalProperties: false
       description: Request contains a list of codebooks and their codes to add
-    CodebookNewCodes:
-      type: object
-      properties:
-        codebookKey:
-          type: integer
-          description: Key of the Codebook
-          format: int32
-        codes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/NewCodeOrNet'
-          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
-      additionalProperties: false
-      description: Codebook and its codes or nets tree structure
-    CreateCodebookForQuestionRequest:
+    UpdateCodesInCodebookRequest:
       required:
       - codes
       type: object
@@ -1493,10 +1451,52 @@ components:
         codes:
           type: array
           items:
-            $ref: '#/components/schemas/NewCodeOrNet'
-          description: "The Codes in the Codebook, in the order they appear in the Codebook.\n  \nCodebooks are tree structured and may be of any depth, although a depth of more than 6 is rare.\n  \nOnly the leaf nodes may be applied to a response.  These leaf nodes are Codes.\n\nNets have child codes or nets.  Nets may not be used to code a response.  They serve to provide structure to the Codebook.\n\nNets typically represent groups of related codes."
+            $ref: '#/components/schemas/UpdateCode'
+          description: Codes to update
+        overwrite:
+          type: boolean
+          description: Overwrites non-unique codes
       additionalProperties: false
-      description: A codebook presentation to create for specified question
+      description: Request contains information
+    UpdateCode:
+      type: object
+      properties:
+        key:
+          type:
+          - integer
+          - 'null'
+          description: Key of code
+          format: int32
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description of code
+        inputId:
+          type:
+          - string
+          - 'null'
+          description: Input ID value of code
+        outputId:
+          type:
+          - string
+          - 'null'
+          description: Output ID value of code
+        regexPattern:
+          type:
+          - string
+          - 'null'
+          description: Regular expression pattern which may be used for assisting human coders or for automatic coding.
+        color:
+          type:
+          - string
+          - 'null'
+          description: 'Color for the code in CSS hexadecimal six digit format, e.g. #FF0000 for red.
+
+
+            If the code color is the default value of #000000 (black) this field will not be present in the response.'
+      additionalProperties: false
+      description: "Class contains information about code and its properties to update. \nOnly not-null properties will be updated, i.e. for properties with null value the code saves original value."
   securitySchemes:
     Bearer:
       type: http
