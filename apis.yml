@@ -227,6 +227,9 @@ apis:
   - type: Authentication
     url: https://www.voxco.com/resources/ascribe-api-authentication
 common:
+  - type: CapabilityMap
+    url: capabilities/voxco-capability-edges.yml
+    name: Voxco Business Capability Map
   - type: AgenticAccess
     url: agentic-access/voxco-agentic-access.yml
   - type: DomainSecurity
