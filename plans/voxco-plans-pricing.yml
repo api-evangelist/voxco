@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: Voxco Plans and Pricing
 description: Voxco offers flexible, custom pricing with no publicly published rates.
   All plans require contacting the sales team for a tailored quote based on organizational
@@ -74,3 +78,40 @@ notes:
   - API access is included as part of the platform subscription
   - Professional services for API development and integration are available separately
   - Enterprise customers may negotiate custom SLAs and support arrangements
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - negotiated
+  units: []
+  plans:
+  - name: Voxco Online
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Voxco Online, Panel and Portal
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Voxco with Ascribe
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
+  - name: CATI and Telephony
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Voxco Enterprise
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
