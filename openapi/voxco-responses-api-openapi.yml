@@ -785,6 +785,432 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    PutResponsesResponse:
+      required:
+      - existingResponsesUnchanged
+      - existingResponsesUpdated
+      - responsesAdded
+      - responsesCoded
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        responsesAdded:
+          type: integer
+          description: 'The count of Responses added to the Question.
+
+
+            This is the number of responses in the PutResponsesRequest that had rid values that were not already present in this Question.'
+          format: int32
+        existingResponsesUpdated:
+          type: integer
+          description: 'The count of existing Responses updated.
+
+
+            This is the number of responses in the PutResponsesRequest that had rid values that were already present in this Question,
+
+            and for which any of the text, translation, transcription, or notes values were specified in the request and differed from the existing value in the Response.'
+          format: int32
+        existingResponsesUnchanged:
+          type: integer
+          description: 'The count of existing Responses unchanged.
+
+
+            This is the number of responses in the PutResponsesRequest that had rid values that were already present in this Question,
+
+            and for which all of the text, translation, transcription, or notes values were either not specified in the request or identical to the existing value in the Response.'
+          format: int32
+        responsesCoded:
+          type: integer
+          description: 'The count of responses coded.
+
+            '
+          format: int32
+      additionalProperties: false
+      description: Returns information about the disposition of the Responses added.
+    DeleteResponsesBatchRequest:
+      type: object
+      properties:
+        questionResponses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DeleteQuestionResponses'
+          description: Array of pairs of question key and respondent id
+      additionalProperties: false
+      description: Request contains array of pairs of question key and respondent id
+    SegmentCode:
+      required:
+      - codeKey
+      - length
+      - start
+      type: object
+      properties:
+        codeKey:
+          type: integer
+          description: Key of applied code
+          format: int32
+        start:
+          type: integer
+          description: Start index of segment
+          format: int32
+        length:
+          type: integer
+          description: Segment length
+          format: int32
+      additionalProperties: false
+      description: A descriptor class for code segment
+    PutResponse:
+      required:
+      - rid
+      type: object
+      properties:
+        rid:
+          minLength: 1
+          type: string
+          description: 'The respondent id, which is unique among Responses in this Question.
+
+
+            This id identifies the respondent in the Study, and that respondent''s Response in this Question.'
+        verbatim:
+          type:
+          - string
+          - 'null'
+          description: 'The verbatim text of the response, in other words the answer the respondent gave to the question posed.
+
+
+            Required if this is a new respondent, optional if updating an existing response for this respondent.'
+        translation:
+          type:
+          - string
+          - 'null'
+          description: Optional translation of the verbatim text.
+        transcription:
+          type:
+          - string
+          - 'null'
+          description: Optional transcription of the response.
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Optional notes associated with the response.
+        appliedcodes:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+          description: Array of codes to apply to the response. Note this will ignore any listed codes already applied and will not remove any.
+        segmentcodes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SegmentCode'
+          description: Array of segments of applied codes
+      additionalProperties: false
+      description: A respondent's answer to the question.
+    PutResponsesBatchRequest:
+      required:
+      - questionResponses
+      type: object
+      properties:
+        questionResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PutQuestionResponses'
+          description: Array of questions with their responses to update
+        allowEmptyStrings:
+          type: boolean
+          description: "When it is true it allows setting empty string as value for verbatim/translation/transcription/notes fields. \nOtherwise empty string is ignored (i.e. it works like null value). By default it is false."
+      additionalProperties: false
+      description: Request with inforamtion for updating multiple responses via one API call (batch operation)
+    DeleteResponsesBatchResponse:
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        questionResponses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DeleteQuestionResponseResultItem'
+          description: List of result items of deletion of responses
+      additionalProperties: false
+      description: Response contains information about which responses were deleted and which ones were not.
+    PostResponsesBatchResponse:
+      required:
+      - questionResponses
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        questionResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddedResponseBatchResult'
+          description: Array of questions with their responses to create
+      additionalProperties: false
+      description: Response contains information about newly created responses in target study questions
+    PutQuestionResponses:
+      required:
+      - questionKey
+      - responses
+      type: object
+      properties:
+        questionKey:
+          type: integer
+          description: Key of target question
+          format: int32
+        responses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PutResponseBatch'
+          description: Responses
+      additionalProperties: false
+      description: Question's responses to put
+    PostResponsesRequest:
+      required:
+      - responses
+      type: object
+      properties:
+        responses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostResponse'
+          description: 'The responses to be added or updated.
+
+
+            All strings in these responses will be trimmed of leading and trailing white space.'
+        autoCodeTextMatch:
+          type: boolean
+          description: 'If true, this will attempt to AutoCode responses based on an exact (but case insensitive) text match with previously-coded responses.
+
+            This AutoCode will execute first, followed by (if requested) Input ID matching and Regular Expression matching.'
+        autoCodeInputId:
+          type: boolean
+          description: 'If set to True, it will attempt to Auto Code based on a code''s Input ID (Closed ends and Other Specifies only).
+
+
+            This AutoCode will execute after the Text Match and before the Regular Expression match, if either is requested.'
+        autoCodeByRegex:
+          type: boolean
+          description: 'If set to True, it will attempt to Auto Code responses via the codes'' Regular Expressions.
+
+
+            This AutoCode will execute after the Text Match and Input ID match, if requested.'
+      additionalProperties: false
+      description: A request to add Responses to the specified Question, or to update existing Responses.
+    PostResponse:
+      required:
+      - rid
+      type: object
+      properties:
+        rid:
+          minLength: 1
+          type: string
+          description: 'The respondent id, which is unique among Responses in this Question.
+
+
+            This id identifies the respondent in the Study, and that respondent''s Response in this Question.'
+        verbatim:
+          type:
+          - string
+          - 'null'
+          description: 'The verbatim text of the response, in other words the answer the respondent gave to the question posed.
+
+
+            Required if this is a new respondent, optional if updating an existing response for this respondent.'
+        translation:
+          type:
+          - string
+          - 'null'
+          description: Optional translation of the verbatim text.
+        transcription:
+          type:
+          - string
+          - 'null'
+          description: Optional transcription of the response.
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Optional notes associated with the response.
+        appliedcodes:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+          description: Array of codes to apply to the response. Note this will ignore any listed codes already applied and will not remove any.
+        segmentcodes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SegmentCode'
+          description: Array of segments of applied codes
+      additionalProperties: false
+      description: A respondent's answer to the question.
+    AddedResponseBatchResult:
+      required:
+      - addedResponses
+      - questionId
+      - questionKey
+      type: object
+      properties:
+        questionKey:
+          type: integer
+          description: Key of target question
+          format: int32
+        questionId:
+          type:
+          - string
+          - 'null'
+          description: Id of target question
+        addedResponses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PostResponseBatch'
+          description: Responses
+      additionalProperties: false
+      description: Class contains information about newly created responses for target questions
+    PostResponsesBatchRequest:
+      required:
+      - questionResponses
+      type: object
+      properties:
+        questionResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostQuestionResponses'
+          description: Array of questions with their responses to create
+      additionalProperties: false
+      description: Request with information for creating multiple responses via one API call (batch operation)
+    PutResponseBatch:
+      required:
+      - rid
+      type: object
+      properties:
+        rid:
+          minLength: 1
+          type: string
+          description: 'The respondent id, which is unique among Responses in this Question.
+
+
+            This id identifies the respondent in the Study, and that respondent''s Response in this Question.'
+        verbatim:
+          type:
+          - string
+          - 'null'
+          description: 'The verbatim text of the response, in other words the answer the respondent gave to the question posed.
+
+
+            Required if this is a new respondent, optional if updating an existing response for this respondent.'
+        translation:
+          type:
+          - string
+          - 'null'
+          description: Optional translation of the verbatim text.
+        transcription:
+          type:
+          - string
+          - 'null'
+          description: Optional transcription of the response.
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Optional notes associated with the response.
+      additionalProperties: false
+      description: Response class for presenting study response data in the request for PUT BATCH operation.
+    PostQuestionResponses:
+      required:
+      - questionKey
+      - responses
+      type: object
+      properties:
+        questionKey:
+          type: integer
+          description: Key of target question
+          format: int32
+        responses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostResponseBatch'
+          description: Responses
+      additionalProperties: false
+      description: Question's responses to post
+    PutResponsesBatchResponse:
+      required:
+      - questionResponses
+      type: object
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        questionResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PutResponsesBatchResult'
+          description: Array of questions with their responses which were added/updated
+      additionalProperties: false
+      description: Response contains information about updated responses in target study questions
+    ExistingResponse:
+      required:
+      - codeKeys
+      - rid
+      - text
+      type: object
+      properties:
+        rid:
+          minLength: 1
+          type: string
+          description: The respondent ID.
+        text:
+          minLength: 1
+          type: string
+          description: The verbatim text of the response.  In other words, the answer the respondent gave to the question.
+        transcription:
+          type:
+          - string
+          - 'null'
+          description: A transcription of the response, if present for the respondent.
+        translation:
+          type:
+          - string
+          - 'null'
+          description: A translation of the response, if present for the respondent.
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Notes associated with the response, if present for the respondent.
+        codeKeys:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: 'The keys of the codes applied to the response.
+
+
+            Use these keys to map codes applied to a response to information about each code using the information returned by querying the Codebooks resource for the question.'
+      additionalProperties: false
+      description: A respondent's response stored in the question.
     AddedResponseWithCodingInfo:
       required:
       - codes
@@ -844,72 +1270,59 @@ components:
           description: The requested responses in the Question.
       additionalProperties: false
       description: The response of a query to the Responses resource.
-    DeleteResponseResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-      description: Response of DeleteResponse API method
-    DeleteResponsesBatchResponse:
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        questionResponses:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/DeleteQuestionResponseResultItem'
-          description: List of result items of deletion of responses
-      additionalProperties: false
-      description: Response contains information about which responses were deleted and which ones were not.
-    PutResponsesBatchResponse:
+    PostResponseBatch:
       required:
-      - questionResponses
+      - rid
       type: object
       properties:
-        errorMessage:
+        rid:
+          minLength: 1
+          type: string
+          description: 'The respondent id, which is unique among Responses in this Question.
+
+
+            This id identifies the respondent in the Study, and that respondent''s Response in this Question.'
+        verbatim:
           type:
           - string
           - 'null'
-        questionResponses:
-          type: array
-          items:
-            $ref: '#/components/schemas/PutResponsesBatchResult'
-          description: Array of questions with their responses which were added/updated
+          description: 'The verbatim text of the response, in other words the answer the respondent gave to the question posed.
+
+
+            Required if this is a new respondent, optional if updating an existing response for this respondent.'
+        translation:
+          type:
+          - string
+          - 'null'
+          description: Optional translation of the verbatim text.
+        transcription:
+          type:
+          - string
+          - 'null'
+          description: Optional transcription of the response.
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Optional notes associated with the response.
       additionalProperties: false
-      description: Response contains information about updated responses in target study questions
-    AddedResponseBatchResult:
+      description: Response class for presenting study response data in the request for POST BATCH operation.
+    AddedCode:
       required:
-      - addedResponses
-      - questionId
-      - questionKey
+      - codeKey
+      - description
       type: object
       properties:
-        questionKey:
+        codeKey:
           type: integer
-          description: Key of target question
+          description: The key of the code, corresponding to the key of a code in the codebook.
           format: int32
-        questionId:
-          type:
-          - string
-          - 'null'
-          description: Id of target question
-        addedResponses:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PostResponseBatch'
-          description: Responses
+        description:
+          minLength: 1
+          type: string
+          description: The text description of the code.
       additionalProperties: false
-      description: Class contains information about newly created responses for target questions
+      description: A code automatically applied to the response.
     DeleteQuestionResponseResultItem:
       type: object
       properties:
@@ -929,46 +1342,58 @@ components:
           description: Error message why response can not be deleted
       additionalProperties: false
       description: Result item with information about status of deletion of some response in the specified question
-    PutResponsesRequest:
-      required:
-      - responses
+    DeleteResponseResponse:
       type: object
       properties:
-        responses:
-          type: array
+        errorMessage:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+      description: Response of DeleteResponse API method
+    PutResponsesBatchResult:
+      required:
+      - questionId
+      - questionKey
+      type: object
+      properties:
+        questionKey:
+          type: integer
+          description: Key of target question
+          format: int32
+        questionId:
+          type:
+          - string
+          - 'null'
+          description: Id of target question
+        updatedResponses:
+          type:
+          - array
+          - 'null'
           items:
-            $ref: '#/components/schemas/PutResponse'
-          description: 'The responses to be added or updated.
-
-
-            All strings in these responses will be trimmed of leading and trailing white space.'
-        codingMethod:
-          type: integer
-          description: 'Method of coding to use for this request.
-
-            '
-          format: int32
-        allowEmptyStrings:
-          type: boolean
-          description: "When it is true it allows setting empty string as value for verbatim/translation/transcription/notes fields. \nOtherwise empty string is ignored (i.e. it works like null value). By default it is false."
+            $ref: '#/components/schemas/PutResponseBatch'
+          description: Updated responses
+        addedResponses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PutResponseBatch'
+          description: Added responses
+        unchangedResponses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PutResponseBatch'
+          description: Unchanged responses
+        errorMessage:
+          type:
+          - string
+          - 'null'
+          description: Error message when updating question responses finished with some error
       additionalProperties: false
-      description: A request to add Responses to the specified Question, or to update existing Responses.
-    AddedCode:
-      required:
-      - codeKey
-      - description
-      type: object
-      properties:
-        codeKey:
-          type: integer
-          description: The key of the code, corresponding to the key of a code in the codebook.
-          format: int32
-        description:
-          minLength: 1
-          type: string
-          description: The text description of the code.
-      additionalProperties: false
-      description: A code automatically applied to the response.
+      description: Class contains information about updated responses for target questions
     PostResponsesResponse:
       required:
       - addedResponses
@@ -1037,168 +1462,7 @@ components:
           description: The responses added to the question as a result of the POST operation.
       additionalProperties: false
       description: Returns information about the disposition of the Responses added.
-    PutResponsesBatchResult:
-      required:
-      - questionId
-      - questionKey
-      type: object
-      properties:
-        questionKey:
-          type: integer
-          description: Key of target question
-          format: int32
-        questionId:
-          type:
-          - string
-          - 'null'
-          description: Id of target question
-        updatedResponses:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PutResponseBatch'
-          description: Updated responses
-        addedResponses:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PutResponseBatch'
-          description: Added responses
-        unchangedResponses:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PutResponseBatch'
-          description: Unchanged responses
-        errorMessage:
-          type:
-          - string
-          - 'null'
-          description: Error message when updating question responses finished with some error
-      additionalProperties: false
-      description: Class contains information about updated responses for target questions
-    PostResponse:
-      required:
-      - rid
-      type: object
-      properties:
-        rid:
-          minLength: 1
-          type: string
-          description: 'The respondent id, which is unique among Responses in this Question.
-
-
-            This id identifies the respondent in the Study, and that respondent''s Response in this Question.'
-        verbatim:
-          type:
-          - string
-          - 'null'
-          description: 'The verbatim text of the response, in other words the answer the respondent gave to the question posed.
-
-
-            Required if this is a new respondent, optional if updating an existing response for this respondent.'
-        translation:
-          type:
-          - string
-          - 'null'
-          description: Optional translation of the verbatim text.
-        transcription:
-          type:
-          - string
-          - 'null'
-          description: Optional transcription of the response.
-        notes:
-          type:
-          - string
-          - 'null'
-          description: Optional notes associated with the response.
-        appliedcodes:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int32
-          description: Array of codes to apply to the response. Note this will ignore any listed codes already applied and will not remove any.
-        segmentcodes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SegmentCode'
-          description: Array of segments of applied codes
-      additionalProperties: false
-      description: A respondent's answer to the question.
-    PutResponseBatch:
-      required:
-      - rid
-      type: object
-      properties:
-        rid:
-          minLength: 1
-          type: string
-          description: 'The respondent id, which is unique among Responses in this Question.
-
-
-            This id identifies the respondent in the Study, and that respondent''s Response in this Question.'
-        verbatim:
-          type:
-          - string
-          - 'null'
-          description: 'The verbatim text of the response, in other words the answer the respondent gave to the question posed.
-
-
-            Required if this is a new respondent, optional if updating an existing response for this respondent.'
-        translation:
-          type:
-          - string
-          - 'null'
-          description: Optional translation of the verbatim text.
-        transcription:
-          type:
-          - string
-          - 'null'
-          description: Optional transcription of the response.
-        notes:
-          type:
-          - string
-          - 'null'
-          description: Optional notes associated with the response.
-      additionalProperties: false
-      description: Response class for presenting study response data in the request for PUT BATCH operation.
-    PutQuestionResponses:
-      required:
-      - questionKey
-      - responses
-      type: object
-      properties:
-        questionKey:
-          type: integer
-          description: Key of target question
-          format: int32
-        responses:
-          type: array
-          items:
-            $ref: '#/components/schemas/PutResponseBatch'
-          description: Responses
-      additionalProperties: false
-      description: Question's responses to put
-    PostResponsesBatchRequest:
-      required:
-      - questionResponses
-      type: object
-      properties:
-        questionResponses:
-          type: array
-          items:
-            $ref: '#/components/schemas/PostQuestionResponses'
-          description: Array of questions with their responses to create
-      additionalProperties: false
-      description: Request with information for creating multiple responses via one API call (batch operation)
-    PostResponsesRequest:
+    PutResponsesRequest:
       required:
       - responses
       type: object
@@ -1206,286 +1470,22 @@ components:
         responses:
           type: array
           items:
-            $ref: '#/components/schemas/PostResponse'
+            $ref: '#/components/schemas/PutResponse'
           description: 'The responses to be added or updated.
 
 
             All strings in these responses will be trimmed of leading and trailing white space.'
-        autoCodeTextMatch:
-          type: boolean
-          description: 'If true, this will attempt to AutoCode responses based on an exact (but case insensitive) text match with previously-coded responses.
-
-            This AutoCode will execute first, followed by (if requested) Input ID matching and Regular Expression matching.'
-        autoCodeInputId:
-          type: boolean
-          description: 'If set to True, it will attempt to Auto Code based on a code''s Input ID (Closed ends and Other Specifies only).
-
-
-            This AutoCode will execute after the Text Match and before the Regular Expression match, if either is requested.'
-        autoCodeByRegex:
-          type: boolean
-          description: 'If set to True, it will attempt to Auto Code responses via the codes'' Regular Expressions.
-
-
-            This AutoCode will execute after the Text Match and Input ID match, if requested.'
-      additionalProperties: false
-      description: A request to add Responses to the specified Question, or to update existing Responses.
-    DeleteResponsesBatchRequest:
-      type: object
-      properties:
-        questionResponses:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/DeleteQuestionResponses'
-          description: Array of pairs of question key and respondent id
-      additionalProperties: false
-      description: Request contains array of pairs of question key and respondent id
-    PostResponseBatch:
-      required:
-      - rid
-      type: object
-      properties:
-        rid:
-          minLength: 1
-          type: string
-          description: 'The respondent id, which is unique among Responses in this Question.
-
-
-            This id identifies the respondent in the Study, and that respondent''s Response in this Question.'
-        verbatim:
-          type:
-          - string
-          - 'null'
-          description: 'The verbatim text of the response, in other words the answer the respondent gave to the question posed.
-
-
-            Required if this is a new respondent, optional if updating an existing response for this respondent.'
-        translation:
-          type:
-          - string
-          - 'null'
-          description: Optional translation of the verbatim text.
-        transcription:
-          type:
-          - string
-          - 'null'
-          description: Optional transcription of the response.
-        notes:
-          type:
-          - string
-          - 'null'
-          description: Optional notes associated with the response.
-      additionalProperties: false
-      description: Response class for presenting study response data in the request for POST BATCH operation.
-    PostQuestionResponses:
-      required:
-      - questionKey
-      - responses
-      type: object
-      properties:
-        questionKey:
+        codingMethod:
           type: integer
-          description: Key of target question
-          format: int32
-        responses:
-          type: array
-          items:
-            $ref: '#/components/schemas/PostResponseBatch'
-          description: Responses
-      additionalProperties: false
-      description: Question's responses to post
-    PutResponsesResponse:
-      required:
-      - existingResponsesUnchanged
-      - existingResponsesUpdated
-      - responsesAdded
-      - responsesCoded
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        responsesAdded:
-          type: integer
-          description: 'The count of Responses added to the Question.
-
-
-            This is the number of responses in the PutResponsesRequest that had rid values that were not already present in this Question.'
-          format: int32
-        existingResponsesUpdated:
-          type: integer
-          description: 'The count of existing Responses updated.
-
-
-            This is the number of responses in the PutResponsesRequest that had rid values that were already present in this Question,
-
-            and for which any of the text, translation, transcription, or notes values were specified in the request and differed from the existing value in the Response.'
-          format: int32
-        existingResponsesUnchanged:
-          type: integer
-          description: 'The count of existing Responses unchanged.
-
-
-            This is the number of responses in the PutResponsesRequest that had rid values that were already present in this Question,
-
-            and for which all of the text, translation, transcription, or notes values were either not specified in the request or identical to the existing value in the Response.'
-          format: int32
-        responsesCoded:
-          type: integer
-          description: 'The count of responses coded.
+          description: 'Method of coding to use for this request.
 
             '
           format: int32
-      additionalProperties: false
-      description: Returns information about the disposition of the Responses added.
-    PutResponse:
-      required:
-      - rid
-      type: object
-      properties:
-        rid:
-          minLength: 1
-          type: string
-          description: 'The respondent id, which is unique among Responses in this Question.
-
-
-            This id identifies the respondent in the Study, and that respondent''s Response in this Question.'
-        verbatim:
-          type:
-          - string
-          - 'null'
-          description: 'The verbatim text of the response, in other words the answer the respondent gave to the question posed.
-
-
-            Required if this is a new respondent, optional if updating an existing response for this respondent.'
-        translation:
-          type:
-          - string
-          - 'null'
-          description: Optional translation of the verbatim text.
-        transcription:
-          type:
-          - string
-          - 'null'
-          description: Optional transcription of the response.
-        notes:
-          type:
-          - string
-          - 'null'
-          description: Optional notes associated with the response.
-        appliedcodes:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int32
-          description: Array of codes to apply to the response. Note this will ignore any listed codes already applied and will not remove any.
-        segmentcodes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SegmentCode'
-          description: Array of segments of applied codes
-      additionalProperties: false
-      description: A respondent's answer to the question.
-    SegmentCode:
-      required:
-      - codeKey
-      - length
-      - start
-      type: object
-      properties:
-        codeKey:
-          type: integer
-          description: Key of applied code
-          format: int32
-        start:
-          type: integer
-          description: Start index of segment
-          format: int32
-        length:
-          type: integer
-          description: Segment length
-          format: int32
-      additionalProperties: false
-      description: A descriptor class for code segment
-    PostResponsesBatchResponse:
-      required:
-      - questionResponses
-      type: object
-      properties:
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        questionResponses:
-          type: array
-          items:
-            $ref: '#/components/schemas/AddedResponseBatchResult'
-          description: Array of questions with their responses to create
-      additionalProperties: false
-      description: Response contains information about newly created responses in target study questions
-    ExistingResponse:
-      required:
-      - codeKeys
-      - rid
-      - text
-      type: object
-      properties:
-        rid:
-          minLength: 1
-          type: string
-          description: The respondent ID.
-        text:
-          minLength: 1
-          type: string
-          description: The verbatim text of the response.  In other words, the answer the respondent gave to the question.
-        transcription:
-          type:
-          - string
-          - 'null'
-          description: A transcription of the response, if present for the respondent.
-        translation:
-          type:
-          - string
-          - 'null'
-          description: A translation of the response, if present for the respondent.
-        notes:
-          type:
-          - string
-          - 'null'
-          description: Notes associated with the response, if present for the respondent.
-        codeKeys:
-          type: array
-          items:
-            type: integer
-            format: int32
-          description: 'The keys of the codes applied to the response.
-
-
-            Use these keys to map codes applied to a response to information about each code using the information returned by querying the Codebooks resource for the question.'
-      additionalProperties: false
-      description: A respondent's response stored in the question.
-    PutResponsesBatchRequest:
-      required:
-      - questionResponses
-      type: object
-      properties:
-        questionResponses:
-          type: array
-          items:
-            $ref: '#/components/schemas/PutQuestionResponses'
-          description: Array of questions with their responses to update
         allowEmptyStrings:
           type: boolean
           description: "When it is true it allows setting empty string as value for verbatim/translation/transcription/notes fields. \nOtherwise empty string is ignored (i.e. it works like null value). By default it is false."
       additionalProperties: false
-      description: Request with inforamtion for updating multiple responses via one API call (batch operation)
+      description: A request to add Responses to the specified Question, or to update existing Responses.
     DeleteQuestionResponses:
       type: object
       properties:
