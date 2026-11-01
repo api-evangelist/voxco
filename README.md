@@ -1,4 +1,4 @@
-# Voxco (voxco)
+# Voxco
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,96 +66,209 @@
 
 Voxco is an omnichannel survey platform serving market research firms and corporate research teams across 40+ countries. It provides a REST API for managing surveys, distributing questionnaires via multiple channels (online, CATI, mobile, IVR), collecting responses, and accessing survey analytics. The Ascribe text analytics API further enables AI-powered coding and analysis of open-ended survey responses.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/voxco/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/voxco/refs/heads/main/apis.yml)
+**Areas:** Survey Software · Market Research · CATI · Omnichannel · Text Analytics · Data Collection · Panel Management
 
-## Tags
+## Voxco on APIs.io
 
-- Survey Software
-- Market Research
-- CATI
-- Omnichannel
-- Text Analytics
-- Data Collection
-- Panel Management
+Everything profiled for Voxco is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/voxco/](https://apis.io/providers/voxco/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (11)
 
-- **Created:** 2026-06-13
-- **Modified:** 2026-06-13
+- [Voxco AICoder API](https://apis.io/apis/voxco/voxco-aicoder-api/) — The AICoder API from Voxco — 15 operation(s) for aicoder.
+- [Voxco Codebooks API](https://apis.io/apis/voxco/voxco-codebooks-api/) — The Codebooks API from Voxco — 5 operation(s) for codebooks.
+- [Voxco Companies API](https://apis.io/apis/voxco/voxco-companies-api/) — The Companies API from Voxco — 1 operation(s) for companies.
+- [Voxco Exports API](https://apis.io/apis/voxco/voxco-exports-api/) — The Exports API from Voxco — 2 operation(s) for exports.
+- [Voxco Languages API](https://apis.io/apis/voxco/voxco-languages-api/) — The Languages API from Voxco — 1 operation(s) for languages.
+- [Voxco Questions API](https://apis.io/apis/voxco/voxco-questions-api/) — The Questions API from Voxco — 7 operation(s) for questions.
+- [Voxco Responses API](https://apis.io/apis/voxco/voxco-responses-api/) — The Responses API from Voxco — 4 operation(s) for responses.
+- [Voxco Sessions API](https://apis.io/apis/voxco/voxco-sessions-api/) — The Sessions API from Voxco — 1 operation(s) for sessions.
+- [Voxco Studies API](https://apis.io/apis/voxco/voxco-studies-api/) — The Studies API from Voxco — 3 operation(s) for studies.
+- [Voxco StudyRespondents API](https://apis.io/apis/voxco/voxco-studyrespondents-api/) — The StudyRespondents API from Voxco — 1 operation(s) for studyrespondents.
+- [Voxco Users API](https://apis.io/apis/voxco/voxco-users-api/) — The Users API from Voxco — 1 operation(s) for users.
 
-## APIs
+### Published properties
 
-### Voxco Survey API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-REST API for integrating with the Voxco survey platform, enabling programmatic management of surveys, distribution across channels, response collection, and access to analytics. Authenticated via a 140-character Access Token.
+#### Agentic access (1)
 
-- **Human URL:** [https://www.voxco.com/professional-services](https://www.voxco.com/professional-services)
-- **Base URL:** `https://na1.voxco.com`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Voxco Agentic Access](https://apis.io/agentic-access/voxco/voxco-agentic-access/)
 
-- Surveys
-- Data Collection
-- Analytics
+#### JSON Schema (142)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://www.voxco.com/resources)
-- [OpenAPI](https://webservices.goascribe.com/coder) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [AICoderAnalyzeGetCodebooksResponse](https://apis.io/schemas/voxco/AICoderAnalyzeGetCodebooksResponse/)
+- [AICoderCodeStudyIncrementallyRequest](https://apis.io/schemas/voxco/AICoderCodeStudyIncrementallyRequest/)
+- [AICoderCodeStudyIncrementallyResponse](https://apis.io/schemas/voxco/AICoderCodeStudyIncrementallyResponse/)
+- [AICoderCodeStudyRequest](https://apis.io/schemas/voxco/AICoderCodeStudyRequest/)
+- [AICoderCodeStudyResponse](https://apis.io/schemas/voxco/AICoderCodeStudyResponse/)
+- [AICoderCodeStudyStatusOfTaskResponse](https://apis.io/schemas/voxco/AICoderCodeStudyStatusOfTaskResponse/)
+- [AICoderCodeStudyV3Request](https://apis.io/schemas/voxco/AICoderCodeStudyV3Request/)
+- [AICoderCodebookExportGetStatusOfTaskResponse](https://apis.io/schemas/voxco/AICoderCodebookExportGetStatusOfTaskResponse/)
+- [AICoderCodebookExportRequest](https://apis.io/schemas/voxco/AICoderCodebookExportRequest/)
+- [AICoderCodebookExportResponse](https://apis.io/schemas/voxco/AICoderCodebookExportResponse/)
+- [AICoderCreateLinkRequest](https://apis.io/schemas/voxco/AICoderCreateLinkRequest/)
+- [AICoderCreateLinkResponse](https://apis.io/schemas/voxco/AICoderCreateLinkResponse/)
+- [AICoderDichotomousExportGetStatusOfTaskResponse](https://apis.io/schemas/voxco/AICoderDichotomousExportGetStatusOfTaskResponse/)
+- [AICoderDichotomousExportRequest](https://apis.io/schemas/voxco/AICoderDichotomousExportRequest/)
+- [AICoderDichotomousExportResponse](https://apis.io/schemas/voxco/AICoderDichotomousExportResponse/)
+- [AICoderExcelExportGetStatusOfTaskResponse](https://apis.io/schemas/voxco/AICoderExcelExportGetStatusOfTaskResponse/)
+- [AICoderExcelExportRequest](https://apis.io/schemas/voxco/AICoderExcelExportRequest/)
+- [AICoderExcelExportResponse](https://apis.io/schemas/voxco/AICoderExcelExportResponse/)
+- [AICoderGetProjectsTaskResponse](https://apis.io/schemas/voxco/AICoderGetProjectsTaskResponse/)
+- [AICoderGroupCodesRequest](https://apis.io/schemas/voxco/AICoderGroupCodesRequest/)
+- [AICoderGroupCodesResponse](https://apis.io/schemas/voxco/AICoderGroupCodesResponse/)
+- [AICoderGroupCodesStatusOfTaskResponse](https://apis.io/schemas/voxco/AICoderGroupCodesStatusOfTaskResponse/)
+- [AICoderLink](https://apis.io/schemas/voxco/AICoderLink/)
+- [AICoderProjectAPI](https://apis.io/schemas/voxco/AICoderProjectAPI/)
+- [AddCodesIntoCodebookRequest](https://apis.io/schemas/voxco/AddCodesIntoCodebookRequest/)
+- …and 117 more published on APIs.io
 
-### Voxco Ascribe Coder API
+#### JSON-LD (1)
 
-REST API for automated coding and analysis of open-ended survey responses. Supports creating studies, loading questions and responses, polling for coding completion, and retrieving codebooks and coded results via Bearer token authentication.
+Linked-data contexts for the provider's vocabulary.
 
-- **Human URL:** [https://www.voxco.com/resources/automating-coding-workflow-with-the-ascribe-coder-api](https://www.voxco.com/resources/automating-coding-workflow-with-the-ascribe-coder-api)
-- **Base URL:** `https://webservices.goascribe.com/coder`
+- [Voxco Context](https://apis.io/jsonld/voxco/voxco-context/)
 
-#### Tags
+#### Examples (82)
 
-- Text Analytics
-- AI Coding
-- Open-Ended Responses
-- Market Research
+Example requests and responses.
 
-#### Properties
+- [Delete Codebooks_{Codebookkey}_Codes Request](https://apis.io/examples/voxco/delete-Codebooks_{codebookKey}_Codes-request/)
+- [Delete Codebooks_{Codebookkey}_Codes Response 200](https://apis.io/examples/voxco/delete-Codebooks_{codebookKey}_Codes-response-200/)
+- [Delete Questions_Batch Request](https://apis.io/examples/voxco/delete-Questions_Batch-request/)
+- [Delete Questions_Batch Response 200](https://apis.io/examples/voxco/delete-Questions_Batch-response-200/)
+- [Delete Questions_{Questionkey}_{Entitytype} Response 200](https://apis.io/examples/voxco/delete-Questions_{questionKey}_{entityType}-response-200/)
+- [Delete Responses_Batch Request](https://apis.io/examples/voxco/delete-Responses_Batch-request/)
+- [Delete Responses_Batch Response 200](https://apis.io/examples/voxco/delete-Responses_Batch-response-200/)
+- [Delete Responses_{Questionkey}_{Respondentid} Response 200](https://apis.io/examples/voxco/delete-Responses_{QuestionKey}_{RespondentID}-response-200/)
+- [Delete Studies Request](https://apis.io/examples/voxco/delete-Studies-request/)
+- [Delete Studies Response 200](https://apis.io/examples/voxco/delete-Studies-response-200/)
+- [Delete Studies_{Studykey}_Respondents Request](https://apis.io/examples/voxco/delete-Studies_{studyKey}_Respondents-request/)
+- [Delete Studies_{Studykey}_Respondents Response 200](https://apis.io/examples/voxco/delete-Studies_{studyKey}_Respondents-response-200/)
+- [Get Aicoder_Analyze_Codebooks Response 200](https://apis.io/examples/voxco/get-AICoder_Analyze_Codebooks-response-200/)
+- [Get Aicoder_Analyze_{Taskstatuskey} Response 200](https://apis.io/examples/voxco/get-AICoder_Analyze_{taskStatusKey}-response-200/)
+- [Get Aicoder_Export_Codebook_{Taskstatuskey} Response 200](https://apis.io/examples/voxco/get-AICoder_Export_Codebook_{taskStatusKey}-response-200/)
+- [Get Aicoder_Export_Dichotomous_{Taskstatuskey} Response 200](https://apis.io/examples/voxco/get-AICoder_Export_Dichotomous_{taskStatusKey}-response-200/)
+- [Get Aicoder_Export_Excel_{Taskstatuskey} Response 200](https://apis.io/examples/voxco/get-AICoder_Export_Excel_{taskStatusKey}-response-200/)
+- [Get Aicoder_Netcodes_{Taskstatuskey} Response 200](https://apis.io/examples/voxco/get-AICoder_NetCodes_{taskStatusKey}-response-200/)
+- [Get Aicoder_Projects Response 200](https://apis.io/examples/voxco/get-AICoder_Projects-response-200/)
+- [Get Codebooks_Question_{Questionkey} Response 200](https://apis.io/examples/voxco/get-Codebooks_Question_{questionKey}-response-200/)
+- [Get Codebooks_{Codebookkey} Response 200](https://apis.io/examples/voxco/get-Codebooks_{codebookKey}-response-200/)
+- [Get Companies Response 200](https://apis.io/examples/voxco/get-Companies-response-200/)
+- [Get Exports Response 200](https://apis.io/examples/voxco/get-Exports-response-200/)
+- [Get Exports_{Jobkey} Response 200](https://apis.io/examples/voxco/get-Exports_{jobKey}-response-200/)
+- [Get Languages_Translate Response 200](https://apis.io/examples/voxco/get-Languages_Translate-response-200/)
+- …and 57 more published on APIs.io
 
-- [Documentation](https://www.voxco.com/resources/using-swagger-documentation-postman-ascribe-apis)
-- [Authentication](https://www.voxco.com/resources/ascribe-api-authentication)
-- [OpenAPI](https://webservices.goascribe.com/coder) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+#### Collections (11)
 
-### Voxco Ascribe CX Inspector API
+Postman and Open Collection request collections.
 
-REST API for customer experience text analytics and verbatim coding, enabling analysis of CX survey open-ended responses with AI-powered theme extraction and sentiment analysis. Uses the same Bearer token authentication as the Ascribe Coder API.
+- [Ascribe Coder AICoder API](https://apis.io/collections/voxco/open-voxco-aicoder-api/)
+- [Ascribe Coder AICoder Codebooks API](https://apis.io/collections/voxco/open-voxco-codebooks-api/)
+- [Ascribe Coder AICoder Companies API](https://apis.io/collections/voxco/open-voxco-companies-api/)
+- [Ascribe Coder AICoder Exports API](https://apis.io/collections/voxco/open-voxco-exports-api/)
+- [Ascribe Coder AICoder Languages API](https://apis.io/collections/voxco/open-voxco-languages-api/)
+- [Ascribe Coder AICoder Questions API](https://apis.io/collections/voxco/open-voxco-questions-api/)
+- [Ascribe Coder AICoder Responses API](https://apis.io/collections/voxco/open-voxco-responses-api/)
+- [Ascribe Coder AICoder Sessions API](https://apis.io/collections/voxco/open-voxco-sessions-api/)
+- [Ascribe Coder AICoder Studies API](https://apis.io/collections/voxco/open-voxco-studies-api/)
+- [Ascribe Coder AICoder StudyRespondents API](https://apis.io/collections/voxco/open-voxco-studyrespondents-api/)
+- [Ascribe Coder AICoder Users API](https://apis.io/collections/voxco/open-voxco-users-api/)
 
-- **Human URL:** [https://www.voxco.com/resources/using-swagger-documentation-postman-ascribe-apis](https://www.voxco.com/resources/using-swagger-documentation-postman-ascribe-apis)
-- **Base URL:** `https://webservices.goascribe.com/cxi`
+#### Governance rules (1)
 
-#### Tags
+Spectral rulesets for the provider's contracts.
 
-- Customer Experience
-- Text Analytics
-- Sentiment Analysis
-- Verbatim Coding
+- [Voxco — jsonschema rules](https://apis.io/rules/voxco/voxco-jsonschema-spectral-rules/)
 
-#### Properties
+#### Security (2)
 
-- [Documentation](https://www.voxco.com/resources/using-swagger-documentation-postman-ascribe-apis)
-- [Authentication](https://www.voxco.com/resources/ascribe-api-authentication)
-- [OpenAPI](https://webservices.goascribe.com/cxi) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Common Properties
+- [Voxco Authentication](https://apis.io/security/voxco/voxco-authentication/)
+- [Voxco Domain Security](https://apis.io/security/voxco/voxco-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Voxco Plans Pricing](https://apis.io/plans/voxco/voxco-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Voxco Rate Limits](https://apis.io/rate-limits/voxco/voxco-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Voxco Finops](https://apis.io/finops/voxco/voxco-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.voxco.com)
 - [Documentation](https://www.voxco.com/resources)
-- [Blog](https://www.voxco.com/blog/)
 - [Pricing](https://www.voxco.com/pricing)
-- [LinkedIn](https://www.linkedin.com/company/voxco)
-- [X (Twitter)](https://x.com/voxco)
-- [Plans](plans/voxco-plans-pricing.yml)
-- [Rate Limits](rate-limits/voxco-rate-limits.yml)
-- [Fin Ops](finops/voxco-finops.yml)
+- [Blog](https://www.voxco.com/blog/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 34.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 57.3 |
+| Contract governance | 9.8 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 18.4 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/voxco/](https://apis.io/providers/voxco/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Voxco: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/voxco/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
